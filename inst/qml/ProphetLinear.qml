@@ -270,21 +270,20 @@ Form
 
     Section
     {
-        title: qsTr("Statistics")
+        title: qsTr("Evaluation")
 
         Group
         {
             title: qsTr("Simulated Historical Forecasts")
             DropDown
             {
-                name: "crossValdiationUnit"
+                name: "crossValidationUnit"
                 label: qsTr("Unit")
                 indexDefaultValue: 0
                 values:
                 [
                     { label: "Days",    value: "days"},
                     { label: "Weeks",   value: "weeks"},
-                    { label: "Months",  value: "months"},
                     { label: "Years",   value: "years"}
                 ]
             }
@@ -316,17 +315,18 @@ Form
             CheckBox
             {
                 name: "performanceMetricsMse"
-                label: qsTr("MSE")
+                label: qsTr("Mean squared error (MSE)")
+                checked: true
             }
             CheckBox
             {
                 name: "performanceMetricsRmse"
-                label: qsTr("RMSE")
+                label: qsTr("Root mean squared error (RMSE)")
             }
             CheckBox
             {
                 name: "performanceMetricsMape"
-                label: qsTr("MAPE")
+                label: qsTr("Mean absolute percentage error (MAPE)")
             }
         }
     }
