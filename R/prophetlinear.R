@@ -32,6 +32,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   .prolinCreateModelEvaluationTable(jaspResults, options, ready)
   .prolinCreateForecastPlots(       jaspResults, options, ready)
   .prolinCreatePerformancePlots(    jaspResults, options, ready)
+  .prolinCreateParameterPlots(      jaspResults, options, ready)
   
   return()
 }
@@ -537,6 +538,47 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   p <- p + ggplot2::geom_line(data = meanDat, color = "darkred")
   
   p <- p + ggplot2::labs(x = "Horizon (in days)", y = stringr::str_to_upper(type))
+  
+  p <- JASPgraphs::themeJasp(p)
+  
+  return(p)
+}
+
+.prolinCreateParameterPlots <- function(jaspResults, options, ready) {
+  
+  prolinModelResults <- jaspResults[["prolinResults"]][["prolinModelResults"]]$object
+  
+  prolinParameterPlots <- createJaspContainer("Parameter Plots")
+  
+  if(options$parameterPlotsDelta) .prolinCreateParameterPlotDelta(prolinParameterPlots, options, prolinModelResults)
+  
+  jaspResults[["prolinMainContainer"]][["prolinParameterPlots"]] <- prolinParameterPlots
+}
+
+.prolinCreateParameterPlotDelta <- function(prolinParameterPlots, options, prolinModelResults) {
+  if (!is.null(prolinParameterPlots[["prolinParameterPlotDelta"]])) return()
+  
+  prolinParameterPlotDelta <- createJaspPlot(title = "Changepoint Distribution Plot", height = 320, width = 480)
+  prolinParameterPlotDelta$dependOn(c("parameterPlotsDelta"))
+  
+  prolinParameterPlotDelta$plotObject <- .prolinParameterPlotDeltaFill(prolinModelResults, options)
+  
+  prolinParameterPlots[["prolinParameterPlotDelta"]] <- prolinParameterPlotDelta
+  
+  return()
+}
+
+.prolinParameterPlotDeltaFill <- function(prolinModelResults, options) {
+  deltas <- switch(options$estimation,
+                   map  = as.numeric(prolinModelResults$params$delta),
+                   mcmc = as.numeric(apply(prolinModelResults$params$delta, 2, mean)))
+  cps    <- as.Date(prolinModelResults$changepoints)
+  
+  p <- ggplot2::ggplot(data = data.frame(x = cps, y = deltas), mapping = ggplot2::aes(x = x, y = y))
+  
+  p <- p + ggplot2::geom_point(size = 3, color = "grey")
+  
+  p <- p + ggplot2::labs(x = "Time", y = "Change in k (delta)")
   
   p <- JASPgraphs::themeJasp(p)
   
