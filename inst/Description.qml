@@ -15,11 +15,6 @@ Description
 
     Package
     {
-        name    : "bayestestR"
-    }
-
-    Package
-    {
         name    : "prophet"
     }
 

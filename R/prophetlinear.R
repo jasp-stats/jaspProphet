@@ -326,14 +326,21 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   names(pars) <- c("Growth rate (k)", "Offset (m)", "Residual variance (sigma)", "Log posterior")
   
-  parsCri <- purrr::reduce(lapply(pars, bayestestR::ci, ci = 0.95), rbind)
+  parsCri <- purrr::reduce(lapply(pars, function(x, lvl) {
+    
+    marg <- (1-lvl)/2
+    
+    cri <- stats::quantile(x, probs = c(marg, 1-marg))
+    
+    return(cri)
+  }, lvl = 0.95), rbind)
   
   prolinTable$addColumns(list(
     par      = names(pars),
     mean     = sapply(pars, mean),
     sd       = sapply(pars, sd),
-    lowerCri = parsCri$CI_low,
-    upperCri = parsCri$CI_high
+    lowerCri = parsCri[,1],
+    upperCri = parsCri[,2]
   ))
 }
 
@@ -457,14 +464,26 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 
 .prolinForecastPlotFill <- function(prolinPredictionResults, options, type) {
   # TODO(maltelueken) change time axis limits for weekly and daily
-  p <- ggplot2::ggplot(prolinPredictionResults, mapping = ggplot2::aes_string(x = "ds", y = type))
   
-  p <- p + ggplot2::geom_line(color = "black")
+  x <- as.Date(prolinPredictionResults[["ds"]])
+  y <- prolinPredictionResults[[type]]
+  ymin <- prolinPredictionResults[[paste0(type, "_lower")]]
+  ymax <- prolinPredictionResults[[paste0(type, "_upper")]]
+  df <- data.frame(x = x, y = y, ymin = ymin, ymax = ymax)
   
-  p <- p + ggplot2::geom_ribbon(mapping = ggplot2::aes_string(ymin = paste0(type, "_lower"), max = paste0(type, "_upper")),
-                         fill = "blue", alpha = 0.4)
+  xBreaks <- pretty(x)
+  xLabels <- attr(xBreaks, "labels")
+  yBreaks <- JASPgraphs::getPrettyAxisBreaks(c(ymin, ymax))
   
-  p <- p + ggplot2::labs(x = "Time", y = options$dependent)
+  p <- ggplot2::ggplot(df, mapping = ggplot2::aes(x = x, y = y))
+  
+  p <- p + ggplot2::geom_line(color = "black", size = 1.25)
+  
+  p <- p + ggplot2::geom_ribbon(mapping = ggplot2::aes(ymin = ymin, ymax = ymax), fill = "blue", alpha = 0.4)
+  
+  p <- p + 
+    ggplot2::scale_x_date(name = gettext("Time"), breaks = xBreaks, labels = gettext(xLabels), limits = range(xBreaks)) +
+    ggplot2::scale_y_continuous(name = gettext(options$dependent), breaks = yBreaks, limits = range(yBreaks))
   
   p <- JASPgraphs::themeJasp(p)
   
@@ -535,9 +554,9 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   p <- p + ggplot2::geom_point(size = 3, color = "grey")
   
-  p <- p + ggplot2::geom_line(data = meanDat, color = "darkred")
+  p <- p + ggplot2::geom_line(data = meanDat, color = "darkred", size = 1.25)
   
-  p <- p + ggplot2::labs(x = "Horizon (in days)", y = stringr::str_to_upper(type))
+  p <- p + ggplot2::labs(x = gettext("Horizon (in days)"), y = gettext(stringr::str_to_upper(type)))
   
   p <- JASPgraphs::themeJasp(p)
   
@@ -550,7 +569,10 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   prolinParameterPlots <- createJaspContainer("Parameter Plots")
   
-  if(options$parameterPlotsDelta) .prolinCreateParameterPlotDelta(prolinParameterPlots, options, prolinModelResults)
+  if(options$parameterPlotsDelta) 
+    .prolinCreateParameterPlotDelta(prolinParameterPlots, options, prolinModelResults)
+  if(options$parameterPlotsMarginalDistributions) 
+    .prolinCreateParameterPlotMarginal(prolinParameterPlots, options, prolinModelResults)
   
   jaspResults[["prolinMainContainer"]][["prolinParameterPlots"]] <- prolinParameterPlots
 }
@@ -569,16 +591,82 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 }
 
 .prolinParameterPlotDeltaFill <- function(prolinModelResults, options) {
-  deltas <- switch(options$estimation,
+  deltas  <- switch(options$estimation,
                    map  = as.numeric(prolinModelResults$params$delta),
                    mcmc = as.numeric(apply(prolinModelResults$params$delta, 2, mean)))
-  cps    <- as.Date(prolinModelResults$changepoints)
+  cps     <- as.Date(prolinModelResults$changepoints)
+  
+  xBreaks <- pretty(cps)
+  xLabels <- attr(xBreaks, "labels")
+  yBreaks <- JASPgraphs::getPrettyAxisBreaks(c(min(deltas), max(deltas)))
   
   p <- ggplot2::ggplot(data = data.frame(x = cps, y = deltas), mapping = ggplot2::aes(x = x, y = y))
   
   p <- p + ggplot2::geom_point(size = 3, color = "grey")
   
-  p <- p + ggplot2::labs(x = "Time", y = "Change in k (delta)")
+  p <- p + 
+    ggplot2::scale_x_date(name = gettext("Time"), breaks = xBreaks, labels = gettext(xLabels), limits = range(xBreaks)) +
+    ggplot2::scale_y_continuous(name = gettext("Change in k (delta)"), breaks = yBreaks, limits = range(yBreaks))
+  
+  p <- JASPgraphs::themeJasp(p)
+  
+  return(p)
+}
+
+.prolinCreateParameterPlotMarginal <- function(prolinParameterPlots, options, prolinModelResults) {
+  if (!is.null(prolinParameterPlots[["prolinParameterPlotMarginal"]])) return()
+  
+  prolinParameterPlotMarginal <- createJaspContainer(title = gettext("Marginal Posterior Distributions"))
+  
+  parNames <- c("k", "m", "sigma_obs", "lp__")
+  parTitles <- c("Growth rate", "Offset", "Residual variance", "Log posterior")
+  
+  marginalPlotList <- list()
+  
+  for (i in 1:length(parNames)) {
+    marginalPlotList[[i]] <- createJaspPlot(title = gettext(parTitles[i]), height = 320, width = 480)
+    
+    marginalPlotList[[i]]$plotObject <- .prolinParameterPlotMarginalFill(prolinModelResults, 
+                                                                         options, 
+                                                                         parNames[i], 
+                                                                         parTitles[i])
+    
+    prolinParameterPlotMarginal[[parNames[i]]] <- marginalPlotList[[i]]
+  }
+  
+  prolinParameterPlotMarginal$dependOn(c("parameterPlotsMarginalDistributions"))
+  
+  prolinParameterPlots[["prolinParameterPlotMarginal"]] <- prolinParameterPlotMarginal
+  
+  return()
+}
+
+.prolinParameterPlotMarginalFill <- function(prolinModelResults, options, parName, parTitle, criLevel = 0.95) {
+  samples <- prolinModelResults$params[[parName]]
+  dens <- density(samples)
+  x <- dens$x
+  y <- dens$y
+  
+  lvl <- (1-criLevel)/2
+  cri <- stats::quantile(samples, prob = c(lvl, 1-lvl))
+  
+  xBreaks    <- JASPgraphs::getPrettyAxisBreaks(c(min(x), max(x)))
+  yBreaks    <- JASPgraphs::getPrettyAxisBreaks(c(0, 1.15*max(y)))
+  yBarPos    <- 0.9*yBreaks[length(yBreaks)]
+  yBarHeight <- 0.05*yBreaks[length(yBreaks)]
+  
+  p <- ggplot2::ggplot()
+  
+  p <- p + ggplot2::geom_line(data = data.frame(x = x, y = y), mapping = ggplot2::aes(x = x, y = y),
+                              size = 1.25)
+  
+  p <- p + ggplot2::geom_errorbarh(data = data.frame(xmin = cri[1], xmax = cri[2], y = yBarPos),
+                                   mapping = ggplot2::aes(xmin = xmin, xmax = xmax, y = y),
+                                   height = yBarHeight)
+  
+  p <- p + 
+    ggplot2::scale_x_continuous(name = gettext(parTitle), breaks = xBreaks, limits = range(xBreaks)) +
+    ggplot2::scale_y_continuous(name = gettext("Density"), breaks = yBreaks, limits = range(yBreaks))
   
   p <- JASPgraphs::themeJasp(p)
   
