@@ -579,13 +579,19 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   sampleDat <- prophet::performance_metrics(prolinEvaluationResults, metrics = type, rolling_window = -1)
   meanDat   <- prophet::performance_metrics(prolinEvaluationResults, metrics = type, rolling_window = 0)
   
+  xBreaks <- pretty(sampleDat$horizon)
+  xLabels <- attr(xBreaks, "labels")
+  yBreaks <- JASPgraphs::getPrettyAxisBreaks(sampleDat[[type]])
+  
   p <- ggplot2::ggplot(data = sampleDat, mapping = ggplot2::aes_string(x = "horizon", y = type))
   
   p <- p + ggplot2::geom_point(size = 3, color = "grey")
   
   p <- p + ggplot2::geom_line(data = meanDat, color = "darkred", size = 1.25)
   
-  p <- p + ggplot2::labs(x = gettext("Horizon (in days)"), y = gettext(stringr::str_to_upper(type)))
+  p <- p +
+    ggplot2::scale_x_continuous(name = gettext("Horizon (in days)"), breaks = xBreaks, limits = range(xBreaks)) +
+    ggplot2::scale_y_continuous(name = gettext(stringr::str_to_upper(type)), breaks = yBreaks, limits = range(yBreaks))
   
   p <- JASPgraphs::themeJasp(p)
   
