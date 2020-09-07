@@ -374,17 +374,17 @@ Form
             CheckBox
             {
                 name: "performancePlotsMse"
-                label: qsTr("MSE")
+                label: qsTr("Mean squared error (MSE)")
             }
             CheckBox
             {
                 name: "performancePlotsRmse"
-                label: qsTr("RMSE")
+                label: qsTr("Root mean squared error (RMSE)")
             }
             CheckBox
             {
                 name: "performancePlotsMape"
-                label: qsTr("MAPE")
+                label: qsTr("Mean absolute percentage error (MAPE)")
             }
         }
 
@@ -404,7 +404,7 @@ Form
             CheckBox
             {
                 name: "parameterPlotsMarginalDistributions"
-                label: qsTr("Marginal distributions")
+                label: qsTr("Marginal posterior distributions")
                 enabled: mcmc.checked
             }
         }
