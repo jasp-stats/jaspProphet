@@ -197,7 +197,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   }
   
   if (options$yearlySeasonality) {
-    mod <- prophet::add_seasonality(m = mod, name = "yearly", period = 365.25, fourier.order = options$yearlyCustomTerms, 
+    mod <- prophet::add_seasonality(m = mod, name = "yearly", period = 365, fourier.order = options$yearlyCustomTerms, 
                                     prior.scale = options$yearlySeasonalityPriorScale, mode = options$yearlySeasonalityMode)
   }
   
@@ -381,6 +381,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 .prolinCreateForecastPlots <- function(jaspResults, options, ready) {
   
   prolinPredictionResults <- jaspResults[["prolinResults"]][["prolinPredictionResults"]]$object
+  prolinModelResults      <- jaspResults[["prolinResults"]][["prolinModelResults"]]$object
   
   prolinForecastPlots <- createJaspContainer(title = gettext("Forecast Plots"))
   prolinForecastPlots$dependOn(c("predictionIntervalSamples", "predictionType", "periodicalPredictionNumber", 
@@ -388,9 +389,9 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   if (options$forecastPlotsOverall) .prolinCreateOverallForecastPlot(prolinForecastPlots, options, prolinPredictionResults)
   if (options$forecastPlotsTrend)   .prolinCreateTrendForecastPlot(prolinForecastPlots, options, prolinPredictionResults)
-  if (options$forecastPlotsYearly)  .prolinCreateYearlyForecastPlot(prolinForecastPlots, options, prolinPredictionResults)
-  if (options$forecastPlotsWeekly)  .prolinCreateWeeklyForecastPlot(prolinForecastPlots, options, prolinPredictionResults)
-  if (options$forecastPlotsDaily)   .prolinCreateDailyForecastPlot(prolinForecastPlots, options, prolinPredictionResults)
+  if (options$forecastPlotsYearly)  .prolinCreateYearlyForecastPlot(prolinForecastPlots, options, prolinModelResults)
+  if (options$forecastPlotsWeekly)  .prolinCreateWeeklyForecastPlot(prolinForecastPlots, options, prolinModelResults)
+  if (options$forecastPlotsDaily)   .prolinCreateDailyForecastPlot(prolinForecastPlots, options, prolinModelResults)
   
   jaspResults[["prolinMainContainer"]][["prolinForecastPlots"]] <- prolinForecastPlots
   
@@ -423,8 +424,10 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   return()
 }
 
-.prolinCreateYearlyForecastPlot <- function(prolinForecastPlots, options, prolinPredictionResults) {
+.prolinCreateYearlyForecastPlot <- function(prolinForecastPlots, options, prolinModelResults) {
   if (!is.null(prolinForecastPlots[["prolinYearlyForecastPlot"]])) return()
+  
+  prolinPredictionResults <- .prolinForecastPlotPredictComponent(prolinModelResults, type = "yearly")
   
   prolinYearlyForecastPlot <- createJaspPlot(title = "Yearly Forecast Plot", height = 320, width = 480)
   prolinYearlyForecastPlot$dependOn(c("forecastPlotsYearly", "yearlySeasonality"))
@@ -436,8 +439,10 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   return()
 }
 
-.prolinCreateWeeklyForecastPlot <- function(prolinForecastPlots, options, prolinPredictionResults) {
+.prolinCreateWeeklyForecastPlot <- function(prolinForecastPlots, options, prolinModelResults) {
   if (!is.null(prolinForecastPlots[["prolinWeeklyForecastPlot"]])) return()
+  
+  prolinPredictionResults <- .prolinForecastPlotPredictComponent(prolinModelResults, type = "weekly")
   
   prolinWeeklyForecastPlot <- createJaspPlot(title = "Weekly Forecast Plot", height = 320, width = 480)
   prolinWeeklyForecastPlot$dependOn(c("forecastPlotsWeekly", "weeklySeasonality"))
@@ -449,8 +454,10 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   return()
 }
 
-.prolinCreateDailyForecastPlot <- function(prolinForecastPlots, options, prolinPredictionResults) {
+.prolinCreateDailyForecastPlot <- function(prolinForecastPlots, options, prolinModelResults) {
   if (!is.null(prolinForecastPlots[["prolinDailyForecastPlot"]])) return()
+  
+  prolinPredictionResults <- .prolinForecastPlotPredictComponent(prolinModelResults, type = "daily")
   
   prolinDailyForecastPlot <- createJaspPlot(title = "Daily Forecast Plot", height = 320, width = 480)
   prolinDailyForecastPlot$dependOn(c("forecastPlotsDaily", "dailySeasonality"))
@@ -460,6 +467,18 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   prolinForecastPlots[["prolinDailyForecastPlot"]] <- prolinDailyForecastPlot
   
   return()
+}
+
+.prolinForecastPlotPredictComponent <- function(prolinModelResults, type) {
+  ds <- switch (type,
+    yearly = seq(as.Date("2020-01-01"), by = "d", length.out = 365),
+    weekly = seq(as.Date("2020-09-07"), by = "d", length.out = 7),
+    daily  = seq(as.POSIXlt("2020-09-07"), by = "h", length.out = 24)
+  )
+  
+  predComp <- predict(prolinModelResults, data.frame(ds = as.Date(ds)))
+  
+  return(predComp)
 }
 
 .prolinForecastPlotFill <- function(prolinPredictionResults, options, type) {
@@ -475,6 +494,13 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   xLabels <- attr(xBreaks, "labels")
   yBreaks <- JASPgraphs::getPrettyAxisBreaks(c(ymin, ymax))
   
+  xFormat <- switch (type,
+    yearly = "%b",
+    weekly = "%a",
+    daily  = "%H",
+    ggplot2::waiver()
+  )
+  
   p <- ggplot2::ggplot(df, mapping = ggplot2::aes(x = x, y = y))
   
   p <- p + ggplot2::geom_line(color = "black", size = 1.25)
@@ -482,7 +508,10 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   p <- p + ggplot2::geom_ribbon(mapping = ggplot2::aes(ymin = ymin, ymax = ymax), fill = "blue", alpha = 0.4)
   
   p <- p + 
-    ggplot2::scale_x_date(name = gettext("Time"), breaks = xBreaks, labels = gettext(xLabels), limits = range(xBreaks)) +
+    ggplot2::scale_x_date(name = gettext("Time"), 
+                          breaks = xBreaks, labels = gettext(xLabels), 
+                          date_labels = xFormat, 
+                          limits = range(xBreaks)) +
     ggplot2::scale_y_continuous(name = gettext(options$dependent), breaks = yBreaks, limits = range(yBreaks))
   
   p <- JASPgraphs::themeJasp(p)
