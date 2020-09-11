@@ -40,6 +40,10 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 # Init functions ----
 .prolinInitOptions <- function(jaspResults, options) {
   
+  if(!options$yearlySeasonality) options$forecastPlotsYearly <- FALSE
+  if(!options$weeklySeasonality) options$forecastPlotsWeekly <- FALSE
+  if(!options$dailySeasonality)  options$forecastPlotsDaily  <- FALSE
+  
   return(options)
 }
 
@@ -115,7 +119,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     jaspResults[["prolinResults"]] <- prolinResults
   
     if (options$changepoints != "") {
-      jaspResults[["prolinResults"]]$dependOn(c("variables", 
+      jaspResults[["prolinResults"]]$dependOn(c("dependent", "time", "changepoints", "covariates", 
                                                 "yearlySeasonality", "yearlySeasonalityPriorScale", 
                                                 "yearlySeasonalityMode", "yearlySeasonalityCustom", "yearlyCustomTerms", 
                                                 "weeklySeasonality","weeklySeasonalityPriorScale", 
@@ -125,7 +129,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                                                 "estimation", "mcmcSamples", "predictionIntervalWidth", 
                                                 "predictionIntervalSamples"))
     } else {
-      jaspResults[["prolinResults"]]$dependOn(c("variables", 
+      jaspResults[["prolinResults"]]$dependOn(c("dependent", "time", "changepoints", "covariates", 
                                                 "maxChangepoints", "changepointRange", "changepointPriorScale", 
                                                 "yearlySeasonality", "yearlySeasonalityPriorScale", 
                                                 "yearlySeasonalityMode", "yearlySeasonalityCustom", "yearlyCustomTerms", 
@@ -256,7 +260,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   mainContainer <- createJaspContainer()
   
   jaspResults[["prolinMainContainer"]] <- mainContainer
-  jaspResults[["prolinMainContainer"]]$dependOn(c("variables", 
+  jaspResults[["prolinMainContainer"]]$dependOn(c("dependent", "time", "changepoints", "covariates",
                                                   "maxChangepoints", "changepointRange", "changepointPriorScale", 
                                                   "yearlySeasonality", "yearlySeasonalityPriorScale", 
                                                   "yearlySeasonalityMode", "yearlySeasonalityCustom", "yearlyCustomTerms", 
@@ -401,7 +405,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 .prolinCreateOverallForecastPlot <- function(prolinForecastPlots, options, prolinPredictionResults) {
   if (!is.null(prolinForecastPlots[["prolinOverallForecastPlot"]])) return()
   
-  prolinOverallForecastPlot <- createJaspPlot(title = "Overall Forecast Plot", height = 320, width = 480)
+  prolinOverallForecastPlot <- createJaspPlot(title = "Overall Forecast Plot", height = 480, width = 620)
   prolinOverallForecastPlot$dependOn("forecastPlotsOverall")
   
   prolinOverallForecastPlot$plotObject <- .prolinForecastPlotFill(prolinPredictionResults, options, type = "yhat")
@@ -414,7 +418,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 .prolinCreateTrendForecastPlot <- function(prolinForecastPlots, options, prolinPredictionResults) {
   if (!is.null(prolinForecastPlots[["prolinTrendForecastPlot"]])) return()
   
-  prolinTrendForecastPlot <- createJaspPlot(title = "Trend Forecast Plot", height = 320, width = 480)
+  prolinTrendForecastPlot <- createJaspPlot(title = "Trend Forecast Plot", height = 480, width = 620)
   prolinTrendForecastPlot$dependOn("forecastPlotsTrend")
   
   prolinTrendForecastPlot$plotObject <- .prolinForecastPlotFill(prolinPredictionResults, options, type = "trend")
@@ -429,7 +433,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   prolinPredictionResults <- .prolinForecastPlotPredictComponent(prolinModelResults, type = "yearly")
   
-  prolinYearlyForecastPlot <- createJaspPlot(title = "Yearly Forecast Plot", height = 320, width = 480)
+  prolinYearlyForecastPlot <- createJaspPlot(title = "Yearly Forecast Plot", height = 480, width = 620)
   prolinYearlyForecastPlot$dependOn(c("forecastPlotsYearly", "yearlySeasonality"))
   
   prolinYearlyForecastPlot$plotObject <- .prolinForecastPlotFill(prolinPredictionResults, options, type = "yearly")
@@ -444,7 +448,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   prolinPredictionResults <- .prolinForecastPlotPredictComponent(prolinModelResults, type = "weekly")
   
-  prolinWeeklyForecastPlot <- createJaspPlot(title = "Weekly Forecast Plot", height = 320, width = 480)
+  prolinWeeklyForecastPlot <- createJaspPlot(title = "Weekly Forecast Plot", height = 480, width = 620)
   prolinWeeklyForecastPlot$dependOn(c("forecastPlotsWeekly", "weeklySeasonality"))
   
   prolinWeeklyForecastPlot$plotObject <- .prolinForecastPlotFill(prolinPredictionResults, options, type = "weekly")
@@ -459,7 +463,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   prolinPredictionResults <- .prolinForecastPlotPredictComponent(prolinModelResults, type = "daily")
   
-  prolinDailyForecastPlot <- createJaspPlot(title = "Daily Forecast Plot", height = 320, width = 480)
+  prolinDailyForecastPlot <- createJaspPlot(title = "Daily Forecast Plot", height = 480, width = 620)
   prolinDailyForecastPlot$dependOn(c("forecastPlotsDaily", "dailySeasonality"))
   
   prolinDailyForecastPlot$plotObject <- .prolinForecastPlotFill(prolinPredictionResults, options, type = "daily")
@@ -482,8 +486,8 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 }
 
 .prolinForecastPlotFill <- function(prolinPredictionResults, options, type) {
-  # TODO(maltelueken) change time axis limits for weekly and daily
-  
+  mode <- paste0(type, "SeasonalityMode")
+
   x <- as.Date(prolinPredictionResults[["ds"]])
   y <- prolinPredictionResults[[type]]
   ymin <- prolinPredictionResults[[paste0(type, "_lower")]]
@@ -511,10 +515,23 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     ggplot2::scale_x_date(name = gettext("Time"), 
                           breaks = xBreaks, labels = gettext(xLabels), 
                           date_labels = xFormat, 
-                          limits = range(xBreaks)) +
-    ggplot2::scale_y_continuous(name = gettext(options$dependent), breaks = yBreaks, limits = range(yBreaks))
+                          limits = range(xBreaks))
+  
+  # Inspired by plot_seasonality from prophet package
+  if (type %in% c("yearly", "weekly", "daily") && options[[mode]] == "multiplicative") {
+    p <- p + ggplot2::scale_y_continuous(name = gettext(options$dependent), 
+                                         breaks = yBreaks, 
+                                         labels = scales::percent, 
+                                         limits = range(yBreaks))
+  } else {
+    p <- p + ggplot2::scale_y_continuous(name = gettext(options$dependent), 
+                                         breaks = yBreaks, 
+                                         limits = range(yBreaks))
+  }
   
   p <- JASPgraphs::themeJasp(p)
+  
+  # p <- p + ggplot2::theme(axis.text.x = ggplot2::element_text(size = ggplot2::rel(0.95)))
   
   return(p)
 }
