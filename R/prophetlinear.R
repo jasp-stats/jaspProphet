@@ -284,7 +284,6 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     prolinTable$addColumnInfo(name = "k", title = gettext("Growth rate (k)"), type = "number")
     prolinTable$addColumnInfo(name = "m", title = gettext("Offset (m)"), type = "number")
     prolinTable$addColumnInfo(name = "sigmaObs", title = gettext("Residual variance (sigma)"), type = "number")
-    prolinTable$addColumnInfo(name = "logPost", title = gettext("Log posterior"), type = "number")
     
     .prolinModelSummaryTableMapFill(prolinTable, prolinModelResults, ready)
     
@@ -316,19 +315,16 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   prolinTable$addRows(list(
     k        = pars$k,
     m        = pars$m,
-    sigmaObs = pars$sigma_obs,
-    logPost  = prolinModelResults$stan.fit$value
+    sigmaObs = pars$sigma_obs
   ))
 }
 
 .prolinModelSummaryTableMcmcFill <- function(prolinTable, prolinModelResults, ready) {
   if (!ready) return()
   
-  pars <- prolinModelResults$params
+  pars <- prolinModelResults$params[c("k", "m", "sigma_obs")]
   
-  pars <- purrr::discard(pars, is.matrix)
-  
-  names(pars) <- c("Growth rate (k)", "Offset (m)", "Residual variance (sigma)", "Log posterior")
+  names(pars) <- c("Growth rate (k)", "Offset (m)", "Residual variance (sigma)")
   
   parsCri <- purrr::reduce(lapply(pars, function(x, lvl) {
     
@@ -693,8 +689,8 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   prolinParameterPlotMarginal <- createJaspContainer(title = gettext("Marginal Posterior Distributions"))
   
-  parNames <- c("k", "m", "sigma_obs", "lp__")
-  parTitles <- c("Growth rate", "Offset", "Residual variance", "Log posterior")
+  parNames <- c("k", "m", "sigma_obs")
+  parTitles <- c("Growth rate", "Offset", "Residual variance")
   
   marginalPlotList <- list()
   
