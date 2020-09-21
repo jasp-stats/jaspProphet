@@ -30,6 +30,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   .prolinContainerMain(             jaspResults, options, ready)
   .prolinCreateModelSummaryTable(   jaspResults, options, ready)
   .prolinCreateModelEvaluationTable(jaspResults, options, ready)
+  .prolinCreateHistoryPlot(         jaspResults, dataset, options, ready)
   .prolinCreateForecastPlots(       jaspResults, dataset, options, ready)
   .prolinCreatePerformancePlots(    jaspResults, options, ready)
   .prolinCreateParameterPlots(      jaspResults, options, ready)
@@ -378,7 +379,58 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   prolinTable$addColumns(as.list(metDat))
 }
 
+.prolinCreateHistoryPlot <- function(jaspResults, dataset, options, ready) {
+  if (!ready || !options$historyPlot) return()
+  
+  prolinHistoryPlot <- createJaspPlot(title = "History Plot", height = 480, width = 620)
+  prolinHistoryPlot$dependOn(c("dependent", "time", "changepoints", "covariates", "historyPlot", "historyPlotStart",
+                                "historyPlotEnd"))
+  
+  prolinHistoryPlot$plotObject <- .prolinHistoryPlotFill(dataset, options)
+  
+  jaspResults[["historyPlot"]] <- prolinHistoryPlot
+  
+  return()
+}
+
+.prolinHistoryPlotFill <- function(dataset, options) {
+  
+  yHist  <- dataset[[encodeColNames(options$dependent)]]
+  xHist <- as.Date(dataset[[encodeColNames(options$time)]])
+  histDat <- data.frame(y = yHist, x = xHist)
+  
+  xLimits <- c(min(xHist), max(xHist))
+  
+  if (options$historyPlotStart != "")
+    xLimits[1] <- as.Date(options$historyPlotStart)
+  if (options$historyPlotEnd != "")
+    xLimits[2] <- as.Date(options$historyPlotEnd)
+  
+  xBreaks <- pretty(xLimits)
+  xLabels <- attr(xBreaks, "labels")
+  yBreaks <- JASPgraphs::getPrettyAxisBreaks(range(yHist))
+  
+  p <- ggplot2::ggplot(histDat, mapping = ggplot2::aes(x = x, y = y)) +
+    
+    ggplot2::geom_point(data = histDat, mapping = ggplot2::aes(x = x, y = y), size = 3)
+  
+  p <- p + 
+    ggplot2::scale_x_date(name = gettext("Time"), 
+                          breaks = xBreaks, 
+                          labels = gettext(xLabels),
+                          limits = range(xBreaks)) + 
+    
+    ggplot2::scale_y_continuous(name = gettext(options$dependent), 
+                                breaks = yBreaks, 
+                                limits = range(yBreaks))
+  
+  p <- JASPgraphs::themeJasp(p)
+  
+  return(p)
+}
+
 .prolinCreateForecastPlots <- function(jaspResults, dataset, options, ready) {
+  if (!ready) return()
   
   prolinPredictionResults <- jaspResults[["prolinResults"]][["prolinPredictionResults"]]$object
   prolinModelResults      <- jaspResults[["prolinResults"]][["prolinModelResults"]]$object

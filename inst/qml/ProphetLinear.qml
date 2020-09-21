@@ -14,6 +14,26 @@ Form
         AssignedVariablesList   { name: "covariates";	title: qsTr("Covariates");			suggestedColumns: ["scale"]                                     }
     }
 
+    CheckBox
+    {
+        name: "historyPlot"
+        label: qsTr("History plot")
+        TextField
+        {
+            name: "historyPlotStart"
+            label: qsTr("From date")
+            placeholderText: "yyyy-mm-dd"
+            fieldWidth: 100
+        }
+        TextField
+        {
+            name: "historyPlotEnd"
+            label: qsTr("To date")
+            placeholderText: "yyyy-mm-dd"
+            fieldWidth: 100
+        }
+    }
+
     Section
     {
         title: qsTr("Model")
@@ -229,7 +249,6 @@ Form
                     [
                         { label: "Days",    value: "days"},
                         { label: "Weeks",   value: "weeks"},
-                        { label: "Months",  value: "months"},
                         { label: "Years",   value: "years"}
                     ]
                 }
