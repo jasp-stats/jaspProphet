@@ -413,17 +413,17 @@ Form
             CheckBox
             {
                 name: "parameterPlotsDelta"
-                label: qsTr("Changepoint distribution")
+                label: qsTr("Changepoint plot")
             }
             CheckBox
             {
                 name: "parameterPlotsBeta"
-                label: qsTr("Fourier term distributions")
+                label: qsTr("Fourier terms plot")
             }
             CheckBox
             {
                 name: "parameterPlotsMarginalDistributions"
-                label: qsTr("Marginal posterior distributions")
+                label: qsTr("Posterior distributions")
                 enabled: mcmc.checked
             }
         }
