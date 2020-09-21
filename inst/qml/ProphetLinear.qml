@@ -347,6 +347,20 @@ Form
                     name: "forecastPlotsOverallAddData"
                     label: qsTr("Show data points")
                 }
+                TextField
+                {
+                    name: "forecastPlotsOverallStart"
+                    label: qsTr("From date")
+                    placeholderText: "yyyy-mm-dd"
+                    fieldWidth: 100
+                }
+                TextField
+                {
+                    name: "forecastPlotsOverallEnd"
+                    label: qsTr("To date")
+                    placeholderText: "yyyy-mm-dd"
+                    fieldWidth: 100
+                }
             }
             CheckBox
             {

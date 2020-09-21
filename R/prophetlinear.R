@@ -498,7 +498,14 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   ymax <- prolinPredictionResults[[paste0(type, "_upper")]]
   df <- data.frame(x = x, y = y, ymin = ymin, ymax = ymax)
   
-  xBreaks <- pretty(x)
+  xLimits <- c(min(x), max(x))
+  
+  if (options$forecastPlotsOverallStart != "" && type == "yhat")
+    xLimits[1] <- as.Date(options$forecastPlotsOverallStart)
+  if (options$forecastPlotsOverallEnd != "" && type == "yhat")
+    xLimits[2] <- as.Date(options$forecastPlotsOverallEnd)
+  
+  xBreaks <- pretty(xLimits)
   xLabels <- attr(xBreaks, "labels")
   yBreaks <- JASPgraphs::getPrettyAxisBreaks(c(min(ymin), max(ymax)))
   
