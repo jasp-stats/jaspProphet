@@ -342,11 +342,21 @@ Form
             {
                 name: "forecastPlotsOverall"
                 label: qsTr("Overall")
+                CheckBox
+                {
+                    name: "forecastPlotsOverallAddData"
+                    label: qsTr("Show data points")
+                }
             }
             CheckBox
             {
                 name: "forecastPlotsTrend"
                 label: qsTr("Trend component")
+                CheckBox
+                {
+                    name: "forecastPlotsTrendAddData"
+                    label: qsTr("Show data points")
+                }
             }
             CheckBox
             {
