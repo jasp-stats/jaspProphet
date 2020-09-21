@@ -352,11 +352,6 @@ Form
             {
                 name: "forecastPlotsTrend"
                 label: qsTr("Trend component")
-                CheckBox
-                {
-                    name: "forecastPlotsTrendAddData"
-                    label: qsTr("Show data points")
-                }
             }
             CheckBox
             {

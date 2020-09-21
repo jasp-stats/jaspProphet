@@ -515,7 +515,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   p <- p + ggplot2::geom_ribbon(mapping = ggplot2::aes(ymin = ymin, ymax = ymax), fill = "blue", alpha = 0.4)
   
-  if ((options$forecastPlotsOverallAddData && type == "yhat") || (options$forecastPlotsTrendAddData && type == "trend")) {
+  if (options$forecastPlotsOverallAddData && type == "yhat") {
     
     p <- p + ggplot2::geom_point(data = histDat, mapping = ggplot2::aes(x = x, y = y), size = 3)
     
