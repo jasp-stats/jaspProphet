@@ -118,7 +118,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     prolinResults <- createJaspContainer("prolinResults")
     
     jaspResults[["prolinResults"]] <- prolinResults
-  
+    
     if (options$changepoints != "") {
       jaspResults[["prolinResults"]]$dependOn(c("dependent", "time", "changepoints", "covariates", 
                                                 "yearlySeasonality", "yearlySeasonalityPriorScale", 
@@ -141,28 +141,36 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                                                 "estimation", "mcmcSamples", "predictionIntervalWidth", 
                                                 "predictionIntervalSamples"))
     }
-    
-    if (is.null(jaspResults[["prolinResults"]][["prolinModelResults"]])) {
-      prolinModelResults <- .prolinModelResultsHelper(dataset, options)
-      jaspResults[["prolinResults"]][["prolinModelResults"]] <- createJaspState(prolinModelResults)
-    }
-    
-    if (is.null(jaspResults[["prolinResults"]][["prolinPredictionResults"]])) {
-      prolinPredictionResults <- .prolinPredictionResultsHelper(dataset, options, prolinModelResults)
-      jaspResults[["prolinResults"]][["prolinPredictionResults"]] <- createJaspState(prolinPredictionResults)
-      jaspResults[["prolinResults"]][["prolinPredictionResults"]]$dependOn(c("predictionType", 
-                                                                             "periodicalPredictionNumber", 
-                                                                             "periodicalPredictionUnit",
-                                                                             "nonperiodicalPredictionStart", 
-                                                                             "nonperiodicalPredictionEnd"))
-    }
-    
-    if (is.null(jaspResults[["prolinResults"]][["prolinEvaluationResults"]])) {
-      prolinEvaluationResults <- .prolinEvaluationResultsHelper(dataset, options, prolinModelResults)
-      jaspResults[["prolinResults"]][["prolinEvaluationResults"]] <- createJaspState(prolinEvaluationResults)
-      jaspResults[["prolinResults"]][["prolinEvaluationResults"]]$dependOn(c("crossValidationUnit", "crossValidationHorizon", 
-                                                                             "crossValidationPeriod", "crossValidationInitial"))
-    }
+  }
+  
+  if (is.null(jaspResults[["prolinResults"]][["prolinModelResults"]])) {
+    prolinModelResultsState <- createJaspState()
+    prolinModelResults <- .prolinModelResultsHelper(dataset, options)
+    prolinModelResultsState$object <- prolinModelResults
+    jaspResults[["prolinResults"]][["prolinModelResults"]] <- prolinModelResultsState
+  }
+  
+  if (is.null(jaspResults[["prolinResults"]][["prolinPredictionResults"]])) {
+    prolinPredictionResultsState <- createJaspState()
+    prolinPredictionResultsState$dependOn(c("predictionType", 
+                                            "periodicalPredictionNumber", 
+                                            "periodicalPredictionUnit",
+                                            "nonperiodicalPredictionStart", 
+                                            "nonperiodicalPredictionEnd"))
+    prolinModelResults <- jaspResults[["prolinResults"]][["prolinModelResults"]]$object
+    prolinPredictionResults <- .prolinPredictionResultsHelper(dataset, options, prolinModelResults)
+    prolinPredictionResultsState$object <- prolinPredictionResults
+    jaspResults[["prolinResults"]][["prolinPredictionResults"]] <- prolinPredictionResultsState
+  }
+  
+  if (is.null(jaspResults[["prolinResults"]][["prolinEvaluationResults"]])) {
+    prolinEvaluationResultsState <- createJaspState()
+    prolinEvaluationResultsState$dependOn(c("crossValidationUnit", "crossValidationHorizon", 
+                                            "crossValidationPeriod", "crossValidationInitial"))
+    prolinModelResults <- jaspResults[["prolinResults"]][["prolinModelResults"]]$object
+    prolinEvaluationResults <- .prolinEvaluationResultsHelper(dataset, options, prolinModelResults)
+    prolinEvaluationResultsState$object <- prolinEvaluationResults
+    jaspResults[["prolinResults"]][["prolinEvaluationResults"]] <- prolinEvaluationResultsState
   }
   
   return()
