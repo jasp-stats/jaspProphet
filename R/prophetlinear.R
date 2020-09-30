@@ -52,13 +52,17 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   if(!ready) return()
   
   # Read in the dataset using the built-in functions
-  numericVars <- unlist(c(options$dependent, options$covariates))
+  numericVars <- options$dependent
   numericVars <- numericVars[numericVars != ""]
-  factorVars  <- c(options$changepoints, options$time)
+  timeVars    <- options$time
+  timeVars    <- timeVars[timeVars != ""]
+  factorVars  <- options$changepoints
   factorVars  <- factorVars[factorVars != ""]
-  dataset     <- .readDataSetToEnd(columns.as.numeric  = numericVars,
-                                   columns.as.factor   = factorVars,
-                                   exclude.na.listwise = c(numericVars, factorVars))
+  covVars     <- unlist(options$covariates)
+  covVars     <- covVars[covVars != ""]
+  dataset     <- .readDataSetToEnd(columns.as.numeric  = c(numericVars, covVars),
+                                   columns.as.factor   = c(factorVars, timeVars),
+                                   exclude.na.listwise = c(timeVars, covVars))
 
   return(dataset)
 }
@@ -66,7 +70,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 .prolinErrorHandling <- function(dataset, options, ready) {
   if(!ready) return()
   
- checks <- list(
+  checks <- list(
     .timeChecks <- function() {
       timeVar <- try(as.Date(dataset[[encodeColNames(options$time)]]))
       
@@ -97,6 +101,18 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
         
         if(class(predEnd) == "try-error")
           return(gettext("Error in converting argument 'End date' into a date: 'End date' needs to be in a date-like format (e.g., yyyy-mm-dd)"))
+      }
+      
+      return()
+    },
+    
+    .covariateCheks <- function() {
+      if (length(options$covariates) > 0) {
+        covs <- unlist(options$covariates)
+        
+        for (cov in covs) {
+          
+        }
       }
       
       return()
@@ -180,7 +196,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   y  <- dataset[[encodeColNames(options$dependent)]]
   ds <- as.Date(dataset[[encodeColNames(options$time)]])
   
-  fitDat <- data.frame(y = y, ds = ds)
+  fitDat <- na.omit(data.frame(y = y, ds = ds))
   
   if (options$changepoints != "") {
     isChangepoint <- as.logical(dataset[[encodeColNames(options$changepoints)]])
@@ -201,11 +217,14 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   if (length(options$covariates) > 0) {
     covs <- unlist(options$covariates)
+    covFit <- !is.na(y)
     
     for (cov in covs) {
       # TODO(maltelueken) add custom prior.scale, standardized, and mode
-      # mod <- prophet::add_regressor(m = mod, name = cov, prior.scale = 10, standardize = "auto", mode = "additive")
-      # fitDat[[cov]] <- dataset[[encodeColNames(cov)]]
+      mod <- prophet::add_regressor(m = mod, name = cov, prior.scale = 10, standardize = "auto", mode = "additive")
+      
+      datCov <- dataset[[encodeColNames(cov)]]
+      fitDat[[cov]] <- datCov[covFit]
     }
   }
   
@@ -244,6 +263,17 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     futDat <- data.frame(ds = seq(as.Date(options$nonperiodicalPredictionStart), 
                                   as.Date(options$nonperiodicalPredictionEnd), 
                                   by = "d"))
+  }
+  
+  if (length(options$covariates) > 0) {
+    covs      <- unlist(options$covariates)
+    futds     <- as.Date(futDat$ds)
+    ds        <- as.Date(dataset[[encodeColNames(options$time)]])
+    
+    for (cov in covs) {
+      futCov <- dataset[[encodeColNames(cov)]]
+      futDat[[cov]] <- futCov[ds %in% futds]
+    }
   }
   
   pred <- predict(prolinModelResults, futDat)
@@ -546,7 +576,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   yHist  <- dataset[[encodeColNames(options$dependent)]]
   xHist <- as.Date(dataset[[encodeColNames(options$time)]])
-  histDat <- data.frame(y = yHist, x = xHist)
+  histDat <- na.omit(data.frame(y = yHist, x = xHist))
   
   x <- as.Date(prolinPredictionResults[["ds"]])
   y <- prolinPredictionResults[[type]]
@@ -582,12 +612,12 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     
     p <- p + ggplot2::geom_point(data = histDat, mapping = ggplot2::aes(x = x, y = y), size = 3)
     
-    yBreaks <- JASPgraphs::getPrettyAxisBreaks(c(min(c(min(ymin), min(yHist))), max(c(max(ymax), max(yHist)))))
+    yBreaks <- JASPgraphs::getPrettyAxisBreaks(c(min(c(min(ymin), min(histDat$y))), max(c(max(ymax), max(histDat$y)))))
   }
   
   if (type == "yhat" || type == "trend") 
-    p <- p + ggplot2::geom_segment(mapping = ggplot2::aes(x = xHist[length(xHist)], y = range(yBreaks)[1], 
-                                                          xend = xHist[length(xHist)]), yend = range(yBreaks)[2], 
+    p <- p + ggplot2::geom_segment(mapping = ggplot2::aes(x = histDat$x[length(histDat$x)], y = range(yBreaks)[1], 
+                                                          xend = histDat$x[length(histDat$x)]), yend = range(yBreaks)[2], 
                                    linetype = "dashed")
   
   p <- p + 
