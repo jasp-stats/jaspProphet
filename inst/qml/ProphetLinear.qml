@@ -14,6 +14,26 @@ Form
         AssignedVariablesList   { name: "covariates";	title: qsTr("Covariates");			suggestedColumns: ["scale"]                                     }
     }
 
+    CheckBox
+    {
+        name: "historyPlot"
+        label: qsTr("History plot")
+        TextField
+        {
+            name: "historyPlotStart"
+            label: qsTr("From date")
+            placeholderText: "yyyy-mm-dd"
+            fieldWidth: 100
+        }
+        TextField
+        {
+            name: "historyPlotEnd"
+            label: qsTr("To date")
+            placeholderText: "yyyy-mm-dd"
+            fieldWidth: 100
+        }
+    }
+
     Section
     {
         title: qsTr("Model")
@@ -229,7 +249,6 @@ Form
                     [
                         { label: "Days",    value: "days"},
                         { label: "Weeks",   value: "weeks"},
-                        { label: "Months",  value: "months"},
                         { label: "Years",   value: "years"}
                     ]
                 }
@@ -270,21 +289,20 @@ Form
 
     Section
     {
-        title: qsTr("Statistics")
+        title: qsTr("Evaluation")
 
         Group
         {
             title: qsTr("Simulated Historical Forecasts")
             DropDown
             {
-                name: "crossValdiationUnit"
+                name: "crossValidationUnit"
                 label: qsTr("Unit")
                 indexDefaultValue: 0
                 values:
                 [
                     { label: "Days",    value: "days"},
                     { label: "Weeks",   value: "weeks"},
-                    { label: "Months",  value: "months"},
                     { label: "Years",   value: "years"}
                 ]
             }
@@ -316,17 +334,18 @@ Form
             CheckBox
             {
                 name: "performanceMetricsMse"
-                label: qsTr("MSE")
+                label: qsTr("Mean squared error (MSE)")
+                checked: true
             }
             CheckBox
             {
                 name: "performanceMetricsRmse"
-                label: qsTr("RMSE")
+                label: qsTr("Root mean squared error (RMSE)")
             }
             CheckBox
             {
                 name: "performanceMetricsMape"
-                label: qsTr("MAPE")
+                label: qsTr("Mean absolute percentage error (MAPE)")
             }
         }
     }
@@ -342,6 +361,25 @@ Form
             {
                 name: "forecastPlotsOverall"
                 label: qsTr("Overall")
+                CheckBox
+                {
+                    name: "forecastPlotsOverallAddData"
+                    label: qsTr("Show data points")
+                }
+                TextField
+                {
+                    name: "forecastPlotsOverallStart"
+                    label: qsTr("From date")
+                    placeholderText: "yyyy-mm-dd"
+                    fieldWidth: 100
+                }
+                TextField
+                {
+                    name: "forecastPlotsOverallEnd"
+                    label: qsTr("To date")
+                    placeholderText: "yyyy-mm-dd"
+                    fieldWidth: 100
+                }
             }
             CheckBox
             {
@@ -374,17 +412,17 @@ Form
             CheckBox
             {
                 name: "performancePlotsMse"
-                label: qsTr("MSE")
+                label: qsTr("Mean squared error (MSE)")
             }
             CheckBox
             {
                 name: "performancePlotsRmse"
-                label: qsTr("RMSE")
+                label: qsTr("Root mean squared error (RMSE)")
             }
             CheckBox
             {
                 name: "performancePlotsMape"
-                label: qsTr("MAPE")
+                label: qsTr("Mean absolute percentage error (MAPE)")
             }
         }
 
@@ -394,17 +432,17 @@ Form
             CheckBox
             {
                 name: "parameterPlotsDelta"
-                label: qsTr("Changepoint distribution")
+                label: qsTr("Changepoint plot")
             }
             CheckBox
             {
                 name: "parameterPlotsBeta"
-                label: qsTr("Fourier term distributions")
+                label: qsTr("Fourier terms plot")
             }
             CheckBox
             {
                 name: "parameterPlotsMarginalDistributions"
-                label: qsTr("Marginal distributions")
+                label: qsTr("Posterior distributions")
                 enabled: mcmc.checked
             }
         }

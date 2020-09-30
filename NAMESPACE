@@ -1,3 +1,2 @@
 export(ProphetLinear)
-  import('bayestestR');
   import('prophet');
