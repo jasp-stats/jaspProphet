@@ -109,10 +109,24 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     .covariateCheks <- function() {
       if (length(options$covariates) > 0) {
         covs <- unlist(options$covariates)
+        ds   <- as.Date(dataset[[encodeColNames(options$time)]])
         
-        for (cov in covs) {
-          
+        if (options$predictionType == "nonperiodicalPrediction") {
+          predStart <- as.Date(options$nonperiodicalPredictionStart)
+          predEnd   <- as.Date(options$nonperiodicalPredictionEnd)
+        } else {
+          predUnit  <- switch(options$periodicalPredictionUnit,
+                              days = 1,
+                              weeks = 7,
+                              years = 365)
+          predInt   <- options$periodicalPredictionNumber * predUnit
+          predStart <- ds[1]
+          predEnd   <- ds[length(ds)] + predInt
         }
+        
+        predSeq <- seq(predStart, predEnd, by = "d")
+        if (!all(predSeq %in% ds))
+          return(gettext("Error in predicting future values with covariates: Covariates need to be supplied for predicted time intervals"))
       }
       
       return()
@@ -272,7 +286,8 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     
     for (cov in covs) {
       futCov <- dataset[[encodeColNames(cov)]]
-      futDat[[cov]] <- futCov[ds %in% futds]
+      futSel <- ds %in% futds
+      futDat[[cov]] <- futCov[futSel]
     }
   }
   
