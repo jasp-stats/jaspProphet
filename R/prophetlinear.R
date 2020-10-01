@@ -41,9 +41,10 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 # Init functions ----
 .prolinInitOptions <- function(jaspResults, options) {
   
-  if(!options$yearlySeasonality) options$forecastPlotsYearly <- FALSE
-  if(!options$weeklySeasonality) options$forecastPlotsWeekly <- FALSE
-  if(!options$dailySeasonality)  options$forecastPlotsDaily  <- FALSE
+  if(!options$yearlySeasonality)    options$forecastPlotsYearly <- FALSE
+  if(!options$weeklySeasonality)    options$forecastPlotsWeekly <- FALSE
+  if(!options$dailySeasonality)     options$forecastPlotsDaily  <- FALSE
+  if(!options$forecastPlotsOverall) options$forecastPlotsOverallAddCovariates <- FALSE
   
   return(options)
 }
@@ -602,6 +603,14 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   ymax <- prolinPredictionResults[[paste0(type, "_upper")]]
   df <- data.frame(x = x, y = y, ymin = ymin, ymax = ymax)
   
+  if (length(options$covariates) > 0) {
+    covs <- unlist(options$covariates)
+    for (cov in covs) {
+      covHist <- dataset[[encodeColNames(cov)]]
+      df[[cov]] <- covHist[xHist %in% x]
+    }
+  }
+  
   xLimits <- c(min(x), max(x))
   
   if (options$forecastPlotsOverallStart != "" && type == "yhat")
@@ -631,6 +640,37 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     p <- p + ggplot2::geom_point(data = histDat, mapping = ggplot2::aes(x = x, y = y), size = 3)
     
     yBreaks <- JASPgraphs::getPrettyAxisBreaks(c(min(c(min(ymin), min(histDat$y))), max(c(max(ymax), max(histDat$y)))))
+  }
+  
+  if (length(options$covariates) > 0 && options$forecastPlotsOverallAddCovariates && type == "yhat") {
+    covMin <- numeric(length(covs))
+    covMax <- numeric(length(covs))
+    
+    for (i in 1:length(covs)) {
+      p <- p + 
+        ggplot2::geom_line(data = df, 
+                           mapping = ggplot2::aes_string(x = "x", y = covs[i], 
+                                                         color = as.factor(covs[i])), 
+                           size = 1.25)
+      
+      if (options$forecastPlotsOverallAddCovariateLabels) {
+        p <- p + ggrepel::geom_label_repel(data = df[nrow(df),], mapping = ggplot2::aes_string(x = "x", y = covs[i], 
+                                                                                      label = as.factor(covs[i])),
+                                           size = 5)
+      }
+      
+      covMin[i] <- min(df[[covs[i]]])
+      covMax[i] <- max(df[[covs[i]]])
+    }
+    
+    if (options$forecastPlotsOverallAddCovariateLabels) {
+      p <- p + ggrepel::geom_label_repel(data = df[nrow(df),], mapping = ggplot2::aes(x = x, y = y, 
+                                                                                      label = options$dependent),
+                                         size = 5)
+    }
+    
+    yBreaks <- JASPgraphs::getPrettyAxisBreaks(c(min(c(min(ymin), min(histDat$y), covMin)), 
+                                                 max(c(max(ymax), max(histDat$y), covMax))))
   }
   
   if (type == "yhat" || type == "trend") 

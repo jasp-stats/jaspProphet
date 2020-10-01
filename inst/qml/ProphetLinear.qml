@@ -11,7 +11,7 @@ Form
         AssignedVariablesList   { name: "dependent";	title: qsTr("Dependent Variable");	suggestedColumns: ["scale"]; singleVariable: true               }
         AssignedVariablesList   { name: "time";         title: qsTr("Time");                suggestedColumns: ["ordinal", "nominal"]; singleVariable: true	}
         AssignedVariablesList   { name: "changepoints"; title: qsTr("Changepoints");        suggestedColumns: ["ordinal", "nominal"]; singleVariable: true  }
-        AssignedVariablesList   { name: "covariates";	title: qsTr("Covariates");			suggestedColumns: ["scale"]                                     }
+        AssignedVariablesList   { name: "covariates";	title: qsTr("Covariates");			suggestedColumns: ["scale"]; id: covs                           }
     }
 
     CheckBox
@@ -365,6 +365,19 @@ Form
                 {
                     name: "forecastPlotsOverallAddData"
                     label: qsTr("Show data points")
+                }
+                CheckBox
+                {
+                    name: "forecastPlotsOverallAddCovariates"
+                    label: qsTr("Show covariates")
+                    id: showCovs
+                    visible: covs.count > 0
+                    CheckBox
+                    {
+                        name: "forecastPlotsOverallAddCovariateLabels"
+                        label: qsTr("Add labels")
+                        visible: showCovs.checked
+                    }
                 }
                 TextField
                 {
