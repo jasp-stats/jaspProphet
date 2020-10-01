@@ -108,8 +108,11 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     
     .covariateCheks <- function() {
       if (length(options$covariates) > 0) {
-        covs <- unlist(options$covariates)
-        ds   <- as.Date(dataset[[encodeColNames(options$time)]])
+        covs   <- unlist(options$covariates)
+        y      <- dataset[[encodeColNames(options$dependent)]]
+        yNa    <- is.na(y)
+        ds     <- as.Date(dataset[[encodeColNames(options$time)]])
+        dsHist <- ds[!yNa]
         
         if (options$predictionType == "nonperiodicalPrediction") {
           predStart <- as.Date(options$nonperiodicalPredictionStart)
@@ -120,8 +123,8 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                               weeks = 7,
                               years = 365)
           predInt   <- options$periodicalPredictionNumber * predUnit
-          predStart <- ds[1]
-          predEnd   <- ds[length(ds)] + predInt
+          predStart <- dsHist[1]
+          predEnd   <- dsHist[length(dsHist)] + predInt
         }
         
         predSeq <- seq(predStart, predEnd, by = "d")
