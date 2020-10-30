@@ -452,6 +452,8 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 
 .prolinHistoryPlotFill <- function(dataset, options) {
   
+  dataset <- na.omit(dataset)
+
   yHist  <- dataset[[encodeColNames(options$dependent)]]
   xHist <- as.Date(dataset[[encodeColNames(options$time)]])
   histDat <- data.frame(y = yHist, x = xHist)
@@ -465,10 +467,9 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   xBreaks <- pretty(xLimits)
   xLabels <- attr(xBreaks, "labels")
-  yBreaks <- JASPgraphs::getPrettyAxisBreaks(range(yHist))
+  yBreaks <- pretty(yHist)
   
   p <- ggplot2::ggplot(histDat, mapping = ggplot2::aes(x = x, y = y)) +
-    
     ggplot2::geom_point(data = histDat, mapping = ggplot2::aes(x = x, y = y), size = 3)
   
   p <- p + 
@@ -477,9 +478,9 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                           labels = gettext(xLabels),
                           limits = range(xBreaks)) + 
     
-    ggplot2::scale_y_continuous(name = gettext(options$dependent), 
-                                breaks = yBreaks, 
-                                limits = range(yBreaks))
+    ggplot2::scale_y_continuous(name = gettext(options$dependent),
+                                limits = range(yBreaks),
+                                breaks = yBreaks)
   
   p <- JASPgraphs::themeJasp(p)
   
