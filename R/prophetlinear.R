@@ -196,7 +196,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     prolinPredictionResultsState$object <- prolinPredictionResults
     jaspResults[["prolinResults"]][["prolinPredictionResults"]] <- prolinPredictionResultsState
 
-    if (options$predictionsSavePath != "") .prolinSavePredictions(jaspResults, options)
+    if (options$predictionSavePath != "") .prolinSavePredictions(jaspResults, options)
   }
   
   if (is.null(jaspResults[["prolinResults"]][["prolinEvaluationResults"]])) {
