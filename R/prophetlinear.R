@@ -195,6 +195,8 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     prolinPredictionResults <- .prolinPredictionResultsHelper(dataset, options, prolinModelResults)
     prolinPredictionResultsState$object <- prolinPredictionResults
     jaspResults[["prolinResults"]][["prolinPredictionResults"]] <- prolinPredictionResultsState
+
+    if (options$predictionsSavePath != "") .prolinSavePredictions(jaspResults, options)
   }
   
   if (is.null(jaspResults[["prolinResults"]][["prolinEvaluationResults"]])) {
@@ -309,6 +311,25 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                                      initial = options$crossValidationInitial)
   
   return(cvDat)
+}
+
+# Saving functions ----
+.prolinSavePredictions <- function(jaspResults, options) {
+  if (is.null(jaspResults[["prolinResults"]][["prolinPredictionSavePath"]])) {
+    predSavePath <- createJaspState()
+    predSavePath$dependOn(c("predictionType", 
+                            "periodicalPredictionNumber", 
+                            "periodicalPredictionUnit",
+                            "nonperiodicalPredictionStart", 
+                            "nonperiodicalPredictionEnd",
+                            "predictionSavePath"))
+    jaspResults[["prolinResults"]][["prolinPredictionSavePath"]] <- predSavePath
+  }
+
+  write.csv(jaspResults[["prolinResults"]][["prolinPredictionResults"]]$object,
+            file = options$predictionSavePath,
+            row.names = FALSE)
+  predSavePath$object <- TRUE
 }
 
 # Output functions ----

@@ -273,17 +273,13 @@ Form
                 }
             }
         }
-        Button
+        FileSelector
         {
-            id: 			exportPredictions
-            anchors.right: 	parent.right
-            anchors.bottom: parent.bottom
-            text: 			qsTr("<b>Export predictions</b>")
-
-            onClicked:
-            {
-                form.exportResults()
-            }
+            Layout.columnSpan:  2
+            label:  qsTr("Save Predictions")
+            name:   "predictionSavePath"
+            filter: "*.csv"
+            save:   true
         }
     }
 
@@ -446,11 +442,6 @@ Form
             {
                 name: "parameterPlotsDelta"
                 label: qsTr("Changepoint plot")
-            }
-            CheckBox
-            {
-                name: "parameterPlotsBeta"
-                label: qsTr("Fourier terms plot")
             }
             CheckBox
             {
