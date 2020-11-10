@@ -913,7 +913,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   p <- p + 
     ggplot2::scale_x_date(name = gettext("Time"), breaks = xBreaks, labels = gettext(xLabels), limits = range(xBreaks)) +
-    ggplot2::scale_y_continuous(name = gettext("Change in k (delta)"), breaks = yBreaks, limits = range(yBreaks))
+    ggplot2::scale_y_continuous(name = gettext("Change in growth rate (delta)"), breaks = yBreaks, limits = range(yBreaks))
   
   p <- jaspGraphs::themeJasp(p)
   
