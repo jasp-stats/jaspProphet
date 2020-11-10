@@ -360,6 +360,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   if (options$estimation == "map") {
     prolinTable <- createJaspTable(title = "Parameter Estimates Table")
+    prolinTable$position <- 1
     
     prolinTable$addColumnInfo(name = "k", title = gettext("Growth rate (k)"), type = "number")
     prolinTable$addColumnInfo(name = "m", title = gettext("Offset (m)"), type = "number")
@@ -371,7 +372,8 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     
   } else {
     prolinTable <- createJaspTable(title = "Posterior Summary Table")
-    
+    prolinTable$position <- 1
+
     overtitle <- gettext("95% Credible Interval", format(100*options[["posteriorSummaryPlotCredibleIntervalValue"]], digits = 3))
     prolinTable$addColumnInfo(name = "par", title = gettext("Parameter"), type = "string")
     prolinTable$addColumnInfo(name = "mean", title = gettext("Mean"), type = "number")
@@ -430,31 +432,35 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   if (!is.null(jaspResults[["prolinMainContainer"]][["prolinChangePointTable"]]) || !options$changePointTable) return()
 
   prolinModelResults <- jaspResults[["prolinResults"]][["prolinModelResults"]]$object
+  
+  title <- switch(options$estimation,
+                  map = "Changepoint Estimates Table",
+                  mcmc = "Changepoint Posterior Summary Table")
+  prolinTable <- createJaspTable(title = title)
+  prolinTable$dependOn(c("changePointTable"))
+  prolinTable$position <- 2
 
-  prolinChangePointTable <- createJaspTable(title = "Changepoint Estimates Table")
-  prolinChangePointTable$dependOn(c("changePointTable"))
-
-  prolinChangePointTable$addColumnInfo(name = "ds", title = gettext("Changepoint"), type = "string")
+  prolinTable$addColumnInfo(name = "ds", title = gettext("Changepoint"), type = "string")
   
   if (options$estimation == "map") {
-    prolinChangePointTable$addColumnInfo(name = "delta", title = gettext("Change in growth rate (delta)"), type = "number")
+    prolinTable$addColumnInfo(name = "delta", title = gettext("Change in growth rate (delta)"), type = "number")
   } else {
     parTitle <- gettext("Change in growth rate (delta)")
     ciTitle <- gettext("95% Credible Interval")
-    prolinChangePointTable$addColumnInfo(name = "mean", title = gettext("Mean"), type = "number", overtitle = parTitle)
-    prolinChangePointTable$addColumnInfo(name = "sd", title = gettext("SD"), type = "number", overtitle = parTitle)
-    prolinChangePointTable$addColumnInfo(name = "lowerCri", title = gettext("Lower"), type = "number", overtitle = ciTitle)
-    prolinChangePointTable$addColumnInfo(name = "upperCri", title = gettext("Upper"), type = "number", overtitle = ciTitle)
+    prolinTable$addColumnInfo(name = "mean", title = gettext("Mean"), type = "number", overtitle = parTitle)
+    prolinTable$addColumnInfo(name = "sd", title = gettext("SD"), type = "number", overtitle = parTitle)
+    prolinTable$addColumnInfo(name = "lowerCri", title = gettext("Lower"), type = "number", overtitle = ciTitle)
+    prolinTable$addColumnInfo(name = "upperCri", title = gettext("Upper"), type = "number", overtitle = ciTitle)
   }
   
-  .prolinChangePointTableFill(prolinChangePointTable, prolinModelResults, options$estimation, ready)
+  .prolinChangePointTableFill(prolinTable, prolinModelResults, options$estimation, ready)
     
-  jaspResults[["prolinMainContainer"]][["prolinChangePointTable"]] <- prolinChangePointTable
+  jaspResults[["prolinMainContainer"]][["prolinChangePointTable"]] <- prolinTable
 
   return()
 }
 
-.prolinChangePointTableFill <-  function(prolinChangePointTable, prolinModelResults, estimation, ready) {
+.prolinChangePointTableFill <-  function(prolinTable, prolinModelResults, estimation, ready) {
   if (!ready) return()
 
   delta  <- switch(estimation,
@@ -463,14 +469,14 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   cps     <- as.character(prolinModelResults$changepoints)
 
   if (estimation == "map") {
-    prolinChangePointTable$addColumns(list(
+    prolinTable$addColumns(list(
       ds = cps,
       delta = delta
     ))
   } else {
     deltaCri <- apply(prolinModelResults$params$delta, 2, quantile, probs = c(0.025, 0.975))
     deltaSd  <- apply(prolinModelResults$params$delta, 2, sd)
-    prolinChangePointTable$addColumns(list(
+    prolinTable$addColumns(list(
       ds = cps,
       mean = delta,
       sd = deltaSd,
@@ -491,6 +497,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   prolinTable$dependOn(c("crossValidationUnit", "crossValidationHorizon", 
                              "crossValidationPeriod", "crossValidationInitial", "performanceMetricsMse", 
                              "performanceMetricsRmse", "performanceMetricsMape"))
+  prolinTable$position <- 3                           
   
   prolinTable$addColumnInfo(name = "horizon", title = gettext("Horizon"), type = "string")
   
