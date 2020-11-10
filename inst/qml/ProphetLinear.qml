@@ -344,6 +344,11 @@ Form
                 label: qsTr("Mean absolute percentage error (MAPE)")
             }
         }
+
+        CheckBox
+        {
+            name: "changePointTable"    ; label: qsTr("Changepoint table")
+        }
     }
 
     Section
