@@ -83,9 +83,9 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     
     .changepointChecks <- function() {
       if(options$changepoints != "") {
-        changepointVar <- try(as.logical(dataset[[encodeColNames(options$changepoints)]]))
+        changepointVar <- try(as.logical(na.omit(dataset[[encodeColNames(options$changepoints)]])))
         
-        if(class(changepointVar) == "try-error" || length(unique(dataset[[encodeColNames(options$changepoints)]])) != 2)
+        if(class(changepointVar) == "try-error" || length(unique(na.omit(dataset[[encodeColNames(options$changepoints)]]))) != 2)
           return(gettext("Error in setting changepoints: Variable 'Changepoints' must have two levels"))
       }
       
@@ -219,8 +219,8 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   fitDat <- na.omit(data.frame(y = y, ds = ds))
   
   if (options$changepoints != "") {
-    isChangepoint <- as.logical(dataset[[encodeColNames(options$changepoints)]])
-    cp            <- ds[isChangepoint]
+    isChangepoint <- as.logical(na.omit(dataset[[encodeColNames(options$changepoints)]]))
+    cp            <- fitDat$ds[isChangepoint]
   } else {
     cp <- NULL
   }
@@ -821,7 +821,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 .prolinCreateParameterPlotDelta <- function(prolinParameterPlots, options, prolinModelResults) {
   if (!is.null(prolinParameterPlots[["prolinParameterPlotDelta"]])) return()
   
-  prolinParameterPlotDelta <- createJaspPlot(title = "Changepoint Distribution Plot", height = 320, width = 480)
+  prolinParameterPlotDelta <- createJaspPlot(title = "Changepoint Distribution Plot", height = 480, width = 620)
   prolinParameterPlotDelta$dependOn(c("parameterPlotsDelta"))
   
   prolinParameterPlotDelta$plotObject <- .prolinParameterPlotDeltaFill(prolinModelResults, options)
