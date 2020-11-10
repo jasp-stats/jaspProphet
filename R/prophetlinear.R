@@ -503,7 +503,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                                 limits = range(yBreaks),
                                 breaks = yBreaks)
   
-  p <- JASPgraphs::themeJasp(p)
+  p <- jaspGraphs::themeJasp(p)
   
   return(p)
 }
@@ -642,7 +642,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   xBreaks <- pretty(xLimits)
   xLabels <- attr(xBreaks, "labels")
-  yBreaks <- JASPgraphs::getPrettyAxisBreaks(c(min(ymin), max(ymax)))
+  yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(ymin), max(ymax)))
   
   xFormat <- switch (type,
     yearly = "%b",
@@ -661,7 +661,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     
     p <- p + ggplot2::geom_point(data = histDat, mapping = ggplot2::aes(x = x, y = y), size = 3)
     
-    yBreaks <- JASPgraphs::getPrettyAxisBreaks(c(min(c(min(ymin), min(histDat$y))), max(c(max(ymax), max(histDat$y)))))
+    yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(c(min(ymin), min(histDat$y))), max(c(max(ymax), max(histDat$y)))))
   }
   
   if (length(options$covariates) > 0 && options$forecastPlotsOverallAddCovariates && type == "yhat") {
@@ -691,7 +691,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                                          size = 5)
     }
     
-    yBreaks <- JASPgraphs::getPrettyAxisBreaks(c(min(c(min(ymin), min(histDat$y), covMin)), 
+    yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(c(min(ymin), min(histDat$y), covMin)), 
                                                  max(c(max(ymax), max(histDat$y), covMax))))
   }
   
@@ -718,7 +718,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                                          limits = range(yBreaks))
   }
   
-  p <- JASPgraphs::themeJasp(p)
+  p <- jaspGraphs::themeJasp(p)
   
   # p <- p + ggplot2::theme(axis.text.x = ggplot2::element_text(size = ggplot2::rel(0.95)))
   
@@ -787,7 +787,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   xBreaks <- pretty(sampleDat$horizon)
   xLabels <- attr(xBreaks, "labels")
-  yBreaks <- JASPgraphs::getPrettyAxisBreaks(sampleDat[[type]])
+  yBreaks <- jaspGraphs::getPrettyAxisBreaks(sampleDat[[type]])
   
   p <- ggplot2::ggplot(data = sampleDat, mapping = ggplot2::aes_string(x = "horizon", y = type))
   
@@ -799,7 +799,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     ggplot2::scale_x_continuous(name = gettext("Horizon (in days)"), breaks = xBreaks, limits = range(xBreaks)) +
     ggplot2::scale_y_continuous(name = gettext(stringr::str_to_upper(type)), breaks = yBreaks, limits = range(yBreaks))
   
-  p <- JASPgraphs::themeJasp(p)
+  p <- jaspGraphs::themeJasp(p)
   
   return(p)
 }
@@ -839,7 +839,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   xBreaks <- pretty(cps)
   xLabels <- attr(xBreaks, "labels")
-  yBreaks <- JASPgraphs::getPrettyAxisBreaks(c(min(deltas), max(deltas)))
+  yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(deltas), max(deltas)))
   
   p <- ggplot2::ggplot(data = data.frame(x = cps, y = deltas), mapping = ggplot2::aes(x = x, y = y))
   
@@ -849,7 +849,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     ggplot2::scale_x_date(name = gettext("Time"), breaks = xBreaks, labels = gettext(xLabels), limits = range(xBreaks)) +
     ggplot2::scale_y_continuous(name = gettext("Change in k (delta)"), breaks = yBreaks, limits = range(yBreaks))
   
-  p <- JASPgraphs::themeJasp(p)
+  p <- jaspGraphs::themeJasp(p)
   
   return(p)
 }
@@ -891,8 +891,8 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   lvl <- (1-criLevel)/2
   cri <- stats::quantile(samples, prob = c(lvl, 1-lvl))
   
-  xBreaks    <- JASPgraphs::getPrettyAxisBreaks(c(min(x), max(x)))
-  yBreaks    <- JASPgraphs::getPrettyAxisBreaks(c(0, 1.15*max(y)))
+  xBreaks    <- jaspGraphs::getPrettyAxisBreaks(c(min(x), max(x)))
+  yBreaks    <- jaspGraphs::getPrettyAxisBreaks(c(0, 1.15*max(y)))
   yBarPos    <- 0.9*yBreaks[length(yBreaks)]
   yBarHeight <- 0.05*yBreaks[length(yBreaks)]
   
@@ -909,7 +909,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     ggplot2::scale_x_continuous(name = gettext(parTitle), breaks = xBreaks, limits = range(xBreaks)) +
     ggplot2::scale_y_continuous(name = gettext("Density"), breaks = yBreaks, limits = range(yBreaks))
   
-  p <- JASPgraphs::themeJasp(p)
+  p <- jaspGraphs::themeJasp(p)
   
   return(p)
 }
