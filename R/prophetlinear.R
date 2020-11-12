@@ -29,6 +29,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 
   .prolinContainerMain(             jaspResults, options, ready)
   .prolinCreateModelSummaryTable(   jaspResults, options, ready)
+  .prolinCreateChangePointTable(    jaspResults, options, ready)
   .prolinCreateModelEvaluationTable(jaspResults, options, ready)
   .prolinCreateHistoryPlot(         jaspResults, dataset, options, ready)
   .prolinCreateForecastPlots(       jaspResults, dataset, options, ready)
@@ -41,9 +42,10 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 # Init functions ----
 .prolinInitOptions <- function(jaspResults, options) {
   
-  if(!options$yearlySeasonality) options$forecastPlotsYearly <- FALSE
-  if(!options$weeklySeasonality) options$forecastPlotsWeekly <- FALSE
-  if(!options$dailySeasonality)  options$forecastPlotsDaily  <- FALSE
+  if(!options$yearlySeasonality)    options$forecastPlotsYearly <- FALSE
+  if(!options$weeklySeasonality)    options$forecastPlotsWeekly <- FALSE
+  if(!options$dailySeasonality)     options$forecastPlotsDaily  <- FALSE
+  if(!options$forecastPlotsOverall) options$forecastPlotsOverallAddCovariates <- FALSE
   
   return(options)
 }
@@ -52,13 +54,17 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   if(!ready) return()
   
   # Read in the dataset using the built-in functions
-  numericVars <- unlist(c(options$dependent, options$covariates))
+  numericVars <- options$dependent
   numericVars <- numericVars[numericVars != ""]
-  factorVars  <- c(options$changepoints, options$time)
+  timeVars    <- options$time
+  timeVars    <- timeVars[timeVars != ""]
+  factorVars  <- options$changepoints
   factorVars  <- factorVars[factorVars != ""]
-  dataset     <- .readDataSetToEnd(columns.as.numeric  = numericVars,
-                                   columns.as.factor   = factorVars,
-                                   exclude.na.listwise = c(numericVars, factorVars))
+  covVars     <- unlist(options$covariates)
+  covVars     <- covVars[covVars != ""]
+  dataset     <- .readDataSetToEnd(columns.as.numeric  = c(numericVars, covVars),
+                                   columns.as.factor   = c(factorVars, timeVars),
+                                   exclude.na.listwise = c(timeVars, covVars))
 
   return(dataset)
 }
@@ -66,7 +72,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 .prolinErrorHandling <- function(dataset, options, ready) {
   if(!ready) return()
   
- checks <- list(
+  checks <- list(
     .timeChecks <- function() {
       timeVar <- try(as.Date(dataset[[encodeColNames(options$time)]]))
       
@@ -78,9 +84,9 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     
     .changepointChecks <- function() {
       if(options$changepoints != "") {
-        changepointVar <- try(as.logical(dataset[[encodeColNames(options$changepoints)]]))
+        changepointVar <- try(as.logical(na.omit(dataset[[encodeColNames(options$changepoints)]])))
         
-        if(class(changepointVar) == "try-error" || length(unique(dataset[[encodeColNames(options$changepoints)]])) != 2)
+        if(class(changepointVar) == "try-error" || length(unique(na.omit(dataset[[encodeColNames(options$changepoints)]]))) != 2)
           return(gettext("Error in setting changepoints: Variable 'Changepoints' must have two levels"))
       }
       
@@ -97,6 +103,35 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
         
         if(class(predEnd) == "try-error")
           return(gettext("Error in converting argument 'End date' into a date: 'End date' needs to be in a date-like format (e.g., yyyy-mm-dd)"))
+      }
+      
+      return()
+    },
+    
+    .covariateCheks <- function() {
+      if (length(options$covariates) > 0) {
+        covs   <- unlist(options$covariates)
+        y      <- dataset[[encodeColNames(options$dependent)]]
+        yNa    <- is.na(y)
+        ds     <- as.Date(dataset[[encodeColNames(options$time)]])
+        dsHist <- ds[!yNa]
+        
+        if (options$predictionType == "nonperiodicalPrediction") {
+          predStart <- as.Date(options$nonperiodicalPredictionStart)
+          predEnd   <- as.Date(options$nonperiodicalPredictionEnd)
+        } else {
+          predUnit  <- switch(options$periodicalPredictionUnit,
+                              days = 1,
+                              weeks = 7,
+                              years = 365)
+          predInt   <- options$periodicalPredictionNumber * predUnit
+          predStart <- dsHist[1]
+          predEnd   <- dsHist[length(dsHist)] + predInt
+        }
+        
+        predSeq <- seq(predStart, predEnd, by = "d")
+        if (!all(predSeq %in% ds))
+          return(gettext("Error in predicting future values with covariates: Covariates need to be supplied for predicted time intervals"))
       }
       
       return()
@@ -161,6 +196,8 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     prolinPredictionResults <- .prolinPredictionResultsHelper(dataset, options, prolinModelResults)
     prolinPredictionResultsState$object <- prolinPredictionResults
     jaspResults[["prolinResults"]][["prolinPredictionResults"]] <- prolinPredictionResultsState
+
+    if (options$predictionSavePath != "") .prolinSavePredictions(jaspResults, options)
   }
   
   if (is.null(jaspResults[["prolinResults"]][["prolinEvaluationResults"]])) {
@@ -180,11 +217,11 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   y  <- dataset[[encodeColNames(options$dependent)]]
   ds <- as.Date(dataset[[encodeColNames(options$time)]])
   
-  fitDat <- data.frame(y = y, ds = ds)
+  fitDat <- na.omit(data.frame(y = y, ds = ds))
   
   if (options$changepoints != "") {
-    isChangepoint <- as.logical(dataset[[encodeColNames(options$changepoints)]])
-    cp            <- ds[isChangepoint]
+    isChangepoint <- as.logical(na.omit(dataset[[encodeColNames(options$changepoints)]]))
+    cp            <- fitDat$ds[isChangepoint]
   } else {
     cp <- NULL
   }
@@ -201,11 +238,14 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   if (length(options$covariates) > 0) {
     covs <- unlist(options$covariates)
+    covFit <- !is.na(y)
     
     for (cov in covs) {
       # TODO(maltelueken) add custom prior.scale, standardized, and mode
-      # mod <- prophet::add_regressor(m = mod, name = cov, prior.scale = 10, standardize = "auto", mode = "additive")
-      # fitDat[[cov]] <- dataset[[encodeColNames(cov)]]
+      mod <- prophet::add_regressor(m = mod, name = cov, prior.scale = 10, standardize = "auto", mode = "additive")
+      
+      datCov <- dataset[[encodeColNames(cov)]]
+      fitDat[[cov]] <- datCov[covFit]
     }
   }
   
@@ -246,6 +286,18 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                                   by = "d"))
   }
   
+  if (length(options$covariates) > 0) {
+    covs      <- unlist(options$covariates)
+    futds     <- as.Date(futDat$ds)
+    ds        <- as.Date(dataset[[encodeColNames(options$time)]])
+    
+    for (cov in covs) {
+      futCov <- dataset[[encodeColNames(cov)]]
+      futSel <- ds %in% futds
+      futDat[[cov]] <- futCov[futSel]
+    }
+  }
+  
   pred <- predict(prolinModelResults, futDat)
   
   return(pred)
@@ -260,6 +312,25 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                                      initial = options$crossValidationInitial)
   
   return(cvDat)
+}
+
+# Saving functions ----
+.prolinSavePredictions <- function(jaspResults, options) {
+  if (is.null(jaspResults[["prolinResults"]][["prolinPredictionSavePath"]])) {
+    predSavePath <- createJaspState()
+    predSavePath$dependOn(c("predictionType", 
+                            "periodicalPredictionNumber", 
+                            "periodicalPredictionUnit",
+                            "nonperiodicalPredictionStart", 
+                            "nonperiodicalPredictionEnd",
+                            "predictionSavePath"))
+    jaspResults[["prolinResults"]][["prolinPredictionSavePath"]] <- predSavePath
+  }
+
+  write.csv(jaspResults[["prolinResults"]][["prolinPredictionResults"]]$object,
+            file = options$predictionSavePath,
+            row.names = FALSE)
+  predSavePath$object <- TRUE
 }
 
 # Output functions ----
@@ -289,6 +360,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   if (options$estimation == "map") {
     prolinTable <- createJaspTable(title = "Parameter Estimates Table")
+    prolinTable$position <- 1
     
     prolinTable$addColumnInfo(name = "k", title = gettext("Growth rate (k)"), type = "number")
     prolinTable$addColumnInfo(name = "m", title = gettext("Offset (m)"), type = "number")
@@ -300,7 +372,8 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     
   } else {
     prolinTable <- createJaspTable(title = "Posterior Summary Table")
-    
+    prolinTable$position <- 1
+
     overtitle <- gettext("95% Credible Interval", format(100*options[["posteriorSummaryPlotCredibleIntervalValue"]], digits = 3))
     prolinTable$addColumnInfo(name = "par", title = gettext("Parameter"), type = "string")
     prolinTable$addColumnInfo(name = "mean", title = gettext("Mean"), type = "number")
@@ -351,6 +424,68 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     lowerCri = parsCri[,1],
     upperCri = parsCri[,2]
   ))
+
+  return()
+}
+
+.prolinCreateChangePointTable <- function(jaspResults, options, ready) {
+  if (!is.null(jaspResults[["prolinMainContainer"]][["prolinChangePointTable"]]) || !options$changePointTable) return()
+
+  prolinModelResults <- jaspResults[["prolinResults"]][["prolinModelResults"]]$object
+  
+  title <- switch(options$estimation,
+                  map = "Changepoint Estimates Table",
+                  mcmc = "Changepoint Posterior Summary Table")
+  prolinTable <- createJaspTable(title = title)
+  prolinTable$dependOn(c("changePointTable"))
+  prolinTable$position <- 2
+
+  prolinTable$addColumnInfo(name = "ds", title = gettext("Changepoint"), type = "string")
+  
+  if (options$estimation == "map") {
+    prolinTable$addColumnInfo(name = "delta", title = gettext("Change in growth rate (delta)"), type = "number")
+  } else {
+    parTitle <- gettext("Change in growth rate (delta)")
+    ciTitle <- gettext("95% Credible Interval")
+    prolinTable$addColumnInfo(name = "mean", title = gettext("Mean"), type = "number", overtitle = parTitle)
+    prolinTable$addColumnInfo(name = "sd", title = gettext("SD"), type = "number", overtitle = parTitle)
+    prolinTable$addColumnInfo(name = "lowerCri", title = gettext("Lower"), type = "number", overtitle = ciTitle)
+    prolinTable$addColumnInfo(name = "upperCri", title = gettext("Upper"), type = "number", overtitle = ciTitle)
+  }
+  
+  .prolinChangePointTableFill(prolinTable, prolinModelResults, options$estimation, ready)
+    
+  jaspResults[["prolinMainContainer"]][["prolinChangePointTable"]] <- prolinTable
+
+  return()
+}
+
+.prolinChangePointTableFill <-  function(prolinTable, prolinModelResults, estimation, ready) {
+  if (!ready) return()
+
+  delta  <- switch(estimation,
+                   map  = as.numeric(prolinModelResults$params$delta),
+                   mcmc = as.numeric(apply(prolinModelResults$params$delta, 2, mean)))
+  cps     <- as.character(prolinModelResults$changepoints)
+
+  if (estimation == "map") {
+    prolinTable$addColumns(list(
+      ds = cps,
+      delta = delta
+    ))
+  } else {
+    deltaCri <- apply(prolinModelResults$params$delta, 2, quantile, probs = c(0.025, 0.975))
+    deltaSd  <- apply(prolinModelResults$params$delta, 2, sd)
+    prolinTable$addColumns(list(
+      ds = cps,
+      mean = delta,
+      sd = deltaSd,
+      lowerCri = deltaCri[1,],
+      upperCri = deltaCri[2,]
+    ))
+  }
+
+  return()
 }
 
 .prolinCreateModelEvaluationTable <- function(jaspResults, options, ready) {
@@ -362,6 +497,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   prolinTable$dependOn(c("crossValidationUnit", "crossValidationHorizon", 
                              "crossValidationPeriod", "crossValidationInitial", "performanceMetricsMse", 
                              "performanceMetricsRmse", "performanceMetricsMape"))
+  prolinTable$position <- 3                           
   
   prolinTable$addColumnInfo(name = "horizon", title = gettext("Horizon"), type = "string")
   
@@ -403,6 +539,8 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 
 .prolinHistoryPlotFill <- function(dataset, options) {
   
+  dataset <- na.omit(dataset)
+
   yHist  <- dataset[[encodeColNames(options$dependent)]]
   xHist <- as.Date(dataset[[encodeColNames(options$time)]])
   histDat <- data.frame(y = yHist, x = xHist)
@@ -416,10 +554,9 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   xBreaks <- pretty(xLimits)
   xLabels <- attr(xBreaks, "labels")
-  yBreaks <- JASPgraphs::getPrettyAxisBreaks(range(yHist))
+  yBreaks <- pretty(yHist)
   
   p <- ggplot2::ggplot(histDat, mapping = ggplot2::aes(x = x, y = y)) +
-    
     ggplot2::geom_point(data = histDat, mapping = ggplot2::aes(x = x, y = y), size = 3)
   
   p <- p + 
@@ -428,11 +565,11 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                           labels = gettext(xLabels),
                           limits = range(xBreaks)) + 
     
-    ggplot2::scale_y_continuous(name = gettext(options$dependent), 
-                                breaks = yBreaks, 
-                                limits = range(yBreaks))
+    ggplot2::scale_y_continuous(name = gettext(options$dependent),
+                                limits = range(yBreaks),
+                                breaks = yBreaks)
   
-  p <- JASPgraphs::themeJasp(p)
+  p <- jaspGraphs::themeJasp(p)
   
   return(p)
 }
@@ -546,13 +683,21 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   yHist  <- dataset[[encodeColNames(options$dependent)]]
   xHist <- as.Date(dataset[[encodeColNames(options$time)]])
-  histDat <- data.frame(y = yHist, x = xHist)
+  histDat <- na.omit(data.frame(y = yHist, x = xHist))
   
   x <- as.Date(prolinPredictionResults[["ds"]])
   y <- prolinPredictionResults[[type]]
   ymin <- prolinPredictionResults[[paste0(type, "_lower")]]
   ymax <- prolinPredictionResults[[paste0(type, "_upper")]]
   df <- data.frame(x = x, y = y, ymin = ymin, ymax = ymax)
+  
+  if (length(options$covariates) > 0) {
+    covs <- unlist(options$covariates)
+    for (cov in covs) {
+      covHist <- dataset[[encodeColNames(cov)]]
+      df[[cov]] <- covHist[xHist %in% x]
+    }
+  }
   
   xLimits <- c(min(x), max(x))
   
@@ -563,7 +708,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   xBreaks <- pretty(xLimits)
   xLabels <- attr(xBreaks, "labels")
-  yBreaks <- JASPgraphs::getPrettyAxisBreaks(c(min(ymin), max(ymax)))
+  yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(ymin), max(ymax)))
   
   xFormat <- switch (type,
     yearly = "%b",
@@ -582,12 +727,43 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     
     p <- p + ggplot2::geom_point(data = histDat, mapping = ggplot2::aes(x = x, y = y), size = 3)
     
-    yBreaks <- JASPgraphs::getPrettyAxisBreaks(c(min(c(min(ymin), min(yHist))), max(c(max(ymax), max(yHist)))))
+    yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(c(min(ymin), min(histDat$y))), max(c(max(ymax), max(histDat$y)))))
+  }
+  
+  if (length(options$covariates) > 0 && options$forecastPlotsOverallAddCovariates && type == "yhat") {
+    covMin <- numeric(length(covs))
+    covMax <- numeric(length(covs))
+    
+    for (i in 1:length(covs)) {
+      p <- p + 
+        ggplot2::geom_line(data = df, 
+                           mapping = ggplot2::aes_string(x = "x", y = covs[i], 
+                                                         color = as.factor(covs[i])), 
+                           size = 1.25)
+      
+      if (options$forecastPlotsOverallAddCovariateLabels) {
+        p <- p + ggrepel::geom_label_repel(data = df[nrow(df),], mapping = ggplot2::aes_string(x = "x", y = covs[i], 
+                                                                                      label = as.factor(covs[i])),
+                                           size = 5)
+      }
+      
+      covMin[i] <- min(df[[covs[i]]])
+      covMax[i] <- max(df[[covs[i]]])
+    }
+    
+    if (options$forecastPlotsOverallAddCovariateLabels) {
+      p <- p + ggrepel::geom_label_repel(data = df[nrow(df),], mapping = ggplot2::aes(x = x, y = y, 
+                                                                                      label = options$dependent),
+                                         size = 5)
+    }
+    
+    yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(c(min(ymin), min(histDat$y), covMin)), 
+                                                 max(c(max(ymax), max(histDat$y), covMax))))
   }
   
   if (type == "yhat" || type == "trend") 
-    p <- p + ggplot2::geom_segment(mapping = ggplot2::aes(x = xHist[length(xHist)], y = range(yBreaks)[1], 
-                                                          xend = xHist[length(xHist)]), yend = range(yBreaks)[2], 
+    p <- p + ggplot2::geom_segment(mapping = ggplot2::aes(x = histDat$x[length(histDat$x)], y = range(yBreaks)[1], 
+                                                          xend = histDat$x[length(histDat$x)]), yend = range(yBreaks)[2], 
                                    linetype = "dashed")
   
   p <- p + 
@@ -608,7 +784,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                                          limits = range(yBreaks))
   }
   
-  p <- JASPgraphs::themeJasp(p)
+  p <- jaspGraphs::themeJasp(p)
   
   # p <- p + ggplot2::theme(axis.text.x = ggplot2::element_text(size = ggplot2::rel(0.95)))
   
@@ -677,7 +853,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   xBreaks <- pretty(sampleDat$horizon)
   xLabels <- attr(xBreaks, "labels")
-  yBreaks <- JASPgraphs::getPrettyAxisBreaks(sampleDat[[type]])
+  yBreaks <- jaspGraphs::getPrettyAxisBreaks(sampleDat[[type]])
   
   p <- ggplot2::ggplot(data = sampleDat, mapping = ggplot2::aes_string(x = "horizon", y = type))
   
@@ -689,7 +865,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     ggplot2::scale_x_continuous(name = gettext("Horizon (in days)"), breaks = xBreaks, limits = range(xBreaks)) +
     ggplot2::scale_y_continuous(name = gettext(stringr::str_to_upper(type)), breaks = yBreaks, limits = range(yBreaks))
   
-  p <- JASPgraphs::themeJasp(p)
+  p <- jaspGraphs::themeJasp(p)
   
   return(p)
 }
@@ -711,7 +887,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 .prolinCreateParameterPlotDelta <- function(prolinParameterPlots, options, prolinModelResults) {
   if (!is.null(prolinParameterPlots[["prolinParameterPlotDelta"]])) return()
   
-  prolinParameterPlotDelta <- createJaspPlot(title = "Changepoint Distribution Plot", height = 320, width = 480)
+  prolinParameterPlotDelta <- createJaspPlot(title = "Changepoint Distribution Plot", height = 480, width = 620)
   prolinParameterPlotDelta$dependOn(c("parameterPlotsDelta"))
   
   prolinParameterPlotDelta$plotObject <- .prolinParameterPlotDeltaFill(prolinModelResults, options)
@@ -729,7 +905,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   xBreaks <- pretty(cps)
   xLabels <- attr(xBreaks, "labels")
-  yBreaks <- JASPgraphs::getPrettyAxisBreaks(c(min(deltas), max(deltas)))
+  yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(deltas), max(deltas)))
   
   p <- ggplot2::ggplot(data = data.frame(x = cps, y = deltas), mapping = ggplot2::aes(x = x, y = y))
   
@@ -737,9 +913,9 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   p <- p + 
     ggplot2::scale_x_date(name = gettext("Time"), breaks = xBreaks, labels = gettext(xLabels), limits = range(xBreaks)) +
-    ggplot2::scale_y_continuous(name = gettext("Change in k (delta)"), breaks = yBreaks, limits = range(yBreaks))
+    ggplot2::scale_y_continuous(name = gettext("Change in growth rate (delta)"), breaks = yBreaks, limits = range(yBreaks))
   
-  p <- JASPgraphs::themeJasp(p)
+  p <- jaspGraphs::themeJasp(p)
   
   return(p)
 }
@@ -781,8 +957,8 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   lvl <- (1-criLevel)/2
   cri <- stats::quantile(samples, prob = c(lvl, 1-lvl))
   
-  xBreaks    <- JASPgraphs::getPrettyAxisBreaks(c(min(x), max(x)))
-  yBreaks    <- JASPgraphs::getPrettyAxisBreaks(c(0, 1.15*max(y)))
+  xBreaks    <- jaspGraphs::getPrettyAxisBreaks(c(min(x), max(x)))
+  yBreaks    <- jaspGraphs::getPrettyAxisBreaks(c(0, 1.15*max(y)))
   yBarPos    <- 0.9*yBreaks[length(yBreaks)]
   yBarHeight <- 0.05*yBreaks[length(yBreaks)]
   
@@ -799,7 +975,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     ggplot2::scale_x_continuous(name = gettext(parTitle), breaks = xBreaks, limits = range(xBreaks)) +
     ggplot2::scale_y_continuous(name = gettext("Density"), breaks = yBreaks, limits = range(yBreaks))
   
-  p <- JASPgraphs::themeJasp(p)
+  p <- jaspGraphs::themeJasp(p)
   
   return(p)
 }
