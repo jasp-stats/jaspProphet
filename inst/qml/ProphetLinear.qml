@@ -11,7 +11,7 @@ Form
         AssignedVariablesList   { name: "dependent";	title: qsTr("Dependent Variable");	suggestedColumns: ["scale"]; singleVariable: true               }
         AssignedVariablesList   { name: "time";         title: qsTr("Time");                suggestedColumns: ["ordinal", "nominal"]; singleVariable: true	}
         AssignedVariablesList   { name: "changepoints"; title: qsTr("Changepoints");        suggestedColumns: ["ordinal", "nominal"]; singleVariable: true  }
-        AssignedVariablesList   { name: "covariates";	title: qsTr("Covariates");			suggestedColumns: ["scale"]                                     }
+        AssignedVariablesList   { name: "covariates";	title: qsTr("Covariates");			suggestedColumns: ["scale"]; id: covs                           }
     }
 
     CheckBox
@@ -273,17 +273,13 @@ Form
                 }
             }
         }
-        Button
+        FileSelector
         {
-            id: 			exportPredictions
-            anchors.right: 	parent.right
-            anchors.bottom: parent.bottom
-            text: 			qsTr("<b>Export predictions</b>")
-
-            onClicked:
-            {
-                form.exportResults()
-            }
+            Layout.columnSpan:  2
+            label:  qsTr("Save Predictions")
+            name:   "predictionSavePath"
+            filter: "*.csv"
+            save:   true
         }
     }
 
@@ -348,6 +344,11 @@ Form
                 label: qsTr("Mean absolute percentage error (MAPE)")
             }
         }
+
+        CheckBox
+        {
+            name: "changePointTable"    ; label: qsTr("Changepoint table")
+        }
     }
 
     Section
@@ -365,6 +366,19 @@ Form
                 {
                     name: "forecastPlotsOverallAddData"
                     label: qsTr("Show data points")
+                }
+                CheckBox
+                {
+                    name: "forecastPlotsOverallAddCovariates"
+                    label: qsTr("Show covariates")
+                    id: showCovs
+                    visible: covs.count > 0
+                    CheckBox
+                    {
+                        name: "forecastPlotsOverallAddCovariateLabels"
+                        label: qsTr("Add labels")
+                        visible: showCovs.checked
+                    }
                 }
                 TextField
                 {
@@ -433,11 +447,6 @@ Form
             {
                 name: "parameterPlotsDelta"
                 label: qsTr("Changepoint plot")
-            }
-            CheckBox
-            {
-                name: "parameterPlotsBeta"
-                label: qsTr("Fourier terms plot")
             }
             CheckBox
             {
