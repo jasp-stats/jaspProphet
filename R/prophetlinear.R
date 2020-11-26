@@ -33,6 +33,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   .prolinCreateModelEvaluationTable(jaspResults, options, ready)
   .prolinCreateHistoryPlot(         jaspResults, dataset, options, ready)
   .prolinCreateForecastPlots(       jaspResults, dataset, options, ready)
+  .prolinCreateSeasonalityPlotContainer(jaspResults, dataset, options, ready)
   .prolinCreatePerformancePlots(    jaspResults, options, ready)
   .prolinCreateParameterPlots(      jaspResults, options, ready)
   
@@ -41,11 +42,6 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 
 # Init functions ----
 .prolinInitOptions <- function(jaspResults, options) {
-  
-  if(!options$yearlySeasonality)    options$forecastPlotsYearly <- FALSE
-  if(!options$weeklySeasonality)    options$forecastPlotsWeekly <- FALSE
-  if(!options$dailySeasonality)     options$forecastPlotsDaily  <- FALSE
-  if(!options$forecastPlotsOverall) options$forecastPlotsOverallAddCovariates <- FALSE
   
   return(options)
 }
@@ -95,8 +91,8 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     
     .nonperiodicalPredChecks <- function() {
       if (options$predictionType == "nonperiodicalPrediction") {
-        predStart <- try(as.Date(options$nonperiodicalPredictionStart))
-        predEnd <- try(as.Date(options$nonperiodicalPredictionEnd))
+        predStart <- try(as.POSIXct(options$nonperiodicalPredictionStart))
+        predEnd <- try(as.POSIXct(options$nonperiodicalPredictionEnd))
         
         if(class(predStart) == "try-error")
           return(gettext("Error in converting argument 'Start date' into a date: 'Start date' needs to be in a date-like format (e.g., yyyy-mm-dd)"))
@@ -115,7 +111,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
         yNa    <- is.na(y)
         ds     <- as.Date(dataset[[encodeColNames(options$time)]])
         dsHist <- ds[!yNa]
-        
+
         if (options$predictionType == "nonperiodicalPrediction") {
           predStart <- as.Date(options$nonperiodicalPredictionStart)
           predEnd   <- as.Date(options$nonperiodicalPredictionEnd)
@@ -156,23 +152,13 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     
     if (options$changepoints != "") {
       jaspResults[["prolinResults"]]$dependOn(c("dependent", "time", "changepoints", "covariates", 
-                                                "yearlySeasonality", "yearlySeasonalityPriorScale", 
-                                                "yearlySeasonalityMode", "yearlySeasonalityCustom", "yearlyCustomTerms", 
-                                                "weeklySeasonality","weeklySeasonalityPriorScale", 
-                                                "weeklySeasonalityMode", "weeklySeasonalityCustom", "weeklyCustomTerms",  
-                                                "dailySeasonality", "dailySeasonalityPriorScale", 
-                                                "dailySeasonalityMode", "dailySeasonalityCustom", "dailyCustomTerms",
+                                                "seasonalities",
                                                 "estimation", "mcmcSamples", "predictionIntervalWidth", 
                                                 "predictionIntervalSamples"))
     } else {
       jaspResults[["prolinResults"]]$dependOn(c("dependent", "time", "changepoints", "covariates", 
                                                 "maxChangepoints", "changepointRange", "changepointPriorScale", 
-                                                "yearlySeasonality", "yearlySeasonalityPriorScale", 
-                                                "yearlySeasonalityMode", "yearlySeasonalityCustom", "yearlyCustomTerms", 
-                                                "weeklySeasonality","weeklySeasonalityPriorScale", 
-                                                "weeklySeasonalityMode", "weeklySeasonalityCustom", "weeklyCustomTerms",  
-                                                "dailySeasonality", "dailySeasonalityPriorScale", 
-                                                "dailySeasonalityMode", "dailySeasonalityCustom", "dailyCustomTerms",
+                                                "seasonalities",
                                                 "estimation", "mcmcSamples", "predictionIntervalWidth", 
                                                 "predictionIntervalSamples"))
     }
@@ -191,7 +177,8 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                                             "periodicalPredictionNumber", 
                                             "periodicalPredictionUnit",
                                             "nonperiodicalPredictionStart", 
-                                            "nonperiodicalPredictionEnd"))
+                                            "nonperiodicalPredictionEnd",
+                                            "nonperiodicalPredictionUnit"))
     prolinModelResults <- jaspResults[["prolinResults"]][["prolinModelResults"]]$object
     prolinPredictionResults <- .prolinPredictionResultsHelper(dataset, options, prolinModelResults)
     prolinPredictionResultsState$object <- prolinPredictionResults
@@ -215,7 +202,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 
 .prolinModelResultsHelper <- function(dataset, options) {
   y  <- dataset[[encodeColNames(options$dependent)]]
-  ds <- as.Date(dataset[[encodeColNames(options$time)]])
+  ds <- as.POSIXct(dataset[[encodeColNames(options$time)]])
   
   fitDat <- na.omit(data.frame(y = y, ds = ds))
   
@@ -226,15 +213,17 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     cp <- NULL
   }
   
-  if (options$estimation == "mcmc") {
-    mod <- prophet::prophet(growth = "linear", changepoints = cp, n.changepoints = options$maxChangepoints, changepoint.range = options$changepointRange, changepoint.prior.scale = options$changepointPriorScale,
+  mcmcSamples <- switch(options$estimation,
+                        map  = 0,
+                        mcmc = options$mcmcSamples)
+
+  predIntSamples <- switch(options$estimation,
+                           map  = options$predictionIntervalSamples,
+                           mcmc = 1)
+
+  mod <- prophet::prophet(growth = "linear", changepoints = cp, n.changepoints = options$maxChangepoints, changepoint.range = options$changepointRange, changepoint.prior.scale = options$changepointPriorScale,
                             yearly.seasonality = FALSE, weekly.seasonality = FALSE, daily.seasonality = FALSE,
-                            mcmc.samples = options$mcmcSamples, interval.width = options$predictionIntervalWidth, uncertainty.samples = options$predictionIntervalSamples, fit = FALSE)
-  } else {
-    mod <- prophet::prophet(growth = "linear", changepoints = cp, n.changepoints = options$maxChangepoints, changepoint.range = options$changepointRange, changepoint.prior.scale = options$changepointPriorScale,
-                            yearly.seasonality = FALSE, weekly.seasonality = FALSE, daily.seasonality = FALSE,
-                            mcmc.samples = 0, interval.width = options$predictionIntervalWidth, uncertainty.samples = options$predictionIntervalSamples, fit = FALSE)
-  }
+                            mcmc.samples = mcmcSamples, interval.width = options$predictionIntervalWidth, uncertainty.samples = predIntSamples, fit = FALSE)
   
   if (length(options$covariates) > 0) {
     covs <- unlist(options$covariates)
@@ -249,19 +238,23 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     }
   }
   
-  if (options$yearlySeasonality) {
-    mod <- prophet::add_seasonality(m = mod, name = "yearly", period = 365, fourier.order = options$yearlyCustomTerms, 
-                                    prior.scale = options$yearlySeasonalityPriorScale, mode = options$yearlySeasonalityMode)
-  }
-  
-  if (options$weeklySeasonality) {
-    mod <- prophet::add_seasonality(m = mod, name = "weekly", period = 7, fourier.order = options$weeklyCustomTerms, 
-                                    prior.scale = options$weeklySeasonalityPriorScale, mode = options$weeklySeasonalityMode)
-  }
-  
-  if (options$dailySeasonality) {
-    mod <- prophet::add_seasonality(m = mod, name = "daily", period = 1, fourier.order = options$dailyCustomTerms, 
-                                    prior.scale = options$dailySeasonalityPriorScale, mode = options$dailySeasonalityMode)
+  if (!is.null(options$seasonalities)) {
+    i <- 1
+    for (seas in options$seasonalities) {
+      name   <- ifelse(seas$name == "", paste0("seasonality_", i), encodeColNames(seas$name))
+      period <- seas$period * switch(seas$unit,
+                                     hours = 1/24,
+                                     days  = 1,
+                                     weeks = 7,
+                                     years = 365)
+
+      if (period < 7)                       fourierOrder <- 1
+      else if (period >= 7 && period < 180) fourierOrder <- 3
+      else                                  fourierOrder <- 10
+
+      mod <- prophet::add_seasonality(m = mod, name = name, period = period, fourier.order = fourierOrder, prior.scale = seas$priorSigma, mode = seas$mode)
+      i   <- i+1
+    }
   }
   
   fit <- prophet::fit.prophet(m = mod, df = fitDat)
@@ -280,16 +273,15 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                                              freq = options$periodicalPredictionUnit, 
                                              include_history = TRUE)
   } else {
-    # TODO(maltelueken) add unit for nonperiodical prediction
-    futDat <- data.frame(ds = seq(as.Date(options$nonperiodicalPredictionStart), 
-                                  as.Date(options$nonperiodicalPredictionEnd), 
-                                  by = "d"))
+    futDat <- data.frame(ds = seq(as.POSIXct(options$nonperiodicalPredictionStart), 
+                                  as.POSIXct(options$nonperiodicalPredictionEnd), 
+                                  by =    options$nonperiodicalPredictionUnit))
   }
   
   if (length(options$covariates) > 0) {
     covs      <- unlist(options$covariates)
-    futds     <- as.Date(futDat$ds)
-    ds        <- as.Date(dataset[[encodeColNames(options$time)]])
+    futds     <- as.POSIXct(futDat$ds)
+    ds        <- as.POSIXct(dataset[[encodeColNames(options$time)]])
     
     for (cov in covs) {
       futCov <- dataset[[encodeColNames(cov)]]
@@ -323,6 +315,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                             "periodicalPredictionUnit",
                             "nonperiodicalPredictionStart", 
                             "nonperiodicalPredictionEnd",
+                            "nonperiodicalPredictionUnit",
                             "predictionSavePath"))
     jaspResults[["prolinResults"]][["prolinPredictionSavePath"]] <- predSavePath
   }
@@ -342,12 +335,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   jaspResults[["prolinMainContainer"]] <- mainContainer
   jaspResults[["prolinMainContainer"]]$dependOn(c("dependent", "time", "changepoints", "covariates",
                                                   "maxChangepoints", "changepointRange", "changepointPriorScale", 
-                                                  "yearlySeasonality", "yearlySeasonalityPriorScale", 
-                                                  "yearlySeasonalityMode", "yearlySeasonalityCustom", "yearlyCustomTerms", 
-                                                  "weeklySeasonality","weeklySeasonalityPriorScale", 
-                                                  "weeklySeasonalityMode", "weeklySeasonalityCustom", "weeklyCustomTerms",  
-                                                  "dailySeasonality", "dailySeasonalityPriorScale", 
-                                                  "dailySeasonalityMode", "dailySeasonalityCustom", "dailyCustomTerms",
+                                                  "seasonalities",
                                                   "estimation", "mcmcSamples", "predictionIntervalWidth"))
   
   return()
@@ -380,6 +368,9 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     prolinTable$addColumnInfo(name = "sd", title = gettext("SD"), type = "number")
     prolinTable$addColumnInfo(name = "lowerCri", title = gettext("Lower"), type = "number", overtitle = overtitle)
     prolinTable$addColumnInfo(name = "upperCri", title = gettext("Upper"), type = "number", overtitle = overtitle)
+    prolinTable$addColumnInfo(name = "rhat", title = gettext("R-hat"), type = "number")
+    prolinTable$addColumnInfo(name = "bulkEss", title = gettext("ESS (bulk)"), type = "integer")
+    prolinTable$addColumnInfo(name = "tailEss", title = gettext("ESS (tail)"), type = "integer")
     
     .prolinModelSummaryTableMcmcFill(prolinTable, prolinModelResults, ready)
     
@@ -404,25 +395,21 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 .prolinModelSummaryTableMcmcFill <- function(prolinTable, prolinModelResults, ready) {
   if (!ready) return()
   
-  pars <- prolinModelResults$params[c("k", "m", "sigma_obs")]
-  
-  names(pars) <- c("Growth rate (k)", "Offset (m)", "Residual variance (sigma)")
-  
-  parsCri <- purrr::reduce(lapply(pars, function(x, lvl) {
-    
-    marg <- (1-lvl)/2
-    
-    cri <- stats::quantile(x, probs = c(marg, 1-marg))
-    
-    return(cri)
-  }, lvl = 0.95), rbind)
+  modelSummary         <- rstan::monitor(prolinModelResults$stan.fit, probs = c(0.025, 0.975))
+  modelSummaryRowNames <- rownames(modelSummary)
+  parNames             <- c("k", "m", "sigma_obs")
+  parSummary           <- modelSummary[modelSummaryRowNames %in% parNames, 1:ncol(modelSummary)]
+  parLabels            <- c("Growth rate (k)", "Offset (m)", "Residual variance (sigma)")
   
   prolinTable$addColumns(list(
-    par      = names(pars),
-    mean     = sapply(pars, mean),
-    sd       = sapply(pars, sd),
-    lowerCri = parsCri[,1],
-    upperCri = parsCri[,2]
+    par      = parLabels,
+    mean     = parSummary[["mean"]],
+    sd       = parSummary[["sd"]],
+    lowerCri = parSummary[["2.5%"]],
+    upperCri = parSummary[["97.5%"]],
+    rhat     = parSummary[["Rhat"]],
+    bulkEss  = parSummary[["Bulk_ESS"]],
+    tailEss  = parSummary[["Tail_ESS"]]
   ))
 
   return()
@@ -434,7 +421,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   prolinModelResults <- jaspResults[["prolinResults"]][["prolinModelResults"]]$object
   
   title <- switch(options$estimation,
-                  map = "Changepoint Estimates Table",
+                  map  = "Changepoint Estimates Table",
                   mcmc = "Changepoint Posterior Summary Table")
   prolinTable <- createJaspTable(title = title)
   prolinTable$dependOn(c("changePointTable"))
@@ -508,6 +495,8 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   .prolinModelEvaluationTableFill(prolinTable, options, prolinEvaluationResults, ready)
   
   jaspResults[["prolinMainContainer"]][["prolinModelEvaluationTable"]] <- prolinTable
+
+  return()
 }
 
 .prolinModelEvaluationTableFill <- function(prolinTable, options, prolinEvaluationResults, ready) {
@@ -517,16 +506,19 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   metrics <- metrics[c(options$performanceMetricsMse, options$performanceMetricsRmse, options$performanceMetricsMape)]
   
   metDat <- prophet::performance_metrics(df = prolinEvaluationResults, metrics = metrics, rolling_window = 0)
-  
+  metDat$horizon <- paste(metDat$horizon, options$crossValidationUnit, sep = " ")
+
   if (options$performanceMetricsMape) metDat$mape <- metDat$mape/100
   
   prolinTable$addColumns(as.list(metDat))
+
+  return()
 }
 
 .prolinCreateHistoryPlot <- function(jaspResults, dataset, options, ready) {
   if (!ready || !options$historyPlot) return()
   
-  prolinHistoryPlot <- createJaspPlot(title = "History Plot", height = 480, width = 620)
+  prolinHistoryPlot <- createJaspPlot(title = "History Plot", height = 320, width = 480)
   prolinHistoryPlot$dependOn(c("dependent", "time", "changepoints", "covariates", "historyPlot", "historyPlotStart",
                                 "historyPlotEnd"))
   
@@ -542,15 +534,15 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   dataset <- na.omit(dataset)
 
   yHist  <- dataset[[encodeColNames(options$dependent)]]
-  xHist <- as.Date(dataset[[encodeColNames(options$time)]])
+  xHist <- as.POSIXct(dataset[[encodeColNames(options$time)]])
   histDat <- data.frame(y = yHist, x = xHist)
   
   xLimits <- c(min(xHist), max(xHist))
   
   if (options$historyPlotStart != "")
-    xLimits[1] <- as.Date(options$historyPlotStart)
+    xLimits[1] <- as.POSIXct(options$historyPlotStart)
   if (options$historyPlotEnd != "")
-    xLimits[2] <- as.Date(options$historyPlotEnd)
+    xLimits[2] <- as.POSIXct(options$historyPlotEnd)
   
   xBreaks <- pretty(xLimits)
   xLabels <- attr(xBreaks, "labels")
@@ -560,17 +552,18 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     ggplot2::geom_point(data = histDat, mapping = ggplot2::aes(x = x, y = y), size = 3)
   
   p <- p + 
-    ggplot2::scale_x_date(name = gettext("Time"), 
-                          breaks = xBreaks, 
-                          labels = gettext(xLabels),
-                          limits = range(xBreaks)) + 
+    ggplot2::scale_x_datetime(name = gettext("Time"), 
+                              breaks = xBreaks, 
+                              labels = gettext(xLabels),
+                              limits = range(xBreaks)) + 
     
     ggplot2::scale_y_continuous(name = gettext(options$dependent),
                                 limits = range(yBreaks),
                                 breaks = yBreaks)
   
   p <- jaspGraphs::themeJasp(p)
-  
+  p <- p + ggplot2::theme(plot.margin = ggplot2::margin(0, 10, 0, 0))
+
   return(p)
 }
 
@@ -582,13 +575,11 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   prolinForecastPlots <- createJaspContainer(title = gettext("Forecast Plots"))
   prolinForecastPlots$dependOn(c("predictionIntervalSamples", "predictionType", "periodicalPredictionNumber", 
-                                 "periodicalPredictionUnit", "nonperiodicalPredictionStart", "nonperiodicalPredictionEnd"))
+                                 "periodicalPredictionUnit", "nonperiodicalPredictionStart", 
+                                 "nonperiodicalPredictionEnd", "nonperiodicalPredictionUnit"))
   
   if (options$forecastPlotsOverall) .prolinCreateOverallForecastPlot(prolinForecastPlots, dataset, options, prolinPredictionResults)
   if (options$forecastPlotsTrend)   .prolinCreateTrendForecastPlot(prolinForecastPlots, dataset, options, prolinPredictionResults)
-  if (options$forecastPlotsYearly)  .prolinCreateYearlyForecastPlot(prolinForecastPlots, dataset, options, prolinModelResults)
-  if (options$forecastPlotsWeekly)  .prolinCreateWeeklyForecastPlot(prolinForecastPlots, dataset, options, prolinModelResults)
-  if (options$forecastPlotsDaily)   .prolinCreateDailyForecastPlot(prolinForecastPlots, dataset, options, prolinModelResults)
   
   jaspResults[["prolinMainContainer"]][["prolinForecastPlots"]] <- prolinForecastPlots
   
@@ -598,8 +589,10 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 .prolinCreateOverallForecastPlot <- function(prolinForecastPlots, dataset, options, prolinPredictionResults) {
   if (!is.null(prolinForecastPlots[["prolinOverallForecastPlot"]])) return()
   
-  prolinOverallForecastPlot <- createJaspPlot(title = "Overall Forecast Plot", height = 480, width = 620)
-  prolinOverallForecastPlot$dependOn("forecastPlotsOverall")
+  prolinOverallForecastPlot <- createJaspPlot(title = gettext("Overall Forecast Plot"), height = 480, width = 620)
+  prolinOverallForecastPlot$dependOn(c("forecastPlotsOverall", "forecastPlotsOverallAddData",
+                                     "forecastPlotsOverallAddCovariates",
+                                     "forecastPlotsOverallStart", "forecastPlotsOverallEnd"))
   
   prolinOverallForecastPlot$plotObject <- .prolinForecastPlotFill(prolinPredictionResults, dataset, options, type = "yhat")
   
@@ -611,8 +604,8 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 .prolinCreateTrendForecastPlot <- function(prolinForecastPlots, dataset, options, prolinPredictionResults) {
   if (!is.null(prolinForecastPlots[["prolinTrendForecastPlot"]])) return()
   
-  prolinTrendForecastPlot <- createJaspPlot(title = "Trend Forecast Plot", height = 480, width = 620)
-  prolinTrendForecastPlot$dependOn("forecastPlotsTrend")
+  prolinTrendForecastPlot <- createJaspPlot(title = gettext("Trend Forecast Plot"), height = 480, width = 620)
+  prolinTrendForecastPlot$dependOn(c("forecastPlotsTrend"))
   
   prolinTrendForecastPlot$plotObject <- .prolinForecastPlotFill(prolinPredictionResults, dataset, options, type = "trend")
   
@@ -621,61 +614,105 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   return()
 }
 
-.prolinCreateYearlyForecastPlot <- function(prolinForecastPlots, dataset, options, prolinModelResults) {
-  if (!is.null(prolinForecastPlots[["prolinYearlyForecastPlot"]])) return()
+.prolinCreateSeasonalityPlotContainer <- function(jaspResults, dataset, options, ready) {
+  if (!ready) return()
   
-  prolinPredictionResults <- .prolinForecastPlotPredictComponent(prolinModelResults, type = "yearly")
+  prolinModelResults <- jaspResults[["prolinResults"]][["prolinModelResults"]]$object
   
-  prolinYearlyForecastPlot <- createJaspPlot(title = "Yearly Forecast Plot", height = 480, width = 620)
-  prolinYearlyForecastPlot$dependOn(c("forecastPlotsYearly", "yearlySeasonality"))
+  prolinSeasonalityPlots <- createJaspContainer(title = gettext("Seasonality Plots"))
+  prolinSeasonalityPlots$dependOn(c("seasonalityPlots"))
+
+  if (length(options$seasonalityPlots) > 0) {
+    for (name in options$seasonalityPlots) {
+      .prolinCreateSeasonalityPlot(prolinSeasonalityPlots, name, prolinModelResults, options)
+    }
+  }
   
-  prolinYearlyForecastPlot$plotObject <- .prolinForecastPlotFill(prolinPredictionResults, dataset, options, type = "yearly")
-  
-  prolinForecastPlots[["prolinYearlyForecastPlot"]] <- prolinYearlyForecastPlot
+  jaspResults[["prolinMainContainer"]][["prolinSeasonalityPlots"]] <- prolinSeasonalityPlots
   
   return()
 }
 
-.prolinCreateWeeklyForecastPlot <- function(prolinForecastPlots, dataset, options, prolinModelResults) {
-  if (!is.null(prolinForecastPlots[["prolinWeeklyForecastPlot"]])) return()
-  
-  prolinPredictionResults <- .prolinForecastPlotPredictComponent(prolinModelResults, type = "weekly")
-  
-  prolinWeeklyForecastPlot <- createJaspPlot(title = "Weekly Forecast Plot", height = 480, width = 620)
-  prolinWeeklyForecastPlot$dependOn(c("forecastPlotsWeekly", "weeklySeasonality"))
-  
-  prolinWeeklyForecastPlot$plotObject <- .prolinForecastPlotFill(prolinPredictionResults, dataset, options, type = "weekly")
-  
-  prolinForecastPlots[["prolinWeeklyForecastPlot"]] <- prolinWeeklyForecastPlot
-  
+.prolinCreateSeasonalityPlot <- function(prolinSeasonalityPlots, name, prolinModelResults, options) {
+  if (!is.null(prolinSeasonalityPlots[[name]])) return()
+
+  seasData <- .prolinPredictSeasonality(encodeColNames(name), prolinModelResults, options)
+
+  title <- gettext(paste0(name, " Seasonality Plot"))
+  seasonalityPlot <- createJaspPlot(title = title, height = 320, width = 480)
+  seasonalityPlot$plotObject <- .prolinSeasonalityPlotFill(seasData, encodeColNames(name), options)
+  prolinSeasonalityPlots[[name]] <- seasonalityPlot
+
   return()
 }
 
-.prolinCreateDailyForecastPlot <- function(prolinForecastPlots, options, dataset, prolinModelResults) {
-  if (!is.null(prolinForecastPlots[["prolinDailyForecastPlot"]])) return()
+.prolinPredictSeasonality <- function(name, prolinModelResults, options) {
+  start <- as.POSIXct("2018-01-01 01:00:00")
+  period <- .prolinGetSeasonalityProperties(name, "period", options)
+  unit <- .prolinGetSeasonalityProperties(name, "unit", options)
+
+  ds <- seq(from = start, by = unit, length.out = period+1)
+  futDat <- data.frame(ds = ds)
+
+  if (length(options$covariates) > 0) {
+    for (cov in options$covariates) {
+      futDat[[cov]] <- mean(prolinModelResults$history[[cov]])
+    }
+  }
   
-  prolinPredictionResults <- .prolinForecastPlotPredictComponent(prolinModelResults, type = "daily")
-  
-  prolinDailyForecastPlot <- createJaspPlot(title = "Daily Forecast Plot", height = 480, width = 620)
-  prolinDailyForecastPlot$dependOn(c("forecastPlotsDaily", "dailySeasonality"))
-  
-  prolinDailyForecastPlot$plotObject <- .prolinForecastPlotFill(prolinPredictionResults, dataset, options, type = "daily")
-  
-  prolinForecastPlots[["prolinDailyForecastPlot"]] <- prolinDailyForecastPlot
-  
-  return()
+  predSeas <- predict(prolinModelResults, futDat)
+
+  return(predSeas)
 }
 
-.prolinForecastPlotPredictComponent <- function(prolinModelResults, type) {
-  ds <- switch (type,
-    yearly = seq(as.Date("2020-01-01"), by = "d", length.out = 365),
-    weekly = seq(as.Date("2020-09-07"), by = "d", length.out = 7),
-    daily  = seq(as.POSIXlt("2020-09-07"), by = "h", length.out = 24)
-  )
+.prolinGetPrettyDateLabels <- function(period, unit, seasonal = FALSE) {
+  unitDays <- switch (unit,
+                      hours = 1/24,
+                      days =  1,
+                      weeks = 7,
+                      years = 365)
+
+  daysPeriod <- unitDays*period
+
+  if (daysPeriod <= 3)                               dateFormat <- list(format = "%H", label = "Hour")
+  else if (daysPeriod > 3 && daysPeriod <= 14)       dateFormat <- list(format = "%a", label = "Weekday")
+  else if (daysPeriod > 14 && daysPeriod <= 28)      dateFormat <- list(format = "%d", label = "Day")
+  else if (daysPeriod > 28 && daysPeriod < 365)      dateFormat <- list(format = "%m", label = "Month")
+  else if (daysPeriod >= 365 && daysPeriod <= 3*365) dateFormat <- list(format = "%b", label = "Month")
+  else                                               dateFormat <- list(format = "%Y", label = "Year")
+
+  return(dateFormat)
+}
+
+.prolinSeasonalityPlotFill <- function(seasData, name, options) {
+
+  y <- seasData[[name]]
+  ymin <- seasData[[paste0(name, "_lower")]]
+  ymax <- seasData[[paste0(name, "_upper")]]
+  x <- seasData$ds
+
+  df <- data.frame(x = x, y = y, ymin = ymin, ymax = ymax)
+
+  xBreaks <- pretty(x)
+  #xLabels <- attr(xBreaks, "labels")
+  yBreaks <- pretty(c(min(ymin), max(ymax)))
+  period <- .prolinGetSeasonalityProperties(name, "period", options)
+  unit <- .prolinGetSeasonalityProperties(name, "unit", options)
+  xFormat <- .prolinGetPrettyDateLabels(period, unit)
+
+  p <- ggplot2::ggplot(df, mapping = ggplot2::aes(x = x, y = y)) +
+    
+    ggplot2::geom_line(color = "black", size = 1.25) +
   
-  predComp <- predict(prolinModelResults, data.frame(ds = as.Date(ds)))
-  
-  return(predComp)
+    ggplot2::geom_ribbon(mapping = ggplot2::aes(ymin = ymin, ymax = ymax), fill = "blue", alpha = 0.4)
+
+  p <- p +
+    ggplot2::scale_x_datetime(name = xFormat$label, date_labels = xFormat$format, breaks = xBreaks, limits = range(xBreaks)) +
+    ggplot2::scale_y_continuous(name = options$dependent, breaks = yBreaks, limits = range(yBreaks))
+
+  p <- jaspGraphs::themeJasp(p)
+
+  return(p)
 }
 
 .prolinForecastPlotFill <- function(prolinPredictionResults, dataset, options, type) {
@@ -978,4 +1015,12 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   p <- jaspGraphs::themeJasp(p)
   
   return(p)
+}
+
+.prolinGetSeasonalityProperties <- function(name, prop, options) {
+  if(is.null(options$seasonalities))
+    return()
+
+  propRes <- options$seasonalities[[which(sapply(options$seasonalities, function(s) encodeColNames(s$name) == name))]][[prop]]
+  return(propRes)
 }
