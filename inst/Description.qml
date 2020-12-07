@@ -13,11 +13,6 @@ Description
     license		: "GPL (>= 2)"
     icon        : "analysis-prophet.svg"
 
-    Package
-    {
-        name    : "prophet"
-    }
-
     Analysis
     {
         title   : qsTr("Prophet")
