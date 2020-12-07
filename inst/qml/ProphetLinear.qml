@@ -2,6 +2,7 @@ import QtQuick 			2.8
 import QtQuick.Layouts 	1.3
 import JASP.Controls 	1.0
 import JASP.Widgets 	1.0
+import JASP				1.0
 
 Form
 {
@@ -108,6 +109,54 @@ Form
 				label: qsTr("Prediction interval samples")
 				visible: map.checked
 				defaultValue: 1000
+			}
+		}
+		
+		Group
+		{
+			title: qsTr("Covariates")
+			
+			VariablesForm
+			{
+				preferredHeight: 0.5 * jaspTheme.smallDefaultVariablesFormHeight
+				AvailableVariablesList
+				{ 
+					name: "availableCovariates"
+					source: ["covariates"]
+					width: form.width * 0.2
+				}
+				AssignedVariablesList
+				{
+					name: "assignedCovariates"
+					width: form.width * 0.6
+					
+					rowComponentTitle: qsTr("Mode")
+					
+					rowComponent: Row
+					{
+						spacing: 20 * preferencesModel.uiScale
+						DoubleField
+						{
+							name: "priorSigma"
+							defaultValue: 10.0
+						}
+						CheckBox
+						{
+							name: "standardize"
+							checked: true
+						}
+						DropDown
+						{
+							name: "mode"
+							indexDefaultValue: 0
+							values:
+							[
+								{ label: qsTr("Additive"), value: "additive"				},
+								{ label: qsTr("Multiplicative"), value: "multiplicative"	},
+							]
+						}
+					}
+				}
 			}
 		}
 		
@@ -282,9 +331,11 @@ Form
 	{
 		title: qsTr("Evaluation")
 		
-		Group
+		CheckBox
 		{
-			title: qsTr("Simulated Historical Forecasts")
+			name: "crossValidation"
+			id: crossVal
+			label: qsTr("Simulated Historical Forecasts")
 			DropDown
 			{
 				name: "crossValidationUnit"
@@ -319,10 +370,11 @@ Form
 			}
 		}
 		
-		Group
+		CheckBox
 		{
-			title: qsTr("Performance Metrics")
-			enabled: horizon.value > 0
+			name: "performanceMetrics"
+			label: qsTr("Performance Metrics")
+			enabled: crossVal.checked
 			CheckBox
 			{
 				name: "performanceMetricsMse"
@@ -401,10 +453,11 @@ Form
 		Group
 		{
 			title: qsTr("Seasonality Plots")
-			VariablesForm {
+			VariablesForm
+			{
 				preferredHeight: 0.5 * jaspTheme.smallDefaultVariablesFormHeight
-				AvailableVariablesList {    name: "seasonalityNames";       source: ["seasonalities.name"]          }
-				AssignedVariablesList {     name: "seasonalityPlots"                                            }
+				AvailableVariablesList { name: "seasonalityNames"; source: ["seasonalities.name"]	}
+				AssignedVariablesList { name: "seasonalityPlots"									}
 			}
 		}
 		
@@ -415,16 +468,19 @@ Form
 			{
 				name: "performancePlotsMse"
 				label: qsTr("Mean squared error (MSE)")
+				enabled: crossVal.checked
 			}
 			CheckBox
 			{
 				name: "performancePlotsRmse"
 				label: qsTr("Root mean squared error (RMSE)")
+				enabled: crossVal.checked
 			}
 			CheckBox
 			{
 				name: "performancePlotsMape"
 				label: qsTr("Mean absolute percentage error (MAPE)")
+				enabled: crossVal.checked
 			}
 		}
 		

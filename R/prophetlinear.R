@@ -27,15 +27,15 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   .prolinComputeResults(jaspResults, dataset, options, ready)
 
-  .prolinContainerMain(             jaspResults, options, ready)
-  .prolinCreateModelSummaryTable(   jaspResults, options, ready)
-  .prolinCreateChangePointTable(    jaspResults, options, ready)
-  .prolinCreateModelEvaluationTable(jaspResults, options, ready)
-  .prolinCreateHistoryPlot(         jaspResults, dataset, options, ready)
-  .prolinCreateForecastPlots(       jaspResults, dataset, options, ready)
+  .prolinContainerMain(                 jaspResults, options, ready)
+  .prolinCreateModelSummaryTable(       jaspResults, options, ready)
+  .prolinCreateChangePointTable(        jaspResults, options, ready)
+  .prolinCreateModelEvaluationTable(    jaspResults, options, ready)
+  .prolinCreateHistoryPlot(             jaspResults, dataset, options, ready)
+  .prolinCreateForecastPlots(           jaspResults, dataset, options, ready)
   .prolinCreateSeasonalityPlotContainer(jaspResults, dataset, options, ready)
-  .prolinCreatePerformancePlots(    jaspResults, options, ready)
-  .prolinCreateParameterPlots(      jaspResults, options, ready)
+  .prolinCreatePerformancePlots(        jaspResults, options, ready)
+  .prolinCreateParameterPlots(          jaspResults, options, ready)
   
   return()
 }
@@ -152,13 +152,13 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     
     if (options$changepoints != "") {
       jaspResults[["prolinResults"]]$dependOn(c("dependent", "time", "changepoints", "covariates", 
-                                                "seasonalities",
+                                                "assignedCovariates", "seasonalities",
                                                 "estimation", "mcmcSamples", "predictionIntervalWidth", 
                                                 "predictionIntervalSamples"))
     } else {
       jaspResults[["prolinResults"]]$dependOn(c("dependent", "time", "changepoints", "covariates", 
                                                 "maxChangepoints", "changepointRange", "changepointPriorScale", 
-                                                "seasonalities",
+                                                "assignedCovariates", "seasonalities",
                                                 "estimation", "mcmcSamples", "predictionIntervalWidth", 
                                                 "predictionIntervalSamples"))
     }
@@ -187,9 +187,9 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     if (options$predictionSavePath != "") .prolinSavePredictions(jaspResults, options)
   }
   
-  if (is.null(jaspResults[["prolinResults"]][["prolinEvaluationResults"]])) {
+  if (is.null(jaspResults[["prolinResults"]][["prolinEvaluationResults"]]) && options$crossValidation) {
     prolinEvaluationResultsState <- createJaspState()
-    prolinEvaluationResultsState$dependOn(c("crossValidationUnit", "crossValidationHorizon", 
+    prolinEvaluationResultsState$dependOn(c("crossValidation", "crossValidationUnit", "crossValidationHorizon", 
                                             "crossValidationPeriod", "crossValidationInitial"))
     prolinModelResults <- jaspResults[["prolinResults"]][["prolinModelResults"]]$object
     prolinEvaluationResults <- .prolinEvaluationResultsHelper(dataset, options, prolinModelResults)
@@ -230,9 +230,17 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     covFit <- !is.na(y)
     
     for (cov in covs) {
-      # TODO(maltelueken) add custom prior.scale, standardized, and mode
-      mod <- prophet::add_regressor(m = mod, name = cov, prior.scale = 10, standardize = "auto", mode = "additive")
-      
+      covAssigned <- sapply(options$assignedCovariates, function(c) encodeColNames(c$variable) == cov)
+      if (any(covAssigned)) {
+        covArgs <- options$assignedCovariates[[which(covAssigned)]]
+        mod <- prophet::add_regressor(m = mod, name = cov, prior.scale = covArgs$priorSigma,
+                                      standardize = covArgs$standardize,
+                                      mode = covArgs$mode)
+      } else {
+        mod <- prophet::add_regressor(m = mod, name = cov, prior.scale = 10,
+                                      standardize = "auto",
+                                      mode = "additive")
+      }
       datCov <- dataset[[encodeColNames(cov)]]
       fitDat[[cov]] <- datCov[covFit]
     }
@@ -262,9 +270,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   return(fit)
 }
 
-.prolinPredictionResultsHelper <- function(dataset, options, prolinModelResults) {
-  # TODO(maltelueken) add covariates to future data frames
-  
+.prolinPredictionResultsHelper <- function(dataset, options, prolinModelResults) { 
   futDat <- NULL
   
   if (options$predictionType == "periodicalPrediction") {
@@ -275,7 +281,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   } else {
     futDat <- data.frame(ds = seq(as.POSIXct(options$nonperiodicalPredictionStart), 
                                   as.POSIXct(options$nonperiodicalPredictionEnd), 
-                                  by =    options$nonperiodicalPredictionUnit))
+                                  by = options$nonperiodicalPredictionUnit))
   }
   
   if (length(options$covariates) > 0) {
@@ -295,6 +301,31 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   return(pred)
 }
 
+.prolinEvaluationGenerateCutoffs <- function (ds, horizon, initial, period) {
+  # Adapted copy of generate_cutoffs
+
+  cutoff <- max(ds) - horizon
+  tzone <- attr(cutoff, "tzone")
+  result <- c(cutoff)
+  while (result[length(result)] >= min(ds) + initial) {
+    cutoff <- cutoff - period
+    #if (!any((ds > cutoff) & (ds <= cutoff + horizon))) {
+    #  if (cutoff > min(ds)) {
+    #    closest.date <- max(ds[ds <= cutoff])
+    #    cutoff <- closest.date - horizon
+    #  }
+    #}
+    result <- c(result, cutoff)
+  }
+  result <- utils::head(result, -1)
+  if (length(result) == 0) {
+    stop(paste("Less data than horizon after initial window.", 
+      "Make horizon or initial shorter."))
+  }
+  attr(result, "tzone") <- tzone
+  return(rev(result))
+}
+
 .prolinEvaluationResultsHelper <- function(dataset, options, prolinModelResults) {
   
   cvDat <- prophet::cross_validation(model   = prolinModelResults, 
@@ -302,7 +333,32 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                                      units   = options$crossValidationUnit,
                                      period  = options$crossValidationPeriod,
                                      initial = options$crossValidationInitial)
-  
+
+  # Inspired by original cross_validation function
+
+  #unit      <- options$crossValidationUnit
+  #dtHorizon <- as.difftime(options$crossValidationHorizon, units = unit)
+  #dtPeriod  <- as.difftime(options$crossValidationPeriod,  units = unit)
+  #dtInitial <- as.difftime(options$crossValidationInitial, units = unit)
+  #ds        <- as.POSIXct(na.omit(dataset)[[encodeColNames(options$time)]])
+  #y         <- na.omit(dataset)[[encodeColNames(options$dependent)]]
+  #cutoffs   <- .prolinEvaluationGenerateCutoffs(ds, dtHorizon, dtInitial, dtPeriod)
+  #cvDat     <- data.frame()
+
+  #for (i in 1:length(cutoffs)) {
+  #  
+  #  dfCut  <- data.frame(ds = ds[ds <= cutoffs[i]], y = y[ds <= cutoffs[i]])
+  #  newMod <- prophet:::prophet_copy(prolinModelResults, cutoff = cutoffs[i])
+  #  modFit <- prophet::fit.prophet(newMod, dfCut)
+  #  start  <- ds[which(ds == cutoffs[i])+1]
+  #  dfPred <- data.frame(ds = seq.POSIXt(start, cutoffs[i]+dtHorizon, by = unit))
+  #  
+  #  modPred        <- predict(modFit, dfPred)
+  #  modPred$cutoff <- cutoffs[i]
+  #  modPred$y      <- y[ds %in% dfPred$ds]
+  #  cvDat          <- rbind(cvDat, modPred)
+  #}
+
   return(cvDat)
 }
 
@@ -360,7 +416,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
     
   } else {
     prolinTable <- createJaspTable(title = "Posterior Summary Table")
-    prolinTable$position <- 1
+    prolinTable$position <- 2
 
     overtitle <- gettext("95% Credible Interval", format(100*options[["posteriorSummaryPlotCredibleIntervalValue"]], digits = 3))
     prolinTable$addColumnInfo(name = "par", title = gettext("Parameter"), type = "string")
@@ -425,7 +481,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                   mcmc = "Changepoint Posterior Summary Table")
   prolinTable <- createJaspTable(title = title)
   prolinTable$dependOn(c("changePointTable"))
-  prolinTable$position <- 2
+  prolinTable$position <- 3
 
   prolinTable$addColumnInfo(name = "ds", title = gettext("Changepoint"), type = "string")
   
@@ -476,15 +532,15 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 }
 
 .prolinCreateModelEvaluationTable <- function(jaspResults, options, ready) {
-  if (!is.null(jaspResults[["prolinMainContainer"]][["prolinModelEvaluationTable"]])) return()
+  if (!is.null(jaspResults[["prolinMainContainer"]][["prolinModelEvaluationTable"]]) || !(options$performanceMetrics && options$crossValidation)) return()
   
   prolinEvaluationResults <- jaspResults[["prolinResults"]][["prolinEvaluationResults"]]$object
   
   prolinTable <- createJaspTable("Simulated Historical Forecasts Table")
-  prolinTable$dependOn(c("crossValidationUnit", "crossValidationHorizon", 
-                             "crossValidationPeriod", "crossValidationInitial", "performanceMetricsMse", 
-                             "performanceMetricsRmse", "performanceMetricsMape"))
-  prolinTable$position <- 3                           
+  prolinTable$dependOn(c("crossValidation", "crossValidationUnit", "crossValidationHorizon", 
+                         "crossValidationPeriod", "crossValidationInitial", "performanceMetrics", 
+                         "performanceMetricsMse", "performanceMetricsRmse", "performanceMetricsMape"))
+  prolinTable$position <- 4
   
   prolinTable$addColumnInfo(name = "horizon", title = gettext("Horizon"), type = "string")
   
@@ -521,6 +577,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   prolinHistoryPlot <- createJaspPlot(title = "History Plot", height = 320, width = 480)
   prolinHistoryPlot$dependOn(c("dependent", "time", "changepoints", "covariates", "historyPlot", "historyPlotStart",
                                 "historyPlotEnd"))
+  prolinHistoryPlot$position <- 1
   
   prolinHistoryPlot$plotObject <- .prolinHistoryPlotFill(dataset, options)
   
@@ -549,7 +606,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   yBreaks <- pretty(yHist)
   
   p <- ggplot2::ggplot(histDat, mapping = ggplot2::aes(x = x, y = y)) +
-    ggplot2::geom_point(data = histDat, mapping = ggplot2::aes(x = x, y = y), size = 3)
+    ggplot2::geom_point(data = histDat, mapping = ggplot2::aes(x = x, y = y), size = 3, color = "grey")
   
   p <- p + 
     ggplot2::scale_x_datetime(name = gettext("Time"), 
@@ -577,6 +634,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   prolinForecastPlots$dependOn(c("predictionIntervalSamples", "predictionType", "periodicalPredictionNumber", 
                                  "periodicalPredictionUnit", "nonperiodicalPredictionStart", 
                                  "nonperiodicalPredictionEnd", "nonperiodicalPredictionUnit"))
+  prolinForecastPlots$position <- 5
   
   if (options$forecastPlotsOverall) .prolinCreateOverallForecastPlot(prolinForecastPlots, dataset, options, prolinPredictionResults)
   if (options$forecastPlotsTrend)   .prolinCreateTrendForecastPlot(prolinForecastPlots, dataset, options, prolinPredictionResults)
@@ -621,6 +679,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   
   prolinSeasonalityPlots <- createJaspContainer(title = gettext("Seasonality Plots"))
   prolinSeasonalityPlots$dependOn(c("seasonalityPlots"))
+  prolinSeasonalityPlots$position <- 6
 
   if (length(options$seasonalityPlots) > 0) {
     for (name in options$seasonalityPlots) {
@@ -665,7 +724,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   return(predSeas)
 }
 
-.prolinGetPrettyDateLabels <- function(period, unit, seasonal = FALSE) {
+.prolinGetPrettyDateLabels <- function(period, unit) {
   unitDays <- switch (unit,
                       hours = 1/24,
                       days =  1,
@@ -686,29 +745,32 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 
 .prolinSeasonalityPlotFill <- function(seasData, name, options) {
 
-  y <- seasData[[name]]
+  y    <- seasData[[name]]
   ymin <- seasData[[paste0(name, "_lower")]]
   ymax <- seasData[[paste0(name, "_upper")]]
-  x <- seasData$ds
+  x    <- seasData$ds
 
   df <- data.frame(x = x, y = y, ymin = ymin, ymax = ymax)
 
   xBreaks <- pretty(x)
-  #xLabels <- attr(xBreaks, "labels")
   yBreaks <- pretty(c(min(ymin), max(ymax)))
-  period <- .prolinGetSeasonalityProperties(name, "period", options)
-  unit <- .prolinGetSeasonalityProperties(name, "unit", options)
+  mode    <- .prolinGetSeasonalityProperties(name, "mode", options)
+  period  <- .prolinGetSeasonalityProperties(name, "period", options)
+  unit    <- .prolinGetSeasonalityProperties(name, "unit", options)
   xFormat <- .prolinGetPrettyDateLabels(period, unit)
 
   p <- ggplot2::ggplot(df, mapping = ggplot2::aes(x = x, y = y)) +
     
     ggplot2::geom_line(color = "black", size = 1.25) +
   
-    ggplot2::geom_ribbon(mapping = ggplot2::aes(ymin = ymin, ymax = ymax), fill = "blue", alpha = 0.4)
+    ggplot2::geom_ribbon(mapping = ggplot2::aes(ymin = ymin, ymax = ymax), fill = "blue", alpha = 0.4) +
 
-  p <- p +
     ggplot2::scale_x_datetime(name = xFormat$label, date_labels = xFormat$format, breaks = xBreaks, limits = range(xBreaks)) +
-    ggplot2::scale_y_continuous(name = options$dependent, breaks = yBreaks, limits = range(yBreaks))
+
+    ggplot2::scale_y_continuous(name = options$dependent,
+                                breaks = yBreaks,
+                                labels = ifelse(mode == "multiplicative", scales::percent, ggplot2::waiver),
+                                limits = range(yBreaks))
 
   p <- jaspGraphs::themeJasp(p)
 
@@ -716,13 +778,12 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
 }
 
 .prolinForecastPlotFill <- function(prolinPredictionResults, dataset, options, type) {
-  mode <- paste0(type, "SeasonalityMode")
   
   yHist  <- dataset[[encodeColNames(options$dependent)]]
-  xHist <- as.Date(dataset[[encodeColNames(options$time)]])
+  xHist <- as.POSIXct(dataset[[encodeColNames(options$time)]])
   histDat <- na.omit(data.frame(y = yHist, x = xHist))
   
-  x <- as.Date(prolinPredictionResults[["ds"]])
+  x <- as.POSIXct(prolinPredictionResults[["ds"]])
   y <- prolinPredictionResults[[type]]
   ymin <- prolinPredictionResults[[paste0(type, "_lower")]]
   ymax <- prolinPredictionResults[[paste0(type, "_upper")]]
@@ -739,33 +800,27 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   xLimits <- c(min(x), max(x))
   
   if (options$forecastPlotsOverallStart != "" && type == "yhat")
-    xLimits[1] <- as.Date(options$forecastPlotsOverallStart)
+    xLimits[1] <- as.POSIXct(options$forecastPlotsOverallStart)
   if (options$forecastPlotsOverallEnd != "" && type == "yhat")
-    xLimits[2] <- as.Date(options$forecastPlotsOverallEnd)
+    xLimits[2] <- as.POSIXct(options$forecastPlotsOverallEnd)
   
   xBreaks <- pretty(xLimits)
   xLabels <- attr(xBreaks, "labels")
-  yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(ymin), max(ymax)))
-  
-  xFormat <- switch (type,
-    yearly = "%b",
-    weekly = "%a",
-    daily  = "%H",
-    ggplot2::waiver()
-  )
+  yBreaks <- pretty(c(min(ymin), max(ymax)))
   
   p <- ggplot2::ggplot(df, mapping = ggplot2::aes(x = x, y = y))
   
-  p <- p + ggplot2::geom_line(color = "black", size = 1.25)
-  
-  p <- p + ggplot2::geom_ribbon(mapping = ggplot2::aes(ymin = ymin, ymax = ymax), fill = "blue", alpha = 0.4)
-  
   if (options$forecastPlotsOverallAddData && type == "yhat") {
     
-    p <- p + ggplot2::geom_point(data = histDat, mapping = ggplot2::aes(x = x, y = y), size = 3)
+    p <- p + ggplot2::geom_point(data = histDat, mapping = ggplot2::aes(x = x, y = y), size = 3, color = "grey")
     
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(c(min(ymin), min(histDat$y))), max(c(max(ymax), max(histDat$y)))))
   }
+
+  p <- p + 
+    ggplot2::geom_line(color = "black", size = 1.25) + 
+  
+    ggplot2::geom_ribbon(mapping = ggplot2::aes(ymin = ymin, ymax = ymax), fill = "blue", alpha = 0.4)
   
   if (length(options$covariates) > 0 && options$forecastPlotsOverallAddCovariates && type == "yhat") {
     covMin <- numeric(length(covs))
@@ -780,7 +835,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
       
       if (options$forecastPlotsOverallAddCovariateLabels) {
         p <- p + ggrepel::geom_label_repel(data = df[nrow(df),], mapping = ggplot2::aes_string(x = "x", y = covs[i], 
-                                                                                      label = as.factor(covs[i])),
+                                                                                      label = as.factor(decodeColNames(covs[i]))),
                                            size = 5)
       }
       
@@ -794,54 +849,39 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
                                          size = 5)
     }
     
-    yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(c(min(ymin), min(histDat$y), covMin)), 
-                                                 max(c(max(ymax), max(histDat$y), covMax))))
+    yBreaks <- pretty(c(min(c(min(ymin), min(histDat$y), covMin)), max(c(max(ymax), max(histDat$y), covMax))))
   }
   
-  if (type == "yhat" || type == "trend") 
-    p <- p + ggplot2::geom_segment(mapping = ggplot2::aes(x = histDat$x[length(histDat$x)], y = range(yBreaks)[1], 
-                                                          xend = histDat$x[length(histDat$x)]), yend = range(yBreaks)[2], 
-                                   linetype = "dashed")
-  
-  p <- p + 
-    ggplot2::scale_x_date(name = gettext("Time"), 
-                          breaks = xBreaks, labels = gettext(xLabels), 
-                          date_labels = xFormat, 
-                          limits = range(xBreaks))
-  
-  # Inspired by plot_seasonality from prophet package
-  if (type %in% c("yearly", "weekly", "daily") && options[[mode]] == "multiplicative") {
-    p <- p + ggplot2::scale_y_continuous(name = gettext(options$dependent), 
-                                         breaks = yBreaks, 
-                                         labels = scales::percent, 
-                                         limits = range(yBreaks))
-  } else {
-    p <- p + ggplot2::scale_y_continuous(name = gettext(options$dependent), 
-                                         breaks = yBreaks, 
-                                         limits = range(yBreaks))
-  }
+  p <- p + ggplot2::geom_segment(mapping = ggplot2::aes(x = histDat$x[length(histDat$x)], y = range(yBreaks)[1], 
+                                                        xend = histDat$x[length(histDat$x)]), yend = range(yBreaks)[2], 
+                                linetype = "dashed") +
+
+    ggplot2::scale_x_datetime(name = gettext("Time"), breaks = xBreaks, labels = gettext(xLabels), limits = range(xBreaks)) +
+
+    ggplot2::scale_y_continuous(name = gettext(options$dependent), breaks = yBreaks, limits = range(yBreaks))
   
   p <- jaspGraphs::themeJasp(p)
-  
-  # p <- p + ggplot2::theme(axis.text.x = ggplot2::element_text(size = ggplot2::rel(0.95)))
   
   return(p)
 }
 
 .prolinCreatePerformancePlots <- function(jaspResults, options, ready) {
-  
+  if (!ready || !options$crossValidation) return()
+
   prolinEvaluationResults <- jaspResults[["prolinResults"]][["prolinEvaluationResults"]]$object
   
   prolinPerformancePlots <- createJaspContainer("Performance Plots")
-  
-  prolinPerformancePlots$dependOn(c("crossValidationUnit", "crossValidationHorizon", 
+  prolinPerformancePlots$dependOn(c("crossValidation", "crossValidationUnit", "crossValidationHorizon", 
                                    "crossValidationPeriod", "crossValidationInitial"))
+  prolinPerformancePlots$position <- 7
   
   if(options$performancePlotsMse)  .prolinCreatePerformancePlotMse( prolinPerformancePlots, options, prolinEvaluationResults)
   if(options$performancePlotsRmse) .prolinCreatePerformancePlotRmse(prolinPerformancePlots, options, prolinEvaluationResults)
   if(options$performancePlotsMape) .prolinCreatePerformancePlotMape(prolinPerformancePlots, options, prolinEvaluationResults)
   
   jaspResults[["prolinMainContainer"]][["prolinEvaluationPlots"]] <- prolinPerformancePlots
+
+  return()
 }
 
 .prolinCreatePerformancePlotMse <- function(prolinPerformancePlots, options, prolinEvaluationResults) {
@@ -912,6 +952,7 @@ ProphetLinear <- function(jaspResults, dataset = NULL, options) {
   prolinModelResults <- jaspResults[["prolinResults"]][["prolinModelResults"]]$object
   
   prolinParameterPlots <- createJaspContainer("Parameter Plots")
+  prolinParameterPlots$position <- 8
   
   if(options$parameterPlotsDelta) 
     .prolinCreateParameterPlotDelta(prolinParameterPlots, options, prolinModelResults)
