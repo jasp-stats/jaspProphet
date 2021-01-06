@@ -1,0 +1,302 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: en_US\n"
+"X-Source-Language: American English\n"
+"X-Qt-Contexts: true\n"
+
+msgctxt "Description|"
+msgid "Prophet"
+msgstr ""
+
+msgctxt "Description|"
+msgid "This module offers a simple model for time series prediction."
+msgstr ""
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Dependent Variable"
+msgstr "Abhängige Variable"
+
+msgctxt "ProphetLinear|"
+msgid "Time"
+msgstr ""
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Changepoints"
+msgstr "Abschneide-Punkte"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Covariates"
+msgstr "Kovariaten"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "History plot"
+msgstr "Niet-passings grafiek"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "From date"
+msgstr "Von"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "To date"
+msgstr "Nach Datum sortieren"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Model"
+msgstr "Modell"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Automatic Changepoints"
+msgstr "Startpunkt"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Max. changepoints"
+msgstr "Min. Kernpunkte:"
+
+msgctxt "ProphetLinear|"
+msgid "Changepoint range"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Laplace prior tau"
+msgstr ""
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Estimation"
+msgstr "Schätzung"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Maximum a posteriori"
+msgstr "Rand-Posteriors"
+
+msgctxt "ProphetLinear|"
+msgid "Markov chain Monte Carlo"
+msgstr ""
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Samples"
+msgstr "Stichprobe"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Uncertainty"
+msgstr "Unsicherheitskoeffizient"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Prediction interval level"
+msgstr "Vorhersageintervalle"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Prediction interval samples"
+msgstr "Vorhersageintervalle"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Mode"
+msgstr "Modus"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Additive"
+msgstr "Addition"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Multiplicative"
+msgstr "Multiplikation"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Seasonalities"
+msgstr "Dichten"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Name"
+msgstr "Name:"
+
+msgctxt "ProphetLinear|"
+msgid "Period"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Unit"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Normal prior sigma"
+msgstr ""
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Hours"
+msgstr "Stunden"
+
+msgctxt "ProphetLinear|"
+msgid "Days"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Weeks"
+msgstr ""
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Years"
+msgstr "Pearson"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Prediction"
+msgstr "Prädiktoren"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Periodical"
+msgstr "Posterior Median"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Number of periods"
+msgstr "Anzahl Durchgänge"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Nonperiodical"
+msgstr "Nichtparametrisch"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Start date"
+msgstr "Tabellenprogramm starten"
+
+msgctxt "ProphetLinear|"
+msgid "End date"
+msgstr ""
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Save Predictions"
+msgstr "Skalierungsprädiktoren"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Evaluation"
+msgstr "Evaluation"
+
+msgctxt "ProphetLinear|"
+msgid "Simulated Historical Forecasts"
+msgstr ""
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Horizon"
+msgstr "Horizontale Achse"
+
+msgctxt "ProphetLinear|"
+msgid "Period between cutoffs"
+msgstr ""
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Initial training time"
+msgstr "Initiiere Anlegen einer neuen Datei "
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Performance Metrics"
+msgstr "Performanzmetriken"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Mean squared error (MSE)"
+msgstr "Mittlerer quadratischer Fehler"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Root mean squared error (RMSE)"
+msgstr "Mittlerer quadratischer Fehler"
+
+msgctxt "ProphetLinear|"
+msgid "Mean absolute percentage error (MAPE)"
+msgstr ""
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Changepoint table"
+msgstr "Zentralitätstabelle"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Plots"
+msgstr "Abbildungen"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Forecast Plots"
+msgstr "Forestplot"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Overall"
+msgstr "Überlagernd"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Show data points"
+msgstr "Datenpunkte anzeigen"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Show covariates"
+msgstr "SD Faktor-Kovariaten"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Add labels"
+msgstr "Kantenbeschriftungen"
+
+msgctxt "ProphetLinear|"
+msgid "Trend"
+msgstr ""
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Seasonality Plots"
+msgstr "Verschiedene Abbildungen"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Performance Plots"
+msgstr "Performanz-Abbildungen"
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Parameter Plots"
+msgstr "Parameters"
+
+msgctxt "ProphetLinear|"
+msgid "Changepoint plot"
+msgstr ""
+
+#, fuzzy
+msgctxt "ProphetLinear|"
+msgid "Posterior distributions"
+msgstr "Posterior-Verteilung"

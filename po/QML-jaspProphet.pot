@@ -1,0 +1,254 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Qt-Contexts: true\n"
+
+msgctxt "Description|"
+msgid "Prophet"
+msgstr ""
+
+msgctxt "Description|"
+msgid "This module offers a simple model for time series prediction."
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Dependent Variable"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Time"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Changepoints"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Covariates"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "History plot"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "From date"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "To date"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Model"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Automatic Changepoints"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Max. changepoints"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Changepoint range"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Laplace prior tau"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Estimation"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Maximum a posteriori"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Markov chain Monte Carlo"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Samples"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Uncertainty"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Prediction interval level"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Prediction interval samples"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Mode"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Additive"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Multiplicative"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Seasonalities"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Name"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Period"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Unit"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Normal prior sigma"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Hours"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Days"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Weeks"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Years"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Prediction"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Periodical"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Number of periods"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Nonperiodical"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Start date"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "End date"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Save Predictions"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Evaluation"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Simulated Historical Forecasts"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Horizon"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Period between cutoffs"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Initial training time"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Performance Metrics"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Mean squared error (MSE)"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Root mean squared error (RMSE)"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Mean absolute percentage error (MAPE)"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Changepoint table"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Plots"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Forecast Plots"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Overall"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Show data points"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Show covariates"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Add labels"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Trend"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Seasonality Plots"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Performance Plots"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Parameter Plots"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Changepoint plot"
+msgstr ""
+
+msgctxt "ProphetLinear|"
+msgid "Posterior distributions"
+msgstr ""
