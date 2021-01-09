@@ -16,7 +16,7 @@ Description
     Analysis
     {
         title   : qsTr("Prophet")
-        func    : "ProphetLinear"
-        qml     : "ProphetLinear.qml"
+		func    : "Prophet"
+		qml     : "Prophet.qml"
     }
 }
