@@ -20,7 +20,10 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 
   options <- .prophetInitOptions(jaspResults, options)
   
-  ready <- (options$dependent != "" && options$time != "")
+  if (options$growth == "logistic")
+    ready <- (options$dependent != "" && options$time != "") && (options$capacity != "" || options$constantCapacity != options$constantMinimum)
+  else
+    ready <- (options$dependent != "" && options$time != "")
 
   dataset <- .prophetReadData(options, ready)
   errors  <- .prophetErrorHandling(dataset, options, ready)
@@ -34,6 +37,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   .prophetCreateHistoryPlot(             jaspResults, dataset, options, ready)
   .prophetCreateForecastPlots(           jaspResults, dataset, options, ready)
   .prophetCreateSeasonalityPlotContainer(jaspResults, dataset, options, ready)
+  .prophetCreateCovariatePlotContainer(  jaspResults, dataset, options, ready)
   .prophetCreatePerformancePlots(        jaspResults, options, ready)
   .prophetCreateParameterPlots(          jaspResults, options, ready)
   
@@ -53,7 +57,8 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 .prophetReadData <- function(options, ready) {
   if(!ready) return()
 
-  numericVars  <- c(options$dependent, options$capacity, options$minimum, unlist(options$covariates), options$changepoints, options$historyIndicator)
+  numericVars  <- c(options$dependent, options$capacity, options$minimum, unlist(options$covariates),
+                    options$changepoints, options$historyIndicator)
   numericVars  <- numericVars[numericVars != ""]
   nominalVars  <- options$time
   nominalVars  <- nominalVars[nominalVars != ""]
@@ -71,7 +76,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
       timeVar <- try(as.POSIXct(dataset[[encodeColNames(options$time)]], tz = "UTC"))
       
       if (isTryError(timeVar))
-        return(gettext("'Time' must be in a date-like format (e.g., yyyy-mm-dd)"))
+        return(gettext("'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
 
       if (options$predictionType == "nonperiodicalPrediction"
         && options$nonperiodicalPredictionStart != ""
@@ -80,10 +85,10 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
         predEnd <- try(as.POSIXct(options$nonperiodicalPredictionEnd))
         
         if (isTryError(predStart))
-          return(gettext("'Start date' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd)"))
+          return(gettext("'Start' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
         
         if (isTryError(predEnd))
-          return(gettext("'End date' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd)"))
+          return(gettext("'End' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
       }
 
       return()
@@ -92,13 +97,15 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     .logicalVarChecks <- function() {
       isChangepoint <- dataset[[encodeColNames(options$changepoints)]]
 
-      if (any(is.na(as.logical(isChangepoint))) || length(unique(isChangepoint)) > 2)
+      if (any(is.na(as.logical(isChangepoint))) || !all(unique(as.numeric(isChangepoint)) %in% c(0, 1)))
         return(gettext("'Changepoints' must be a logical variable (e.g., 0/1)"))
 
       isHistory <- dataset[[encodeColNames(options$historyIndicator)]]
 
-      if (any(is.na(as.logical(isHistory))) || length(unique(isHistory)) > 2)
+      if (any(is.na(as.logical(isHistory))) || !all(unique(as.numeric(isHistory)) %in% c(0, 1)))
         return(gettext("'History Indicator' must be a logical variable (e.g., 0/1)"))
+      
+      return()
     },
 
     .logisticVarChecks <- function() {
@@ -132,7 +139,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     .seasonalityNameChecks <- function() {
       if (!is.null(options$seasonalities)) {
         for(seas in options$seasonalities) {
-          if(make.names(seas$name, allow_ = TRUE) != seas$name)
+          if(make.names(seas$name, allow_ = TRUE) != seas$name && seas$name != "")
             return(gettext("Seasonality names must only contain letters, number, dots, or underscores and must start with letters or dots that are not followed by a number"))
         }
       }
@@ -245,10 +252,10 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     prophetPredictionResults <- .prophetPredictionResultsHelper(dataset, options, prophetModelResults)
     prophetPredictionResultsState$object <- prophetPredictionResults
     jaspResults[["prophetResults"]][["prophetPredictionResults"]] <- prophetPredictionResultsState
-
-    if (options$predictionSavePath != "") .prophetSavePredictions(jaspResults, options)
   }
   
+  .prophetSavePredictions(jaspResults, options)
+
   if (is.null(jaspResults[["prophetResults"]][["prophetEvaluationResults"]]) && options$crossValidation) {
     prophetEvaluationResultsState <- createJaspState()
     prophetEvaluationResultsState$dependOn(.prophetEvaluationDependencies())
@@ -312,28 +319,17 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
                           uncertainty.samples = predIntSamples,
                           fit = FALSE)
   
-  if (length(options$covariates) > 0) {
-    covs <- unlist(options$covariates)
+  if (length(options$assignedCovariates) > 0) {
     
-    for (cov in covs) {
-      covAssigned   <- sapply(options$assignedCovariates, function(c) encodeColNames(c$variable) == cov)
+    for (cov in options$assignedCovariates) {
+      mod     <- prophet::add_regressor(m = mod,
+                                        name = cov$variable,
+                                        prior.scale = cov$priorSigma,
+                                        standardize = cov$standardize,
+                                        mode = cov$mode)
 
-      if (any(covAssigned)) {
-        covArgs <- options$assignedCovariates[[which(covAssigned)]]
-        mod     <- prophet::add_regressor(m = mod,
-                                          name = cov,
-                                          prior.scale = covArgs$priorSigma,
-                                          standardize = covArgs$standardize,
-                                          mode = covArgs$mode)
-      } else {
-        mod     <- prophet::add_regressor(m = mod,
-                                          name = cov,
-                                          prior.scale = 10,
-                                          standardize = "auto",
-                                          mode = "additive")
-      }
-      datCov        <- dataset[[encodeColNames(cov)]]
-      fitDat[[cov]] <- datCov
+      datCov        <- dataset[[encodeColNames(cov$variable)]]
+      fitDat[[cov$variable]] <- datCov
     }
   }
   
@@ -411,6 +407,9 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 
   pred <- predict(prophetModelResults, futDat)
   
+  cps <- prophetModelResults$changepoints
+  pred$isChangepoint <- pred$ds %in% cps
+
   return(pred)
 }
 
@@ -429,15 +428,18 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 .prophetSavePredictions <- function(jaspResults, options) {
   if (is.null(jaspResults[["prophetResults"]][["prophetPredictionSavePath"]])) {
     predSavePath <- createJaspState()
-    predSavePath$dependOn(c(.prophetPredictionDependencies(),
-                            "predictionSavePath"))
+    predSavePath$dependOn(c(.prophetPredictionDependencies(), "predictionSavePath"))
     jaspResults[["prophetResults"]][["prophetPredictionSavePath"]] <- predSavePath
   }
 
-  write.csv(jaspResults[["prophetResults"]][["prophetPredictionResults"]]$object,
-            file = options$predictionSavePath,
-            row.names = FALSE)
-  predSavePath$object <- TRUE
+  if (options$predictionSavePath != "") {
+    write.csv(jaspResults[["prophetResults"]][["prophetPredictionResults"]]$object,
+              file = options$predictionSavePath,
+              row.names = FALSE)
+    predSavePath$object <- TRUE
+  }
+
+  return()
 }
 
 # Output functions ----
@@ -459,6 +461,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   
   if (options$estimation == "map") {
     prophetTable <- createJaspTable(title = "Parameter Estimates Table")
+    prophetTable$dependOn(c("summaryCredibleIntervalWidth"))
     prophetTable$position <- 1
     
     prophetTable$addColumnInfo(name = "k", title = gettext("Growth rate (k)"), type = "number")
@@ -470,10 +473,12 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     jaspResults[["prophetMainContainer"]][["prophetTable"]] <- prophetTable
     
   } else {
-    prophetTable <- createJaspTable(title = "Posterior Summary Table")
+    prophetTable <- createJaspTable(title = gettext("Posterior Summary Table"))
     prophetTable$position <- 2
 
-    overtitle <- gettext("95% Credible Interval", format(100*options[["posteriorSummaryPlotCredibleIntervalValue"]], digits = 3))
+    criLevel <- options[["summaryCredibleIntervalWidth"]]/2
+
+    overtitle <- gettext(paste0(criLevel*200, "% Credible Interval"))
     prophetTable$addColumnInfo(name = "par", title = gettext("Parameter"), type = "string")
     prophetTable$addColumnInfo(name = "mean", title = gettext("Mean"), type = "number")
     prophetTable$addColumnInfo(name = "sd", title = gettext("SD"), type = "number")
@@ -483,7 +488,10 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     prophetTable$addColumnInfo(name = "bulkEss", title = gettext("ESS (bulk)"), type = "integer")
     prophetTable$addColumnInfo(name = "tailEss", title = gettext("ESS (tail)"), type = "integer")
     
-    .prophetModelSummaryTableMcmcFill(prophetTable, prophetModelResults, ready)
+    if (!ready && options$estimation == "mcmc")
+      prophetTable$addFootnote(gettext("Prophet might need a long time to compute the results. You can try it with fewer MCMC samples first to see if it works and you specified the model correctly (e.g., set 'Samples' = 10)."))
+
+    .prophetModelSummaryTableMcmcFill(prophetTable, prophetModelResults, criLevel, ready)
     
     jaspResults[["prophetMainContainer"]][["prophetTable"]] <- prophetTable
   }
@@ -503,21 +511,21 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   ))
 }
 
-.prophetModelSummaryTableMcmcFill <- function(prophetTable, prophetModelResults, ready) {
+.prophetModelSummaryTableMcmcFill <- function(prophetTable, prophetModelResults, criLevel, ready) {
   if (!ready) return()
   
-  modelSummary         <- rstan::monitor(prophetModelResults$stan.fit, probs = c(0.025, 0.975))
+  modelSummary         <- rstan::monitor(prophetModelResults$stan.fit, probs = c(criLevel, 1-criLevel))
   modelSummaryRowNames <- rownames(modelSummary)
   parNames             <- c("k", "m", "sigma_obs")
   parSummary           <- modelSummary[modelSummaryRowNames %in% parNames, 1:ncol(modelSummary)]
-  parLabels            <- c("Growth rate (k)", "Offset (m)", "Residual variance (sigma)")
+  parLabels            <- c(gettext("Growth rate (k)"), gettext("Offset (m)"), gettext("Residual variance (sigma)"))
   
   prophetTable$addColumns(list(
     par      = parLabels,
     mean     = parSummary[["mean"]],
     sd       = parSummary[["sd"]],
-    lowerCri = parSummary[["2.5%"]],
-    upperCri = parSummary[["97.5%"]],
+    lowerCri = parSummary[[paste0(criLevel*100, "%")]],
+    upperCri = parSummary[[paste0(100-criLevel*100, "%")]],
     rhat     = parSummary[["Rhat"]],
     bulkEss  = parSummary[["Bulk_ESS"]],
     tailEss  = parSummary[["Tail_ESS"]]
@@ -532,11 +540,13 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   prophetModelResults <- jaspResults[["prophetResults"]][["prophetModelResults"]]$object
   
   title <- switch(options$estimation,
-                  map  = "Changepoint Estimates Table",
-                  mcmc = "Changepoint Posterior Summary Table")
+                  map  = gettext("Changepoint Estimates Table"),
+                  mcmc = gettext("Changepoint Posterior Summary Table"))
   prophetTable <- createJaspTable(title = title)
-  prophetTable$dependOn(c("changePointTable"))
+  prophetTable$dependOn(c("changePointTable", "summaryCredibleIntervalWidth"))
   prophetTable$position <- 3
+
+  criLevel <- options[["summaryCredibleIntervalWidth"]]/2
 
   prophetTable$addColumnInfo(name = "ds", title = gettext("Changepoint"), type = "string")
   
@@ -544,21 +554,21 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     prophetTable$addColumnInfo(name = "delta", title = gettext("Change in growth rate (delta)"), type = "number")
   } else {
     parTitle <- gettext("Change in growth rate (delta)")
-    ciTitle <- gettext("95% Credible Interval")
+    ciTitle  <- gettext(paste0(criLevel*200, "% Credible Interval"))
     prophetTable$addColumnInfo(name = "mean", title = gettext("Mean"), type = "number", overtitle = parTitle)
     prophetTable$addColumnInfo(name = "sd", title = gettext("SD"), type = "number", overtitle = parTitle)
     prophetTable$addColumnInfo(name = "lowerCri", title = gettext("Lower"), type = "number", overtitle = ciTitle)
     prophetTable$addColumnInfo(name = "upperCri", title = gettext("Upper"), type = "number", overtitle = ciTitle)
   }
   
-  .prophetChangePointTableFill(prophetTable, prophetModelResults, options$estimation, ready)
+  .prophetChangePointTableFill(prophetTable, prophetModelResults, options$estimation, criLevel, ready)
     
   jaspResults[["prophetMainContainer"]][["prophetChangePointTable"]] <- prophetTable
 
   return()
 }
 
-.prophetChangePointTableFill <-  function(prophetTable, prophetModelResults, estimation, ready) {
+.prophetChangePointTableFill <-  function(prophetTable, prophetModelResults, estimation, criLevel, ready) {
   if (!ready) return()
 
   delta  <- switch(estimation,
@@ -572,7 +582,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
       delta = delta
     ))
   } else {
-    deltaCri <- apply(prophetModelResults$params$delta, 2, quantile, probs = c(0.025, 0.975))
+    deltaCri <- apply(prophetModelResults$params$delta, 2, quantile, probs = c(criLevel, 1-criLevel))
     deltaSd  <- apply(prophetModelResults$params$delta, 2, sd)
     prophetTable$addColumns(list(
       ds       = cps,
@@ -665,7 +675,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   if (options$historyPlotStart != "") {
     xLimLower <- try(as.POSIXct(options$historyPlotStart))
     if (isTryError(xLimLower))
-      stop("'From date' must be in a date-like format (e.g., yyyy-mm-dd)")
+      stop(gettext("'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
     else
       xLimits[1] <- xLimLower
   }
@@ -673,7 +683,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   if (options$historyPlotEnd != "") {
     xLimUpper <- try(as.POSIXct(options$historyPlotEnd))
     if (isTryError(xLimUpper))
-      stop("'To date' must be in a date-like format (e.g., yyyy-mm-dd)")
+      stop(gettext("'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
     else
       xLimits[2] <- xLimUpper
   }
@@ -682,13 +692,14 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   xLabels <- attr(xBreaks, "labels")
   yBreaks <- pretty(histDat$y)
   
-  p <- ggplot2::ggplot(data = histDat, mapping = ggplot2::aes(x = x, y = y)) +
-    ggplot2::geom_point(size = 3, color = "grey")
+  p <- ggplot2::ggplot(data = histDat, mapping = ggplot2::aes(x = x, y = y))
 
   if (options$historyPlotAddLine)
     p <- p + ggplot2::geom_line(color = "black", size = 1.25)
 
-  p <- p + ggplot2::scale_x_datetime(name = options$time, 
+  p <- p + ggplot2::geom_point(size = 3, color = "grey") +
+
+    ggplot2::scale_x_datetime(name = options$time, 
                                      breaks = xBreaks, 
                                      labels = xLabels,
                                      limits = range(xBreaks)) + 
@@ -724,10 +735,10 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 .prophetCreateOverallForecastPlot <- function(prophetForecastPlots, dataset, options, prophetPredictionResults) {
   if (!is.null(prophetForecastPlots[["prophetOverallForecastPlot"]])) return()
   
-  prophetOverallForecastPlot <- createJaspPlot(title = gettext("Overall Forecast Plot"), height = 320, width = 480)
+  prophetOverallForecastPlot <- createJaspPlot(title = gettext("Overall"), height = 320, width = 480)
   prophetOverallForecastPlot$dependOn(c("forecastPlotsOverall", "forecastPlotsOverallAddData",
                                         "forecastPlotsOverallAddCapacity", "forecastPlotsOverallAddMinimum",
-                                       "forecastPlotsOverallAddCovariates",
+                                       "forecastPlotsOverallAddChangepoints",
                                        "forecastPlotsOverallStart", "forecastPlotsOverallEnd"))
   
   p <- try(.prophetForecastPlotFill(prophetPredictionResults, dataset, options, type = "yhat"))
@@ -745,8 +756,9 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 .prophetCreateTrendForecastPlot <- function(prophetForecastPlots, dataset, options, prophetPredictionResults) {
   if (!is.null(prophetForecastPlots[["prophetTrendForecastPlot"]])) return()
   
-  prophetTrendForecastPlot <- createJaspPlot(title = gettext("Trend Forecast Plot"), height = 320, width = 480)
-  prophetTrendForecastPlot$dependOn(c("forecastPlotsTrend"))
+  prophetTrendForecastPlot <- createJaspPlot(title = gettext("Trend"), height = 320, width = 480)
+  prophetTrendForecastPlot$dependOn(c("forecastPlotsTrend", "forecastPlotsTrendAddChangepoints",
+                                       "forecastPlotsTrendStart", "forecastPlotsTrendEnd"))
   
   p <- try(.prophetForecastPlotFill(prophetPredictionResults, dataset, options, type = "trend"))
 
@@ -785,8 +797,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 
   seasData <- .prophetPredictSeasonality(encodeColNames(name), prophetModelResults, options)
 
-  title <- gettext(paste0(name, " Seasonality Plot"))
-  seasonalityPlot <- createJaspPlot(title = title, height = 320, width = 480)
+  seasonalityPlot <- createJaspPlot(title = name, height = 320, width = 480)
   seasonalityPlot$plotObject <- .prophetSeasonalityPlotFill(seasData, encodeColNames(name), options)
   prophetSeasonalityPlots[[name]] <- seasonalityPlot
 
@@ -893,7 +904,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   x <- try(as.POSIXct(prophetPredictionResults[["ds"]], tz = "UTC"))
 
   if (isTryError(x) && options$predictionType == "nonperiodicalPrediction")
-    stop("Please enter valid 'Start date' and 'End date' arguments for nonperiodical prediction (e.g., yyyy-mm-dd)")
+    stop(gettext("Please enter valid 'Start' and 'End' arguments for nonperiodical prediction (e.g., yyyy-mm-dd hh:mm:ss)"))
 
   y     <- prophetPredictionResults[[type]]
   ymin  <- prophetPredictionResults[[paste0(type, "_lower")]]
@@ -903,14 +914,6 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   if (options$growth == "logistic") {
     df$cap   <- prophetPredictionResults[["cap"]]
     df$floor <- prophetPredictionResults[["floor"]]
-  }
-
-  if (length(options$covariates) > 0) {
-    covs <- unlist(options$covariates)
-    for (cov in covs) {
-      covHist <- dataset[[encodeColNames(cov)]]
-      df[[cov]] <- covHist[xHist %in% x]
-    }
   }
   
   p <- ggplot2::ggplot()
@@ -931,21 +934,12 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
       p <- p + ggplot2::geom_line(data = df, mapping = ggplot2::aes(x = x, y = floor), color = "black", size = 0.75)
   }
 
-  if (length(options$covariates) > 0 && options$forecastPlotsOverallAddCovariates && type == "yhat") {
-    for (i in 1:length(covs)) {
-      p <- p + 
-        ggplot2::geom_line(data = df, 
-                           mapping = ggplot2::aes_string(x = "x", y = covs[i], color = as.factor(covs[i])),
-                           size = 1.25, alpha = 0.75)
-    }
-  }
-  
   xLimits <- range(df$x)
 
   if (options$forecastPlotsOverallStart != "" && type == "yhat") {
     xLimLower <- try(as.POSIXct(options$forecastPlotsOverallStart))
     if (isTryError(xLimLower))
-      stop("'From date' must be in a date-like format (e.g., yyyy-mm-dd)")
+      stop(gettext("'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
     else
       xLimits[1] <- xLimLower
   }
@@ -953,7 +947,23 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   if (options$forecastPlotsOverallEnd != "" && type == "yhat") {
     xLimUpper <- try(as.POSIXct(options$forecastPlotsOverallEnd))
     if (isTryError(xLimUpper))
-      stop("'To date' must be in a date-like format (e.g., yyyy-mm-dd)")
+      stop(gettext("'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
+    else
+      xLimits[2] <- xLimUpper
+  }
+
+  if (options$forecastPlotsTrendStart != "" && type == "trend") {
+    xLimLower <- try(as.POSIXct(options$forecastPlotsTrendStart))
+    if (isTryError(xLimLower))
+      stop(gettext("'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
+    else
+      xLimits[1] <- xLimLower
+  }
+
+  if (options$forecastPlotsTrendEnd != "" && type == "trend") {
+    xLimUpper <- try(as.POSIXct(options$forecastPlotsTrendEnd))
+    if (isTryError(xLimUpper))
+      stop(gettext("'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
     else
       xLimits[2] <- xLimUpper
   }
@@ -962,13 +972,88 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   xLabels <- attr(xBreaks, "labels")
   yBreaks <- pretty(unlist(list(df[, -which(names(df) == "x")]), histDat[, -which(names(df) == "x")]))
 
-  p <- p + ggplot2::geom_segment(mapping = ggplot2::aes(x = histDat$x[length(histDat$x)], y = range(yBreaks)[1], 
-                                                        xend = histDat$x[length(histDat$x)]), yend = range(yBreaks)[2], 
+  if ((options$forecastPlotsOverallAddChangepoints && type == "yhat") 
+    || (options$forecastPlotsTrendAddChangepoints && type == "trend")) {
+    isChangepoint <- as.logical(prophetPredictionResults[["isChangepoint"]], tz = "UTC")
+    cpDat <- data.frame(x = df$x[isChangepoint], xend = df$x[isChangepoint], y = min(yBreaks), yend = max(yBreaks))
+    p <- p + ggplot2::geom_segment(data = cpDat, mapping = ggplot2::aes(x = x, xend = xend, y = y, yend = yend))
+  }
+
+  p <- p + ggplot2::geom_segment(mapping = ggplot2::aes(x = histDat$x[length(histDat$x)], y = min(yBreaks), 
+                                                        xend = histDat$x[length(histDat$x)]), yend = max(yBreaks), 
                                  linetype = "dashed") +
 
     ggplot2::scale_x_datetime(name = options$time, breaks = xBreaks, labels = xLabels, limits = range(xBreaks)) +
 
-    ggplot2::scale_y_continuous(name = gettext(options$dependent), breaks = yBreaks, limits = range(yBreaks))
+    ggplot2::scale_y_continuous(name = options$dependent, breaks = yBreaks, limits = range(yBreaks))
+  
+  p <- jaspGraphs::themeJasp(p)
+  p <- p + ggplot2::theme(plot.margin = ggplot2::margin(0, 15, 0, 0))
+
+  return(p)
+}
+
+.prophetCreateCovariatePlotContainer <- function(jaspResults, dataset, options, ready) {
+  if (!ready) return()
+  
+  prophetModelResults <- jaspResults[["prophetResults"]][["prophetModelResults"]]$object
+  
+  prophetCovariatePlots <- createJaspContainer(title = gettext("Covariate Plots"))
+  prophetCovariatePlots$dependOn(c("covariatePlots"))
+  prophetCovariatePlots$position <- 7
+
+  if (length(options$covariatePlots) > 0) {
+    for (name in options$covariatePlots) {
+      .prophetCreateCovariatePlot(prophetCovariatePlots, dataset, name, prophetModelResults, options)
+    }
+  }
+  
+  jaspResults[["prophetMainContainer"]][["prophetCovariatePlots"]] <- prophetCovariatePlots
+  
+  return()
+}
+
+.prophetCreateCovariatePlot <- function(prophetCovariatePlots, dataset, name, prophetModelResults, options) {
+  if (!is.null(prophetCovariatePlots[[name]])) return()
+
+  covMode <- prophetModelResults$extra_regressors[[name]]$mode
+  covariatePlot <- createJaspPlot(title = name, height = 320, width = 480)
+  covariatePlot$plotObject <- .prophetCovariatePlotFill(dataset, name, options, covMode)
+  prophetCovariatePlots[[name]] <- covariatePlot
+
+  return()
+}
+
+.prophetCovariatePlotFill <- function(dataset, name, options, mode) {
+
+  y <- dataset[[encodeColNames(name)]]
+  x <- as.POSIXct(dataset[[encodeColNames(options$time)]], tz = "UTC")
+
+  df <- data.frame(x = x, y = y)
+
+  p <- ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = x, y = y)) +
+
+    ggplot2::geom_line(color = "black", size = 1.25) +
+
+    ggplot2::geom_point(size = 3, color = "grey")
+
+  xBreaks <- pretty(x)
+  xLabels <- attr(xBreaks, "labels")
+  yBreaks <- pretty(y)
+
+  p <- p + 
+    ggplot2::scale_x_datetime(name = options$time, breaks = xBreaks, labels = xLabels, limits = range(xBreaks))
+
+  if (mode == "multiplicative") {
+    p <- p + ggplot2::scale_y_continuous(name = name,
+                                         labels = scales::percent,
+                                         breaks = yBreaks,
+                                         limits = range(yBreaks))
+  } else {
+    p <- p + ggplot2::scale_y_continuous(name = name,
+                                         breaks = yBreaks,
+                                         limits = range(yBreaks))
+  }
   
   p <- jaspGraphs::themeJasp(p)
   p <- p + ggplot2::theme(plot.margin = ggplot2::margin(0, 15, 0, 0))
@@ -981,9 +1066,9 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 
   prophetEvaluationResults <- jaspResults[["prophetResults"]][["prophetEvaluationResults"]]$object
   
-  prophetPerformancePlots <- createJaspContainer("Performance Plots")
+  prophetPerformancePlots <- createJaspContainer(gettext("Performance Plots"))
   prophetPerformancePlots$dependOn(.prophetEvaluationDependencies())
-  prophetPerformancePlots$position <- 7
+  prophetPerformancePlots$position <- 8
   
   if(options$performancePlotsMse)  .prophetCreatePerformancePlotMse( prophetPerformancePlots, options, prophetEvaluationResults)
   if(options$performancePlotsRmse) .prophetCreatePerformancePlotRmse(prophetPerformancePlots, options, prophetEvaluationResults)
@@ -997,7 +1082,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 .prophetCreatePerformancePlotMse <- function(prophetPerformancePlots, options, prophetEvaluationResults) {
   if (!is.null(prophetPerformancePlots[["prophetPerformancePlotMse"]])) return()
   
-  prophetPerformancePlotMse <- createJaspPlot(title = "Performance Plot MSE", height = 320, width = 480)
+  prophetPerformancePlotMse <- createJaspPlot(title = gettext("MSE"), height = 320, width = 480)
   prophetPerformancePlotMse$dependOn(c("performancePlotsMse"))
   
   prophetPerformancePlotMse$plotObject <- .prophetPerformancePlotFill(prophetEvaluationResults, options, type = "mse")
@@ -1010,7 +1095,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 .prophetCreatePerformancePlotRmse <- function(prophetPerformancePlots, options, prophetEvaluationResults) {
   if (!is.null(prophetPerformancePlots[["prophetPerformancePlotRmse"]])) return()
   
-  prophetPerformancePlotRmse <- createJaspPlot(title = "Performance Plot RMSE", height = 320, width = 480)
+  prophetPerformancePlotRmse <- createJaspPlot(title = gettext("RMSE"), height = 320, width = 480)
   prophetPerformancePlotRmse$dependOn(c("performancePlotsRmse"))
   
   prophetPerformancePlotRmse$plotObject <- .prophetPerformancePlotFill(prophetEvaluationResults, options, type = "rmse")
@@ -1023,7 +1108,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 .prophetCreatePerformancePlotMape <- function(prophetPerformancePlots, options, prophetEvaluationResults) {
   if (!is.null(prophetPerformancePlots[["prophetPerformancePlotMape"]])) return()
   
-  prophetPerformancePlotMape <- createJaspPlot(title = "Performance Plot Mape", height = 320, width = 480)
+  prophetPerformancePlotMape <- createJaspPlot(title = gettext("MAPE"), height = 320, width = 480)
   prophetPerformancePlotMape$dependOn(c("performancePlotsMape"))
   
   prophetPerformancePlotMape$plotObject <- .prophetPerformancePlotFill(prophetEvaluationResults, options, type = "mape")
@@ -1059,7 +1144,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 
     ggplot2::scale_x_continuous(name = gettext("Horizon"), breaks = xBreaks, limits = range(xBreaks)) +
 
-    ggplot2::scale_y_continuous(name = gettext(stringr::str_to_upper(type)), breaks = yBreaks, limits = range(yBreaks))
+    ggplot2::scale_y_continuous(name = gettext(toupper(type)), breaks = yBreaks, limits = range(yBreaks))
   
   p <- jaspGraphs::themeJasp(p)
   
@@ -1067,16 +1152,17 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 }
 
 .prophetCreateParameterPlots <- function(jaspResults, options, ready) {
-  
+  if (!ready) return()
+
   prophetModelResults <- jaspResults[["prophetResults"]][["prophetModelResults"]]$object
   
-  prophetParameterPlots <- createJaspContainer("Parameter Plots")
-  prophetParameterPlots$position <- 8
+  prophetParameterPlots <- createJaspContainer(gettext("Parameter Plots"))
+  prophetParameterPlots$position <- 9
   
   if(options$parameterPlotsDelta) 
     .prophetCreateParameterPlotDelta(prophetParameterPlots, options, prophetModelResults)
 
-  if(options$parameterPlotsMarginalDistributions) 
+  if(options$parameterPlotsMarginalDistributions && options$estimation == "mcmc") 
     .prophetCreateParameterPlotMarginal(prophetParameterPlots, options, prophetModelResults)
   
   jaspResults[["prophetMainContainer"]][["prophetParameterPlots"]] <- prophetParameterPlots
@@ -1125,12 +1211,12 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   prophetParameterPlotMarginal <- createJaspContainer(title = gettext("Posterior Distributions"))
   
   parNames <- c("k", "m", "sigma_obs")
-  parTitles <- c("Growth rate", "Offset", "Residual variance")
+  parTitles <- c(gettext("Growth rate"), gettext("Offset"), gettext("Residual variance"))
   
   marginalPlotList <- list()
   
   for (i in 1:length(parNames)) {
-    marginalPlotList[[i]] <- createJaspPlot(title = gettext(parTitles[i]), height = 320, width = 480)
+    marginalPlotList[[i]] <- createJaspPlot(title = parTitles[i], height = 320, width = 480)
     
     marginalPlotList[[i]]$plotObject <- .prophetParameterPlotMarginalFill(prophetModelResults, 
                                                                          options, 
@@ -1140,20 +1226,20 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     prophetParameterPlotMarginal[[parNames[i]]] <- marginalPlotList[[i]]
   }
   
-  prophetParameterPlotMarginal$dependOn(c("parameterPlotsMarginalDistributions"))
+  prophetParameterPlotMarginal$dependOn(c("parameterPlotsMarginalDistributions", "parameterPlotsCredibleIntervalWidth"))
   
   prophetParameterPlots[["prophetParameterPlotMarginal"]] <- prophetParameterPlotMarginal
   
   return()
 }
 
-.prophetParameterPlotMarginalFill <- function(prophetModelResults, options, parName, parTitle, criLevel = 0.95) {
+.prophetParameterPlotMarginalFill <- function(prophetModelResults, options, parName, parTitle) {
   samples <- prophetModelResults$params[[parName]]
   dens    <- density(samples)
   x       <- dens$x
   y       <- dens$y
   
-  lvl     <- (1-criLevel)/2
+  lvl     <- (1-options[["parameterPlotsCredibleIntervalWidth"]])/2
   cri     <- stats::quantile(samples, prob = c(lvl, 1-lvl))
   
   xBreaks    <- pretty(range(x))
@@ -1171,7 +1257,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
                             mapping = ggplot2::aes(xmin = xmin, xmax = xmax, y = y),
                             height = yBarHeight) +
   
-    ggplot2::scale_x_continuous(name = gettext(parTitle), breaks = xBreaks, limits = range(xBreaks)) +
+    ggplot2::scale_x_continuous(name = parTitle, breaks = xBreaks, limits = range(xBreaks)) +
 
     ggplot2::scale_y_continuous(name = gettext("Density"), breaks = yBreaks, limits = range(yBreaks))
   

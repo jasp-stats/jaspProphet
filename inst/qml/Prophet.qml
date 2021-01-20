@@ -7,15 +7,16 @@ import JASP				1.0
 Form
 {
 	VariablesForm
-	{
+	{	
+		preferredHeight: 400 * preferencesModel.uiScale
 		AvailableVariablesList	{ name: "allVariablesList" }
-		AssignedVariablesList	{ name: "dependent";		title: qsTr("Dependent Variable");	suggestedColumns: ["scale"]; singleVariable: true													}
-		AssignedVariablesList	{ name: "time";				title: qsTr("Time");				suggestedColumns: ["nominal"]; singleVariable: true													}
-		AssignedVariablesList	{ name: "changepoints";		title: qsTr("Changepoints");		suggestedColumns: ["nominal"]; singleVariable: true													}
-		AssignedVariablesList	{ name: "capacity";			title: qsTr("Carrying Capacity");	suggestedColumns: ["scale"]; singleVariable: true; id: cap; enabled: growth.value === "logistic"	}
-		AssignedVariablesList	{ name: "minimum";			title: qsTr("Saturating Minimum");	suggestedColumns: ["scale"]; singleVariable: true; id: floor; enabled: growth.value === "logistic"	}
-		AssignedVariablesList	{ name: "covariates";		title: qsTr("Covariates");			suggestedColumns: ["scale"]; id: covs																}
-		AssignedVariablesList	{ name: "historyIndicator";	title: qsTr("History Indicator");	suggestedColumns: ["nominal"]; singleVariable: true													}
+		AssignedVariablesList	{ name: "dependent"; title: qsTr("Dependent Variable");	suggestedColumns: ["scale"]; singleVariable: true													}
+		AssignedVariablesList	{ name: "time"; title: qsTr("Time"); suggestedColumns: ["nominal"]; singleVariable: true																	}
+		AssignedVariablesList	{ name: "changepoints"; title: qsTr("Changepoints"); suggestedColumns: ["scale"]; singleVariable: true											}
+		AssignedVariablesList	{ name: "capacity"; title: qsTr("Carrying Capacity"); suggestedColumns: ["scale"]; singleVariable: true; id: cap; enabled: growth.value === "logistic"		}
+		AssignedVariablesList	{ name: "minimum"; title: qsTr("Saturating Minimum"); suggestedColumns: ["scale"]; singleVariable: true; id: floor; enabled: growth.value === "logistic"	}
+		AssignedVariablesList	{ name: "covariates"; title: qsTr("Covariates"); suggestedColumns: ["scale"];																				}
+		AssignedVariablesList	{ name: "historyIndicator"; title: qsTr("History Indicator"); suggestedColumns: ["scale"]; singleVariable: true									}
 	}
 	
 	columns: 3
@@ -34,16 +35,16 @@ Form
 			TextField
 			{
 				name: "historyPlotStart"
-				label: qsTr("From date")
-				placeholderText: "yyyy-mm-dd"
-				fieldWidth: 100
+				label: qsTr("Start")
+				placeholderText: "yyyy-mm-dd hh:mm:ss"
+				fieldWidth: 150
 			}
 			TextField
 			{
 				name: "historyPlotEnd"
-				label: qsTr("To date")
-				placeholderText: "yyyy-mm-dd"
-				fieldWidth: 100
+				label: qsTr("End")
+				placeholderText: "yyyy-mm-dd hh:mm:ss"
+				fieldWidth: 150
 			}
 		}
 	}
@@ -165,156 +166,152 @@ Form
 					visible: map.checked
 					defaultValue: 1000
 				}
-			}
-		}
-
-		Group
-		{
-			title: qsTr("Covariates")
-			
-			VariablesForm
-			{
-				preferredHeight: 0.5 * jaspTheme.smallDefaultVariablesFormHeight
-				AvailableVariablesList
-				{ 
-					name: "availableCovariates"
-					source: ["covariates"]
-					width: form.width * 0.2
-				}
-				AssignedVariablesList
+				CIField
 				{
-					name: "assignedCovariates"
-					width: form.width * 0.6
-					
-					rowComponentTitle: qsTr("Mode")
-					
-					rowComponent: Row
-					{
-						spacing: 20 * preferencesModel.uiScale
-						DoubleField
-						{
-							name: "priorSigma"
-							defaultValue: 10.0
-						}
-						CheckBox
-						{
-							name: "standardize"
-							checked: true
-						}
-						DropDown
-						{
-							name: "mode"
-							indexDefaultValue: 0
-							values:
-							[
-								{ label: qsTr("Additive"), value: "additive"				},
-								{ label: qsTr("Multiplicative"), value: "multiplicative"	},
-							]
-						}
-					}
+					name: "summaryCredibleIntervalWidth"
+					label: qsTr("Credible interval level")
+					visible: mcmc.checked
+					defaultValue: 95
 				}
 			}
 		}
 		
-		ColumnLayout
+		VariablesList
 		{
-			Layout.preferredWidth:	parent.width
-			spacing: 0 * preferencesModel.uiScale
-			Label { text: qsTr("Seasonalities"); Layout.preferredHeight: 20 * preferencesModel.uiScale }
-
-			RowLayout
+			name: "assignedCovariates"
+			source: "covariates"
+			listViewType: JASP.AssignedVariables
+			preferredHeight: 100 * preferencesModel.uiScale
+			draggable: false
+			
+			title: qsTr("Covariates                                                  Normal prior sigma           Standardize               Mode")
+			rowComponent: Row
 			{
-				Label { text: qsTr("Name"); Layout.preferredWidth: 100 * preferencesModel.uiScale }
-				Label { text: qsTr("Period"); Layout.preferredWidth: 45 * preferencesModel.uiScale }
-				Label { text: qsTr("Unit"); Layout.preferredWidth: 80 * preferencesModel.uiScale }
-				Label { text: qsTr("Normal prior sigma"); Layout.preferredWidth: 110 * preferencesModel.uiScale }
-				Label { text: qsTr("Fourier order"); Layout.preferredWidth: 70 * preferencesModel.uiScale }
-				Label { text: qsTr("Mode"); Layout.preferredWidth: 80 * preferencesModel.uiScale }
-			}
-			ComponentsList
-			{
-				name: "seasonalities"
-				rowComponent: RowLayout
+				spacing: 100 * preferencesModel.uiScale
+				DoubleField
 				{
-					Row
+					name: "priorSigma"
+					defaultValue: 10.0
+				}
+				CheckBox
+				{
+					name: "standardize"
+					checked: true
+				}
+				DropDown
+				{
+					name: "mode"
+					indexDefaultValue: 0
+					values:
+						[
+						{ label: qsTr("Additive"), value: "additive"				},
+						{ label: qsTr("Multiplicative"), value: "multiplicative"	},
+					]
+				}
+			}
+		}
+		
+		Group
+		{
+			title: qsTr("Seasonalities")
+			
+			ColumnLayout
+			{
+				spacing: 0 * preferencesModel.uiScale
+				RowLayout
+				{
+					Label { text: qsTr("Name"); Layout.preferredWidth: 100 * preferencesModel.uiScale }
+					Label { text: qsTr("Period"); Layout.preferredWidth: 45 * preferencesModel.uiScale }
+					Label { text: qsTr("Unit"); Layout.preferredWidth: 80 * preferencesModel.uiScale }
+					Label { text: qsTr("Normal prior sigma"); Layout.preferredWidth: 100 * preferencesModel.uiScale }
+					Label { text: qsTr("Fourier order"); Layout.preferredWidth: 70 * preferencesModel.uiScale }
+					Label { text: qsTr("Mode"); Layout.preferredWidth: 122 * preferencesModel.uiScale }
+				}
+				ComponentsList
+				{
+					name: "seasonalities"
+					rowComponent: RowLayout
 					{
-						Layout.preferredWidth: 100 * preferencesModel.uiScale
-						spacing: 4 * preferencesModel.uiScale
-						
-						TextField
+						Row
 						{
-							name: "name"
-							fieldWidth: 100 * preferencesModel.uiScale
-							placeholderText: "Yearly"
+							Layout.preferredWidth: 100 * preferencesModel.uiScale
+							spacing: 4 * preferencesModel.uiScale
+							
+							TextField
+							{
+								name: "name"
+								fieldWidth: 100 * preferencesModel.uiScale
+								placeholderText: "Yearly"
+							}
 						}
-					}
-					Row
-					{
-						Layout.preferredWidth: 45 * preferencesModel.uiScale
-						spacing: 4 * preferencesModel.uiScale
-						
-						DoubleField
+						Row
 						{
-							name: "period"
-							defaultValue: 1
+							Layout.preferredWidth: 45 * preferencesModel.uiScale
+							spacing: 4 * preferencesModel.uiScale
+							
+							DoubleField
+							{
+								name: "period"
+								defaultValue: 1
+							}
 						}
-					}
-					Row
-					{
-						Layout.preferredWidth: 80 * preferencesModel.uiScale
-						spacing: 4 * preferencesModel.uiScale
-						
-						DropDown
+						Row
 						{
-							name: "unit"
-							indexDefaultValue: 0
-							values:
-							[
-								{ label: qsTr("Seconds"), value: "secs"		},
-								{ label: qsTr("Minutes"), value: "mins"		},
-								{ label: qsTr("Hours"),   value: "hours"	},
-								{ label: qsTr("Days"),    value: "days"		},
-								{ label: qsTr("Weeks"),   value: "weeks"	},
-								{ label: qsTr("Years"),   value: "years"	}
-							]
+							Layout.preferredWidth: 80 * preferencesModel.uiScale
+							spacing: 4 * preferencesModel.uiScale
+							
+							DropDown
+							{
+								name: "unit"
+								indexDefaultValue: 0
+								values:
+									[
+									{ label: qsTr("Seconds"), value: "secs"		},
+									{ label: qsTr("Minutes"), value: "mins"		},
+									{ label: qsTr("Hours"),   value: "hours"	},
+									{ label: qsTr("Days"),    value: "days"		},
+									{ label: qsTr("Weeks"),   value: "weeks"	},
+									{ label: qsTr("Years"),   value: "years"	}
+								]
+							}
 						}
-					}
-					Row
-					{
-						Layout.preferredWidth: 110 * preferencesModel.uiScale
-						spacing: 4 * preferencesModel.uiScale
-						
-						DoubleField
+						Row
 						{
-							name: "priorSigma"
-							defaultValue: 10.0
+							Layout.preferredWidth: 100 * preferencesModel.uiScale
+							spacing: 4 * preferencesModel.uiScale
+							
+							DoubleField
+							{
+								name: "priorSigma"
+								defaultValue: 10.0
+							}
 						}
-					}
-					Row
-					{
-						Layout.preferredWidth: 70 * preferencesModel.uiScale
-						spacing: 4 * preferencesModel.uiScale
-
-						IntegerField
+						Row
 						{
-							name: "fourierOrder"
-							defaultValue: 7
+							Layout.preferredWidth: 70 * preferencesModel.uiScale
+							spacing: 4 * preferencesModel.uiScale
+							
+							IntegerField
+							{
+								name: "fourierOrder"
+								defaultValue: 7
+							}
 						}
-					}
-					Row
-					{
-						Layout.preferredWidth: 80 * preferencesModel.uiScale
-						spacing: 4 * preferencesModel.uiScale
-						
-						DropDown
+						Row
 						{
-							name: "mode"
-							indexDefaultValue: 0
-							values:
-								[
-								{ label: qsTr("Additive"), value: "additive" },
-								{ label: qsTr("Multiplicative"), value: "multiplicative" },
-							]
+							Layout.preferredWidth: 122 * preferencesModel.uiScale
+							spacing: 4 * preferencesModel.uiScale
+							
+							DropDown
+							{
+								name: "mode"
+								indexDefaultValue: 0
+								values:
+									[
+									{ label: qsTr("Additive"), value: "additive" },
+									{ label: qsTr("Multiplicative"), value: "multiplicative" },
+								]
+							}
 						}
 					}
 				}
@@ -367,16 +364,16 @@ Form
 					TextField
 					{
 						name: "nonperiodicalPredictionStart"
-						label: qsTr("From date")
-						placeholderText: "yyyy-mm-dd"
-						fieldWidth: 100
+						label: qsTr("Start")
+						placeholderText: "yyyy-mm-dd hh:mm:ss"
+						fieldWidth: 150
 					}
 					TextField
 					{
 						name: "nonperiodicalPredictionEnd"
-						label: qsTr("To date")
-						placeholderText: "yyyy-mm-dd"
-						fieldWidth: 100
+						label: qsTr("End")
+						placeholderText: "yyyy-mm-dd hh:mm:ss"
+						fieldWidth: 150
 					}
 					DropDown
 					{
@@ -508,10 +505,8 @@ Form
 					}
 					CheckBox
 					{
-						name: "forecastPlotsOverallAddCovariates"
-						label: qsTr("Show covariates")
-						id: showCovs
-						enabled: covs.count > 0
+						name: "forecastPlotsOverallAddChangepoints"
+						label: qsTr("Show changepoints")
 					}
 					CheckBox
 					{
@@ -522,16 +517,16 @@ Form
 					TextField
 					{
 						name: "forecastPlotsOverallStart"
-						label: qsTr("From date")
-						placeholderText: "yyyy-mm-dd"
-						fieldWidth: 100
+						label: qsTr("Start")
+						placeholderText: "yyyy-mm-dd hh:mm:ss"
+						fieldWidth: 150
 					}
 					TextField
 					{
 						name: "forecastPlotsOverallEnd"
-						label: qsTr("To date")
-						placeholderText: "yyyy-mm-dd"
-						fieldWidth: 100
+						label: qsTr("End")
+						placeholderText: "yyyy-mm-dd hh:mm:ss"
+						fieldWidth: 150
 					}
 				}
 			}
@@ -539,19 +534,46 @@ Form
 			{
 				name: "forecastPlotsTrend"
 				label: qsTr("Trend")
+				CheckBox
+				{
+					name: "forecastPlotsTrendAddChangepoints"
+					label: qsTr("Show changepoints")
+				}
+				Group
+				{
+					columns: 2
+					TextField
+					{
+						name: "forecastPlotsTrendStart"
+						label: qsTr("Start")
+						placeholderText: "yyyy-mm-dd hh:mm:ss"
+						fieldWidth: 150
+					}
+					TextField
+					{
+						name: "forecastPlotsTrendEnd"
+						label: qsTr("End")
+						placeholderText: "yyyy-mm-dd hh:mm:ss"
+						fieldWidth: 150
+					}
+				}
 			}
 		}
 
-		Group
+		VariablesForm
 		{
-			title: qsTr("Seasonality Plots")
-			VariablesForm
-			{
-				preferredHeight: 0.5 * jaspTheme.smallDefaultVariablesFormHeight
-				AvailableVariablesList { name: "seasonalityNames"; source: ["seasonalities.name"]	}
-				AssignedVariablesList { name: "seasonalityPlots"									}
-			}
+			preferredHeight: 0.5 * jaspTheme.smallDefaultVariablesFormHeight
+			AvailableVariablesList { name: "seasonalityNames"; title: qsTr("Seasonalities"); source: "seasonalities.name"	}
+			AssignedVariablesList { name: "seasonalityPlots"; title: qsTr("Seasonality Plots")								}
 		}
+		
+		VariablesForm
+		{
+			preferredHeight: 0.5 * jaspTheme.smallDefaultVariablesFormHeight
+			AvailableVariablesList { name: "covariateNames"; title: qsTr("Covariates"); source: "covariates"			}
+			AssignedVariablesList { name: "covariatePlots"; title: qsTr("Covariate Plots")								}
+		}
+
 		Group
 		{
 			columns: 2
@@ -591,6 +613,12 @@ Form
 					name: "parameterPlotsMarginalDistributions"
 					label: qsTr("Posterior distributions")
 					enabled: mcmc.checked
+					CIField
+					{
+						name: "parameterPlotsCredibleIntervalWidth"
+						label: qsTr("Credible interval level")
+						defaultValue: 95
+					}
 				}
 			}
 		}
