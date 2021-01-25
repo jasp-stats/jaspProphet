@@ -476,9 +476,9 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     prophetTable <- createJaspTable(title = gettext("Posterior Summary Table"))
     prophetTable$position <- 2
 
-    criLevel <- options[["summaryCredibleIntervalWidth"]]/2
+    criLevel <- (1-options[["summaryCredibleIntervalWidth"]])/2
 
-    overtitle <- gettext(paste0(criLevel*200, "% Credible Interval"))
+    overtitle <- gettext(paste0(options[["summaryCredibleIntervalWidth"]]*100, "% Credible Interval"))
     prophetTable$addColumnInfo(name = "par", title = gettext("Parameter"), type = "string")
     prophetTable$addColumnInfo(name = "mean", title = gettext("Mean"), type = "number")
     prophetTable$addColumnInfo(name = "sd", title = gettext("SD"), type = "number")
@@ -546,7 +546,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   prophetTable$dependOn(c("changePointTable", "summaryCredibleIntervalWidth"))
   prophetTable$position <- 3
 
-  criLevel <- options[["summaryCredibleIntervalWidth"]]/2
+  criLevel <- (1-options[["summaryCredibleIntervalWidth"]])/2
 
   prophetTable$addColumnInfo(name = "ds", title = gettext("Changepoint"), type = "string")
   
@@ -554,7 +554,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     prophetTable$addColumnInfo(name = "delta", title = gettext("Change in growth rate (delta)"), type = "number")
   } else {
     parTitle <- gettext("Change in growth rate (delta)")
-    ciTitle  <- gettext(paste0(criLevel*200, "% Credible Interval"))
+    ciTitle  <- gettext(paste0(options[["summaryCredibleIntervalWidth"]]*100, "% Credible Interval"))
     prophetTable$addColumnInfo(name = "mean", title = gettext("Mean"), type = "number", overtitle = parTitle)
     prophetTable$addColumnInfo(name = "sd", title = gettext("SD"), type = "number", overtitle = parTitle)
     prophetTable$addColumnInfo(name = "lowerCri", title = gettext("Lower"), type = "number", overtitle = ciTitle)
@@ -572,8 +572,8 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   if (!ready) return()
 
   delta  <- switch(estimation,
-                   map  = as.numeric(prophetModelResults$params$delta),
-                   mcmc = as.numeric(apply(prophetModelResults$params$delta, 2, mean)))
+                   map  = as.numeric(prophetModelResults[["params"]][["delta"]]),
+                   mcmc = as.numeric(apply(prophetModelResults[["params"]][["delta"]], 2, mean)))
   cps    <- as.character(prophetModelResults$changepoints)
 
   if (estimation == "map") {
@@ -582,8 +582,8 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
       delta = delta
     ))
   } else {
-    deltaCri <- apply(prophetModelResults$params$delta, 2, quantile, probs = c(criLevel, 1-criLevel))
-    deltaSd  <- apply(prophetModelResults$params$delta, 2, sd)
+    deltaCri <- apply(prophetModelResults[["params"]][["delta"]], 2, quantile, probs = c(criLevel, 1-criLevel))
+    deltaSd  <- apply(prophetModelResults[["params"]][["delta"]], 2, sd)
     prophetTable$addColumns(list(
       ds       = cps,
       mean     = delta,
@@ -1016,7 +1016,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 .prophetCreateCovariatePlot <- function(prophetCovariatePlots, dataset, name, prophetModelResults, options) {
   if (!is.null(prophetCovariatePlots[[name]])) return()
 
-  covMode <- prophetModelResults$extra_regressors[[name]]$mode
+  covMode <- prophetModelResults[["extra_regressors"]][[name]][["mode"]]
   covariatePlot <- createJaspPlot(title = name, height = 320, width = 480)
   covariatePlot$plotObject <- .prophetCovariatePlotFill(dataset, name, options, covMode)
   prophetCovariatePlots[[name]] <- covariatePlot
@@ -1183,8 +1183,8 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 
 .prophetParameterPlotDeltaFill <- function(prophetModelResults, options) {
   deltas  <- switch(options$estimation,
-                    map  = as.numeric(prophetModelResults$params$delta),
-                    mcmc = as.numeric(apply(prophetModelResults$params$delta, 2, mean)))
+                    map  = as.numeric(prophetModelResults[["params"]][["delta"]]),
+                    mcmc = as.numeric(apply(prophetModelResults[["params"]][["delta"]], 2, mean)))
   cps     <- as.POSIXct(prophetModelResults$changepoints)
   
   xBreaks <- pretty(cps)
@@ -1234,7 +1234,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 }
 
 .prophetParameterPlotMarginalFill <- function(prophetModelResults, options, parName, parTitle) {
-  samples <- prophetModelResults$params[[parName]]
+  samples <- prophetModelResults[["params"]][[parName]]
   dens    <- density(samples)
   x       <- dens$x
   y       <- dens$y
@@ -1270,6 +1270,6 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   if(is.null(options$seasonalities))
     return()
 
-  propRes <- options$seasonalities[[which(sapply(options$seasonalities, function(s) encodeColNames(s$name) == name))]][[prop]]
+  propRes <- options$seasonalities[[which(sapply(options$seasonalities, function(s) encodeColNames(s[["name"]]) == name))]][[prop]]
   return(propRes)
 }
