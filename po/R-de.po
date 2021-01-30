@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-01-05 09:39\n"
-"PO-Revision-Date: 2021-01-17 18:32+0000\n"
+"PO-Revision-Date: 2021-01-31 10:41+0000\n"
 "Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-r/de/>\n"
@@ -18,6 +18,8 @@ msgid ""
 "Error in converting variable 'Time' into dates: 'Time' needs to be in a date-"
 "like format (e.g., yyyy-mm-dd)"
 msgstr ""
+"Fehler bei Umwandlung der Variablen 'Zeit' in Datumsangaben: 'Zeit' muss in "
+"einem datumsähnlichen Format vorliegen (z. B. JJJJ-MM-TT)"
 
 msgid ""
 "Error in setting changepoints: Variable 'Changepoints' must have two levels"
@@ -27,16 +29,22 @@ msgid ""
 "Error in converting argument 'Start date' into a date: 'Start date' needs to "
 "be in a date-like format (e.g., yyyy-mm-dd)"
 msgstr ""
+"Fehler bei Umwandlung des Arguments 'Startdatum' in ein Datum: 'Startdatum' "
+"muss in einem datumsähnlichen Format sein (z. B. JJJJ-MM-TT)"
 
 msgid ""
 "Error in converting argument 'End date' into a date: 'End date' needs to be "
 "in a date-like format (e.g., yyyy-mm-dd)"
 msgstr ""
+"Fehler bei Umwandlung des Arguments 'Enddatum' in ein Datum: 'Enddatum' muss "
+"in einem datumsähnlichen Format vorliegen (z. B. JJJJ-MM-TT)"
 
 msgid ""
 "Error in predicting future values with covariates: Covariates need to be "
 "supplied for predicted time intervals"
 msgstr ""
+"Fehler bei der Vorhersage zukünftiger Werte mit Kovariaten: Kovariaten "
+"müssen für vorhergesagte Zeitintervalle angegeben werden"
 
 msgid "Less data than horizon after initial window."
 msgstr ""
@@ -53,9 +61,8 @@ msgstr ""
 msgid "Residual variance (sigma)"
 msgstr "Residualvarianz (sigma)"
 
-#, fuzzy
 msgid "95% Credible Interval"
-msgstr "95%% Glaubwürdigkeitsintervall"
+msgstr "95% Glaubwürdigkeitsintervall"
 
 msgid "posteriorSummaryPlotCredibleIntervalValue"
 msgstr ""
@@ -84,19 +91,17 @@ msgstr "ESS (Großteil)"
 msgid "ESS (tail)"
 msgstr "ESS (Randbereich)"
 
-#, fuzzy
 msgid "Changepoint"
-msgstr "F Änderung"
+msgstr ""
 
 msgid "Change in growth rate (delta)"
-msgstr ""
+msgstr "Änderung der Wachstumsrate (Delta)"
 
 msgid "Horizon"
-msgstr ""
+msgstr "Horizont"
 
-#, fuzzy
 msgid "MSE"
-msgstr "RMSE"
+msgstr ""
 
 msgid "RMSE"
 msgstr "RMSE"
@@ -105,30 +110,25 @@ msgid "MAPE"
 msgstr ""
 
 msgid "Time"
-msgstr ""
+msgstr "Zeit"
 
-#, fuzzy
 msgid "Forecast Plots"
-msgstr "Forest-Plot"
+msgstr "Prognosediagramme"
 
-#, fuzzy
 msgid "Overall Forecast Plot"
-msgstr "Forest-Plot"
+msgstr "Gesamtprognosediagramm"
 
-#, fuzzy
 msgid "Trend Forecast Plot"
-msgstr "Forest-Plot"
+msgstr "Trendprognosediagramm"
 
-#, fuzzy
 msgid "Seasonality Plots"
-msgstr "Zentralitäts-Abbildung"
+msgstr "Saisonalitätsdiagramme"
 
-#, fuzzy
 msgid "Seasonality Plot"
-msgstr "Zentralitäts-Abbildung"
+msgstr "Saisonalitätsdiagramm"
 
 msgid "Horizon (in days)"
-msgstr ""
+msgstr "Horizont (in Tagen)"
 
 msgid "Marginal Posterior Distributions"
 msgstr "Marginale Posterior-Verteilungen"
