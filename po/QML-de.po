@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-17 20:32+0000\n"
+"PO-Revision-Date: 2021-01-31 10:41+0000\n"
 "Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-qml/de/>\n"
@@ -56,10 +56,9 @@ msgctxt "ProphetLinear|"
 msgid "Model"
 msgstr "Modell"
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Automatic Changepoints"
-msgstr "Startpunkt"
+msgstr ""
 
 msgctxt "ProphetLinear|"
 msgid "Max. changepoints"
@@ -71,61 +70,51 @@ msgstr ""
 
 msgctxt "ProphetLinear|"
 msgid "Laplace prior tau"
-msgstr ""
+msgstr "Laplace-Prior Tau"
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Estimation"
 msgstr "Schätzung"
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Maximum a posteriori"
-msgstr "Rand-Posteriors"
+msgstr "Maximum a-posteriori"
 
 msgctxt "ProphetLinear|"
 msgid "Markov chain Monte Carlo"
-msgstr ""
+msgstr "Markow-Chain-Monte-Carlo"
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Samples"
 msgstr "Stichprobe"
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Uncertainty"
-msgstr "Unsicherheitskoeffizient"
+msgstr "Unsicherheit"
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Prediction interval level"
-msgstr "Vorhersageintervalle"
+msgstr ""
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Prediction interval samples"
-msgstr "Vorhersageintervalle"
+msgstr ""
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Mode"
 msgstr "Modus"
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Additive"
-msgstr "Addition"
+msgstr "Additiv"
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Multiplicative"
-msgstr "Multiplikation"
+msgstr "Multiplikativ"
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Seasonalities"
-msgstr "Dichten"
+msgstr "Saisonalitäten"
 
 msgctxt "ProphetLinear|"
 msgid "Name"
@@ -133,67 +122,59 @@ msgstr "Name"
 
 msgctxt "ProphetLinear|"
 msgid "Period"
-msgstr ""
+msgstr "Zeitraum"
 
 msgctxt "ProphetLinear|"
 msgid "Unit"
-msgstr ""
+msgstr "Einheit"
 
 msgctxt "ProphetLinear|"
 msgid "Normal prior sigma"
-msgstr ""
+msgstr "Sigma normalverteilter Prior"
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Hours"
 msgstr "Stunden"
 
 msgctxt "ProphetLinear|"
 msgid "Days"
-msgstr ""
+msgstr "Tage"
 
 msgctxt "ProphetLinear|"
 msgid "Weeks"
-msgstr ""
+msgstr "Wochen"
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Years"
-msgstr "Pearson"
+msgstr "Jahre"
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Prediction"
-msgstr "Prädiktoren"
+msgstr "Vorhersage"
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Periodical"
-msgstr "Posterior Median"
+msgstr ""
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Number of periods"
-msgstr "Anzahl Durchgänge"
+msgstr ""
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Nonperiodical"
-msgstr "Nichtparametrisch"
+msgstr ""
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Start date"
-msgstr "Tabellenprogramm starten"
+msgstr "Startdatum"
 
 msgctxt "ProphetLinear|"
 msgid "End date"
-msgstr ""
+msgstr "Enddatum"
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Save Predictions"
-msgstr "Skalierungsprädiktoren"
+msgstr "Vorhersagen speichern"
 
 msgctxt "ProphetLinear|"
 msgid "Evaluation"
@@ -203,10 +184,9 @@ msgctxt "ProphetLinear|"
 msgid "Simulated Historical Forecasts"
 msgstr ""
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Horizon"
-msgstr "Horizontale Achse"
+msgstr "Horizont"
 
 msgctxt "ProphetLinear|"
 msgid "Period between cutoffs"
