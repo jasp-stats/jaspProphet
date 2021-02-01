@@ -57,7 +57,7 @@
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA=)'><text x='370.25' y='534.28' style='font-size: 17.00px; font-family: Liberation Sans;' textLength='42.53px' lengthAdjust='spacingAndGlyphs'>00:02</text></g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA=)'><text x='512.77' y='534.28' style='font-size: 17.00px; font-family: Liberation Sans;' textLength='42.53px' lengthAdjust='spacingAndGlyphs'>00:03</text></g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA=)'><text x='655.29' y='534.28' style='font-size: 17.00px; font-family: Liberation Sans;' textLength='42.53px' lengthAdjust='spacingAndGlyphs'>00:04</text></g>
-<g clip-path='url(#cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA=)'><text x='341.64' y='566.78' style='font-size: 20.40px; font-family: Liberation Sans;' textLength='99.75px' lengthAdjust='spacingAndGlyphs'>timeMinute</text></g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA=)'><text x='319.92' y='566.78' style='font-size: 20.40px; font-family: Liberation Sans;' textLength='143.19px' lengthAdjust='spacingAndGlyphs'>Time (hour:min)</text></g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA=)'><text transform='translate(19.01,316.05) rotate(-90)' style='font-size: 20.40px; font-family: Liberation Sans;' textLength='104.28px' lengthAdjust='spacingAndGlyphs'>contNormal</text></g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA=)'><text x='248.87' y='11.70' style='font-size: 17.00px; font-family: Liberation Sans;' textLength='285.28px' lengthAdjust='spacingAndGlyphs'>Prophet-custom-seasonality-plot-mins</text></g>
 </svg>

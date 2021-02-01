@@ -121,17 +121,17 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
         cap   <- dataset[[encodeColNames(options$capacity)]]
 
         if (!all(cap > options$constantMinimum))
-          return(gettext("'Carrying Capacity' must always be larger than 'Constant Saturating Minimum'"))
+          return(gettext("'Carrying Capacity' must always be larger than 'Constant saturating minimum'"))
       }
 
       if (options$growth == "logistic" && options$capacity == "") {
         if (options$minimum != "") {
           floor <- dataset[[encodeColNames(options$minimum)]]
           if (options$constantCapacity <= floor)
-            return(gettext("'Constant Carrying Capacity' must always be larger than 'Saturating Minimum'"))
+            return(gettext("'Constant carrying capacity' must always be larger than 'Saturating Minimum'"))
         } else {
           if (options$constantCapacity <= options$constantMinimum)
-            return(gettext("'Constant Carrying Capacity' must always be larger than 'Constant Saturating Minimum'"))
+            return(gettext("'Constant carrying capacity' must always be larger than 'Constant saturating minimum'"))
         }
       }
     },
@@ -466,7 +466,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     
     prophetTable$addColumnInfo(name = "k", title = gettext("Growth rate (k)"), type = "number")
     prophetTable$addColumnInfo(name = "m", title = gettext("Offset (m)"), type = "number")
-    prophetTable$addColumnInfo(name = "sigmaObs", title = gettext("Residual variance (sigma)"), type = "number")
+    prophetTable$addColumnInfo(name = "sigmaObs", title = gettext("Residual variance (\u03C3\u00B2)"), type = "number")
     
     .prophetModelSummaryTableMapFill(prophetTable, prophetModelResults, ready)
     
@@ -478,7 +478,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 
     criLevel <- (1-options[["summaryCredibleIntervalWidth"]])/2
 
-    overtitle <- gettext(paste0(options[["summaryCredibleIntervalWidth"]]*100, "% Credible Interval"))
+    overtitle <- gettext(paste0(options[["summaryCredibleIntervalWidth"]]*100, "% CI"))
     prophetTable$addColumnInfo(name = "par", title = gettext("Parameter"), type = "string")
     prophetTable$addColumnInfo(name = "mean", title = gettext("Mean"), type = "number")
     prophetTable$addColumnInfo(name = "sd", title = gettext("SD"), type = "number")
@@ -489,7 +489,9 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     prophetTable$addColumnInfo(name = "tailEss", title = gettext("ESS (tail)"), type = "integer")
     
     if (!ready && options$estimation == "mcmc")
-      prophetTable$addFootnote(gettext("Prophet might need a long time to compute the results. You can try it with fewer MCMC samples first to see if it works and you specified the model correctly (e.g., set 'Samples' = 10)."))
+      prophetTable$addFootnote(gettext("Prophet might need a long time to compute the results. You can try it first with fewer MCMC samples to see if it works and if you specified the model correctly (e.g., set 'Samples = 10')."))
+
+    prophetTable$addCitation("Taylor, S. J. & Letham, B. (2018). Forecasting at scale. *The American Statistician, 72*(1), 37-45.")
 
     .prophetModelSummaryTableMcmcFill(prophetTable, prophetModelResults, criLevel, ready)
     
@@ -551,16 +553,18 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   prophetTable$addColumnInfo(name = "ds", title = gettext("Changepoint"), type = "string")
   
   if (options$estimation == "map") {
-    prophetTable$addColumnInfo(name = "delta", title = gettext("Change in growth rate (delta)"), type = "number")
+    prophetTable$addColumnInfo(name = "delta", title = gettext("Change in growth rate (\u03B4)"), type = "number")
   } else {
-    parTitle <- gettext("Change in growth rate (delta)")
-    ciTitle  <- gettext(paste0(options[["summaryCredibleIntervalWidth"]]*100, "% Credible Interval"))
+    parTitle <- gettext("Change in growth rate (\u03B4)")
+    ciTitle  <- gettext(paste0(options[["summaryCredibleIntervalWidth"]]*100, "% CI"))
     prophetTable$addColumnInfo(name = "mean", title = gettext("Mean"), type = "number", overtitle = parTitle)
     prophetTable$addColumnInfo(name = "sd", title = gettext("SD"), type = "number", overtitle = parTitle)
     prophetTable$addColumnInfo(name = "lowerCri", title = gettext("Lower"), type = "number", overtitle = ciTitle)
     prophetTable$addColumnInfo(name = "upperCri", title = gettext("Upper"), type = "number", overtitle = ciTitle)
   }
   
+  prophetTable$addCitation("Taylor, S. J. & Letham, B. (2018). Forecasting at scale. *The American Statistician, 72*(1), 37-45.")
+
   .prophetChangePointTableFill(prophetTable, prophetModelResults, options$estimation, criLevel, ready)
     
   jaspResults[["prophetMainContainer"]][["prophetChangePointTable"]] <- prophetTable
@@ -617,6 +621,8 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   else
     .prophetModelEvaluationTableFill(prophetTable, options, prophetEvaluationResults, ready)
   
+  prophetTable$addCitation("Taylor, S. J. & Letham, B. (2018). Forecasting at scale. *The American Statistician, 72*(1), 37-45.")
+
   jaspResults[["prophetMainContainer"]][["prophetModelEvaluationTable"]] <- prophetTable
 
   return()
@@ -805,9 +811,13 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 }
 
 .prophetPredictSeasonality <- function(name, prophetModelResults, options) {
-  start   <- as.POSIXct("2018-01-01 00:00:00", tz = "UTC")
   period  <- .prophetGetSeasonalityProperties(name, "period", options)
   unit    <- .prophetGetSeasonalityProperties(name, "unit", options)
+
+  if (period > 3 && unit == "years")
+    start <- prophetModelResults[["history.dates"]][1]
+  else
+    start <- as.POSIXct("2018-01-01 00:00:00", tz = "UTC")
 
   ds      <- seq(from = start, by = unit, length.out = period+1)
   futDat  <- data.frame(ds = ds, cap = 1, floor = 0)
@@ -834,14 +844,15 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 
   daysPeriod <- unitDays*period
 
-  if (daysPeriod <= 3/1440)                          dateFormat <- list(format = "%M:%OS")
-  else if (daysPeriod <= 1/8)                        dateFormat <- list(format = "%H:%M")
-  else if (daysPeriod <= 3)                          dateFormat <- list(format = "%H")
-  else if (daysPeriod > 3 && daysPeriod <= 14)       dateFormat <- list(format = "%a")
-  else if (daysPeriod > 14 && daysPeriod <= 28)      dateFormat <- list(format = "%d")
-  else if (daysPeriod > 28 && daysPeriod < 365)      dateFormat <- list(format = "%m")
-  else if (daysPeriod >= 365 && daysPeriod <= 3*365) dateFormat <- list(format = "%b")
-  else                                               dateFormat <- list(format = "%Y")
+  if (daysPeriod <= 3/1440)     dateFormat <- list(format = "%M:%OS", label = gettext("Time (min:sec)"))
+  else if (daysPeriod <= 1/8)   dateFormat <- list(format = "%H:%M", label = gettext("Time (hour:min)"))
+  else if (daysPeriod <= 3)     dateFormat <- list(format = "%H", label = gettext("Time (hour)"))
+  else if (daysPeriod <= 15)    dateFormat <- list(format = "%a", label = gettext("Weekday"))
+  else if (daysPeriod <= 29)    dateFormat <- list(format = "%d", label = gettext("Time (day)"))
+  else if (daysPeriod <= 183)   dateFormat <- list(format = "%m-%d", label = gettext("Time (month-day)"))
+  else if (daysPeriod <= 366)   dateFormat <- list(format = "%m", label = gettext("Time (month)"))
+  else if (daysPeriod <= 3*366) dateFormat <- list(format = "%b", label = gettext("Time (month)"))
+  else                          dateFormat <- list(format = "%Y", label = gettext("Time (year)"))
 
   return(dateFormat)
 }
@@ -855,6 +866,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   df   <- data.frame(x = x, y = y, ymin = ymin, ymax = ymax)
 
   xBreaks <- pretty(x)
+  xLabels <- attr(xBreaks, "labels")
   yBreaks <- pretty(c(min(ymin), max(ymax)))
   mode    <- .prophetGetSeasonalityProperties(name, "mode", options)
   period  <- .prophetGetSeasonalityProperties(name, "period", options)
@@ -867,8 +879,9 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   
     ggplot2::geom_ribbon(mapping = ggplot2::aes(ymin = ymin, ymax = ymax), fill = "blue", alpha = 0.4) +
 
-    ggplot2::scale_x_datetime(name = options$time,
+    ggplot2::scale_x_datetime(name = xFormat$label,
                               breaks = xBreaks,
+                              labels = xLabels,
                               date_labels = xFormat$format,
                               limits = range(xBreaks))
 

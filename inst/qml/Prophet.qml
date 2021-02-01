@@ -12,11 +12,11 @@ Form
 		AvailableVariablesList	{ name: "allVariablesList" }
 		AssignedVariablesList	{ name: "dependent"; title: qsTr("Dependent Variable");	suggestedColumns: ["scale"]; singleVariable: true													}
 		AssignedVariablesList	{ name: "time"; title: qsTr("Time"); suggestedColumns: ["nominal"]; singleVariable: true																	}
-		AssignedVariablesList	{ name: "changepoints"; title: qsTr("Changepoints"); suggestedColumns: ["scale"]; singleVariable: true											}
+		AssignedVariablesList	{ name: "changepoints"; title: qsTr("Changepoints"); suggestedColumns: ["scale"]; singleVariable: true														}
 		AssignedVariablesList	{ name: "capacity"; title: qsTr("Carrying Capacity"); suggestedColumns: ["scale"]; singleVariable: true; id: cap; enabled: growth.value === "logistic"		}
 		AssignedVariablesList	{ name: "minimum"; title: qsTr("Saturating Minimum"); suggestedColumns: ["scale"]; singleVariable: true; id: floor; enabled: growth.value === "logistic"	}
 		AssignedVariablesList	{ name: "covariates"; title: qsTr("Covariates"); suggestedColumns: ["scale"];																				}
-		AssignedVariablesList	{ name: "historyIndicator"; title: qsTr("History Indicator"); suggestedColumns: ["scale"]; singleVariable: true									}
+		AssignedVariablesList	{ name: "historyIndicator"; title: qsTr("Include in Training"); suggestedColumns: ["scale"]; singleVariable: true												}
 	}
 	
 	columns: 3
@@ -24,7 +24,7 @@ Form
 	CheckBox
 	{
 		name: "historyPlot"
-		label: qsTr("History Plot")
+		label: qsTr("History plot")
 		CheckBox
 		{
 			name: "historyPlotAddLine"
@@ -36,14 +36,14 @@ Form
 			{
 				name: "historyPlotStart"
 				label: qsTr("Start")
-				placeholderText: "yyyy-mm-dd hh:mm:ss"
+				placeholderText: "YYYY-MM-DD HH:MM:SS"
 				fieldWidth: 150
 			}
 			TextField
 			{
 				name: "historyPlotEnd"
 				label: qsTr("End")
-				placeholderText: "yyyy-mm-dd hh:mm:ss"
+				placeholderText: "YYYY-MM-DD HH:MM:SS"
 				fieldWidth: 150
 			}
 		}
@@ -72,7 +72,7 @@ Form
 		DoubleField
 		{
 			name: "constantCapacity"
-			label: qsTr("Constant Carrying Capacity")
+			label: qsTr("Constant carrying capacity")
 			enabled: cap.count === 0
 			visible: growth.value === "logistic"
 			negativeValues: true
@@ -81,7 +81,7 @@ Form
 		DoubleField
 		{
 			name: "constantMinimum"
-			label: qsTr("Constant Saturating Minimum")
+			label: qsTr("Constant saturating minimum")
 			enabled: floor.count === 0
 			visible: growth.value === "logistic"
 			negativeValues: true
@@ -119,7 +119,7 @@ Form
 				DoubleField
 				{
 					name: "changepointPriorScale"
-					label: qsTr("Laplace prior tau")
+					label: qsTr("Laplace prior τ")
 					defaultValue: 0.05
 					decimals: 3
 				}
@@ -184,7 +184,7 @@ Form
 			preferredHeight: 100 * preferencesModel.uiScale
 			draggable: false
 			
-			title: qsTr("Covariates                                                  Normal prior sigma           Standardize               Mode")
+			title: qsTr("Covariates                                                  Normal prior σ²                 Standardize                 Mode")
 			rowComponent: Row
 			{
 				spacing: 100 * preferencesModel.uiScale
@@ -223,7 +223,7 @@ Form
 					Label { text: qsTr("Name"); Layout.preferredWidth: 100 * preferencesModel.uiScale }
 					Label { text: qsTr("Period"); Layout.preferredWidth: 45 * preferencesModel.uiScale }
 					Label { text: qsTr("Unit"); Layout.preferredWidth: 80 * preferencesModel.uiScale }
-					Label { text: qsTr("Normal prior sigma"); Layout.preferredWidth: 100 * preferencesModel.uiScale }
+					Label { text: qsTr("Normal prior σ²"); Layout.preferredWidth: 100 * preferencesModel.uiScale }
 					Label { text: qsTr("Fourier order"); Layout.preferredWidth: 70 * preferencesModel.uiScale }
 					Label { text: qsTr("Mode"); Layout.preferredWidth: 122 * preferencesModel.uiScale }
 				}
@@ -365,14 +365,14 @@ Form
 					{
 						name: "nonperiodicalPredictionStart"
 						label: qsTr("Start")
-						placeholderText: "yyyy-mm-dd hh:mm:ss"
+						placeholderText: "YYYY-MM-DD HH:MM:SS"
 						fieldWidth: 150
 					}
 					TextField
 					{
 						name: "nonperiodicalPredictionEnd"
 						label: qsTr("End")
-						placeholderText: "yyyy-mm-dd hh:mm:ss"
+						placeholderText: "YYYY-MM-DD HH:MM:SS"
 						fieldWidth: 150
 					}
 					DropDown
@@ -396,7 +396,7 @@ Form
 		FileSelector
 		{
 			name:	"predictionSavePath"
-			label:	qsTr("Save Predictions")
+			label:	qsTr("Save predictions")
 			filter:	"*.csv"
 			save:	true
 		}
@@ -410,7 +410,7 @@ Form
 		{
 			name: "crossValidation"
 			id: crossVal
-			label: qsTr("Simulated Historical Forecasts")
+			label: qsTr("Simulated historical forecasts")
 			Group
 			{
 				DropDown
@@ -452,7 +452,7 @@ Form
 		CheckBox
 		{
 			name: "performanceMetrics"
-			label: qsTr("Performance Metrics")
+			label: qsTr("Performance metrics")
 			enabled: crossVal.checked
 			CheckBox
 			{
@@ -474,7 +474,7 @@ Form
 		
 		CheckBox
 		{
-			name: "changePointTable"    ; label: qsTr("Changepoint Table")
+			name: "changePointTable"    ; label: qsTr("Changepoint table")
 		}
 	}
 	
@@ -518,14 +518,14 @@ Form
 					{
 						name: "forecastPlotsOverallStart"
 						label: qsTr("Start")
-						placeholderText: "yyyy-mm-dd hh:mm:ss"
+						placeholderText: "YYYY-MM-DD HH:MM:SS"
 						fieldWidth: 150
 					}
 					TextField
 					{
 						name: "forecastPlotsOverallEnd"
 						label: qsTr("End")
-						placeholderText: "yyyy-mm-dd hh:mm:ss"
+						placeholderText: "YYYY-MM-DD HH:MM:SS"
 						fieldWidth: 150
 					}
 				}
@@ -546,14 +546,14 @@ Form
 					{
 						name: "forecastPlotsTrendStart"
 						label: qsTr("Start")
-						placeholderText: "yyyy-mm-dd hh:mm:ss"
+						placeholderText: "YYYY-MM-DD HH:MM:SS"
 						fieldWidth: 150
 					}
 					TextField
 					{
 						name: "forecastPlotsTrendEnd"
 						label: qsTr("End")
-						placeholderText: "yyyy-mm-dd hh:mm:ss"
+						placeholderText: "YYYY-MM-DD HH:MM:SS"
 						fieldWidth: 150
 					}
 				}

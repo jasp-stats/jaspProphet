@@ -7,7 +7,7 @@ dateTimeVarNames <- c("dateYear", "dateWeek", "dateDay", "timeHour", "timeMinute
 dateTimeUnits <- c("years", "weeks", "days", "hours", "mins", "secs")
 
 test_that("Posterior Summary Table results match (linear)", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$time <- "dateYear"
   options$mcmcSamples <- 10
@@ -16,7 +16,7 @@ test_that("Posterior Summary Table results match (linear)", {
   for (i in 1:6) {
     options$time <- dateTimeVarNames[i]
     set.seed(1)
-    results <- runAnalysis(name = "Prophet", dataset = "prophetTest.csv", options = options)
+    results <- jaspTools::runAnalysis(name = "Prophet", dataset = "prophetTest.csv", options = options)
     table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetTable"]][["data"]]
     jaspTools::expect_equal_tables(table,
                                    list(20, -0.315422171025854, -0.193384551496492, "Growth rate (k)",
@@ -29,7 +29,7 @@ test_that("Posterior Summary Table results match (linear)", {
 })
 
 test_that("Posterior Summary Table results match (logistic)", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$capacity <- "contGamma"
   options$historyIndicator <- "histIdx"
@@ -41,7 +41,7 @@ test_that("Posterior Summary Table results match (logistic)", {
     options$time <- dateTimeVarNames[i]
     options$periodicalPredictionUnit <- dateTimeUnits[i]
     set.seed(1)
-    results <- runAnalysis("Prophet", "prophetTest.csv", options)
+    results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
     table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetTable"]][["data"]]
     jaspTools::expect_equal_tables(table,
                                    list(20, -7.29654434885841, -7.1818644571539, "Growth rate (k)", 1,
@@ -53,7 +53,7 @@ test_that("Posterior Summary Table results match (logistic)", {
 })
 
 test_that("Posterior Summary Table results match (covariates-linear)", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$time <- "dateDay"
   options$covariates <- list("contcor1", "contcor2")
@@ -71,7 +71,7 @@ test_that("Posterior Summary Table results match (covariates-linear)", {
     mode = "additive"))
   options$predictionSavePath <- ""
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list(20, -0.549276682026696, -0.198259467693576, "Growth rate (k)",
@@ -82,7 +82,7 @@ test_that("Posterior Summary Table results match (covariates-linear)", {
 })
 
 test_that("Posterior Summary Table results match (covariates-logistic)", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$time <- "dateDay"
   options$capacity <- "contGamma"
@@ -102,7 +102,7 @@ test_that("Posterior Summary Table results match (covariates-logistic)", {
     mode = "additive"))
   options$predictionSavePath <- ""
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list(20, -7.54755174599736, -7.22367062677889, "Growth rate (k)", 1,
@@ -114,7 +114,7 @@ test_that("Posterior Summary Table results match (covariates-logistic)", {
 })
 
 test_that("Posterior Summary Table results match (minimum-logistic)", {
-     options <- analysisOptions("Prophet")
+     options <- jaspTools::analysisOptions("Prophet")
      options$dependent <- "contNormal"
      options$time <- "dateDay"
      options$capacity <- "contGamma"
@@ -124,7 +124,7 @@ test_that("Posterior Summary Table results match (minimum-logistic)", {
      options$growth <- "logistic"
      options$predictionSavePath <- ""
      set.seed(1)
-     results <- runAnalysis("Prophet", "prophetTest.csv", options)
+     results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
      table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetTable"]][["data"]]
      jaspTools::expect_equal_tables(table,
           list(20, -7.29654434885841, -7.1818644571539, "Growth rate (k)", 1,
@@ -135,7 +135,7 @@ test_that("Posterior Summary Table results match (minimum-logistic)", {
 })
 
 test_that("Posterior Summary Table results match (constant-logistic)", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$time <- "dateDay"
   options$constantCapacity <- 10
@@ -144,7 +144,7 @@ test_that("Posterior Summary Table results match (constant-logistic)", {
   options$growth <- "logistic"
   options$predictionSavePath <- ""
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
     list(20, -3.59423543336109, -1.60259694991599, "Growth rate (k)", 1,
@@ -155,14 +155,14 @@ test_that("Posterior Summary Table results match (constant-logistic)", {
 })
 
 test_that("Parameter Estimates Table results match (MAP)", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$time <- "dateDay"
   options$predictionIntervalSamples <- 10
   options$estimation <- "map"
   options$predictionSavePath <- ""
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
     list(-0.164828536217365, 0.0290249527327304, 0.315932056357582))
@@ -172,14 +172,14 @@ test_that("Parameter Estimates Table results match (MAP)", {
   options$historyIndicator <- "histIdx"
   options$growth <- "logistic"
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
     list(-2.50859195109382, -2.31656506358638, 0.32805219661169))
 })
 
 test_that("Changepoint Posterior Summary Table results match (automatic)", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$mcmcSamples <- 10
   options$changePointTable <- TRUE
@@ -218,7 +218,7 @@ test_that("Changepoint Posterior Summary Table results match (automatic)", {
   for (i in 1:6) {
     options$time <- dateTimeVarNames[i]
     set.seed(1)
-    results <- runAnalysis("Prophet", "prophetTest.csv", options)
+    results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
     table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetChangePointTable"]][["data"]]
     jaspTools::expect_equal_tables(table,
                                    testList[[i]])
@@ -226,7 +226,7 @@ test_that("Changepoint Posterior Summary Table results match (automatic)", {
 })
 
 test_that("Changepoint Posterior Summary Table results match (variable)", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$time <- "dateDay"
   options$changepoints <- "isCpNum"
@@ -234,7 +234,7 @@ test_that("Changepoint Posterior Summary Table results match (variable)", {
   options$changePointTable <- TRUE
   options$predictionSavePath <- ""
   set.seed(1)
-  results <- runAnalysis("Prophet", "~/JASP/jaspProphet/tests/testthat/prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetChangePointTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
     list("2018-01-10", 0.0127051093923528, 0.0831327133770695, 0.0491114671753479,
@@ -251,7 +251,7 @@ test_that("Changepoint Posterior Summary Table results match (variable)", {
 })
 
 test_that("Changepoint Posterior Summary Table results match (MAP)", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$estimation <- "map"
   options$predictionIntervalSamples <- 10
@@ -276,7 +276,7 @@ test_that("Changepoint Posterior Summary Table results match (MAP)", {
   for (i in 1:6) {
     options$time <- dateTimeVarNames[i]
     set.seed(1)
-    results <- runAnalysis("Prophet", "prophetTest.csv", options)
+    results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
     table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetChangePointTable"]][["data"]]
     jaspTools::expect_equal_tables(table,
                                    testList[[i]])
@@ -284,7 +284,7 @@ test_that("Changepoint Posterior Summary Table results match (MAP)", {
 })
 
 test_that("Simulated Historical Forecasts Table results match", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$mcmcSamples <- 10
   options$crossValidation <- TRUE
@@ -301,7 +301,7 @@ test_that("Simulated Historical Forecasts Table results match", {
     options$periodicalPredictionUnit <- dateTimeUnits[i]
     options$crossValidationUnit <- dateTimeUnits[i]
     set.seed(1)
-    results <- runAnalysis("Prophet", "prophetTest.csv", options)
+    results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
     table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetModelEvaluationTable"]][["data"]]
     jaspTools::expect_equal_tables(table,
                                    list(1, 1.28406252543228, 2.85316090330143, 1.68913022094255, 2, 1.33018084622212,
@@ -314,7 +314,7 @@ test_that("Simulated Historical Forecasts Table results match", {
 })
 
 test_that("Simulated Historical Forecasts Table results match (MAP)", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$time <- "dateDay"
   options$mcmcSamples <- 10
@@ -334,7 +334,7 @@ test_that("Simulated Historical Forecasts Table results match (MAP)", {
     options$periodicalPredictionUnit <- dateTimeUnits[i]
     options$crossValidationUnit <- dateTimeUnits[i]
     set.seed(1)
-    results <- runAnalysis("Prophet", "prophetTest.csv", options)
+    results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
     table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetModelEvaluationTable"]][["data"]]
     jaspTools::expect_equal_tables(table,
       list(1, 1.08006422952046, 2.38069721000901, 1.54295081256954, 2, 0.995049383043513,
@@ -347,7 +347,7 @@ test_that("Simulated Historical Forecasts Table results match (MAP)", {
 })
 
 test_that("History Plot matches", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$historyPlot <- TRUE
   options$historyPlotAddLine <- TRUE
@@ -358,7 +358,7 @@ test_that("History Plot matches", {
     options$time <- dateTimeVarNames[i]
     options$periodicalPredictionUnit <- dateTimeUnits[i]
     set.seed(1)
-    results <- runAnalysis("Prophet", "prophetTest.csv", options)
+    results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
     plotName <- results[["results"]][["historyPlot"]][["data"]]
     testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
     jaspTools::expect_equal_plots(testPlot, paste0("history-plot-", dateTimeUnits[i]), dir="Prophet")
@@ -366,7 +366,7 @@ test_that("History Plot matches", {
 })
 
 test_that("Overall Forecast Plot matches", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$mcmcSamples <- 10
   options$forecastPlotsOverall <- TRUE
@@ -377,7 +377,7 @@ test_that("Overall Forecast Plot matches", {
     options$time <- dateTimeVarNames[i]
     options$periodicalPredictionUnit <- dateTimeUnits[i]
     set.seed(1)
-    results <- runAnalysis("Prophet", "prophetTest.csv", options)
+    results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
     plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetForecastPlots"]][["collection"]][["prophetMainContainer_prophetForecastPlots_prophetOverallForecastPlot"]][["data"]]
     testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
     jaspTools::expect_equal_plots(testPlot, paste0("overall-forecast-plot-", dateTimeUnits[i]), dir="Prophet")
@@ -390,28 +390,28 @@ test_that("Overall Forecast Plot matches", {
   options$forecastPlotsOverallAddCapacity <- TRUE
   options$forecastPlotsOverallAddMinimum <- TRUE
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetForecastPlots"]][["collection"]][["prophetMainContainer_prophetForecastPlots_prophetOverallForecastPlot"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "overall-forecast-plot-logistic", dir="Prophet")
 })
 
 test_that("Trend Forecast Plot matches", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$time <- "dateDay"
   options$mcmcSamples <- 10
   options$forecastPlotsTrend <- TRUE
   options$predictionSavePath <- ""
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetForecastPlots"]][["collection"]][["prophetMainContainer_prophetForecastPlots_prophetTrendForecastPlot"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "trend-forecast-plot", dir="Prophet")
 })
 
 test_that("Seasonality Plot matches", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$mcmcSamples <- 10
   options$seasonalityPlots <- "custom"
@@ -427,7 +427,7 @@ test_that("Seasonality Plot matches", {
                                         fourierOrder = 3,
                                         mode = "additive"))
     set.seed(1)
-    results <- runAnalysis("Prophet", "prophetTest.csv", options)
+    results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
     plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetSeasonalityPlots"]][["collection"]][["prophetMainContainer_prophetSeasonalityPlots_custom"]][["data"]]
     testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
     jaspTools::expect_equal_plots(testPlot, paste0("custom-seasonality-plot-", dateTimeUnits[i]), dir="Prophet")
@@ -442,14 +442,14 @@ test_that("Seasonality Plot matches", {
                                         fourierOrder = 3,
                                         mode = "multiplicative"))
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetSeasonalityPlots"]][["collection"]][["prophetMainContainer_prophetSeasonalityPlots_custom"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "custom-seasonality-plot-multi", dir="Prophet")
 })
 
 test_that("Covariate Plot matches", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$covariates <- "contcor1"
   options$historyIndicator <- "histIdx"
@@ -466,7 +466,7 @@ test_that("Covariate Plot matches", {
     options$time <- dateTimeVarNames[i]
     options$periodicalPredictionUnit <- dateTimeUnits[i]
     set.seed(1)
-    results <- runAnalysis("Prophet", "prophetTest.csv", options)
+    results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
     plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetCovariatePlots"]][["collection"]][["prophetMainContainer_prophetCovariatePlots_contcor1"]][["data"]]
     testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
     jaspTools::expect_equal_plots(testPlot, paste0("covariate-plot-", dateTimeUnits[i]), dir="Prophet")
@@ -477,14 +477,14 @@ test_that("Covariate Plot matches", {
   options$assignedCovariates[[1]][["mode"]] <- "multiplicative"
 
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetCovariatePlots"]][["collection"]][["prophetMainContainer_prophetCovariatePlots_contcor1"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "covariate-plot-multi", dir="Prophet")
 })
 
 test_that("Performance Plots match", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$mcmcSamples <- 10
   options$crossValidation <- TRUE
@@ -501,7 +501,7 @@ test_that("Performance Plots match", {
     options$periodicalPredictionUnit <- dateTimeUnits[i]
     options$crossValidationUnit <- dateTimeUnits[i]
     set.seed(1)
-    results <- runAnalysis("Prophet", "prophetTest.csv", options)
+    results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
 
     plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetEvaluationPlots"]][["collection"]][["prophetMainContainer_prophetEvaluationPlots_prophetPerformancePlotMse"]][["data"]]
     testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
@@ -518,7 +518,7 @@ test_that("Performance Plots match", {
 })
 
 test_that("Changepoint Plot matches", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$mcmcSamples <- 10
   options$parameterPlotsDelta <- TRUE
@@ -528,7 +528,7 @@ test_that("Changepoint Plot matches", {
     options$time <- dateTimeVarNames[i]
     options$periodicalPredictionUnit <- dateTimeUnits[i]
     set.seed(1)
-    results <- runAnalysis("Prophet", "prophetTest.csv", options)
+    results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
 
     plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetParameterPlots"]][["collection"]][["prophetMainContainer_prophetParameterPlots_prophetParameterPlotDelta"]][["data"]]
     testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
@@ -537,14 +537,14 @@ test_that("Changepoint Plot matches", {
 })
 
 test_that("Parameter Plots match", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$time <- "dateDay"
   options$mcmcSamples <- 10
   options$parameterPlotsMarginalDistributions <- TRUE
   options$predictionSavePath <- ""
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
 
   plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetParameterPlots"]][["collection"]][["prophetMainContainer_prophetParameterPlots_prophetParameterPlotMarginal"]][["collection"]][["prophetMainContainer_prophetParameterPlots_prophetParameterPlotMarginal_k"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
@@ -560,13 +560,13 @@ test_that("Parameter Plots match", {
 })
 
 test_that("Analysis handels errors", {
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$time <- "debString"
   options$mcmcSamples <- 10
   options$predictionSavePath <- ""
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   expect_identical(results[["status"]], "validationError", label = "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)")
 
   options$time <- "dateDay"
@@ -574,29 +574,29 @@ test_that("Analysis handels errors", {
   options$nonperiodicalPredictionStart <- "xxxx"
   options$nonperiodicalPredictionEnd <- "2018-01-03"
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   expect_identical(results[["status"]], "validationError", label = "'Start' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)")
 
   options$nonperiodicalPredictionStart <- "2018-01-03"
   options$nonperiodicalPredictionEnd <- "xxxx"
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   expect_identical(results[["status"]], "validationError", label = "'End' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)")
 
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$time <- "debString"
   options$changepoints <- "contBinom"
   options$mcmcSamples <- 10
   options$predictionSavePath <- ""
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   expect_identical(results[["status"]], "validationError", label = "'Changepoints' must be a logical variable (e.g., 0/1)")
 
   options$changepoints <- ""
   options$historyIndicator <- "contBinom"
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   expect_identical(results[["status"]], "validationError", label = "'History Indicator' must be a logical variable (e.g., 0/1)")
 
   options$historyIndicator <- ""
@@ -605,45 +605,45 @@ test_that("Analysis handels errors", {
   options$historyIndicator <- "histIdx"
   options$growth <- "logistic"
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   expect_identical(results[["status"]], "validationError", label = "'Carrying Capacity' must always be larger than 'Saturating Minimum'")
 
   options$minimum <- ""
   options$constantMinimum <- 0
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
-  expect_identical(results[["status"]], "validationError", label = "'Carrying Capacity' must always be larger than 'Constant Saturating Minimum'")
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
+  expect_identical(results[["status"]], "validationError", label = "'Carrying Capacity' must always be larger than 'Constant saturating minimum'")
 
   options$capacity <- ""
   options$constantCapacity <- -1
   options$minimum <- "contNarrow"
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
-  expect_identical(results[["status"]], "validationError", label = "'Constant Carrying Capacity' must always be larger than 'Saturating Minimum'")
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
+  expect_identical(results[["status"]], "validationError", label = "'Constant carrying capacity' must always be larger than 'Saturating Minimum'")
 
   options$minimum <- ""
   options$historyIndicator <- ""
   options$constantMinimum <- 0
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
-  expect_identical(results[["status"]], "validationError", label = "'Constant Carrying Capacity' must always be larger than 'Constant Saturating Minimum'")
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
+  expect_identical(results[["status"]], "validationError", label = "'Constant carrying capacity' must always be larger than 'Constant saturating minimum'")
 
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$time <- "dateDay"
   options$mcmcSamples <- 10
   options$predictionSavePath <- ""
   options$seasonalities <- list(list(name = "---",
                                      period = 4,
-                                     unit = dateTimeUnits[i],
+                                     unit = "days",
                                      priorSigma = 10,
                                      fourierOrder = 3,
                                      mode = "additive"))
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   expect_identical(results[["status"]], "validationError", label = "Seasonality names must only contain letters, number, dots, or underscores and must start with letters or dots that are not followed by a number")
 
-  options <- analysisOptions("Prophet")
+  options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$time <- "dateDay"
   options$capacity <- "contGamma"
@@ -651,13 +651,16 @@ test_that("Analysis handels errors", {
   options$mcmcSamples <- 10
   options$predictionSavePath <- ""
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   expect_identical(results[["status"]], "validationError", label = "'Carrying Capacity' must be supplied for predictions")
 
-  options$capacity <- ""
+  options <- jaspTools::analysisOptions("Prophet")
+  options$dependent <- "contNormal"
+  options$time <- "dateDay"
   options$covariates <- list("contcor1")
+  options$mcmcSamples <- 10
+  options$predictionSavePath <- ""
   set.seed(1)
-  results <- runAnalysis("Prophet", "prophetTest.csv", options)
+  results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   expect_identical(results[["status"]], "validationError", label = "'Covariates' must be supplied for predictions")
-
 })
