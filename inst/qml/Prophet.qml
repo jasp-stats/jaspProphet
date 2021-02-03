@@ -16,7 +16,7 @@ Form
 		AssignedVariablesList	{ name: "capacity"; title: qsTr("Carrying Capacity"); suggestedColumns: ["scale"]; singleVariable: true; id: cap; enabled: growth.value === "logistic"		}
 		AssignedVariablesList	{ name: "minimum"; title: qsTr("Saturating Minimum"); suggestedColumns: ["scale"]; singleVariable: true; id: floor; enabled: growth.value === "logistic"	}
 		AssignedVariablesList	{ name: "covariates"; title: qsTr("Covariates"); suggestedColumns: ["scale"];																				}
-		AssignedVariablesList	{ name: "historyIndicator"; title: qsTr("Include in Training"); suggestedColumns: ["scale"]; singleVariable: true												}
+		AssignedVariablesList	{ name: "historyIndicator"; title: qsTr("Include in Training"); suggestedColumns: ["scale"]; singleVariable: true											}
 	}
 	
 	columns: 3
@@ -106,7 +106,6 @@ Form
 					label: qsTr("Max. changepoints")
 					defaultValue: 25
 				}
-
 				DoubleField
 				{
 					name: "changepointRange"
@@ -115,7 +114,6 @@ Form
 					decimals: 2
 					max: 1
 				}
-
 				DoubleField
 				{
 					name: "changepointPriorScale"
@@ -124,7 +122,7 @@ Form
 					decimals: 3
 				}
 			}
-
+			
 			RadioButtonGroup
 			{
 				name: "estimation"
@@ -220,12 +218,12 @@ Form
 				spacing: 0 * preferencesModel.uiScale
 				RowLayout
 				{
-					Label { text: qsTr("Name"); Layout.preferredWidth: 100 * preferencesModel.uiScale }
-					Label { text: qsTr("Period"); Layout.preferredWidth: 45 * preferencesModel.uiScale }
-					Label { text: qsTr("Unit"); Layout.preferredWidth: 80 * preferencesModel.uiScale }
-					Label { text: qsTr("Normal prior σ²"); Layout.preferredWidth: 100 * preferencesModel.uiScale }
-					Label { text: qsTr("Fourier order"); Layout.preferredWidth: 70 * preferencesModel.uiScale }
-					Label { text: qsTr("Mode"); Layout.preferredWidth: 122 * preferencesModel.uiScale }
+					Label { text: qsTr("Name"); Layout.preferredWidth: 100 * preferencesModel.uiScale				}
+					Label { text: qsTr("Period"); Layout.preferredWidth: 45 * preferencesModel.uiScale				}
+					Label { text: qsTr("Unit"); Layout.preferredWidth: 80 * preferencesModel.uiScale				}
+					Label { text: qsTr("Normal prior σ²"); Layout.preferredWidth: 100 * preferencesModel.uiScale	}
+					Label { text: qsTr("Fourier order"); Layout.preferredWidth: 70 * preferencesModel.uiScale		}
+					Label { text: qsTr("Mode"); Layout.preferredWidth: 122 * preferencesModel.uiScale				}
 				}
 				ComponentsList
 				{
@@ -308,8 +306,8 @@ Form
 								indexDefaultValue: 0
 								values:
 									[
-									{ label: qsTr("Additive"), value: "additive" },
-									{ label: qsTr("Multiplicative"), value: "multiplicative" },
+									{ label: qsTr("Additive"), value: "additive"				},
+									{ label: qsTr("Multiplicative"), value: "multiplicative"	},
 								]
 							}
 						}
@@ -570,8 +568,8 @@ Form
 		VariablesForm
 		{
 			preferredHeight: 0.5 * jaspTheme.smallDefaultVariablesFormHeight
-			AvailableVariablesList { name: "covariateNames"; title: qsTr("Covariates"); source: "covariates"			}
-			AssignedVariablesList { name: "covariatePlots"; title: qsTr("Covariate Plots")								}
+			AvailableVariablesList { name: "covariateNames"; title: qsTr("Covariates"); source: "covariates"	}
+			AssignedVariablesList { name: "covariatePlots"; title: qsTr("Covariate Plots")						}
 		}
 
 		Group
