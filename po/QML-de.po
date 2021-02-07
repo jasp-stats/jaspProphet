@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-31 10:41+0000\n"
+"PO-Revision-Date: 2021-02-08 10:50+0000\n"
 "Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-qml/de/>\n"
@@ -31,10 +31,9 @@ msgctxt "ProphetLinear|"
 msgid "Time"
 msgstr "Zeit"
 
-#, fuzzy
 msgctxt "ProphetLinear|"
 msgid "Changepoints"
-msgstr "Abschneide-Punkte"
+msgstr ""
 
 msgctxt "ProphetLinear|"
 msgid "Covariates"
