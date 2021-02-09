@@ -25,26 +25,53 @@ Form
 	{
 		name: "historyPlot"
 		label: qsTr("History plot")
+		id: histplot
+		
+		RadioButtonGroup
+		{
+			name: "historyPlotShow"
+			visible: histplot.checked
+			columns: 3
+			
+			RadioButton
+			{
+				value: "points"
+				label: qsTr("Points")
+				checked: true
+			}
+			RadioButton
+			{
+				value: "line"
+				label: qsTr("Line")
+			}
+			RadioButton
+			{
+				value: "both"
+				label: qsTr("Both")
+			}
+		}
+		
 		CheckBox
 		{
-			name: "historyPlotAddLine"
-			label: qsTr("Add line")
-		}
-		Group
-		{
-			TextField
+			name: "historyPlotRange"
+			label: qsTr("Plot time interval")
+			
+			Group
 			{
-				name: "historyPlotStart"
-				label: qsTr("Start")
-				placeholderText: "YYYY-MM-DD HH:MM:SS"
-				fieldWidth: 150
-			}
-			TextField
-			{
-				name: "historyPlotEnd"
-				label: qsTr("End")
-				placeholderText: "YYYY-MM-DD HH:MM:SS"
-				fieldWidth: 150
+				TextField
+				{
+					name: "historyPlotStart"
+					label: qsTr("Start")
+					placeholderText: "YYYY-MM-DD HH:MM:SS"
+					fieldWidth: 150
+				}
+				TextField
+				{
+					name: "historyPlotEnd"
+					label: qsTr("End")
+					placeholderText: "YYYY-MM-DD HH:MM:SS"
+					fieldWidth: 150
+				}
 			}
 		}
 	}
@@ -512,19 +539,25 @@ Form
 						label: qsTr("Show saturating minimum")
 						visible: growth.value === "logistic"
 					}
-					TextField
+					CheckBox
 					{
-						name: "forecastPlotsOverallStart"
-						label: qsTr("Start")
-						placeholderText: "YYYY-MM-DD HH:MM:SS"
-						fieldWidth: 150
-					}
-					TextField
-					{
-						name: "forecastPlotsOverallEnd"
-						label: qsTr("End")
-						placeholderText: "YYYY-MM-DD HH:MM:SS"
-						fieldWidth: 150
+						name: "forecastPlotsOverallRange"
+						label: qsTr("Plot time interval")
+						
+						TextField
+						{
+							name: "forecastPlotsOverallStart"
+							label: qsTr("Start")
+							placeholderText: "YYYY-MM-DD HH:MM:SS"
+							fieldWidth: 150
+						}
+						TextField
+						{
+							name: "forecastPlotsOverallEnd"
+							label: qsTr("End")
+							placeholderText: "YYYY-MM-DD HH:MM:SS"
+							fieldWidth: 150
+						}
 					}
 				}
 			}
@@ -537,22 +570,27 @@ Form
 					name: "forecastPlotsTrendAddChangepoints"
 					label: qsTr("Show changepoints")
 				}
-				Group
+				CheckBox
 				{
-					columns: 2
-					TextField
+					name: "forecastPlotsTrendRange"
+					label: qsTr("Plot time interval")
+					
+					Group
 					{
-						name: "forecastPlotsTrendStart"
-						label: qsTr("Start")
-						placeholderText: "YYYY-MM-DD HH:MM:SS"
-						fieldWidth: 150
-					}
-					TextField
-					{
-						name: "forecastPlotsTrendEnd"
-						label: qsTr("End")
-						placeholderText: "YYYY-MM-DD HH:MM:SS"
-						fieldWidth: 150
+						TextField
+						{
+							name: "forecastPlotsTrendStart"
+							label: qsTr("Start")
+							placeholderText: "YYYY-MM-DD HH:MM:SS"
+							fieldWidth: 150
+						}
+						TextField
+						{
+							name: "forecastPlotsTrendEnd"
+							label: qsTr("End")
+							placeholderText: "YYYY-MM-DD HH:MM:SS"
+							fieldWidth: 150
+						}
 					}
 				}
 			}
@@ -569,7 +607,25 @@ Form
 		{
 			preferredHeight: 0.5 * jaspTheme.smallDefaultVariablesFormHeight
 			AvailableVariablesList { name: "covariateNames"; title: qsTr("Covariates"); source: "covariates"	}
-			AssignedVariablesList { name: "covariatePlots"; title: qsTr("Covariate Plots")						}
+			AssignedVariablesList
+			{
+				name: "covariatePlots"
+				title: qsTr("Covariate Plots")
+				rowComponent: Row
+				{
+					DropDown
+					{
+						name: "covariatePlotsShow"
+						indexDefaultValue: 2
+						values:
+						[
+							{ label: qsTr("Points"), value: "points"	},
+							{ label: qsTr("Line"), value: "line"		},
+							{ label: qsTr("Both"), value: "both"		}
+						]
+					}
+				}
+			}
 		}
 
 		Group

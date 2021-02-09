@@ -648,7 +648,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   if (!ready || !options$historyPlot) return()
   
   prophetHistoryPlot <- createJaspPlot(title = "History Plot", height = 320, width = 480)
-  prophetHistoryPlot$dependOn(c("dependent", "time", "historyIndicator", "historyPlot", "historyPlotAddLine", "historyPlotStart",
+  prophetHistoryPlot$dependOn(c("dependent", "time", "historyIndicator", "historyPlot", "historyPlotShow", "historyPlotRange", "historyPlotStart",
                                "historyPlotEnd"))
   prophetHistoryPlot$position <- 1
   
@@ -678,20 +678,22 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 
   xLimits <- range(histDat$x)
   
-  if (options$historyPlotStart != "") {
-    xLimLower <- try(as.POSIXct(options$historyPlotStart))
-    if (isTryError(xLimLower))
-      stop(gettext("'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
-    else
-      xLimits[1] <- xLimLower
-  }
+  if (options$historyPlotRange) {
+    if (options$historyPlotStart != "") {
+      xLimLower <- try(as.POSIXct(options$historyPlotStart))
+      if (isTryError(xLimLower))
+        stop(gettext("'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
+      else
+        xLimits[1] <- xLimLower
+    }
 
-  if (options$historyPlotEnd != "") {
-    xLimUpper <- try(as.POSIXct(options$historyPlotEnd))
-    if (isTryError(xLimUpper))
-      stop(gettext("'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
-    else
-      xLimits[2] <- xLimUpper
+    if (options$historyPlotEnd != "") {
+      xLimUpper <- try(as.POSIXct(options$historyPlotEnd))
+      if (isTryError(xLimUpper))
+        stop(gettext("'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
+      else
+        xLimits[2] <- xLimUpper
+    }
   }
 
   xBreaks <- pretty(xLimits)
@@ -700,12 +702,13 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   
   p <- ggplot2::ggplot(data = histDat, mapping = ggplot2::aes(x = x, y = y))
 
-  if (options$historyPlotAddLine)
+  if (options$historyPlotShow == "line" || options$historyPlotShow == "both")
     p <- p + ggplot2::geom_line(color = "black", size = 1.25)
 
-  p <- p + ggplot2::geom_point(size = 3, color = "grey") +
+  if (options$historyPlotShow == "points" || options$historyPlotShow == "both")
+    p <- p + ggplot2::geom_point(size = 3, color = "grey")
 
-    ggplot2::scale_x_datetime(name = options$time, 
+  p <- p + ggplot2::scale_x_datetime(name = options$time, 
                                      breaks = xBreaks, 
                                      labels = xLabels,
                                      limits = range(xBreaks)) + 
@@ -744,7 +747,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   prophetOverallForecastPlot <- createJaspPlot(title = gettext("Overall"), height = 320, width = 480)
   prophetOverallForecastPlot$dependOn(c("forecastPlotsOverall", "forecastPlotsOverallAddData",
                                         "forecastPlotsOverallAddCapacity", "forecastPlotsOverallAddMinimum",
-                                       "forecastPlotsOverallAddChangepoints",
+                                       "forecastPlotsOverallAddChangepoints", "forecastPlotsOverallRange",
                                        "forecastPlotsOverallStart", "forecastPlotsOverallEnd"))
   
   p <- try(.prophetForecastPlotFill(prophetPredictionResults, dataset, options, type = "yhat"))
@@ -764,6 +767,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   
   prophetTrendForecastPlot <- createJaspPlot(title = gettext("Trend"), height = 320, width = 480)
   prophetTrendForecastPlot$dependOn(c("forecastPlotsTrend", "forecastPlotsTrendAddChangepoints",
+                                       "forecastPlotsTrendRange",
                                        "forecastPlotsTrendStart", "forecastPlotsTrendEnd"))
   
   p <- try(.prophetForecastPlotFill(prophetPredictionResults, dataset, options, type = "trend"))
@@ -949,36 +953,40 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 
   xLimits <- range(df$x)
 
-  if (options$forecastPlotsOverallStart != "" && type == "yhat") {
-    xLimLower <- try(as.POSIXct(options$forecastPlotsOverallStart))
-    if (isTryError(xLimLower))
-      stop(gettext("'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
-    else
-      xLimits[1] <- xLimLower
+  if (options$forecastPlotsOverallRange) {
+    if (options$forecastPlotsOverallStart != "" && type == "yhat") {
+      xLimLower <- try(as.POSIXct(options$forecastPlotsOverallStart))
+      if (isTryError(xLimLower))
+        stop(gettext("'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
+      else
+        xLimits[1] <- xLimLower
+    }
+
+    if (options$forecastPlotsOverallEnd != "" && type == "yhat") {
+      xLimUpper <- try(as.POSIXct(options$forecastPlotsOverallEnd))
+      if (isTryError(xLimUpper))
+        stop(gettext("'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
+      else
+        xLimits[2] <- xLimUpper
+    }
   }
 
-  if (options$forecastPlotsOverallEnd != "" && type == "yhat") {
-    xLimUpper <- try(as.POSIXct(options$forecastPlotsOverallEnd))
-    if (isTryError(xLimUpper))
-      stop(gettext("'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
-    else
-      xLimits[2] <- xLimUpper
-  }
+  if (options$forecastPlotsTrendRange) {
+    if (options$forecastPlotsTrendStart != "" && type == "trend") {
+      xLimLower <- try(as.POSIXct(options$forecastPlotsTrendStart))
+      if (isTryError(xLimLower))
+        stop(gettext("'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
+      else
+        xLimits[1] <- xLimLower
+    }
 
-  if (options$forecastPlotsTrendStart != "" && type == "trend") {
-    xLimLower <- try(as.POSIXct(options$forecastPlotsTrendStart))
-    if (isTryError(xLimLower))
-      stop(gettext("'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
-    else
-      xLimits[1] <- xLimLower
-  }
-
-  if (options$forecastPlotsTrendEnd != "" && type == "trend") {
-    xLimUpper <- try(as.POSIXct(options$forecastPlotsTrendEnd))
-    if (isTryError(xLimUpper))
-      stop(gettext("'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
-    else
-      xLimits[2] <- xLimUpper
+    if (options$forecastPlotsTrendEnd != "" && type == "trend") {
+      xLimUpper <- try(as.POSIXct(options$forecastPlotsTrendEnd))
+      if (isTryError(xLimUpper))
+        stop(gettext("'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"))
+      else
+        xLimits[2] <- xLimUpper
+    }
   }
 
   xBreaks <- pretty(xLimits)
@@ -1012,12 +1020,12 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   prophetModelResults <- jaspResults[["prophetResults"]][["prophetModelResults"]]$object
   
   prophetCovariatePlots <- createJaspContainer(title = gettext("Covariate Plots"))
-  prophetCovariatePlots$dependOn(c("covariatePlots"))
+  prophetCovariatePlots$dependOn(c("covariatePlots", "covariatePlotsShow"))
   prophetCovariatePlots$position <- 7
 
   if (length(options$covariatePlots) > 0) {
-    for (name in options$covariatePlots) {
-      .prophetCreateCovariatePlot(prophetCovariatePlots, dataset, name, prophetModelResults, options)
+    for (cov in options$covariatePlots) {
+      .prophetCreateCovariatePlot(prophetCovariatePlots, dataset, cov, prophetModelResults, options)
     }
   }
   
@@ -1026,29 +1034,32 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   return()
 }
 
-.prophetCreateCovariatePlot <- function(prophetCovariatePlots, dataset, name, prophetModelResults, options) {
+.prophetCreateCovariatePlot <- function(prophetCovariatePlots, dataset, cov, prophetModelResults, options) {
+  name <- cov[["variable"]]
   if (!is.null(prophetCovariatePlots[[name]])) return()
 
   covMode <- prophetModelResults[["extra_regressors"]][[name]][["mode"]]
   covariatePlot <- createJaspPlot(title = name, height = 320, width = 480)
-  covariatePlot$plotObject <- .prophetCovariatePlotFill(dataset, name, options, covMode)
+  covariatePlot$plotObject <- .prophetCovariatePlotFill(dataset, cov, options, covMode)
   prophetCovariatePlots[[name]] <- covariatePlot
 
   return()
 }
 
-.prophetCovariatePlotFill <- function(dataset, name, options, mode) {
+.prophetCovariatePlotFill <- function(dataset, cov, options, mode) {
 
-  y <- dataset[[encodeColNames(name)]]
+  y <- dataset[[encodeColNames(cov[["variable"]])]]
   x <- as.POSIXct(dataset[[encodeColNames(options$time)]], tz = "UTC")
 
   df <- data.frame(x = x, y = y)
 
-  p <- ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = x, y = y)) +
+  p <- ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = x, y = y))
 
-    ggplot2::geom_line(color = "black", size = 1.25) +
+  if (cov[["covariatePlotsShow"]] == "line" || cov[["covariatePlotsShow"]] == "both")
+    p <- p + ggplot2::geom_line(color = "black", size = 1.25)
 
-    ggplot2::geom_point(size = 3, color = "grey")
+  if (cov[["covariatePlotsShow"]] == "points" || cov[["covariatePlotsShow"]] == "both")
+    p <- p + ggplot2::geom_point(size = 3, color = "grey")
 
   xBreaks <- pretty(x)
   xLabels <- attr(xBreaks, "labels")
@@ -1058,12 +1069,12 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     ggplot2::scale_x_datetime(name = options$time, breaks = xBreaks, labels = xLabels, limits = range(xBreaks))
 
   if (mode == "multiplicative") {
-    p <- p + ggplot2::scale_y_continuous(name = name,
+    p <- p + ggplot2::scale_y_continuous(name = cov[["variable"]],
                                          labels = scales::percent,
                                          breaks = yBreaks,
                                          limits = range(yBreaks))
   } else {
-    p <- p + ggplot2::scale_y_continuous(name = name,
+    p <- p + ggplot2::scale_y_continuous(name = cov[["variable"]],
                                          breaks = yBreaks,
                                          limits = range(yBreaks))
   }

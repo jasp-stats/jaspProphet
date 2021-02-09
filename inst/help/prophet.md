@@ -19,9 +19,12 @@ Prophet allows the user to predict time series on different scales taking into a
 
 #### History Plot
 - This option plots the dependent variable over time. Only plots cases that are selected by the history indicator variable.
-    - Add line: Connects the cases in the history plot with a line.
-    - Start: A text string at which time stamp the history plot should start its x-axis. Needs to be in the same format as the time variable.
-    - End: A text string at which time stamp the history plot should end its x-axis. Needs to be in the same format as the time variable.
+    - Line: Connects the cases in the history plot with a line.
+    - Points: Adds the cases to the history plot as points.
+    - Both: Displays cases as points and connects them with a line.
+    - Plot time interval: Plot only a specified time interval of the history.
+        - Start: A text string at which time stamp the history plot should start its x-axis. Needs to be in the same format as the time variable.
+        - End: A text string at which time stamp the history plot should end its x-axis. Needs to be in the same format as the time variable.
 
 #### Growth
 - Linear: When this option is selected, Prophet uses linear growth for prediction.
@@ -89,14 +92,17 @@ Prophet allows the user to predict time series on different scales taking into a
     - Show changepoints: Adds the changepoints to the plot.
     - Show carrying capacity: Adds the carrying capacity to the plot. Only enabled for logistic growth.
     - Show saturating minimum: Adds the saturating minimum to the plot. Only enabled for logistic growth.
-    - Start: A text string at which time stamp the plot should start its x-axis. Needs to be in the same format as the time variable.
-    - End: A text string at which time stamp the plot should end its x-axis. Needs to be in the same format as the time variable.
+    - Plot time interval: Plot only a specified time interval of the overall forecast.
+        - Start: A text string at which time stamp the plot should start its x-axis. Needs to be in the same format as the time variable.
+        - End: A text string at which time stamp the plot should end its x-axis. Needs to be in the same format as the time variable.
 - Trend: Plots the trend forecast by Prophet for the time interval specified in prediction.
     - Show changepoints: Adds the changepoints to the plot.
-    - Start: A text string at which time stamp the plot should start its x-axis. Needs to be in the same format as the time variable.
-    - End: A text string at which time stamp the plot should end its x-axis. Needs to be in the same format as the time variable.
+    - Plot time interval: Plot only a specified time interval of the trend.
+        - Start: A text string at which time stamp the plot should start its x-axis. Needs to be in the same format as the time variable.
+        - End: A text string at which time stamp the plot should end its x-axis. Needs to be in the same format as the time variable.
 - Seasonality Plots: Plots the estimated seasonalities.
 - Covariate Plots: Plots the covariate time series.
+    - Select wether the covariate cases will be displayed as points and/or be connected by a line.
 
 #### Performance Plots
 - Mean squared error (MSE): Plots the MSE for each unit in the horizon.

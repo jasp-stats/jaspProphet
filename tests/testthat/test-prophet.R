@@ -350,7 +350,7 @@ test_that("History Plot matches", {
   options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$historyPlot <- TRUE
-  options$historyPlotAddLine <- TRUE
+  options$historyPlotShow <- "both"
   options$mcmcSamples <- 10
   options$predictionSavePath <- ""
 
@@ -455,7 +455,7 @@ test_that("Covariate Plot matches", {
   options$historyIndicator <- "histIdx"
   options$mcmcSamples <- 10
   options$predictionSavePath <- ""
-  options$covariatePlots <- "contcor1"
+  options$covariatePlots <- list(list(variable = "contcor1", covariatePlotsShow = "both"))
   options$assignedCovariates <- list(list(
     variable = "contcor1",
     priorSigma = 10,
