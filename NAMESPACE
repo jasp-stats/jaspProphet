@@ -1,2 +1,2 @@
-export(ProphetLinear)
+export(Prophet)
   import('prophet');
