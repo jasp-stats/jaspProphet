@@ -4,15 +4,17 @@ msgstr ""
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-03-06 15:53\n"
 "PO-Revision-Date: 2020-12-02 21:29+0000\n"
-"Last-Translator: JASP Stats <F.A.M.Meerhoff@uva.nl>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/jasp-engine/"
-"nl/>\n"
-"Language: nl\n"
+"Last-Translator: JASP Stats <b.boutin@uva.nl>\n"
+"Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
+"jaspProphet/pt/>\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: en_US\n"
+"X-Source-Language: American English\n"
+"X-Qt-Contexts: true\n"
 
 msgid "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
@@ -68,41 +70,44 @@ msgstr ""
 
 #, fuzzy
 msgid "Residual variance (σ²)"
-msgstr "Residu varianties"
+msgstr "Variâncias residual"
 
+#, fuzzy
 msgid "Posterior Summary Table"
-msgstr ""
+msgstr "Amostras posteriores"
 
 #, fuzzy
 msgid "summaryCredibleIntervalWidth"
-msgstr "95%% Geloofwaardigheidsinterval"
+msgstr "Intervalo de credibilidade"
 
 msgid "% CI"
 msgstr ""
 
+#, fuzzy
 msgid "Parameter"
-msgstr "Parameter"
+msgstr "Parâmetros"
 
+#, fuzzy
 msgid "Mean"
-msgstr "Gemiddelde"
+msgstr "Médias"
 
 msgid "SD"
-msgstr "SD"
+msgstr ""
 
 msgid "Lower"
-msgstr "Onder"
+msgstr ""
 
 msgid "Upper"
-msgstr "Boven"
+msgstr ""
 
 msgid "R-hat"
-msgstr "R-hat"
+msgstr ""
 
 msgid "ESS (bulk)"
-msgstr "ESS (bulk)"
+msgstr ""
 
 msgid "ESS (tail)"
-msgstr "ESS (staart)"
+msgstr ""
 
 msgid ""
 "Prophet might need a long time to compute the results. You can try it first "
@@ -112,7 +117,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Residual variance (sigma)"
-msgstr "Residu varianties"
+msgstr "Variâncias residual"
 
 msgid "Changepoint Estimates Table"
 msgstr ""
@@ -120,9 +125,8 @@ msgstr ""
 msgid "Changepoint Posterior Summary Table"
 msgstr ""
 
-#, fuzzy
 msgid "Changepoint"
-msgstr "F Verandering"
+msgstr ""
 
 msgid "Change in growth rate (δ)"
 msgstr ""
@@ -130,15 +134,17 @@ msgstr ""
 msgid "Simulated Historical Forecasts Table"
 msgstr ""
 
+#, fuzzy
 msgid "Horizon"
-msgstr ""
+msgstr "Eixo Horizontal"
 
 #, fuzzy
 msgid "MSE"
-msgstr "RMSE"
+msgstr "RMSEA"
 
+#, fuzzy
 msgid "RMSE"
-msgstr "RMSE"
+msgstr "RMSEA"
 
 msgid "MAPE"
 msgstr ""
@@ -151,7 +157,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Forecast Plots"
-msgstr "Forestgrafiek"
+msgstr "Diagramas Separados"
 
 msgid "Overall"
 msgstr ""
@@ -161,7 +167,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Seasonality Plots"
-msgstr "Centraliteitsgrafiek"
+msgstr "Diagramas Separados"
 
 msgid "Time (min:sec)"
 msgstr ""
@@ -194,25 +200,24 @@ msgstr ""
 
 #, fuzzy
 msgid "Covariate Plots"
-msgstr "Forestgrafiek"
+msgstr "Covariáveis"
 
+#, fuzzy
 msgid "Performance Plots"
-msgstr ""
+msgstr "Diagramas Separados"
 
 #, fuzzy
 msgid "Parameter Plots"
-msgstr "Parameter"
+msgstr "Parâmetros"
 
-#, fuzzy
 msgid "Changepoint Plot"
-msgstr "F Verandering"
+msgstr ""
 
 msgid "Change in growth rate"
 msgstr ""
 
-#, fuzzy
 msgid "Posterior Distributions"
-msgstr "Marginale Posterior verdelingen"
+msgstr ""
 
 msgid "Growth rate"
 msgstr ""
@@ -222,19 +227,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Residual variance"
-msgstr "Residu varianties"
+msgstr "Variâncias residual"
 
 msgid "Density"
-msgstr "Dichtheid"
-
-#, fuzzy
-#~ msgid "Overall Forecast Plot"
-#~ msgstr "Forestgrafiek"
-
-#, fuzzy
-#~ msgid "Trend Forecast Plot"
-#~ msgstr "Forestgrafiek"
-
-#, fuzzy
-#~ msgid "Seasonality Plot"
-#~ msgstr "Centraliteitsgrafiek"
+msgstr ""

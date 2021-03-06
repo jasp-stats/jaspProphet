@@ -1,0 +1,119 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: jaspProphet 0.13.0\n"
+"POT-Creation-Date: 2021-01-05 09:39\n"
+"PO-Revision-Date: 2021-02-10 07:50+0000\n"
+"Last-Translator: Koji Kosugi <kosugitti@gmail.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
+"jaspprophet-r/ja/>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.5-dev\n"
+
+msgid "Error in converting variable 'Time' into dates: 'Time' needs to be in a date-like format (e.g., yyyy-mm-dd)"
+msgstr ""
+
+msgid "Error in setting changepoints: Variable 'Changepoints' must have two levels"
+msgstr ""
+
+msgid "Error in converting argument 'Start date' into a date: 'Start date' needs to be in a date-like format (e.g., yyyy-mm-dd)"
+msgstr ""
+
+msgid "Error in converting argument 'End date' into a date: 'End date' needs to be in a date-like format (e.g., yyyy-mm-dd)"
+msgstr ""
+
+msgid "Error in predicting future values with covariates: Covariates need to be supplied for predicted time intervals"
+msgstr ""
+
+msgid "Less data than horizon after initial window."
+msgstr ""
+
+msgid "Make horizon or initial shorter."
+msgstr ""
+
+msgid "Growth rate (k)"
+msgstr ""
+
+msgid "Offset (m)"
+msgstr ""
+
+msgid "Residual variance (sigma)"
+msgstr ""
+
+msgid "95% Credible Interval"
+msgstr ""
+
+msgid "posteriorSummaryPlotCredibleIntervalValue"
+msgstr ""
+
+msgid "Parameter"
+msgstr "パラメータ"
+
+msgid "Mean"
+msgstr "平均値"
+
+msgid "SD"
+msgstr "標準偏差"
+
+msgid "Lower"
+msgstr "下"
+
+msgid "Upper"
+msgstr "上"
+
+msgid "R-hat"
+msgstr ""
+
+msgid "ESS (bulk)"
+msgstr ""
+
+msgid "ESS (tail)"
+msgstr ""
+
+msgid "Changepoint"
+msgstr ""
+
+msgid "Change in growth rate (delta)"
+msgstr ""
+
+msgid "Horizon"
+msgstr ""
+
+msgid "MSE"
+msgstr ""
+
+msgid "RMSE"
+msgstr ""
+
+msgid "MAPE"
+msgstr ""
+
+msgid "Time"
+msgstr ""
+
+msgid "Forecast Plots"
+msgstr ""
+
+msgid "Overall Forecast Plot"
+msgstr ""
+
+msgid "Trend Forecast Plot"
+msgstr ""
+
+msgid "Seasonality Plots"
+msgstr ""
+
+msgid "Seasonality Plot"
+msgstr ""
+
+msgid "Horizon (in days)"
+msgstr ""
+
+msgid "Marginal Posterior Distributions"
+msgstr ""
+
+msgid "Density"
+msgstr "密度"

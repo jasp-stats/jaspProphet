@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2021-01-05 09:39\n"
+"POT-Creation-Date: 2021-03-06 15:53\n"
 "PO-Revision-Date: 2021-01-31 10:41+0000\n"
 "Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/jasp/"
-"jaspprophet-r/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/jasp/jaspprophet-"
+"r/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,42 +14,59 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
 "X-Generator: Weblate 4.5-dev\n"
 
-msgid ""
-"Error in converting variable 'Time' into dates: 'Time' needs to be in a date-"
-"like format (e.g., yyyy-mm-dd)"
+#, fuzzy
+msgid "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
 "Fehler bei Umwandlung der Variablen 'Zeit' in Datumsangaben: 'Zeit' muss in "
 "einem datumsähnlichen Format vorliegen (z. B. JJJJ-MM-TT)"
 
+#, fuzzy
 msgid ""
-"Error in setting changepoints: Variable 'Changepoints' must have two levels"
+"'Start' for nonperiodical prediction must be in a date-like format (e.g., "
+"yyyy-mm-dd hh:mm:ss)"
+msgstr ""
+"Fehler bei Umwandlung der Variablen 'Zeit' in Datumsangaben: 'Zeit' muss in "
+"einem datumsähnlichen Format vorliegen (z. B. JJJJ-MM-TT)"
+
+#, fuzzy
+msgid ""
+"'End' for nonperiodical prediction must be in a date-like format (e.g., yyyy-"
+"mm-dd hh:mm:ss)"
+msgstr ""
+"Fehler bei Umwandlung der Variablen 'Zeit' in Datumsangaben: 'Zeit' muss in "
+"einem datumsähnlichen Format vorliegen (z. B. JJJJ-MM-TT)"
+
+msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
+msgstr ""
+
+msgid "'History Indicator' must be a logical variable (e.g., 0/1)"
+msgstr ""
+
+msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
 msgstr ""
 
 msgid ""
-"Error in converting argument 'Start date' into a date: 'Start date' needs to "
-"be in a date-like format (e.g., yyyy-mm-dd)"
+"'Carrying Capacity' must always be larger than 'Constant saturating minimum'"
 msgstr ""
-"Fehler bei Umwandlung des Arguments 'Startdatum' in ein Datum: 'Startdatum' "
-"muss in einem datumsähnlichen Format sein (z. B. JJJJ-MM-TT)"
 
 msgid ""
-"Error in converting argument 'End date' into a date: 'End date' needs to be "
-"in a date-like format (e.g., yyyy-mm-dd)"
+"'Constant carrying capacity' must always be larger than 'Saturating Minimum'"
 msgstr ""
-"Fehler bei Umwandlung des Arguments 'Enddatum' in ein Datum: 'Enddatum' muss "
-"in einem datumsähnlichen Format vorliegen (z. B. JJJJ-MM-TT)"
 
 msgid ""
-"Error in predicting future values with covariates: Covariates need to be "
-"supplied for predicted time intervals"
-msgstr ""
-"Fehler bei der Vorhersage zukünftiger Werte mit Kovariaten: Kovariaten "
-"müssen für vorhergesagte Zeitintervalle angegeben werden"
-
-msgid "Less data than horizon after initial window."
+"'Constant carrying capacity' must always be larger than 'Constant saturating "
+"minimum'"
 msgstr ""
 
-msgid "Make horizon or initial shorter."
+msgid ""
+"Seasonality names must only contain letters, number, dots, or underscores "
+"and must start with letters or dots that are not followed by a number"
+msgstr ""
+
+msgid "'Carrying Capacity' must be supplied for predictions"
+msgstr ""
+
+msgid "'Covariates' must be supplied for predictions"
 msgstr ""
 
 msgid "Growth rate (k)"
@@ -58,13 +75,18 @@ msgstr "Wachstumsrate (k)"
 msgid "Offset (m)"
 msgstr ""
 
-msgid "Residual variance (sigma)"
+#, fuzzy
+msgid "Residual variance (σ²)"
 msgstr "Residualvarianz (sigma)"
 
-msgid "95% Credible Interval"
+msgid "Posterior Summary Table"
+msgstr ""
+
+#, fuzzy
+msgid "summaryCredibleIntervalWidth"
 msgstr "95% Glaubwürdigkeitsintervall"
 
-msgid "posteriorSummaryPlotCredibleIntervalValue"
+msgid "% CI"
 msgstr ""
 
 msgid "Parameter"
@@ -91,11 +113,30 @@ msgstr "ESS (Großteil)"
 msgid "ESS (tail)"
 msgstr "ESS (Randbereich)"
 
+msgid ""
+"Prophet might need a long time to compute the results. You can try it first "
+"with fewer MCMC samples to see if it works and if you specified the model "
+"correctly (e.g., set 'Samples = 10')."
+msgstr ""
+
+msgid "Residual variance (sigma)"
+msgstr "Residualvarianz (sigma)"
+
+msgid "Changepoint Estimates Table"
+msgstr ""
+
+msgid "Changepoint Posterior Summary Table"
+msgstr ""
+
 msgid "Changepoint"
 msgstr ""
 
-msgid "Change in growth rate (delta)"
+#, fuzzy
+msgid "Change in growth rate (δ)"
 msgstr "Änderung der Wachstumsrate (Delta)"
+
+msgid "Simulated Historical Forecasts Table"
+msgstr ""
 
 msgid "Horizon"
 msgstr "Horizont"
@@ -109,29 +150,127 @@ msgstr "RMSE"
 msgid "MAPE"
 msgstr ""
 
-msgid "Time"
-msgstr "Zeit"
+#, fuzzy
+msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
+msgstr ""
+"Fehler bei Umwandlung der Variablen 'Zeit' in Datumsangaben: 'Zeit' muss in "
+"einem datumsähnlichen Format vorliegen (z. B. JJJJ-MM-TT)"
+
+#, fuzzy
+msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
+msgstr ""
+"Fehler bei Umwandlung der Variablen 'Zeit' in Datumsangaben: 'Zeit' muss in "
+"einem datumsähnlichen Format vorliegen (z. B. JJJJ-MM-TT)"
 
 msgid "Forecast Plots"
 msgstr "Prognosediagramme"
 
-msgid "Overall Forecast Plot"
-msgstr "Gesamtprognosediagramm"
+msgid "Overall"
+msgstr ""
 
-msgid "Trend Forecast Plot"
-msgstr "Trendprognosediagramm"
+msgid "Trend"
+msgstr ""
 
 msgid "Seasonality Plots"
 msgstr "Saisonalitätsdiagramme"
 
-msgid "Seasonality Plot"
-msgstr "Saisonalitätsdiagramm"
+msgid "Time (min:sec)"
+msgstr ""
 
-msgid "Horizon (in days)"
-msgstr "Horizont (in Tagen)"
+msgid "Time (hour:min)"
+msgstr ""
 
-msgid "Marginal Posterior Distributions"
+msgid "Time (hour)"
+msgstr ""
+
+msgid "Weekday"
+msgstr ""
+
+msgid "Time (day)"
+msgstr ""
+
+msgid "Time (month-day)"
+msgstr ""
+
+msgid "Time (month)"
+msgstr ""
+
+msgid "Time (year)"
+msgstr ""
+
+msgid ""
+"Please enter valid 'Start' and 'End' arguments for nonperiodical prediction "
+"(e.g., yyyy-mm-dd hh:mm:ss)"
+msgstr ""
+
+#, fuzzy
+msgid "Covariate Plots"
+msgstr "Prognosediagramme"
+
+msgid "Performance Plots"
+msgstr ""
+
+#, fuzzy
+msgid "Parameter Plots"
+msgstr "Parameter"
+
+msgid "Changepoint Plot"
+msgstr ""
+
+#, fuzzy
+msgid "Change in growth rate"
+msgstr "Änderung der Wachstumsrate (Delta)"
+
+#, fuzzy
+msgid "Posterior Distributions"
 msgstr "Marginale Posterior-Verteilungen"
+
+#, fuzzy
+msgid "Growth rate"
+msgstr "Wachstumsrate (k)"
+
+msgid "Offset"
+msgstr ""
+
+#, fuzzy
+msgid "Residual variance"
+msgstr "Residualvarianz (sigma)"
 
 msgid "Density"
 msgstr "Dichte"
+
+#~ msgid ""
+#~ "Error in converting argument 'Start date' into a date: 'Start date' needs "
+#~ "to be in a date-like format (e.g., yyyy-mm-dd)"
+#~ msgstr ""
+#~ "Fehler bei Umwandlung des Arguments 'Startdatum' in ein Datum: "
+#~ "'Startdatum' muss in einem datumsähnlichen Format sein (z. B. JJJJ-MM-TT)"
+
+#~ msgid ""
+#~ "Error in converting argument 'End date' into a date: 'End date' needs to "
+#~ "be in a date-like format (e.g., yyyy-mm-dd)"
+#~ msgstr ""
+#~ "Fehler bei Umwandlung des Arguments 'Enddatum' in ein Datum: 'Enddatum' "
+#~ "muss in einem datumsähnlichen Format vorliegen (z. B. JJJJ-MM-TT)"
+
+#~ msgid ""
+#~ "Error in predicting future values with covariates: Covariates need to be "
+#~ "supplied for predicted time intervals"
+#~ msgstr ""
+#~ "Fehler bei der Vorhersage zukünftiger Werte mit Kovariaten: Kovariaten "
+#~ "müssen für vorhergesagte Zeitintervalle angegeben werden"
+
+#~ msgid "Time"
+#~ msgstr "Zeit"
+
+#~ msgid "Overall Forecast Plot"
+#~ msgstr "Gesamtprognosediagramm"
+
+#~ msgid "Trend Forecast Plot"
+#~ msgstr "Trendprognosediagramm"
+
+#~ msgid "Seasonality Plot"
+#~ msgstr "Saisonalitätsdiagramm"
+
+#~ msgid "Horizon (in days)"
+#~ msgstr "Horizont (in Tagen)"

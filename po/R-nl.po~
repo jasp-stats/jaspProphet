@@ -1,0 +1,138 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: R 3.6.1\n"
+"Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
+"POT-Creation-Date: 2021-01-05 09:39\n"
+"PO-Revision-Date: 2020-12-02 21:29+0000\n"
+"Last-Translator: JASP Stats <F.A.M.Meerhoff@uva.nl>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/jasp-engine/"
+"nl/>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
+"X-Generator: Weblate 4.4-dev\n"
+
+msgid ""
+"Error in converting variable 'Time' into dates: 'Time' needs to be in a date-"
+"like format (e.g., yyyy-mm-dd)"
+msgstr ""
+
+msgid ""
+"Error in setting changepoints: Variable 'Changepoints' must have two levels"
+msgstr ""
+
+msgid ""
+"Error in converting argument 'Start date' into a date: 'Start date' needs to "
+"be in a date-like format (e.g., yyyy-mm-dd)"
+msgstr ""
+
+msgid ""
+"Error in converting argument 'End date' into a date: 'End date' needs to be "
+"in a date-like format (e.g., yyyy-mm-dd)"
+msgstr ""
+
+msgid ""
+"Error in predicting future values with covariates: Covariates need to be "
+"supplied for predicted time intervals"
+msgstr ""
+
+msgid "Less data than horizon after initial window."
+msgstr ""
+
+msgid "Make horizon or initial shorter."
+msgstr ""
+
+msgid "Growth rate (k)"
+msgstr ""
+
+msgid "Offset (m)"
+msgstr ""
+
+#, fuzzy
+msgid "Residual variance (sigma)"
+msgstr "Residu varianties"
+
+#, fuzzy
+msgid "95% Credible Interval"
+msgstr "95%% Geloofwaardigheidsinterval"
+
+msgid "posteriorSummaryPlotCredibleIntervalValue"
+msgstr ""
+
+msgid "Parameter"
+msgstr "Parameter"
+
+msgid "Mean"
+msgstr "Gemiddelde"
+
+msgid "SD"
+msgstr "SD"
+
+msgid "Lower"
+msgstr "Onder"
+
+msgid "Upper"
+msgstr "Boven"
+
+msgid "R-hat"
+msgstr "R-hat"
+
+msgid "ESS (bulk)"
+msgstr "ESS (bulk)"
+
+msgid "ESS (tail)"
+msgstr "ESS (staart)"
+
+#, fuzzy
+msgid "Changepoint"
+msgstr "F Verandering"
+
+msgid "Change in growth rate (delta)"
+msgstr ""
+
+msgid "Horizon"
+msgstr ""
+
+#, fuzzy
+msgid "MSE"
+msgstr "RMSE"
+
+msgid "RMSE"
+msgstr "RMSE"
+
+msgid "MAPE"
+msgstr ""
+
+msgid "Time"
+msgstr ""
+
+#, fuzzy
+msgid "Forecast Plots"
+msgstr "Forestgrafiek"
+
+#, fuzzy
+msgid "Overall Forecast Plot"
+msgstr "Forestgrafiek"
+
+#, fuzzy
+msgid "Trend Forecast Plot"
+msgstr "Forestgrafiek"
+
+#, fuzzy
+msgid "Seasonality Plots"
+msgstr "Centraliteitsgrafiek"
+
+#, fuzzy
+msgid "Seasonality Plot"
+msgstr "Centraliteitsgrafiek"
+
+msgid "Horizon (in days)"
+msgstr ""
+
+msgid "Marginal Posterior Distributions"
+msgstr "Marginale Posterior verdelingen"
+
+msgid "Density"
+msgstr "Dichtheid"

@@ -17,286 +17,349 @@ msgid "This module offers a simple model for time series prediction."
 msgstr ""
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Dependent Variable"
 msgstr "Afhankelijke variabele"
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Time"
 msgstr ""
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Changepoints"
 msgstr "Afkappunten"
 
+msgctxt "Prophet|"
+msgid "Carrying Capacity"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Saturating Minimum"
+msgstr ""
+
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Covariates"
 msgstr "Covariaten"
 
+msgctxt "Prophet|"
+msgid "Include in Training"
+msgstr ""
+
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "History plot"
 msgstr "Niet-passings grafiek"
 
-#, fuzzy
-msgctxt "ProphetLinear|"
-msgid "From date"
-msgstr "Van"
+msgctxt "Prophet|"
+msgid "Points"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Line"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Both"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Plot time interval"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Start"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "End"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Growth"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Linear"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Logistic"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Constant carrying capacity"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Constant saturating minimum"
+msgstr ""
 
 #, fuzzy
-msgctxt "ProphetLinear|"
-msgid "To date"
-msgstr "Sorteer op datum"
-
-#, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Model"
 msgstr "Model"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Automatic Changepoints"
 msgstr "Startpunt"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Max. changepoints"
 msgstr "Min. kernpunten:"
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Changepoint range"
 msgstr ""
 
-msgctxt "ProphetLinear|"
-msgid "Laplace prior tau"
+msgctxt "Prophet|"
+msgid "Laplace prior τ"
 msgstr ""
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Estimation"
 msgstr "Schatting"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Maximum a posteriori"
 msgstr "Marginale posteriors"
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Markov chain Monte Carlo"
 msgstr ""
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Samples"
 msgstr "Steekproeven"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Uncertainty"
 msgstr "Onzekerheidscoëfficiënt"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Prediction interval level"
 msgstr "Voorspellingsintervallen"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Prediction interval samples"
 msgstr "Voorspellingsintervallen"
 
-#, fuzzy
-msgctxt "ProphetLinear|"
-msgid "Mode"
-msgstr "Modus"
+msgctxt "Prophet|"
+msgid "Credible interval level"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid ""
+"Covariates                                                  Normal prior "
+"σ²                 Standardize                 Mode"
+msgstr ""
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Additive"
 msgstr "Optellen"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Multiplicative"
 msgstr "Vermenigvuldigen"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Seasonalities"
 msgstr "Verdelingen"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Name"
 msgstr "Naam:"
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Period"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Unit"
 msgstr ""
 
-msgctxt "ProphetLinear|"
-msgid "Normal prior sigma"
+msgctxt "Prophet|"
+msgid "Normal prior σ²"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Fourier order"
 msgstr ""
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
+msgid "Mode"
+msgstr "Modus"
+
+msgctxt "Prophet|"
+msgid "Seconds"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Minutes"
+msgstr ""
+
+#, fuzzy
+msgctxt "Prophet|"
 msgid "Hours"
 msgstr "uren"
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Days"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Weeks"
 msgstr ""
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Years"
 msgstr "Pearson"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Prediction"
 msgstr "Voorspellers"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Periodical"
 msgstr "Posterior mediaan"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Number of periods"
 msgstr "Steekproefgrootte"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Nonperiodical"
 msgstr "Niet parametrisch"
 
-#, fuzzy
-msgctxt "ProphetLinear|"
-msgid "Start date"
-msgstr "Start Gegevensverwerker"
-
-msgctxt "ProphetLinear|"
-msgid "End date"
+msgctxt "Prophet|"
+msgid "Save predictions"
 msgstr ""
 
 #, fuzzy
-msgctxt "ProphetLinear|"
-msgid "Save Predictions"
-msgstr "Schaalvoorspellers"
-
-#, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Evaluation"
 msgstr "Evaluatie"
 
-msgctxt "ProphetLinear|"
-msgid "Simulated Historical Forecasts"
+msgctxt "Prophet|"
+msgid "Simulated historical forecasts"
 msgstr ""
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Horizon"
 msgstr "Horizontale as"
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Period between cutoffs"
 msgstr ""
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Initial training time"
 msgstr "Initialiseren van het maken van nieuw bestand van "
 
-#, fuzzy
-msgctxt "ProphetLinear|"
-msgid "Performance Metrics"
-msgstr "Prestatie metrieken"
+msgctxt "Prophet|"
+msgid "Performance metrics"
+msgstr ""
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Mean squared error (MSE)"
 msgstr "Fout gemiddelde kwadraatsom"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Root mean squared error (RMSE)"
 msgstr "Fout gemiddelde kwadraatsom"
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Mean absolute percentage error (MAPE)"
 msgstr ""
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Changepoint table"
 msgstr "Centraliteitstabel"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Plots"
 msgstr "Grafieken"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Forecast Plots"
 msgstr "Forestgrafiek"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Overall"
 msgstr "Overlappend"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Show data points"
 msgstr "Toon datapunten"
 
-#, fuzzy
-msgctxt "ProphetLinear|"
-msgid "Show covariates"
-msgstr "SD factor covariaten"
+msgctxt "Prophet|"
+msgid "Show carrying capacity"
+msgstr ""
 
-#, fuzzy
-msgctxt "ProphetLinear|"
-msgid "Add labels"
-msgstr "Verbindingslabels"
+msgctxt "Prophet|"
+msgid "Show changepoints"
+msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
+msgid "Show saturating minimum"
+msgstr ""
+
+msgctxt "Prophet|"
 msgid "Trend"
 msgstr ""
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Seasonality Plots"
 msgstr "Aparte grafieken"
 
+msgctxt "Prophet|"
+msgid "Covariate Plots"
+msgstr ""
+
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Performance Plots"
 msgstr "Prestatie grafieken"
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Parameter Plots"
 msgstr "Parameters"
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Changepoint plot"
 msgstr ""
 
 #, fuzzy
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Posterior distributions"
 msgstr "Posterior verdeling"

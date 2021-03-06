@@ -13,242 +13,312 @@ msgctxt "Description|"
 msgid "This module offers a simple model for time series prediction."
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Dependent Variable"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Time"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Changepoints"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
+msgid "Carrying Capacity"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Saturating Minimum"
+msgstr ""
+
+msgctxt "Prophet|"
 msgid "Covariates"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
+msgid "Include in Training"
+msgstr ""
+
+msgctxt "Prophet|"
 msgid "History plot"
 msgstr ""
 
-msgctxt "ProphetLinear|"
-msgid "From date"
+msgctxt "Prophet|"
+msgid "Points"
 msgstr ""
 
-msgctxt "ProphetLinear|"
-msgid "To date"
+msgctxt "Prophet|"
+msgid "Line"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
+msgid "Both"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Plot time interval"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Start"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "End"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Growth"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Linear"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Logistic"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Constant carrying capacity"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Constant saturating minimum"
+msgstr ""
+
+msgctxt "Prophet|"
 msgid "Model"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Automatic Changepoints"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Max. changepoints"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Changepoint range"
 msgstr ""
 
-msgctxt "ProphetLinear|"
-msgid "Laplace prior tau"
+msgctxt "Prophet|"
+msgid "Laplace prior τ"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Estimation"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Maximum a posteriori"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Markov chain Monte Carlo"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Samples"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Uncertainty"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Prediction interval level"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Prediction interval samples"
 msgstr ""
 
-msgctxt "ProphetLinear|"
-msgid "Mode"
+msgctxt "Prophet|"
+msgid "Credible interval level"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
+msgid ""
+"Covariates                                                  Normal prior "
+"σ²                 Standardize                 Mode"
+msgstr ""
+
+msgctxt "Prophet|"
 msgid "Additive"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Multiplicative"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Seasonalities"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Name"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Period"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Unit"
 msgstr ""
 
-msgctxt "ProphetLinear|"
-msgid "Normal prior sigma"
+msgctxt "Prophet|"
+msgid "Normal prior σ²"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
+msgid "Fourier order"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Mode"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Seconds"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Minutes"
+msgstr ""
+
+msgctxt "Prophet|"
 msgid "Hours"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Days"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Weeks"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Years"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Prediction"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Periodical"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Number of periods"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Nonperiodical"
 msgstr ""
 
-msgctxt "ProphetLinear|"
-msgid "Start date"
+msgctxt "Prophet|"
+msgid "Save predictions"
 msgstr ""
 
-msgctxt "ProphetLinear|"
-msgid "End date"
-msgstr ""
-
-msgctxt "ProphetLinear|"
-msgid "Save Predictions"
-msgstr ""
-
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Evaluation"
 msgstr ""
 
-msgctxt "ProphetLinear|"
-msgid "Simulated Historical Forecasts"
+msgctxt "Prophet|"
+msgid "Simulated historical forecasts"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Horizon"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Period between cutoffs"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Initial training time"
 msgstr ""
 
-msgctxt "ProphetLinear|"
-msgid "Performance Metrics"
+msgctxt "Prophet|"
+msgid "Performance metrics"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Mean squared error (MSE)"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Root mean squared error (RMSE)"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Mean absolute percentage error (MAPE)"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Changepoint table"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Plots"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Forecast Plots"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Overall"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Show data points"
 msgstr ""
 
-msgctxt "ProphetLinear|"
-msgid "Show covariates"
+msgctxt "Prophet|"
+msgid "Show carrying capacity"
 msgstr ""
 
-msgctxt "ProphetLinear|"
-msgid "Add labels"
+msgctxt "Prophet|"
+msgid "Show changepoints"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
+msgid "Show saturating minimum"
+msgstr ""
+
+msgctxt "Prophet|"
 msgid "Trend"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Seasonality Plots"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
+msgid "Covariate Plots"
+msgstr ""
+
+msgctxt "Prophet|"
 msgid "Performance Plots"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Parameter Plots"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Changepoint plot"
 msgstr ""
 
-msgctxt "ProphetLinear|"
+msgctxt "Prophet|"
 msgid "Posterior distributions"
 msgstr ""
