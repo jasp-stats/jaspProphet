@@ -8,4 +8,5 @@ Website: jasp-stats.org
 Maintainer: JASP Team <info@jasp-stats.org>
 Description: This module offers a simple model for time series prediction.
 License: GPL (>= 2)
+Depends: rstan
 Imports: prophet
