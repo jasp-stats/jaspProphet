@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-03-06 15:53\n"
-"PO-Revision-Date: 2021-03-19 18:18+0000\n"
-"Last-Translator: Alex França <alex.tonante@gmail.com>\n"
+"PO-Revision-Date: 2021-03-23 19:29+0000\n"
+"Last-Translator: Laura Durans <lauraadurans@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-r/pt/>\n"
 "Language: pt\n"
@@ -90,16 +90,14 @@ msgstr "Parâmetros"
 
 #, fuzzy
 msgid "Mean"
-msgstr "Médias"
+msgstr "Média"
 
 msgid "SD"
 msgstr ""
 
-#, fuzzy
 msgid "Lower"
 msgstr "Inferior"
 
-#, fuzzy
 msgid "Upper"
 msgstr "Superior"
 
