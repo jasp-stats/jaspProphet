@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-04-08 19:26+0000\n"
+"Last-Translator: Paulina Elizabeth Robalino <paulina.e.robalino@gmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
+"jaspprophet-qml/es/>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.6-dev\n"
 "X-Language: en_US\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -15,15 +21,15 @@ msgstr ""
 msgctxt "Description|"
 msgid "This module offers a simple model for time series prediction."
 msgstr ""
+"Este módulo ofrece un modelo simple para la predicción de series de tiempo."
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Dependent Variable"
-msgstr "Variable dependiente"
+msgstr "Variable Dependiente"
 
 msgctxt "Prophet|"
 msgid "Time"
-msgstr ""
+msgstr "Tiempo"
 
 #, fuzzy
 msgctxt "Prophet|"
@@ -32,13 +38,12 @@ msgstr "Puntos de corte"
 
 msgctxt "Prophet|"
 msgid "Carrying Capacity"
-msgstr ""
+msgstr "Capacidad de carga"
 
 msgctxt "Prophet|"
 msgid "Saturating Minimum"
-msgstr ""
+msgstr "Mínimo de Saturación"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Covariates"
 msgstr "Covariables"
@@ -54,15 +59,15 @@ msgstr "Parcela inadaptada"
 
 msgctxt "Prophet|"
 msgid "Points"
-msgstr ""
+msgstr "Puntos"
 
 msgctxt "Prophet|"
 msgid "Line"
-msgstr ""
+msgstr "Línea"
 
 msgctxt "Prophet|"
 msgid "Both"
-msgstr ""
+msgstr "Ambos"
 
 msgctxt "Prophet|"
 msgid "Plot time interval"
