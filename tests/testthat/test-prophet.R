@@ -666,32 +666,3 @@ test_that("Analysis handels errors", {
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   expect_identical(results[["status"]], "validationError", label = "'Covariates' must be supplied for predictions")
 })
-
-# Validates Prophets results obtained in JASP (i.e., R) with results obtained in Python 3 (same settings, random.seed(1), with default RNG)
-
-test_that("Validate posterior summary table against python results", {
-  options <- jaspTools::analysisOptions("Prophet")
-  options$dependent <- "contNormal"
-  options$time <- "dateDay"
-  options$mcmcSamples <- 1000
-  options$predictionSavePath <- ""
-  
-  set.seed(1)
-  results <- jaspTools::runAnalysis(name = "Prophet", dataset = "prophetTest.csv", options = options)
-  table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetTable"]][["data"]]
-  
-  diffMean  <- c(table[[1]]$mean - -0.00716605362948211, table[[2]]$mean - -0.04990574448597387, table[[3]]$mean - 0.32130002210773567)
-  diffSd    <- c(table[[1]]$sd - 0.24080584534856, table[[2]]$sd - 0.07084477849859355, table[[3]]$sd - 0.02401897796606334)
-  diffLower <- c(table[[1]]$lowerCri - -0.46648642, table[[2]]$lowerCri - -0.18871028, table[[3]]$lowerCri - 0.27927879)
-  diffUpper <- c(table[[1]]$upperCri - 0.47913103, table[[2]]$upperCri - 0.08993005, table[[3]]$upperCri - 0.37383813)
-
-  diffTab   <- list(diffMean, diffSd, diffLower, diffUpper)
-
-  jaspTools::expect_equal_tables(diffTab,
-                                  list(0.0080046276, -0.0027751498, -0.0006873601, 
-                                        -0.0036948082, -0.0019970350, -0.0008420206,
-                                        -0.0094782465, 0.0004310057, -0.0002025353,
-                                        -0.025916651, -0.010509089, -0.002053558
-                                  )
-                                )
-})
