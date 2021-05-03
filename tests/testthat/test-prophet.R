@@ -169,7 +169,7 @@ test_that("Parameter Estimates Table results match (MAP)", {
 
   # Does currently not work on Mac
   
-  testthat::skip_on_os("mac")
+  testthat::skip_on_os(c("mac", "linux"))
 
   options$capacity <- "contGamma"
   options$minimum <- "contNarrow"
