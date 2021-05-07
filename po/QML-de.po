@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-03-10 10:02+0000\n"
+"PO-Revision-Date: 2021-04-25 09:31+0000\n"
 "Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-qml/de/>\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.2-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 "X-Language: en_US\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -23,12 +23,10 @@ msgid "This module offers a simple model for time series prediction."
 msgstr ""
 "Dieses Modul bietet ein einfaches Modell für die Vorhersage von Zeitreihen."
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Dependent Variable"
 msgstr "Abhängige Variable"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Time"
 msgstr "Zeit"
@@ -257,7 +255,7 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Save predictions"
-msgstr ""
+msgstr "Vorhersagen speichern"
 
 msgctxt "Prophet|"
 msgid "Evaluation"
@@ -267,7 +265,6 @@ msgctxt "Prophet|"
 msgid "Simulated historical forecasts"
 msgstr ""
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Horizon"
 msgstr "Horizont"
@@ -304,22 +301,19 @@ msgctxt "Prophet|"
 msgid "Changepoint table"
 msgstr "Zentralitätstabelle"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Plots"
 msgstr "Abbildungen"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Forecast Plots"
-msgstr "Forestplot"
+msgstr "Prognosediagramme"
 
 #, fuzzy
 msgctxt "Prophet|"
 msgid "Overall"
 msgstr "Überlagernd"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Show data points"
 msgstr "Datenpunkte anzeigen"
@@ -338,32 +332,28 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Trend"
-msgstr ""
+msgstr "Trend"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Seasonality Plots"
-msgstr "Verschiedene Abbildungen"
+msgstr "Saisonalitätsdiagramme"
 
 msgctxt "Prophet|"
 msgid "Covariate Plots"
-msgstr ""
+msgstr "Kovariaten-Abbildungen"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Performance Plots"
 msgstr "Performanz-Abbildungen"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Parameter Plots"
-msgstr "Parameters"
+msgstr "Parameterdiagramme"
 
 msgctxt "Prophet|"
 msgid "Changepoint plot"
 msgstr ""
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Posterior distributions"
-msgstr "Posterior-Verteilung"
+msgstr "Posterior-Verteilungen"
