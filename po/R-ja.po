@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspProphet 0.13.0\n"
 "POT-Creation-Date: 2021-03-06 15:53\n"
-"PO-Revision-Date: 2021-02-10 07:50+0000\n"
-"Last-Translator: Koji Kosugi <kosugitti@gmail.com>\n"
+"PO-Revision-Date: 2021-04-22 00:29+0000\n"
+"Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-r/ja/>\n"
 "Language: ja\n"
@@ -11,42 +11,44 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.5-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 msgid "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "'Time' は、日付形式でなければなりません (e.g., yyyy-mm-dd hh:mm:ss)"
 
 msgid ""
 "'Start' for nonperiodical prediction must be in a date-like format (e.g., "
 "yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "非周期的な予測の場合、'Start' は、日付形式でなければなりません (e.g., yyyy-mm-dd hh:mm:ss)"
 
 msgid ""
 "'End' for nonperiodical prediction must be in a date-like format (e.g., yyyy-"
 "mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "非周期的な予測の場合、'End' は、日付形式でなければなりません (e.g., yyyy-mm-dd hh:mm:ss)"
 
 msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
-msgstr ""
+msgstr "'Changepoints' は、論理値でなければなりません (e.g., 0/1)"
 
 msgid "'History Indicator' must be a logical variable (e.g., 0/1)"
-msgstr ""
+msgstr "'History Indicator' は論理値でなければなりません (e.g., 0/1)"
 
 msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
-msgstr ""
+msgstr "'Carrying Capacity' は、常に'Saturating Minimum'よりも大きくなくてはなりません"
 
 msgid ""
 "'Carrying Capacity' must always be larger than 'Constant saturating minimum'"
-msgstr ""
+msgstr "'Carrying Capacity' は、常に 'Constant saturating minimum'よりも大きくなくてはなりません"
 
 msgid ""
 "'Constant carrying capacity' must always be larger than 'Saturating Minimum'"
-msgstr ""
+msgstr "'Constant carrying capacity' は、常に 'Saturating Minimum'よりも大きくなくてはなりません"
 
 msgid ""
 "'Constant carrying capacity' must always be larger than 'Constant saturating "
 "minimum'"
 msgstr ""
+"'Constant carrying capacity' は、常に 'Constant saturating "
+"minimum'よりも大きくなくてはなりません"
 
 msgid ""
 "Seasonality names must only contain letters, number, dots, or underscores "
@@ -54,28 +56,29 @@ msgid ""
 msgstr ""
 
 msgid "'Carrying Capacity' must be supplied for predictions"
-msgstr ""
+msgstr "予測には'Carrying Capacity'が必要です"
 
 msgid "'Covariates' must be supplied for predictions"
-msgstr ""
+msgstr "予測には'Covariates'が必要です"
 
 msgid "Growth rate (k)"
-msgstr ""
+msgstr "成長率(k)"
 
 msgid "Offset (m)"
-msgstr ""
+msgstr "オフセット(m)"
 
 msgid "Residual variance (σ²)"
-msgstr ""
+msgstr "残差分散 (σ²)"
 
 msgid "Posterior Summary Table"
-msgstr ""
+msgstr "事後要約表"
 
 msgid "summaryCredibleIntervalWidth"
 msgstr ""
 
+#, fuzzy
 msgid "% CI"
-msgstr ""
+msgstr "% CI"
 
 msgid "Parameter"
 msgstr "パラメータ"
@@ -92,14 +95,17 @@ msgstr "下"
 msgid "Upper"
 msgstr "上"
 
+#, fuzzy
 msgid "R-hat"
-msgstr ""
+msgstr "R-hat"
 
+#, fuzzy
 msgid "ESS (bulk)"
-msgstr ""
+msgstr "ESS (bulk)"
 
+#, fuzzy
 msgid "ESS (tail)"
-msgstr ""
+msgstr "ESS (tail)"
 
 msgid ""
 "Prophet might need a long time to compute the results. You can try it first "

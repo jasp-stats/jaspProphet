@@ -3,74 +3,86 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-03-06 15:53\n"
-"PO-Revision-Date: 2020-12-02 21:29+0000\n"
-"Last-Translator: JASP Stats <b.boutin@uva.nl>\n"
+"PO-Revision-Date: 2021-04-26 20:31+0000\n"
+"Last-Translator: Alex França <alex.tonante@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
-"jaspProphet/pt/>\n"
+"jaspprophet-r/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
 "X-Language: en_US\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
 
 msgid "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"A 'hora' deve estar num formato de data (por exemplo, dd-mm-aaaa hh:mm:ss)"
 
 msgid ""
 "'Start' for nonperiodical prediction must be in a date-like format (e.g., "
 "yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"O 'início' para a predição não periódica deve estar num formato de data (por "
+"exemplo, dd-mm-aaaa, hh:mm:ss)"
 
 msgid ""
 "'End' for nonperiodical prediction must be in a date-like format (e.g., yyyy-"
 "mm-dd hh:mm:ss)"
 msgstr ""
+"O 'fim' para a predição não periódica deve estar num formato de data (por "
+"exemplo, dd-mm-aaaa, hh:mm:ss)"
 
 msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
-msgstr ""
+msgstr "'Pontos de mudança' deve ser uma variável lógica (ex. 0/1)"
 
 msgid "'History Indicator' must be a logical variable (e.g., 0/1)"
 msgstr ""
 
 msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
-msgstr ""
+msgstr "'Capacidade de carga' deve ser sempre maior que 'Saturação mínima'"
 
 msgid ""
 "'Carrying Capacity' must always be larger than 'Constant saturating minimum'"
 msgstr ""
+"'Capacidade de carga' deve ser sempre maior que 'Saturação mínima constante'"
 
 msgid ""
 "'Constant carrying capacity' must always be larger than 'Saturating Minimum'"
 msgstr ""
+"'Capacidade de carga constante' deve ser sempre maior que 'Saturação mínima'"
 
 msgid ""
 "'Constant carrying capacity' must always be larger than 'Constant saturating "
 "minimum'"
 msgstr ""
+"'Capacidade de carga constante' deve ser sempre maior que 'Saturação mínima "
+"constante'"
 
+#, fuzzy
 msgid ""
 "Seasonality names must only contain letters, number, dots, or underscores "
 "and must start with letters or dots that are not followed by a number"
 msgstr ""
+"Nomes para as sazonalidades devem conter apenas letras, números, pontos e \"_"
+"\", e devem iniciar com letras ou pontos sem serem seguidos por números"
 
 msgid "'Carrying Capacity' must be supplied for predictions"
-msgstr ""
+msgstr "'Capacidade de carga' deve ser fornecida para previsões"
 
 msgid "'Covariates' must be supplied for predictions"
-msgstr ""
+msgstr "'Covariâncias' deve ser fornecida para previsões"
 
 msgid "Growth rate (k)"
-msgstr ""
+msgstr "Taxa de crescimento (k)"
 
 msgid "Offset (m)"
-msgstr ""
+msgstr "Deslocamento"
 
-#, fuzzy
 msgid "Residual variance (σ²)"
-msgstr "Variâncias residual"
+msgstr "Variância residual"
 
 #, fuzzy
 msgid "Posterior Summary Table"
@@ -83,22 +95,24 @@ msgstr "Intervalo de credibilidade"
 msgid "% CI"
 msgstr ""
 
-#, fuzzy
 msgid "Parameter"
 msgstr "Parâmetros"
 
 #, fuzzy
 msgid "Mean"
-msgstr "Médias"
+msgstr "Média"
 
+#, fuzzy
 msgid "SD"
-msgstr ""
+msgstr "DP"
 
+#, fuzzy
 msgid "Lower"
-msgstr ""
+msgstr "Inferior"
 
+#, fuzzy
 msgid "Upper"
-msgstr ""
+msgstr "Superior"
 
 msgid "R-hat"
 msgstr ""
@@ -115,9 +129,8 @@ msgid ""
 "correctly (e.g., set 'Samples = 10')."
 msgstr ""
 
-#, fuzzy
 msgid "Residual variance (sigma)"
-msgstr "Variâncias residual"
+msgstr "Variância residual (sigma)"
 
 msgid "Changepoint Estimates Table"
 msgstr ""
@@ -126,28 +139,25 @@ msgid "Changepoint Posterior Summary Table"
 msgstr ""
 
 msgid "Changepoint"
-msgstr ""
+msgstr "Ponto de mudança"
 
 msgid "Change in growth rate (δ)"
-msgstr ""
+msgstr "Mudança na taxa de crescimento (δ)"
 
 msgid "Simulated Historical Forecasts Table"
 msgstr ""
 
-#, fuzzy
 msgid "Horizon"
 msgstr "Eixo Horizontal"
 
-#, fuzzy
 msgid "MSE"
-msgstr "RMSEA"
+msgstr "MSE"
 
-#, fuzzy
 msgid "RMSE"
 msgstr "RMSEA"
 
 msgid "MAPE"
-msgstr ""
+msgstr "MAPE"
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
@@ -155,79 +165,74 @@ msgstr ""
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
 
-#, fuzzy
 msgid "Forecast Plots"
-msgstr "Diagramas Separados"
+msgstr "Gráficos de previsão"
 
 msgid "Overall"
-msgstr ""
+msgstr "Geral"
 
 msgid "Trend"
-msgstr ""
+msgstr "Tendência"
 
-#, fuzzy
 msgid "Seasonality Plots"
-msgstr "Diagramas Separados"
+msgstr "Gráficos de sazonalidades"
 
 msgid "Time (min:sec)"
-msgstr ""
+msgstr "Tempo (min:seg)"
 
 msgid "Time (hour:min)"
-msgstr ""
+msgstr "Tempo (h:min)"
 
 msgid "Time (hour)"
-msgstr ""
+msgstr "Tempo (hora)"
 
 msgid "Weekday"
-msgstr ""
+msgstr "Dia da semana"
 
 msgid "Time (day)"
-msgstr ""
+msgstr "Tempo (dia)"
 
 msgid "Time (month-day)"
-msgstr ""
+msgstr "Tempo (dia e mês)"
 
 msgid "Time (month)"
-msgstr ""
+msgstr "Tempo (mês)"
 
 msgid "Time (year)"
-msgstr ""
+msgstr "Tempo (ano)"
 
 msgid ""
 "Please enter valid 'Start' and 'End' arguments for nonperiodical prediction "
 "(e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
 
-#, fuzzy
 msgid "Covariate Plots"
-msgstr "Covariáveis"
+msgstr "Gráficos de covariância"
 
-#, fuzzy
 msgid "Performance Plots"
-msgstr "Diagramas Separados"
+msgstr "Gráficos de performance"
 
-#, fuzzy
 msgid "Parameter Plots"
-msgstr "Parâmetros"
+msgstr "Gráficos de parâmetros"
 
 msgid "Changepoint Plot"
-msgstr ""
+msgstr "Gráfico de pontos de mudança"
 
 msgid "Change in growth rate"
-msgstr ""
+msgstr "Mudança na taxa de crescimento"
 
 msgid "Posterior Distributions"
-msgstr ""
+msgstr "Distribuições posteriores"
 
 msgid "Growth rate"
-msgstr ""
+msgstr "Taxa de crescimento"
 
 msgid "Offset"
-msgstr ""
+msgstr "Deslocamento"
+
+msgid "Residual variance"
+msgstr "Variância residual"
 
 #, fuzzy
-msgid "Residual variance"
-msgstr "Variâncias residual"
-
 msgid "Density"
-msgstr ""
+msgstr "Densidade"
