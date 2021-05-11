@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-05-09 10:32+0000\n"
+"PO-Revision-Date: 2021-05-12 09:32+0000\n"
 "Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-qml/de/>\n"
@@ -57,15 +57,15 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Points"
-msgstr ""
+msgstr "Punkte"
 
 msgctxt "Prophet|"
 msgid "Line"
-msgstr ""
+msgstr "Linie"
 
 msgctxt "Prophet|"
 msgid "Both"
-msgstr ""
+msgstr "Beide"
 
 msgctxt "Prophet|"
 msgid "Plot time interval"
@@ -73,23 +73,23 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 msgctxt "Prophet|"
 msgid "End"
-msgstr ""
+msgstr "Ende"
 
 msgctxt "Prophet|"
 msgid "Growth"
-msgstr ""
+msgstr "Wachstum"
 
 msgctxt "Prophet|"
 msgid "Linear"
-msgstr ""
+msgstr "Linear"
 
 msgctxt "Prophet|"
 msgid "Logistic"
-msgstr ""
+msgstr "Logistisch"
 
 msgctxt "Prophet|"
 msgid "Constant carrying capacity"
@@ -99,7 +99,6 @@ msgctxt "Prophet|"
 msgid "Constant saturating minimum"
 msgstr ""
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Model"
 msgstr "Modell"
@@ -108,10 +107,9 @@ msgctxt "Prophet|"
 msgid "Automatic Changepoints"
 msgstr ""
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Max. changepoints"
-msgstr "Min. Änderungspunkte"
+msgstr "Max. Änderungspunkte"
 
 msgctxt "Prophet|"
 msgid "Changepoint range"
@@ -119,24 +117,20 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Laplace prior τ"
-msgstr ""
+msgstr "Laplace-Prior τ"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Estimation"
 msgstr "Schätzung"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Maximum a posteriori"
 msgstr "Maximum a-posteriori"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Markov chain Monte Carlo"
 msgstr "Markow-Chain-Monte-Carlo"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Samples"
 msgstr "Stichprobe"
@@ -179,63 +173,54 @@ msgctxt "Prophet|"
 msgid "Seasonalities"
 msgstr "Saisonalitäten"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Name"
 msgstr "Name"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Period"
-msgstr "Zeitraum"
+msgstr ""
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Unit"
 msgstr "Einheit"
 
 msgctxt "Prophet|"
 msgid "Normal prior σ²"
-msgstr ""
+msgstr "Normal-Prior σ²"
 
 msgctxt "Prophet|"
 msgid "Fourier order"
-msgstr ""
+msgstr "Fourier-Ordnung"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Mode"
 msgstr "Modus"
 
 msgctxt "Prophet|"
 msgid "Seconds"
-msgstr ""
+msgstr "Sekunden"
 
 msgctxt "Prophet|"
 msgid "Minutes"
-msgstr ""
+msgstr "Minuten"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Hours"
 msgstr "Stunden"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Days"
 msgstr "Tage"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Weeks"
 msgstr "Wochen"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Years"
 msgstr "Jahre"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Prediction"
 msgstr "Vorhersage"
@@ -246,11 +231,11 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Number of periods"
-msgstr ""
+msgstr "Anzahl der Perioden"
 
 msgctxt "Prophet|"
 msgid "Nonperiodical"
-msgstr ""
+msgstr "Nichtperiodisch"
 
 msgctxt "Prophet|"
 msgid "Save predictions"
@@ -272,33 +257,29 @@ msgctxt "Prophet|"
 msgid "Period between cutoffs"
 msgstr ""
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Initial training time"
-msgstr "Starte Anlegen einer neuen Datei"
+msgstr "Erste Trainings-Zeit"
 
 msgctxt "Prophet|"
 msgid "Performance metrics"
 msgstr ""
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Mean squared error (MSE)"
-msgstr "Mittlerer quadratischer Fehler"
+msgstr "Mittlerer quadratischer Fehler (MSE)"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Root mean squared error (RMSE)"
-msgstr "Mittlerer quadratischer Fehler"
+msgstr "Wurzel d. mittleren quadratischen Fehlers (RMSE)"
 
 msgctxt "Prophet|"
 msgid "Mean absolute percentage error (MAPE)"
-msgstr ""
+msgstr "Mittlerer absoluter prozentualer Fehler (MAPE)"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Changepoint table"
-msgstr "Zentralitätstabelle"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Plots"
@@ -308,10 +289,9 @@ msgctxt "Prophet|"
 msgid "Forecast Plots"
 msgstr "Prognosediagramme"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Overall"
-msgstr "Überlagernd"
+msgstr "Insgesamt"
 
 msgctxt "Prophet|"
 msgid "Show data points"
