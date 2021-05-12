@@ -478,7 +478,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 
     criLevel <- (1-options[["summaryCredibleIntervalWidth"]])/2
 
-    overtitle <- gettext(paste0(options[["summaryCredibleIntervalWidth"]]*100, "% CI"))
+    overtitle <- paste0(options[["summaryCredibleIntervalWidth"]]*100, "% CI")
     prophetTable$addColumnInfo(name = "par", title = gettext("Parameter"), type = "string")
     prophetTable$addColumnInfo(name = "mean", title = gettext("Mean"), type = "number")
     prophetTable$addColumnInfo(name = "sd", title = gettext("SD"), type = "number")
@@ -556,7 +556,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     prophetTable$addColumnInfo(name = "delta", title = gettext("Change in growth rate (\u03B4)"), type = "number")
   } else {
     parTitle <- gettext("Change in growth rate (\u03B4)")
-    ciTitle  <- gettext(paste0(options[["summaryCredibleIntervalWidth"]]*100, "% CI"))
+    ciTitle  <- paste0(options[["summaryCredibleIntervalWidth"]]*100, "% CI")
     prophetTable$addColumnInfo(name = "mean", title = gettext("Mean"), type = "number", overtitle = parTitle)
     prophetTable$addColumnInfo(name = "sd", title = gettext("SD"), type = "number", overtitle = parTitle)
     prophetTable$addColumnInfo(name = "lowerCri", title = gettext("Lower"), type = "number", overtitle = ciTitle)
