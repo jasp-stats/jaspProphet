@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-03-06 15:53\n"
-"PO-Revision-Date: 2021-04-26 20:31+0000\n"
+"PO-Revision-Date: 2021-05-15 20:51+0000\n"
 "Last-Translator: Alex França <alex.tonante@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-r/pt/>\n"
@@ -98,19 +98,15 @@ msgstr ""
 msgid "Parameter"
 msgstr "Parâmetros"
 
-#, fuzzy
 msgid "Mean"
 msgstr "Média"
 
-#, fuzzy
 msgid "SD"
 msgstr "DP"
 
-#, fuzzy
 msgid "Lower"
 msgstr "Inferior"
 
-#, fuzzy
 msgid "Upper"
 msgstr "Superior"
 
@@ -233,6 +229,5 @@ msgstr "Deslocamento"
 msgid "Residual variance"
 msgstr "Variância residual"
 
-#, fuzzy
 msgid "Density"
 msgstr "Densidade"
