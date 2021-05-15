@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-03-06 15:53\n"
-"PO-Revision-Date: 2021-03-25 10:29+0000\n"
+"PO-Revision-Date: 2021-05-12 09:32+0000\n"
 "Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-r/de/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.5.2-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 msgid "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
@@ -63,27 +63,25 @@ msgid "'Carrying Capacity' must be supplied for predictions"
 msgstr ""
 
 msgid "'Covariates' must be supplied for predictions"
-msgstr ""
+msgstr "Für Vorhersagen müssen 'Kovariaten' angegeben werden"
 
 msgid "Growth rate (k)"
 msgstr "Wachstumsrate (k)"
 
 msgid "Offset (m)"
-msgstr ""
+msgstr "Konstante (m)"
 
-#, fuzzy
 msgid "Residual variance (σ²)"
-msgstr "Residualvarianz (sigma)"
+msgstr "Residualvarianz (σ²)"
 
 msgid "Posterior Summary Table"
-msgstr ""
+msgstr "Posterior-Zusammenfassungstabelle"
 
-#, fuzzy
 msgid "summaryCredibleIntervalWidth"
-msgstr "95% Glaubwürdigkeitsintervall"
+msgstr ""
 
 msgid "% CI"
-msgstr ""
+msgstr "% GI"
 
 msgid "Parameter"
 msgstr "Parameter"
@@ -114,6 +112,10 @@ msgid ""
 "with fewer MCMC samples to see if it works and if you specified the model "
 "correctly (e.g., set 'Samples = 10')."
 msgstr ""
+"Prophet benötigt möglicherweise eine lange Zeit, um die Ergebnisse zu "
+"berechnen. Du kannst es zunächst mit einer kleineren MCMC-Stichprobe "
+"versuchen, um zu sehen, ob es funktioniert und ob Du das Modell richtig "
+"spezifiziert hast (z. B. setze 'Stichprobe = 10')."
 
 msgid "Residual variance (sigma)"
 msgstr "Residualvarianz (sigma)"
@@ -146,62 +148,59 @@ msgstr "RMSE"
 msgid "MAPE"
 msgstr ""
 
-#, fuzzy
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
-"Fehler bei Umwandlung der Variablen 'Zeit' in Datumsangaben: 'Zeit' muss in "
-"einem datumsähnlichen Format vorliegen (z. B. JJJJ-MM-TT)"
+"'Start' muss in einem datumsähnlichen Format sein (z. B. jjjj-mm-tt hh:mm:ss)"
 
-#, fuzzy
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
-"Fehler bei Umwandlung der Variablen 'Zeit' in Datumsangaben: 'Zeit' muss in "
-"einem datumsähnlichen Format vorliegen (z. B. JJJJ-MM-TT)"
+"'Ende' muss in einem datumsähnlichen Format sein (z. B. jjjj-mm-tt hh:mm:ss)"
 
 msgid "Forecast Plots"
 msgstr "Prognosediagramme"
 
 msgid "Overall"
-msgstr ""
+msgstr "Insgesamt"
 
 msgid "Trend"
-msgstr ""
+msgstr "Trend"
 
 msgid "Seasonality Plots"
 msgstr "Saisonalitätsdiagramme"
 
 msgid "Time (min:sec)"
-msgstr ""
+msgstr "Zeit (Min: Sek)"
 
 msgid "Time (hour:min)"
-msgstr ""
+msgstr "Zeit (Stunde:Min)"
 
 msgid "Time (hour)"
-msgstr ""
+msgstr "Zeit (Stunde)"
 
 msgid "Weekday"
-msgstr ""
+msgstr "Wochentag"
 
 msgid "Time (day)"
-msgstr ""
+msgstr "Zeit (Tag)"
 
 msgid "Time (month-day)"
-msgstr ""
+msgstr "Zeit (Monat-Tag)"
 
 msgid "Time (month)"
-msgstr ""
+msgstr "Zeit (Monat)"
 
 msgid "Time (year)"
-msgstr ""
+msgstr "Zeit (Jahr)"
 
 msgid ""
 "Please enter valid 'Start' and 'End' arguments for nonperiodical prediction "
 "(e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"Bitte gib gültige 'Start'- und 'Ende'-Argumente für nichtperiodische "
+"Vorhersagen ein (z. B. jjjj-mm-tt hh:mm:ss)"
 
-#, fuzzy
 msgid "Covariate Plots"
-msgstr "Prognosediagramme"
+msgstr "Kovariaten-Abbildungen"
 
 msgid "Performance Plots"
 msgstr ""
@@ -224,9 +223,8 @@ msgstr "Wachstumsrate"
 msgid "Offset"
 msgstr ""
 
-#, fuzzy
 msgid "Residual variance"
-msgstr "Residualvarianz (sigma)"
+msgstr "Residualvarianz"
 
 msgid "Density"
 msgstr "Dichte"
