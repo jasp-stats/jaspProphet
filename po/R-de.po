@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-03-06 15:53\n"
 "PO-Revision-Date: 2021-05-15 08:21+0000\n"
-"Last-Translator: Malte Lüken <malte_lueken@arcor.de>\n"
+"Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-r/de/>\n"
 "Language: de\n"
@@ -137,7 +137,7 @@ msgid "Changepoint"
 msgstr "Wechselpunkt"
 
 msgid "Change in growth rate (δ)"
-msgstr "Änderung der Wachstumsrate (delta)"
+msgstr "Änderung der Wachstumsrate (δ)"
 
 #, fuzzy
 msgid "Simulated Historical Forecasts Table"
