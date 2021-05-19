@@ -556,7 +556,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     prophetTable$addColumnInfo(name = "delta", title = gettext("Change in growth rate (\u03B4)"), type = "number")
   } else {
     parTitle <- gettext("Change in growth rate (\u03B4)")
-    ciTitle  <- paste0(options[["summaryCredibleIntervalWidth"]]*100, "% CI")
+    ciTitle  <- gettextf("%s%% CI", options[["summaryCredibleIntervalWidth"]]*100)
     prophetTable$addColumnInfo(name = "mean", title = gettext("Mean"), type = "number", overtitle = parTitle)
     prophetTable$addColumnInfo(name = "sd", title = gettext("SD"), type = "number", overtitle = parTitle)
     prophetTable$addColumnInfo(name = "lowerCri", title = gettext("Lower"), type = "number", overtitle = ciTitle)
