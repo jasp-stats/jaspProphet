@@ -478,7 +478,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 
     criLevel <- (1-options[["summaryCredibleIntervalWidth"]])/2
 
-    overtitle <- paste0(options[["summaryCredibleIntervalWidth"]]*100, "% CI")
+    overtitle <- gettextf("%s%% CI", options[["summaryCredibleIntervalWidth"]]*100)
     prophetTable$addColumnInfo(name = "par", title = gettext("Parameter"), type = "string")
     prophetTable$addColumnInfo(name = "mean", title = gettext("Mean"), type = "number")
     prophetTable$addColumnInfo(name = "sd", title = gettext("SD"), type = "number")
