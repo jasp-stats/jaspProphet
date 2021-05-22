@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-03-06 15:53\n"
-"PO-Revision-Date: 2021-05-12 09:32+0000\n"
+"PO-Revision-Date: 2021-05-15 20:51+0000\n"
 "Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-r/de/>\n"
@@ -33,34 +33,41 @@ msgstr ""
 "sein (z. B. jjjj-mm-tt hh:mm:ss)"
 
 msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
-msgstr ""
+msgstr "'Wechselpunkte' muss eine logische Variable sein (e.g., 0/1)"
 
 msgid "'History Indicator' must be a logical variable (e.g., 0/1)"
-msgstr ""
+msgstr "'In Training einbeziehen' muss eine logische Variable sein(e.g., 0/1)"
 
 msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
-msgstr ""
+msgstr "'Tragfähigkeit' muss immer größer als 'Sättigungsminimum' sein"
 
 msgid ""
 "'Carrying Capacity' must always be larger than 'Constant saturating minimum'"
 msgstr ""
+"'Tragfähigkeit' muss immer größer als 'Konstantes Sättigungsminimum' sein"
 
 msgid ""
 "'Constant carrying capacity' must always be larger than 'Saturating Minimum'"
 msgstr ""
+"'Konstante Tragfähigkeit' muss immer größer als 'Sättigungsminimum' sein"
 
 msgid ""
 "'Constant carrying capacity' must always be larger than 'Constant saturating "
 "minimum'"
 msgstr ""
+"'Konstante Tragfähigkeit' muss immer größer als 'Konstantes "
+"Sättigungsminimum' sein"
 
 msgid ""
 "Seasonality names must only contain letters, number, dots, or underscores "
 "and must start with letters or dots that are not followed by a number"
 msgstr ""
+"Namen von Saisonalitäten dürfen nur Buchstaben, Zahlen, Punkte oder "
+"Unterstriche enthalten und müssen mit Buchstaben oder Punkten beginnen, auf "
+"die keine Zahlen folgen"
 
 msgid "'Carrying Capacity' must be supplied for predictions"
-msgstr ""
+msgstr "Für Vorhersagen muss 'Tragfähigkeit' angegeben sein"
 
 msgid "'Covariates' must be supplied for predictions"
 msgstr "Für Vorhersagen müssen 'Kovariaten' angegeben werden"
@@ -113,40 +120,39 @@ msgid ""
 "correctly (e.g., set 'Samples = 10')."
 msgstr ""
 "Prophet benötigt möglicherweise eine lange Zeit, um die Ergebnisse zu "
-"berechnen. Du kannst es zunächst mit einer kleineren MCMC-Stichprobe "
-"versuchen, um zu sehen, ob es funktioniert und ob Du das Modell richtig "
-"spezifiziert hast (z. B. setze 'Stichprobe = 10')."
+"berechnen. Versuch es zunächst mit einer kleineren MCMC-Stichprobe und "
+"überprüfe, ob es funktioniert und das Modell richtig spezifiziert ist (z. B. "
+"setze 'Samples = 10')."
 
 msgid "Residual variance (sigma)"
 msgstr "Residualvarianz (sigma)"
 
 msgid "Changepoint Estimates Table"
-msgstr ""
+msgstr "Tabelle mit Schätzungen der Wechselpunkte"
 
 msgid "Changepoint Posterior Summary Table"
-msgstr ""
+msgstr "Tabelle mit Posterior-Zusammenfassung der Wechselpunkte"
 
 msgid "Changepoint"
-msgstr ""
+msgstr "Wechselpunkt"
 
-#, fuzzy
 msgid "Change in growth rate (δ)"
-msgstr "Änderung der Wachstumsrate (Delta)"
+msgstr "Änderung der Wachstumsrate (δ)"
 
 msgid "Simulated Historical Forecasts Table"
-msgstr ""
+msgstr "Simulierte Zeitreihenvorhersage-Tabelle"
 
 msgid "Horizon"
 msgstr "Horizont"
 
 msgid "MSE"
-msgstr ""
+msgstr "MSE"
 
 msgid "RMSE"
 msgstr "RMSE"
 
 msgid "MAPE"
-msgstr ""
+msgstr "MAPE"
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
@@ -157,7 +163,7 @@ msgstr ""
 "'Ende' muss in einem datumsähnlichen Format sein (z. B. jjjj-mm-tt hh:mm:ss)"
 
 msgid "Forecast Plots"
-msgstr "Prognosediagramme"
+msgstr "Vorhersage-Diagramme"
 
 msgid "Overall"
 msgstr "Insgesamt"
@@ -166,7 +172,7 @@ msgid "Trend"
 msgstr "Trend"
 
 msgid "Seasonality Plots"
-msgstr "Saisonalitätsdiagramme"
+msgstr "Saisonalitäts-Diagramme"
 
 msgid "Time (min:sec)"
 msgstr "Zeit (Min: Sek)"
@@ -196,20 +202,20 @@ msgid ""
 "Please enter valid 'Start' and 'End' arguments for nonperiodical prediction "
 "(e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
-"Bitte gib gültige 'Start'- und 'Ende'-Argumente für nichtperiodische "
-"Vorhersagen ein (z. B. jjjj-mm-tt hh:mm:ss)"
+"Bitte gültige 'Start'- und 'Ende'-Argumente für nichtperiodische Vorhersagen "
+"eingeben (z. B. jjjj-mm-tt hh:mm:ss)"
 
 msgid "Covariate Plots"
-msgstr "Kovariaten-Abbildungen"
+msgstr "Kovariaten-Diagramme"
 
 msgid "Performance Plots"
-msgstr ""
+msgstr "Performance-Diagramme"
 
 msgid "Parameter Plots"
-msgstr "Parameterdiagramme"
+msgstr "Parameter-Diagramme"
 
 msgid "Changepoint Plot"
-msgstr ""
+msgstr "Wechselpunkt-Diagramm"
 
 msgid "Change in growth rate"
 msgstr "Änderung der Wachstumsrate"
@@ -221,7 +227,7 @@ msgid "Growth rate"
 msgstr "Wachstumsrate"
 
 msgid "Offset"
-msgstr ""
+msgstr "Offset"
 
 msgid "Residual variance"
 msgstr "Residualvarianz"
