@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-05-18 09:34+0000\n"
+"Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/jasp/"
+"jaspprophet-qml/de/>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
 "X-Language: en_US\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -41,7 +47,6 @@ msgctxt "Prophet|"
 msgid "Covariates"
 msgstr "Kovariaten"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Include in Training"
 msgstr "In Training einbeziehen"
@@ -106,7 +111,6 @@ msgctxt "Prophet|"
 msgid "Max. changepoints"
 msgstr "Max. Wechselpunkte"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Changepoint range"
 msgstr "Bereich der Wechselpunkte"
@@ -119,7 +123,6 @@ msgctxt "Prophet|"
 msgid "Estimation"
 msgstr "Schätzung"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Maximum a posteriori"
 msgstr "Maximum-a-posteriori"
@@ -133,7 +136,6 @@ msgctxt "Prophet|"
 msgid "Samples"
 msgstr "Samples"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Uncertainty"
 msgstr "Unsicherheit"
