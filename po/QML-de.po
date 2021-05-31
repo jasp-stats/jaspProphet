@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-05-31 07:51+0000\n"
+"PO-Revision-Date: 2021-06-01 08:34+0000\n"
 "Last-Translator: Malte Lüken <malte_lueken@arcor.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-qml/de/>\n"
@@ -152,7 +152,7 @@ msgstr "Samples des Vorhersageintervalls"
 
 msgctxt "Prophet|"
 msgid "Credible interval level"
-msgstr "Stufe des Glaubwürdigkeitsintervalls"
+msgstr "Level des Glaubwürdigkeitsintervalls"
 
 msgctxt "Prophet|"
 msgid ""
