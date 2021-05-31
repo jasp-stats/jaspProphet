@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "PO-Revision-Date: 2021-05-31 07:51+0000\n"
-"Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
+"Last-Translator: Malte Lüken <malte_lueken@arcor.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-qml/de/>\n"
 "Language: de\n"
@@ -162,17 +162,14 @@ msgstr ""
 "Kovariaten                                                  Normaler Prior "
 "σ²                 Standardisieren                 Modus"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Additive"
 msgstr "Additiv"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Multiplicative"
 msgstr "Multiplikativ"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Seasonalities"
 msgstr "Saisonalitäten"
