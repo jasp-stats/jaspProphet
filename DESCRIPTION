@@ -12,8 +12,10 @@ Depends:
   rstan
 Imports:
   ggplot2,
+  jaspBase,
   jaspGraphs,
   prophet,
   scales
 Remotes:
+  jasp-stats/jaspBase,
   jasp-stats/jaspGraphs
