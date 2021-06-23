@@ -365,7 +365,7 @@ test_that("History Plot matches", {
     results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
     plotName <- results[["results"]][["historyPlot"]][["data"]]
     testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-    jaspTools::expect_equal_plots(testPlot, paste0("history-plot-", dateTimeUnits[i]), dir="Prophet")
+    jaspTools::expect_equal_plots(testPlot, paste0("history-plot-", dateTimeUnits[i]))
   }
 })
 
@@ -384,7 +384,7 @@ test_that("Overall Forecast Plot matches", {
     results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
     plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetForecastPlots"]][["collection"]][["prophetMainContainer_prophetForecastPlots_prophetOverallForecastPlot"]][["data"]]
     testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-    jaspTools::expect_equal_plots(testPlot, paste0("overall-forecast-plot-", dateTimeUnits[i]), dir="Prophet")
+    jaspTools::expect_equal_plots(testPlot, paste0("overall-forecast-plot-", dateTimeUnits[i]))
   }
 
   options$growth <- "logistic"
@@ -397,7 +397,7 @@ test_that("Overall Forecast Plot matches", {
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetForecastPlots"]][["collection"]][["prophetMainContainer_prophetForecastPlots_prophetOverallForecastPlot"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "overall-forecast-plot-logistic", dir="Prophet")
+  jaspTools::expect_equal_plots(testPlot, "overall-forecast-plot-logistic")
 })
 
 test_that("Trend Forecast Plot matches", {
@@ -411,7 +411,7 @@ test_that("Trend Forecast Plot matches", {
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetForecastPlots"]][["collection"]][["prophetMainContainer_prophetForecastPlots_prophetTrendForecastPlot"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "trend-forecast-plot", dir="Prophet")
+  jaspTools::expect_equal_plots(testPlot, "trend-forecast-plot")
 })
 
 test_that("Seasonality Plot matches", {
@@ -434,7 +434,7 @@ test_that("Seasonality Plot matches", {
     results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
     plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetSeasonalityPlots"]][["collection"]][["prophetMainContainer_prophetSeasonalityPlots_custom"]][["data"]]
     testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-    jaspTools::expect_equal_plots(testPlot, paste0("custom-seasonality-plot-", dateTimeUnits[i]), dir="Prophet")
+    jaspTools::expect_equal_plots(testPlot, paste0("custom-seasonality-plot-", dateTimeUnits[i]))
   }
 
   options$time <- "dateDay"
@@ -449,7 +449,7 @@ test_that("Seasonality Plot matches", {
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetSeasonalityPlots"]][["collection"]][["prophetMainContainer_prophetSeasonalityPlots_custom"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "custom-seasonality-plot-multi", dir="Prophet")
+  jaspTools::expect_equal_plots(testPlot, "custom-seasonality-plot-multi")
 })
 
 test_that("Covariate Plot matches", {
@@ -473,7 +473,7 @@ test_that("Covariate Plot matches", {
     results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
     plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetCovariatePlots"]][["collection"]][["prophetMainContainer_prophetCovariatePlots_contcor1"]][["data"]]
     testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-    jaspTools::expect_equal_plots(testPlot, paste0("covariate-plot-", dateTimeUnits[i]), dir="Prophet")
+    jaspTools::expect_equal_plots(testPlot, paste0("covariate-plot-", dateTimeUnits[i]))
   }
 
   options$time <- "dateDay"
@@ -484,7 +484,7 @@ test_that("Covariate Plot matches", {
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetCovariatePlots"]][["collection"]][["prophetMainContainer_prophetCovariatePlots_contcor1"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "covariate-plot-multi", dir="Prophet")
+  jaspTools::expect_equal_plots(testPlot, "covariate-plot-multi")
 })
 
 test_that("Performance Plots match", {
@@ -509,15 +509,15 @@ test_that("Performance Plots match", {
 
     plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetEvaluationPlots"]][["collection"]][["prophetMainContainer_prophetEvaluationPlots_prophetPerformancePlotMse"]][["data"]]
     testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-    jaspTools::expect_equal_plots(testPlot, paste0("mse", dateTimeUnits[i]), dir="Prophet")
+    jaspTools::expect_equal_plots(testPlot, paste0("mse", dateTimeUnits[i]))
 
     plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetEvaluationPlots"]][["collection"]][["prophetMainContainer_prophetEvaluationPlots_prophetPerformancePlotRmse"]][["data"]]
     testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-    jaspTools::expect_equal_plots(testPlot, paste0("rmse", dateTimeUnits[i]), dir="Prophet")
+    jaspTools::expect_equal_plots(testPlot, paste0("rmse", dateTimeUnits[i]))
 
     plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetEvaluationPlots"]][["collection"]][["prophetMainContainer_prophetEvaluationPlots_prophetPerformancePlotMape"]][["data"]]
     testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-    jaspTools::expect_equal_plots(testPlot, paste0("mape", dateTimeUnits[i]), dir="Prophet")
+    jaspTools::expect_equal_plots(testPlot, paste0("mape", dateTimeUnits[i]))
   }
 })
 
@@ -536,7 +536,7 @@ test_that("Changepoint Plot matches", {
 
     plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetParameterPlots"]][["collection"]][["prophetMainContainer_prophetParameterPlots_prophetParameterPlotDelta"]][["data"]]
     testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-    jaspTools::expect_equal_plots(testPlot, paste0("changepoint-plot", dateTimeUnits[i]), dir="Prophet")
+    jaspTools::expect_equal_plots(testPlot, paste0("changepoint-plot", dateTimeUnits[i]))
   }
 })
 
@@ -552,15 +552,15 @@ test_that("Parameter Plots match", {
 
   plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetParameterPlots"]][["collection"]][["prophetMainContainer_prophetParameterPlots_prophetParameterPlotMarginal"]][["collection"]][["prophetMainContainer_prophetParameterPlots_prophetParameterPlotMarginal_k"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "growth-rate", dir="Prophet")
+  jaspTools::expect_equal_plots(testPlot, "growth-rate")
 
   plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetParameterPlots"]][["collection"]][["prophetMainContainer_prophetParameterPlots_prophetParameterPlotMarginal"]][["collection"]][["prophetMainContainer_prophetParameterPlots_prophetParameterPlotMarginal_m"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "offset", dir="Prophet")
+  jaspTools::expect_equal_plots(testPlot, "offset")
 
   plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetParameterPlots"]][["collection"]][["prophetMainContainer_prophetParameterPlots_prophetParameterPlotMarginal"]][["collection"]][["prophetMainContainer_prophetParameterPlots_prophetParameterPlotMarginal_sigma_obs"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "residual-variance", dir="Prophet")
+  jaspTools::expect_equal_plots(testPlot, "residual-variance")
 })
 
 test_that("Analysis handels errors", {
