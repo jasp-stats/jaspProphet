@@ -1,64 +1,58 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: jaspProphet 0.13.0\n"
+"Project-Id-Version: \n"
 "POT-Creation-Date: 2021-06-30 11:30\n"
-"PO-Revision-Date: 2021-04-22 00:29+0000\n"
-"Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
-"jaspprophet-r/ja/>\n"
-"Language: ja\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: gl_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Virgin-Header: remove this line if you change anything in the header.\n"
+"X-Language: gl_ES\n"
+"X-Source-Language: C\n"
+"X-Generator: Poedit 2.3\n"
 
 msgid "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr "'Time' は、日付形式でなければなりません (e.g., yyyy-mm-dd hh:mm:ss)"
+msgstr ""
 
 msgid ""
 "'Start' for nonperiodical prediction must be in a date-like format (e.g., "
 "yyyy-mm-dd hh:mm:ss)"
 msgstr ""
-"非周期的な予測の場合、'Start' は、日付形式でなければなりません (e.g., yyyy-"
-"mm-dd hh:mm:ss)"
 
 msgid ""
 "'End' for nonperiodical prediction must be in a date-like format (e.g., yyyy-"
 "mm-dd hh:mm:ss)"
 msgstr ""
-"非周期的な予測の場合、'End' は、日付形式でなければなりません (e.g., yyyy-mm-"
-"dd hh:mm:ss)"
 
 msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
-msgstr "'Changepoints' は、論理値でなければなりません (e.g., 0/1)"
+msgstr ""
 
 msgid "'History Indicator' must be a logical variable (e.g., 0/1)"
-msgstr "'History Indicator' は論理値でなければなりません (e.g., 0/1)"
+msgstr ""
 
 msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
 msgstr ""
-"'Carrying Capacity' は、常に'Saturating Minimum'よりも大きくなくてはなりませ"
-"ん"
 
 msgid ""
 "'Carrying Capacity' must always be larger than 'Constant saturating minimum'"
 msgstr ""
-"'Carrying Capacity' は、常に 'Constant saturating minimum'よりも大きくなくて"
-"はなりません"
 
 msgid ""
 "'Constant carrying capacity' must always be larger than 'Saturating Minimum'"
 msgstr ""
-"'Constant carrying capacity' は、常に 'Saturating Minimum'よりも大きくなくて"
-"はなりません"
 
 msgid ""
 "'Constant carrying capacity' must always be larger than 'Constant saturating "
 "minimum'"
 msgstr ""
-"'Constant carrying capacity' は、常に 'Constant saturating minimum'よりも大き"
-"くなくてはなりません"
 
 msgid ""
 "Seasonality names must only contain letters, number, dots, or underscores "
@@ -66,53 +60,51 @@ msgid ""
 msgstr ""
 
 msgid "'Carrying Capacity' must be supplied for predictions"
-msgstr "予測には'Carrying Capacity'が必要です"
+msgstr ""
 
 msgid "'Covariates' must be supplied for predictions"
-msgstr "予測には'Covariates'が必要です"
+msgstr ""
 
 msgid "Growth rate (k)"
-msgstr "成長率(k)"
+msgstr ""
 
 msgid "Offset (m)"
-msgstr "オフセット(m)"
-
-msgid "Residual variance (σ²)"
-msgstr "残差分散 (σ²)"
-
-msgid "Posterior Summary Table"
-msgstr "事後要約表"
+msgstr ""
 
 #, fuzzy
+msgid "Residual variance (σ²)"
+msgstr "Varianza dos erros"
+
+#, fuzzy
+msgid "Posterior Summary Table"
+msgstr "Resumo posterior"
+
 msgid "%s%% CI"
-msgstr "% CI"
+msgstr ""
 
 msgid "Parameter"
-msgstr "パラメータ"
+msgstr "Parámetro"
 
 msgid "Mean"
-msgstr "平均値"
+msgstr "Media"
 
 msgid "SD"
-msgstr "標準偏差"
+msgstr ""
 
 msgid "Lower"
-msgstr "下"
+msgstr "Inferior"
 
 msgid "Upper"
-msgstr "上"
+msgstr "Superior"
 
-#, fuzzy
 msgid "R-hat"
-msgstr "R-hat"
+msgstr "R-circunflexo"
 
-#, fuzzy
 msgid "ESS (bulk)"
-msgstr "ESS (bulk)"
+msgstr ""
 
-#, fuzzy
 msgid "ESS (tail)"
-msgstr "ESS (tail)"
+msgstr ""
 
 msgid ""
 "Prophet might need a long time to compute the results. You can try it first "
@@ -120,17 +112,21 @@ msgid ""
 "correctly (e.g., set 'Samples = 10')."
 msgstr ""
 
+#, fuzzy
 msgid "Residual variance (sigma)"
-msgstr ""
+msgstr "Varianzas dos erros"
 
+#, fuzzy
 msgid "Changepoint Estimates Table"
-msgstr ""
+msgstr "Táboa de estimacións"
 
+#, fuzzy
 msgid "Changepoint Posterior Summary Table"
-msgstr ""
+msgstr "Resumo posterior"
 
+#, fuzzy
 msgid "Changepoint"
-msgstr ""
+msgstr "Punto de inicio"
 
 msgid "Change in growth rate (δ)"
 msgstr ""
@@ -138,14 +134,17 @@ msgstr ""
 msgid "Simulated Historical Forecasts Table"
 msgstr ""
 
+#, fuzzy
 msgid "Horizon"
-msgstr ""
+msgstr "Eixe horizontal"
 
+#, fuzzy
 msgid "MSE"
-msgstr ""
+msgstr "RMSEA"
 
+#, fuzzy
 msgid "RMSE"
-msgstr ""
+msgstr "RMSEA"
 
 msgid "MAPE"
 msgstr ""
@@ -156,17 +155,20 @@ msgstr ""
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
 
+#, fuzzy
 msgid "Forecast Plots"
-msgstr ""
+msgstr "Gráfica en bosque"
 
+#, fuzzy
 msgid "Overall"
-msgstr ""
+msgstr "Sobreposto"
 
 msgid "Trend"
 msgstr ""
 
+#, fuzzy
 msgid "Seasonality Plots"
-msgstr ""
+msgstr "Gráficas separadas"
 
 msgid "Time (min:sec)"
 msgstr ""
@@ -197,15 +199,16 @@ msgid ""
 "(e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
 
+#, fuzzy
 msgid "Covariate Plots"
-msgstr ""
+msgstr "Covariantes"
 
 msgid "Performance Plots"
-msgstr ""
+msgstr "Gráficas do comportamento"
 
 #, fuzzy
 msgid "Parameter Plots"
-msgstr "パラメータ"
+msgstr "Parámetros"
 
 msgid "Changepoint Plot"
 msgstr ""
@@ -213,8 +216,9 @@ msgstr ""
 msgid "Change in growth rate"
 msgstr ""
 
+#, fuzzy
 msgid "Posterior Distributions"
-msgstr ""
+msgstr "Distribución posterior"
 
 msgid "Growth rate"
 msgstr ""
@@ -223,7 +227,8 @@ msgid "Offset"
 msgstr ""
 
 msgid "Residual variance"
-msgstr ""
+msgstr "Varianza dos erros"
 
 msgid "Density"
-msgstr "密度"
+msgstr "Densidade"
+

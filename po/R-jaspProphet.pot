@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspProphet 0.13.0\n"
-"POT-Creation-Date: 2021-03-06 15:53\n"
+"POT-Creation-Date: 2021-06-30 11:30\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,10 +58,7 @@ msgstr ""
 msgid "Posterior Summary Table"
 msgstr ""
 
-msgid "summaryCredibleIntervalWidth"
-msgstr ""
-
-msgid "% CI"
+msgid "%s%% CI"
 msgstr ""
 
 msgid "Parameter"
