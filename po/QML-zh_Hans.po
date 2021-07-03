@@ -3,47 +3,43 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Language: pt\n"
-"X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Prophet"
-msgstr "Profeta"
+msgstr ""
 
 msgctxt "Description|"
 msgid "This module offers a simple model for time series prediction."
 msgstr ""
-"Este módulo oferece um modelo simples para previsão de séries temporais."
 
 msgctxt "Prophet|"
 msgid "Dependent Variable"
-msgstr "Variável Dependente"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Time"
-msgstr "Tempo"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Changepoints"
-msgstr "Pontos de mudança"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Carrying Capacity"
-msgstr "Capacidade de carga"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Saturating Minimum"
-msgstr "Saturação mínima"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Covariates"
-msgstr "Covariáveis"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Include in Training"
-msgstr "Incluir no treinamento"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "History plot"
@@ -51,64 +47,63 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Points"
-msgstr "Pontos"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Line"
-msgstr "Linhas"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Both"
-msgstr "Ambos"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Plot time interval"
-msgstr "Intervalo de tempo do gráfico"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Start"
-msgstr "Início"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "End"
-msgstr "Fim"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Growth"
-msgstr "Crescimento"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Linear"
-msgstr "Linear"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Logistic"
-msgstr "Logística"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Constant carrying capacity"
-msgstr "Capacidade de carga constante"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Constant saturating minimum"
-msgstr "Saturação mínima constante"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Model"
-msgstr "Modelo"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Automatic Changepoints"
-msgstr "Pontos de mudança automáticos"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Max. changepoints"
-msgstr "Pontos de mudança máximos"
+msgstr ""
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Changepoint range"
-msgstr "Alcance do ponto de mudança"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Laplace prior τ"
@@ -116,7 +111,7 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Estimation"
-msgstr "Estimativa"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Maximum a posteriori"
@@ -128,27 +123,23 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Samples"
-msgstr "Amostras"
+msgstr ""
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Uncertainty"
-msgstr "Incerteza"
+msgstr ""
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Prediction interval level"
-msgstr "Nível do intervalo de predição"
+msgstr ""
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Prediction interval samples"
-msgstr "Amostras do intervalo de predição"
+msgstr ""
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Credible interval level"
-msgstr "Nível do intervalo credível"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid ""
@@ -158,27 +149,27 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Additive"
-msgstr "Aditiva"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Multiplicative"
-msgstr "Multiplicativa"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Seasonalities"
-msgstr "Sazonalidades"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Name"
-msgstr "Nome"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Period"
-msgstr "Período"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Unit"
-msgstr "Unidade"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Normal prior σ²"
@@ -190,145 +181,144 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Mode"
-msgstr "Modo"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Seconds"
-msgstr "Segundos"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Minutes"
-msgstr "Minutos"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Hours"
-msgstr "Horas"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Days"
-msgstr "Dias"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Weeks"
-msgstr "Semanas"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Years"
-msgstr "Anos"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Prediction"
-msgstr "Predição"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Periodical"
-msgstr "Periódica"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Number of periods"
-msgstr "Número de períodos"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Nonperiodical"
-msgstr "Não periódica"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Save predictions"
-msgstr "Salvar predições"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Evaluation"
-msgstr "Avaliação"
+msgstr ""
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Simulated historical forecasts"
-msgstr "Previsões históricas simuladas"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Horizon"
-msgstr "Horizonte"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Period between cutoffs"
-msgstr "Período entre os cortes"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Initial training time"
-msgstr "Tempo de treino inicial"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Performance metrics"
-msgstr "Métricas de performance"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Mean squared error (MSE)"
-msgstr "Erro quadrático médio (MSE)"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Root mean squared error (RMSE)"
-msgstr "Raiz quadrada média do erro (RMSE)"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Mean absolute percentage error (MAPE)"
-msgstr "Erro percentual médio absoluto (MAPE)"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Changepoint table"
-msgstr "Tabela de pontos de mudança"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Plots"
-msgstr "Diagramas"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Forecast Plots"
-msgstr "Gráficos de previsão"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Overall"
-msgstr "Geral"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Show data points"
-msgstr "Mostrar pontos de dados"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Show carrying capacity"
-msgstr "Mostrar capacidade de carga"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Show changepoints"
-msgstr "Mostrar pontos de mudança"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Show saturating minimum"
-msgstr "Mostrar saturação mínima"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Trend"
-msgstr "Tendência"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Seasonality Plots"
-msgstr "Gráficos de sazonalidades"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Covariate Plots"
-msgstr "Gráficos de covariância"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Performance Plots"
-msgstr "Gráficos de performance"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Parameter Plots"
-msgstr "Gráficos de parâmetros"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Changepoint plot"
-msgstr "Gráficos de pontos de mudança"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Posterior distributions"
-msgstr "Distribuições posteriores"
+msgstr ""
