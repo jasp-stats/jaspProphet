@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-06-30 11:30\n"
-"PO-Revision-Date: 2021-07-08 19:34+0000\n"
+"PO-Revision-Date: 2021-07-15 18:34+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-r/gl/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.7.2-dev\n"
 "X-Virgin-Header: remove this line if you change anything in the header.\n"
 "X-Language: gl_ES\n"
 "X-Source-Language: C\n"
@@ -118,9 +118,8 @@ msgstr ""
 msgid "Residual variance (sigma)"
 msgstr "Varianzas dos erros"
 
-#, fuzzy
 msgid "Changepoint Estimates Table"
-msgstr "Táboa de estimacións"
+msgstr "Táboa de Estimacións de Cambios Puntuais"
 
 #, fuzzy
 msgid "Changepoint Posterior Summary Table"
@@ -144,9 +143,8 @@ msgstr "Eixe horizontal"
 msgid "MSE"
 msgstr "RMSEA"
 
-#, fuzzy
 msgid "RMSE"
-msgstr "RMSEA"
+msgstr "RMSE"
 
 msgid "MAPE"
 msgstr ""
@@ -206,7 +204,7 @@ msgid "Covariate Plots"
 msgstr "Covariantes"
 
 msgid "Performance Plots"
-msgstr "Gráficas do comportamento"
+msgstr "Gráficas de Comportamento"
 
 #, fuzzy
 msgid "Parameter Plots"
