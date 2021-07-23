@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-06-30 11:30\n"
-"PO-Revision-Date: 2021-07-15 18:34+0000\n"
+"PO-Revision-Date: 2021-07-22 19:33+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-r/gl/>\n"
@@ -22,67 +22,79 @@ msgstr ""
 "X-Source-Language: C\n"
 
 msgid "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "'Tempo' debe estar nun formato de tipo data (p.e. yyyy-mm-dd hh:mm:ss)"
 
 msgid ""
 "'Start' for nonperiodical prediction must be in a date-like format (e.g., "
 "yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"'Inicio' para a predición non periódica debe estar nun formato de tipo data ("
+"p.e. yyyy-mm-dd hh:mm:ss)"
 
 msgid ""
 "'End' for nonperiodical prediction must be in a date-like format (e.g., yyyy-"
 "mm-dd hh:mm:ss)"
 msgstr ""
+"'Final' para a predición non periódica debe estar nun formato de tipo data ("
+"p.e. yyyy-mm-dd hh:mm:ss)"
 
 msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
-msgstr ""
+msgstr "'Puntos de cambio' debe ser unha variable de tipo lóxico (p.e. 0/1)"
 
 msgid "'History Indicator' must be a logical variable (e.g., 0/1)"
 msgstr ""
+"'Indicador de Historial' debe ser unha variable de tipo lóxico (p.e. 0/1)"
 
 msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
-msgstr ""
+msgstr "'Capacidade de Porte' debe ser sempre maior que 'Mínimo de Saturación'"
 
 msgid ""
 "'Carrying Capacity' must always be larger than 'Constant saturating minimum'"
 msgstr ""
+"'Capacidade de Porte' debe ser sempre maior que 'Mínimo de saturación "
+"constante'"
 
 msgid ""
 "'Constant carrying capacity' must always be larger than 'Saturating Minimum'"
 msgstr ""
+"'Capacidade de porte constante' debe ser sempre maior que 'Mínimo de "
+"Saturación'"
 
 msgid ""
 "'Constant carrying capacity' must always be larger than 'Constant saturating "
 "minimum'"
 msgstr ""
+"'Capacidade de porte constante' debe ser sempre maior que 'Mínimo de "
+"saturación constante'"
 
 msgid ""
 "Seasonality names must only contain letters, number, dots, or underscores "
 "and must start with letters or dots that are not followed by a number"
 msgstr ""
+"Os nomes de estacionalidade deben conter só letras, números, puntos ou "
+"barras baixas, e deben comezar con letras ou puntos que non estean seguidos "
+"dun número"
 
 msgid "'Carrying Capacity' must be supplied for predictions"
-msgstr ""
+msgstr "Debe indicarse a 'Capacidade de Porte' para as predicións"
 
 msgid "'Covariates' must be supplied for predictions"
-msgstr ""
+msgstr "Debe indicarse as 'Covariantes' para as predicións"
 
 msgid "Growth rate (k)"
-msgstr ""
+msgstr "Taxa de crecemento (k)"
 
 msgid "Offset (m)"
-msgstr ""
+msgstr "Compensación (m)"
 
-#, fuzzy
 msgid "Residual variance (σ²)"
-msgstr "Varianza dos erros"
+msgstr "Varianza dos erros (σ²)"
 
-#, fuzzy
 msgid "Posterior Summary Table"
-msgstr "Resumo posterior"
+msgstr "Táboa de Resumo Posterior"
 
 msgid "%s%% CI"
-msgstr ""
+msgstr "IC do %s%%"
 
 msgid "Parameter"
 msgstr "Parámetro"
@@ -91,7 +103,7 @@ msgid "Mean"
 msgstr "Media"
 
 msgid "SD"
-msgstr "EP"
+msgstr "DP"
 
 msgid "Lower"
 msgstr "Inferior"
@@ -103,128 +115,122 @@ msgid "R-hat"
 msgstr "R-circunflexo"
 
 msgid "ESS (bulk)"
-msgstr ""
+msgstr "ESS (groso)"
 
 msgid "ESS (tail)"
-msgstr ""
+msgstr "ESS (cola)"
 
 msgid ""
 "Prophet might need a long time to compute the results. You can try it first "
 "with fewer MCMC samples to see if it works and if you specified the model "
 "correctly (e.g., set 'Samples = 10')."
 msgstr ""
+"Profeta pode precisar moito tempo para calcular os resultados. Podes "
+"intentalo primeiro con menos mostras MCMC, para observar se funciona e se "
+"indicaches correctamente o modelo (p.e. establece 'Mostras = 10')."
 
-#, fuzzy
 msgid "Residual variance (sigma)"
-msgstr "Varianzas dos erros"
+msgstr "Varianzas dos erros (sigma)"
 
 msgid "Changepoint Estimates Table"
-msgstr "Táboa de Estimacións de Cambios Puntuais"
+msgstr "Táboa de Estimacións dos Puntos de Cambio"
 
-#, fuzzy
 msgid "Changepoint Posterior Summary Table"
-msgstr "Resumo posterior"
+msgstr "Táboa de Resumo Posterior dos Puntos de Cambio"
 
-#, fuzzy
 msgid "Changepoint"
-msgstr "Punto de inicio"
+msgstr "Punto de cambio"
 
 msgid "Change in growth rate (δ)"
-msgstr ""
+msgstr "Cambio na taxa de crecemento (δ)"
 
 msgid "Simulated Historical Forecasts Table"
-msgstr ""
+msgstr "Táboa de Predicións Simuladas Históricas"
 
-#, fuzzy
 msgid "Horizon"
-msgstr "Eixe horizontal"
+msgstr "Horizonte"
 
-#, fuzzy
 msgid "MSE"
-msgstr "RMSEA"
+msgstr "ECM (MSE)"
 
 msgid "RMSE"
 msgstr "RMSE"
 
 msgid "MAPE"
-msgstr ""
+msgstr "MAPE"
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "'Inicio' debe estar nun formato de tipo data (p.e. yyyy-mm-dd hh:mm:ss)"
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "'Final' debe estar nun formato de tipo data (p.e. yyyy-mm-dd hh:mm:ss)"
 
-#, fuzzy
 msgid "Forecast Plots"
-msgstr "Gráfica en bosque"
+msgstr "Gráficas de Predicións"
 
-#, fuzzy
 msgid "Overall"
-msgstr "Sobreposto"
+msgstr "Xeral"
 
 msgid "Trend"
-msgstr ""
+msgstr "Tendencia"
 
-#, fuzzy
 msgid "Seasonality Plots"
-msgstr "Gráficas separadas"
+msgstr "Gráficas de Estacionalidade"
 
 msgid "Time (min:sec)"
-msgstr ""
+msgstr "Tempo (min:seg)"
 
 msgid "Time (hour:min)"
-msgstr ""
+msgstr "Tempo (hora:min)"
 
 msgid "Time (hour)"
-msgstr ""
+msgstr "Tempo (hora)"
 
 msgid "Weekday"
-msgstr ""
+msgstr "Semana"
 
 msgid "Time (day)"
-msgstr ""
+msgstr "Tempo (día)"
 
 msgid "Time (month-day)"
-msgstr ""
+msgstr "Tempo (mes-día)"
 
 msgid "Time (month)"
-msgstr ""
+msgstr "Tempo (mes)"
 
 msgid "Time (year)"
-msgstr ""
+msgstr "Tempo (ano)"
 
 msgid ""
 "Please enter valid 'Start' and 'End' arguments for nonperiodical prediction "
 "(e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"Por favor, introduce argumentos 'Inicio' e 'Final' válidos para a predición "
+"non periódica (p.e. yyyy-mm-dd hh:mm:ss)"
 
-#, fuzzy
 msgid "Covariate Plots"
-msgstr "Covariantes"
+msgstr "Gráficas de Covariantes"
 
 msgid "Performance Plots"
 msgstr "Gráficas de Comportamento"
 
-#, fuzzy
 msgid "Parameter Plots"
-msgstr "Parámetros"
+msgstr "Gráficas de Parámetros"
 
 msgid "Changepoint Plot"
-msgstr ""
+msgstr "Gráfica de Puntos de Cambio"
 
 msgid "Change in growth rate"
-msgstr ""
+msgstr "Cambio na taxa de crecemento"
 
-#, fuzzy
 msgid "Posterior Distributions"
-msgstr "Distribución posterior"
+msgstr "Distribucións Posteriores"
 
 msgid "Growth rate"
-msgstr ""
+msgstr "Taxa de crecemento"
 
 msgid "Offset"
-msgstr ""
+msgstr "Compensación"
 
 msgid "Residual variance"
 msgstr "Varianza dos erros"
