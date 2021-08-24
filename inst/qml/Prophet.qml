@@ -91,28 +91,25 @@ Form
 		{
 			value: "logistic"
 			label: qsTr("Logistic")
-		}
-	}
-
-	Group
-	{
-		DoubleField
-		{
-			name: "constantCapacity"
-			label: qsTr("Constant carrying capacity")
-			enabled: cap.count === 0
-			visible: growth.value === "logistic"
-			negativeValues: true
-			fieldWidth: 100
-		}
-		DoubleField
-		{
-			name: "constantMinimum"
-			label: qsTr("Constant saturating minimum")
-			enabled: floor.count === 0
-			visible: growth.value === "logistic"
-			negativeValues: true
-			fieldWidth: 100
+			
+			DoubleField
+			{
+				name: "constantCapacity"
+				label: qsTr("Constant carrying capacity")
+				enabled: cap.count === 0
+				visible: growth.value === "logistic"
+				negativeValues: true
+				fieldWidth: 100
+			}
+			DoubleField
+			{
+				name: "constantMinimum"
+				label: qsTr("Constant saturating minimum")
+				enabled: floor.count === 0
+				visible: growth.value === "logistic"
+				negativeValues: true
+				fieldWidth: 100
+			}
 		}
 	}
 
