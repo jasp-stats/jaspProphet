@@ -91,7 +91,7 @@ Form
 		{
 			value: "logistic"
 			label: qsTr("Logistic")
-			childrenOnSameRow: true
+			childrenOnSameRow: false
 			
 			Group
 			{
