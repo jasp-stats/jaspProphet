@@ -91,34 +91,35 @@ Form
 		{
 			value: "logistic"
 			label: qsTr("Logistic")
-		}
-	}
-
-	Group
-	{
-		DoubleField
-		{
-			name: "constantCapacity"
-			label: qsTr("Constant carrying capacity")
-			enabled: cap.count === 0
-			visible: growth.value === "logistic"
-			negativeValues: true
-			fieldWidth: 100
-		}
-		DoubleField
-		{
-			name: "constantMinimum"
-			label: qsTr("Constant saturating minimum")
-			enabled: floor.count === 0
-			visible: growth.value === "logistic"
-			negativeValues: true
-			fieldWidth: 100
+			childrenOnSameRow: false
+			
+			Group
+			{
+				DoubleField
+				{
+					name: "constantCapacity"
+					label: qsTr("Carrying capacity")
+					enabled: cap.count === 0
+					visible: growth.value === "logistic"
+					negativeValues: true
+					fieldWidth: 100
+				}
+				DoubleField
+				{
+					name: "constantMinimum"
+					label: qsTr("Saturating minimum")
+					enabled: floor.count === 0
+					visible: growth.value === "logistic"
+					negativeValues: true
+					fieldWidth: 100
+				}
+			}
 		}
 	}
 
 	Section
 	{
-		title:      qsTr("Model")
+		title: qsTr("Model")
 		columns: 1
 		Group
 		{
@@ -132,6 +133,7 @@ Form
 					name: "maxChangepoints"
 					label: qsTr("Max. changepoints")
 					defaultValue: 25
+					max: dataSetModel.rowCount()
 				}
 				DoubleField
 				{
@@ -139,6 +141,7 @@ Form
 					label: qsTr("Changepoint range")
 					defaultValue: 0.8
 					decimals: 2
+					min: 0
 					max: 1
 				}
 				DoubleField

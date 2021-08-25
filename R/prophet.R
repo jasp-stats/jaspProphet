@@ -489,7 +489,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     prophetTable$addColumnInfo(name = "tailEss", title = gettext("ESS (tail)"), type = "integer")
     
     if (!ready && options$estimation == "mcmc")
-      prophetTable$addFootnote(gettext("Prophet might need a long time to compute the results. You can try it first with fewer MCMC samples to see if it works and if you specified the model correctly (e.g., set 'Samples = 10')."))
+      prophetTable$addFootnote(gettext("Prophet might need a long time to compute the results. You can try it first with fewer MCMC samples to see if it works and if you specified the model correctly (e.g., set 'Samples = 10' in the 'Model' section)."))
 
     prophetTable$addCitation("Taylor, S. J. & Letham, B. (2018). Forecasting at scale. *The American Statistician, 72*(1), 37-45.")
 
@@ -562,11 +562,11 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     prophetTable$addColumnInfo(name = "lowerCri", title = gettext("Lower"), type = "number", overtitle = ciTitle)
     prophetTable$addColumnInfo(name = "upperCri", title = gettext("Upper"), type = "number", overtitle = ciTitle)
   }
-  
+
   prophetTable$addCitation("Taylor, S. J. & Letham, B. (2018). Forecasting at scale. *The American Statistician, 72*(1), 37-45.")
 
   .prophetChangePointTableFill(prophetTable, prophetModelResults, options$estimation, criLevel, ready)
-    
+  
   jaspResults[["prophetMainContainer"]][["prophetChangePointTable"]] <- prophetTable
 
   return()
@@ -700,7 +700,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   xLabels <- attr(xBreaks, "labels")
   yBreaks <- pretty(histDat$y)
   
-  p <- ggplot2::ggplot(data = histDat, mapping = ggplot2::aes(x = x, y = y))
+  p <- ggplot2::ggplot(data = histDat[histDat$x >= xLimits[1] & histDat$x <= xLimits[2], ], mapping = ggplot2::aes(x = x, y = y))
 
   if (options$historyPlotShow == "line" || options$historyPlotShow == "both")
     p <- p + ggplot2::geom_line(color = "black", size = 1.25)
