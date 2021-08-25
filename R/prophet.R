@@ -491,9 +491,6 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     if (!ready && options$estimation == "mcmc")
       prophetTable$addFootnote(gettext("Prophet might need a long time to compute the results. You can try it first with fewer MCMC samples to see if it works and if you specified the model correctly (e.g., set 'Samples = 10' in the 'Model' section)."))
 
-    if (options$maxChangepoints > length(prophetModelResults$history$ds))
-    prophetTable$addFootnote(message = gettext("'Max. changepoints' was set higher than the number of cases included in the training data. Prophet uses as many changepoints as training data points instead. This will most likely lead to overfitting of the data. You are advised to reduce 'Max. changepoints'."))
-
     prophetTable$addCitation("Taylor, S. J. & Letham, B. (2018). Forecasting at scale. *The American Statistician, 72*(1), 37-45.")
 
     .prophetModelSummaryTableMcmcFill(prophetTable, prophetModelResults, criLevel, ready)
@@ -565,9 +562,6 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     prophetTable$addColumnInfo(name = "lowerCri", title = gettext("Lower"), type = "number", overtitle = ciTitle)
     prophetTable$addColumnInfo(name = "upperCri", title = gettext("Upper"), type = "number", overtitle = ciTitle)
   }
-
-  if (options$maxChangepoints > length(prophetModelResults$history$ds))
-    prophetTable$addFootnote(message = gettext("'Max. changepoints' was set higher than the number of cases included in the training data. Prophet uses as many changepoints as training data points instead. This will most likely lead to overfitting of the data. You are advised to reduce 'Max. changepoints'."))
 
   prophetTable$addCitation("Taylor, S. J. & Letham, B. (2018). Forecasting at scale. *The American Statistician, 72*(1), 37-45.")
 
