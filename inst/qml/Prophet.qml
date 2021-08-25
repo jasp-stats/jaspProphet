@@ -102,7 +102,7 @@ Form
 					enabled: cap.count === 0
 					visible: growth.value === "logistic"
 					negativeValues: true
-					fieldWidth: 50
+					fieldWidth: 100
 				}
 				DoubleField
 				{
@@ -111,7 +111,7 @@ Form
 					enabled: floor.count === 0
 					visible: growth.value === "logistic"
 					negativeValues: true
-					fieldWidth: 50
+					fieldWidth: 100
 				}
 			}
 		}
