@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspProphet 0.13.0\n"
 "POT-Creation-Date: 2021-06-30 11:30\n"
-"PO-Revision-Date: 2021-04-22 00:29+0000\n"
+"PO-Revision-Date: 2021-08-25 23:32+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-r/ja/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.8.1-dev\n"
 
 msgid "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr "'Time' は、日付形式でなければなりません (e.g., yyyy-mm-dd hh:mm:ss)"
@@ -63,7 +63,7 @@ msgstr ""
 msgid ""
 "Seasonality names must only contain letters, number, dots, or underscores "
 "and must start with letters or dots that are not followed by a number"
-msgstr ""
+msgstr "季節性の名前には、文字、数字、ドット、またはアンダースコアのみを含め、数字の後に続かない文字またはドットで始まる必要があります"
 
 msgid "'Carrying Capacity' must be supplied for predictions"
 msgstr "予測には'Carrying Capacity'が必要です"
@@ -83,9 +83,8 @@ msgstr "残差分散 (σ²)"
 msgid "Posterior Summary Table"
 msgstr "事後要約表"
 
-#, fuzzy
 msgid "%s%% CI"
-msgstr "% CI"
+msgstr "%s%% CI"
 
 msgid "Parameter"
 msgstr "パラメータ"
@@ -102,15 +101,12 @@ msgstr "下"
 msgid "Upper"
 msgstr "上"
 
-#, fuzzy
 msgid "R-hat"
 msgstr "R-hat"
 
-#, fuzzy
 msgid "ESS (bulk)"
 msgstr "ESS (bulk)"
 
-#, fuzzy
 msgid "ESS (tail)"
 msgstr "ESS (tail)"
 
@@ -119,111 +115,112 @@ msgid ""
 "with fewer MCMC samples to see if it works and if you specified the model "
 "correctly (e.g., set 'Samples = 10')."
 msgstr ""
+"Prophetは結果を計算するのに長い時間を必要とするかもしれません。最初に少ないMCMCサンプルで試して、うまくいくかどうか、モデルの指定が正しいかどう"
+"かを確認することができます（例えば、'Samples = 10'を設定します）."
 
 msgid "Residual variance (sigma)"
-msgstr ""
+msgstr "残差分散 (sigma)"
 
 msgid "Changepoint Estimates Table"
-msgstr ""
+msgstr "変化点推定値表"
 
 msgid "Changepoint Posterior Summary Table"
-msgstr ""
+msgstr "変化点事後要約表"
 
 msgid "Changepoint"
-msgstr ""
+msgstr "変化点"
 
 msgid "Change in growth rate (δ)"
-msgstr ""
+msgstr "成長率の変化(δ)"
 
 msgid "Simulated Historical Forecasts Table"
-msgstr ""
+msgstr "シミュレーションによる過去の予測表"
 
 msgid "Horizon"
-msgstr ""
+msgstr "Horizon"
 
 msgid "MSE"
-msgstr ""
+msgstr "MSE"
 
 msgid "RMSE"
-msgstr ""
+msgstr "RMSE"
 
 msgid "MAPE"
-msgstr ""
+msgstr "MAPE"
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "'Start'は、日付のような形式でなければなりません（例：yyyy-mm-dd hh:mm:ss）"
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "'End'は、日付のような形式でなければなりません（例：yyyy-mm-dd hh:mm:ss）"
 
 msgid "Forecast Plots"
-msgstr ""
+msgstr "予測プロット"
 
 msgid "Overall"
-msgstr ""
+msgstr "全体"
 
 msgid "Trend"
-msgstr ""
+msgstr "トレンド"
 
 msgid "Seasonality Plots"
-msgstr ""
+msgstr "季節性プロット"
 
 msgid "Time (min:sec)"
-msgstr ""
+msgstr "時間 (分:秒)"
 
 msgid "Time (hour:min)"
-msgstr ""
+msgstr "時間(時間:分)"
 
 msgid "Time (hour)"
-msgstr ""
+msgstr "時間(時間)"
 
 msgid "Weekday"
-msgstr ""
+msgstr "平日"
 
 msgid "Time (day)"
-msgstr ""
+msgstr "時間(日)"
 
 msgid "Time (month-day)"
-msgstr ""
+msgstr "時間 (月-日)"
 
 msgid "Time (month)"
-msgstr ""
+msgstr "時間(月)"
 
 msgid "Time (year)"
-msgstr ""
+msgstr "時間(年)"
 
 msgid ""
 "Please enter valid 'Start' and 'End' arguments for nonperiodical prediction "
 "(e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "非周期的な予測に対して有効な 'Start' と 'End' の引数を入力してください (yyyy-mm-dd hh:mm:ss など)"
 
 msgid "Covariate Plots"
-msgstr ""
+msgstr "共変量プロット"
 
 msgid "Performance Plots"
-msgstr ""
+msgstr "パフォーマンスプロット"
 
-#, fuzzy
 msgid "Parameter Plots"
-msgstr "パラメータ"
+msgstr "パラメータプロット"
 
 msgid "Changepoint Plot"
-msgstr ""
+msgstr "変化点プロット"
 
 msgid "Change in growth rate"
-msgstr ""
+msgstr "成長率の変化"
 
 msgid "Posterior Distributions"
-msgstr ""
+msgstr "事後分布"
 
 msgid "Growth rate"
-msgstr ""
+msgstr "成長率"
 
 msgid "Offset"
-msgstr ""
+msgstr "オフセット"
 
 msgid "Residual variance"
-msgstr ""
+msgstr "残差分散"
 
 msgid "Density"
 msgstr "密度"
