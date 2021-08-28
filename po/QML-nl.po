@@ -88,14 +88,6 @@ msgctxt "Prophet|"
 msgid "Logistic"
 msgstr ""
 
-msgctxt "Prophet|"
-msgid "Constant carrying capacity"
-msgstr ""
-
-msgctxt "Prophet|"
-msgid "Constant saturating minimum"
-msgstr ""
-
 #, fuzzy
 msgctxt "Prophet|"
 msgid "Model"
@@ -363,3 +355,11 @@ msgstr ""
 msgctxt "Prophet|"
 msgid "Posterior distributions"
 msgstr "Posterior verdeling"
+
+msgctxt "Prophet|"
+msgid "Carrying capacity"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Saturating minimum"
+msgstr ""

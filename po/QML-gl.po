@@ -86,14 +86,6 @@ msgid "Logistic"
 msgstr "Loxística"
 
 msgctxt "Prophet|"
-msgid "Constant carrying capacity"
-msgstr "Capacidade de porte constante"
-
-msgctxt "Prophet|"
-msgid "Constant saturating minimum"
-msgstr "mínimo de saturación constante"
-
-msgctxt "Prophet|"
 msgid "Model"
 msgstr "Modelo"
 
@@ -328,3 +320,11 @@ msgstr "Gráfica de puntos de cambio"
 msgctxt "Prophet|"
 msgid "Posterior distributions"
 msgstr "Distribucións posteriores"
+
+msgctxt "Prophet|"
+msgid "Carrying capacity"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Saturating minimum"
+msgstr ""
