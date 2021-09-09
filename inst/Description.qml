@@ -4,7 +4,7 @@ import JASP.Module  1.0
 Description
 {
     name		: "jaspProphet"
-    title		: qsTr("Prophet")
+    title		: qsTr("Prophet (Beta)")
     description	: qsTr("This module offers a simple model for time series prediction.")
     version		: "0.15"
     author		: "JASP Team"

@@ -1,6 +1,6 @@
 Package: jaspProphet
 Type: Package
-Title: Prophet Module for JASP
+Title: Prophet Module (Beta) for JASP
 Version: 0.13.0
 Date: 2020-11-03
 Author: JASP Team
