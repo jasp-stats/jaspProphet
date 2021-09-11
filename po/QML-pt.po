@@ -326,3 +326,7 @@ msgstr ""
 msgctxt "Prophet|"
 msgid "Saturating minimum"
 msgstr ""
+
+msgctxt "Description|"
+msgid "Prophet (Beta)"
+msgstr ""
