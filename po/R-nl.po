@@ -3,78 +3,89 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-08-28 03:53\n"
-"PO-Revision-Date: 2020-12-02 21:29+0000\n"
-"Last-Translator: JASP Stats <F.A.M.Meerhoff@uva.nl>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/jasp-engine/"
+"PO-Revision-Date: 2021-09-14 07:35+0000\n"
+"Last-Translator: D.J. Dekker <dj_dekker@hotmail.com>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/jaspprophet-r/"
 "nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 msgid "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"'Tijd' moet in een datumachtig formaat staan (bijv. yyyy-mm-dd hh:mm:ss)"
 
 msgid ""
 "'Start' for nonperiodical prediction must be in a date-like format (e.g., "
 "yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"'Start' voor niet-periodische voorspelling moet in een datumachtig formaat "
+"staan (bijv. yyyy-mm-dd hh:mm:ss)"
 
 msgid ""
 "'End' for nonperiodical prediction must be in a date-like format (e.g., yyyy-"
 "mm-dd hh:mm:ss)"
 msgstr ""
+"'End' voor niet-periodische voorspelling moet in een datumachtig formaat "
+"staan (bijv. yyyy-mm-dd hh:mm:ss)"
 
 msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
-msgstr ""
+msgstr "'Veranderpunten' moet een logische variabele zijn (bijv. 0/1)"
 
 msgid "'History Indicator' must be a logical variable (e.g., 0/1)"
-msgstr ""
+msgstr "'Historie indicator' moet een dichotome variabele (e.g., 0/1) zijn"
 
 msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
-msgstr ""
+msgstr "'Draagcapaciteit' moet altijd groter zijn dan 'Verzadigd Minimum'"
 
 msgid ""
 "'Carrying Capacity' must always be larger than 'Constant saturating minimum'"
 msgstr ""
+"'Draagcapaciteit' moet altijd groter zijn dan 'Constante verzadigd minimum'"
 
 msgid ""
 "'Constant carrying capacity' must always be larger than 'Saturating Minimum'"
 msgstr ""
+"'Constante draagcapaciteit' moet altijd groter zijn dan 'Verzadigd Minimum'"
 
 msgid ""
 "'Constant carrying capacity' must always be larger than 'Constant saturating "
 "minimum'"
 msgstr ""
+"'Constante draagcapaciteit' moet altijd groter zijn dan 'Constante verzadigd "
+"minimum'"
 
 msgid ""
 "Seasonality names must only contain letters, number, dots, or underscores "
 "and must start with letters or dots that are not followed by a number"
 msgstr ""
+"Seizoensnamen mogen alleen letters, cijfers, punten of underscores bevatten "
+"en moeten beginnen met letters of punten die niet worden gevolgd door een "
+"cijfer"
 
 msgid "'Carrying Capacity' must be supplied for predictions"
-msgstr ""
+msgstr "'Draagcapaciteit' moet gegeven worden voor voorspellingen"
 
 msgid "'Covariates' must be supplied for predictions"
-msgstr ""
+msgstr "'Covariabelen' moeten gegeven worden voor voorspellingen"
 
 msgid "Growth rate (k)"
-msgstr ""
+msgstr "Groeifactor (k)"
 
 msgid "Offset (m)"
-msgstr ""
+msgstr "Offset (m)"
 
-#, fuzzy
 msgid "Residual variance (σ²)"
-msgstr "Residu varianties"
+msgstr "Residuele variantie (σ²)"
 
 msgid "Posterior Summary Table"
-msgstr ""
+msgstr "Posterior Samenvattingstabel"
 
 msgid "%s%% CI"
-msgstr ""
+msgstr "%s%% BI"
 
 msgid "Parameter"
 msgstr "Parameter"
@@ -92,7 +103,7 @@ msgid "Upper"
 msgstr "Boven"
 
 msgid "R-hat"
-msgstr "R-hat"
+msgstr "R-dakje"
 
 msgid "ESS (bulk)"
 msgstr "ESS (bulk)"
@@ -105,120 +116,116 @@ msgid ""
 "with fewer MCMC samples to see if it works and if you specified the model "
 "correctly (e.g., set 'Samples = 10' in the 'Model' section)."
 msgstr ""
+"Profeet heeft misschien veel tijd nodig om de resultaten te berekenen. U "
+"kunt het eerst proberen met minder MCMC-steekproeven om te zien of het werkt "
+"en of u het model juist hebt gespecificeerd (e.g., stel in 'Steekproeven = "
+"10' in het gedeelte 'Model')."
 
-#, fuzzy
 msgid "Residual variance (sigma)"
-msgstr "Residu varianties"
+msgstr "Residuele variantie (sigma)"
 
 msgid "Changepoint Estimates Table"
-msgstr ""
+msgstr "Veranderpunt Schattingstabel"
 
 msgid "Changepoint Posterior Summary Table"
-msgstr ""
+msgstr "Veranderpunt Posterior Samenvattingstabel"
 
-#, fuzzy
 msgid "Changepoint"
-msgstr "F Verandering"
+msgstr "Veranderpunt"
 
 msgid "Change in growth rate (δ)"
-msgstr ""
+msgstr "Verandering in groeifactor (δ)"
 
 msgid "Simulated Historical Forecasts Table"
-msgstr ""
+msgstr "Gesimuleerde Historische Prognoses Tabel"
 
 msgid "Horizon"
-msgstr ""
+msgstr "Horizon"
 
-#, fuzzy
 msgid "MSE"
-msgstr "RMSE"
+msgstr "MSE"
 
 msgid "RMSE"
 msgstr "RMSE"
 
 msgid "MAPE"
-msgstr ""
+msgstr "MAPE"
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "'Start' moet in een datumformaat (e.g., yyyy-mm-dd hh:mm:ss)"
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "'Einde' moet in een datumformaat (e.g., yyyy-mm-dd hh:mm:ss)"
 
-#, fuzzy
 msgid "Forecast Plots"
-msgstr "Forestgrafiek"
+msgstr "Voorspellingsplots"
 
 msgid "Overall"
-msgstr ""
+msgstr "Totaal"
 
 msgid "Trend"
-msgstr ""
+msgstr "Trend"
 
-#, fuzzy
 msgid "Seasonality Plots"
-msgstr "Centraliteitsgrafiek"
+msgstr "Seizoensplots"
 
 msgid "Time (min:sec)"
-msgstr ""
+msgstr "Tijd (min:sec)"
 
 msgid "Time (hour:min)"
-msgstr ""
+msgstr "Tijd (uur:min)"
 
 msgid "Time (hour)"
-msgstr ""
+msgstr "Tijd (uur)"
 
 msgid "Weekday"
-msgstr ""
+msgstr "Weekdag"
 
 msgid "Time (day)"
-msgstr ""
+msgstr "Tijd (dag)"
 
 msgid "Time (month-day)"
-msgstr ""
+msgstr "Tijd (maand-dag)"
 
 msgid "Time (month)"
-msgstr ""
+msgstr "Tijd (maand)"
 
 msgid "Time (year)"
-msgstr ""
+msgstr "Tijd (jaar)"
 
 msgid ""
 "Please enter valid 'Start' and 'End' arguments for nonperiodical prediction "
 "(e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"Voer geldige 'Start' en 'Einde' argumenten voor non-periodieke voorspelling "
+"in (e.g., yyyy-mm-dd hh:mm:ss)"
 
-#, fuzzy
 msgid "Covariate Plots"
-msgstr "Forestgrafiek"
+msgstr "Covariabele Plots"
 
 msgid "Performance Plots"
-msgstr ""
+msgstr "Prestatieplots"
 
-#, fuzzy
 msgid "Parameter Plots"
-msgstr "Parameter"
+msgstr "Parameterplots"
 
-#, fuzzy
 msgid "Changepoint Plot"
-msgstr "F Verandering"
+msgstr "Veranderpuntplot"
 
 msgid "Change in growth rate"
-msgstr ""
+msgstr "Verandering in groeifactor"
 
-#, fuzzy
 msgid "Posterior Distributions"
-msgstr "Marginale Posterior verdelingen"
+msgstr "Posterior verdelingen"
 
 msgid "Growth rate"
-msgstr ""
+msgstr "Groeifactor"
 
 msgid "Offset"
-msgstr ""
+msgstr "Offset"
 
-#, fuzzy
 msgid "Residual variance"
-msgstr "Residu varianties"
+msgstr "Residuele variantie"
 
 msgid "Density"
 msgstr "Dichtheid"
