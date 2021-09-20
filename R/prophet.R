@@ -34,9 +34,9 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   .prophetCreateModelSummaryTable(       jaspResults, options, ready)
   .prophetCreateChangePointTable(        jaspResults, options, ready)
   .prophetCreateModelEvaluationTable(    jaspResults, options, ready)
-  return()
   .prophetCreateHistoryPlot(             jaspResults, dataset, options, ready)
   .prophetCreateForecastPlots(           jaspResults, dataset, options, ready)
+  return()
   .prophetCreateSeasonalityPlotContainer(jaspResults, dataset, options, ready)
   .prophetCreateCovariatePlotContainer(  jaspResults, dataset, options, ready)
   .prophetCreatePerformancePlots(        jaspResults, options, ready)
@@ -724,8 +724,8 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 .prophetCreateForecastPlots <- function(jaspResults, dataset, options, ready) {
   if (!ready) return()
 
-  prophetPredictionResults <- jaspResults[["prophetResults"]][["object"]][["prophetModelResults"]]
   prophetModelResults      <- jaspResults[["prophetResults"]][["object"]][["prophetModelResults"]]
+  prophetPredictionResults <- jaspResults[["prophetResults"]][["object"]][["prophetPredictionResults"]]
 
   prophetForecastPlots <- createJaspContainer(title = gettext("Forecast Plots"))
   prophetForecastPlots$dependOn(.prophetPredictionDependencies())
