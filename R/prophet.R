@@ -36,7 +36,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   .prophetCreateModelEvaluationTable(    jaspResults, options, ready)
   .prophetCreateHistoryPlot(             jaspResults, dataset, options, ready)
   .prophetCreateForecastPlots(           jaspResults, dataset, options, ready)
-  #.prophetCreateSeasonalityPlotContainer(jaspResults, dataset, options, ready)
+  .prophetCreateSeasonalityPlotContainer(jaspResults, dataset, options, ready)
   .prophetCreateCovariatePlotContainer(  jaspResults, dataset, options, ready)
   .prophetCreatePerformancePlots(        jaspResults, options, ready)
   .prophetCreateParameterPlots(          jaspResults, options, ready)
@@ -228,14 +228,18 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   if (!ready) return()
 
   if (is.null(jaspResults[["prophetResults"]])) {
-    prophetModelFullResults  <- .prophetModelResultsHelper(dataset, options)
-    prophetPredictionResults <- .prophetPredictionResultsHelper(dataset, options, prophetModelFullResults)
-    prophetEvaluationResults <- .prophetEvaluationResultsHelper(dataset, options, prophetModelFullResults)
-
     prophetResults <- list()
+
+    prophetModelFullResults  <- .prophetModelResultsHelper(dataset, options)
     prophetResults[["prophetModelResults"]] <- .prophetModelResultsReduce(prophetModelFullResults, options)
+
+    prophetPredictionResults <- .prophetPredictionResultsHelper(dataset, options, prophetModelFullResults)
     prophetResults[["prophetPredictionResults"]] <- prophetPredictionResults
-    prophetResults[["prophetEvaluationResults"]] <- prophetEvaluationResults
+
+    if (options[["crossValidation"]]) {
+      prophetEvaluationResults <- .prophetEvaluationResultsHelper(dataset, options, prophetModelFullResults)
+      prophetResults[["prophetEvaluationResults"]] <- prophetEvaluationResults
+    }
 
     jaspResults[["prophetResults"]] <-
       createJaspState(object       = prophetResults,
@@ -348,6 +352,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 
 .prophetModelResultsReduce <- function(prophetModelResults, options) {
   if (options$estimation == "mcmc") {
+    # posterior summaries
     ci <- .prophetIntervalLevels(options, "credible")
     ciNames <- paste0(100*ci, "%")
     modelSummary <- rstan::monitor(prophetModelResults$stan.fit, probs = .prophetIntervalLevels(options, "credible"))
@@ -356,15 +361,26 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     colnames(modelSummary) <- c("mean", "sd", "lower", "upper", "n_eff", "Rhat", "Bulk_ESS", "Tail_ESS")
     prophetModelResults[["modelSummary"]] <- modelSummary
 
+    # density estimates of the core parameters
     parameterDensities <- list()
     for (par in c("k", "m", "sigma_obs")) {
       parameterDensities[[par]] <- density(prophetModelResults[["params"]][[par]])
     }
     prophetModelResults[["parameterDensities"]] <- parameterDensities
 
+    # seasonality estimates
+    predictedSeasonalities <- list()
+    for (seas in options[["seasonalities"]]) {
+      name <- seas[["name"]]
+      predictedSeasonalities[[name]] <- .prophetPredictSeasonality(name, prophetModelResults, options)
+    }
+    prophetModelResults[["predictedSeasonalities"]] <- predictedSeasonalities
+
+    # remove stanfit and mcmc samples from the results to reduce size of the results
     prophetModelResults$stan.fit <- NULL
     prophetModelResults$params   <- NULL
   }
+
   return(prophetModelResults)
 }
 
@@ -807,7 +823,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 .prophetCreateSeasonalityPlot <- function(prophetSeasonalityPlots, name, prophetModelResults, options) {
   if (!is.null(prophetSeasonalityPlots[[name]])) return()
 
-  seasData <- .prophetPredictSeasonality(encodeColNames(name), prophetModelResults, options)
+  seasData <- prophetModelResults[["predictedSeasonalities"]][[name]]
 
   seasonalityPlot <- createJaspPlot(title = name, height = 320, width = 480)
   seasonalityPlot$plotObject <- .prophetSeasonalityPlotFill(seasData, encodeColNames(name), options)

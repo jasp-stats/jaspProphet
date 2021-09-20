@@ -1,6 +1,6 @@
 context("Prophet")
 
-# Make sure to run the test for plots with date axes on a system with English language 
+# Make sure to run the test for plots with date axes on a system with English language
 # because months and weekdays will be displayed depending on that
 
 dateTimeVarNames <- c("dateYear", "dateWeek", "dateDay", "timeHour", "timeMinute", "timeSecond")
@@ -12,7 +12,7 @@ test_that("Posterior Summary Table results match (linear)", {
   options$time <- "dateYear"
   options$mcmcSamples <- 10
   options$predictionSavePath <- ""
-  
+
   for (i in 1:6) {
     options$time <- dateTimeVarNames[i]
     set.seed(1)
@@ -24,7 +24,7 @@ test_that("Posterior Summary Table results match (linear)", {
                                         0.113226988344312, "Offset (m)", 1, 0.0831938284838563, 20,
                                         0.252718078792628, 20, 0.374623449591915, 0.573723365352864,
                                         "Residual variance (sigma)", 1, 0.2235178416768, 20, 0.942133582100974
-                                   )) 
+                                   ))
   }
 })
 
@@ -36,7 +36,7 @@ test_that("Posterior Summary Table results match (logistic)", {
   options$mcmcSamples <- 10
   options$growth <- "logistic"
   options$predictionSavePath <- ""
-  
+
   for (i in 1:6) {
     options$time <- dateTimeVarNames[i]
     options$periodicalPredictionUnit <- dateTimeUnits[i]
@@ -168,7 +168,7 @@ test_that("Parameter Estimates Table results match (MAP)", {
     list(-0.165701104700655, 0.0288912230542516, 0.315932056357582))
 
   # Does currently not work on Mac
-  
+
   testthat::skip_on_os(c("mac", "linux"))
 
   options$capacity <- "contGamma"
@@ -189,7 +189,7 @@ test_that("Changepoint Posterior Summary Table results match (automatic)", {
   options$changePointTable <- TRUE
   options$maxChangepoints <- 3
   options$predictionSavePath <- ""
-  
+
   testList <- list(
     list("2044-01-01", -0.102577025508582, 0.000747031374094744, 0.0796092516712301,
        0.0823103488296078, "2071-01-01", -0.183201673409137, -0.0278855575007965,
@@ -218,7 +218,7 @@ test_that("Changepoint Posterior Summary Table results match (automatic)", {
        -0.183203980495524, -0.0278911157685207, 0.0596231040299391,
        0.0502187402975552, "2018-01-01 00:01:19", -0.0288794834942642,
        0.0549111163785803, 0.10334759494585, 0.226317381592537))
-  
+
   for (i in 1:6) {
     options$time <- dateTimeVarNames[i]
     set.seed(1)
@@ -262,7 +262,7 @@ test_that("Changepoint Posterior Summary Table results match (MAP)", {
   options$changePointTable <- TRUE
   options$maxChangepoints <- 3
   options$predictionSavePath <- ""
-  
+
   testList <- list(
     list(-4.6571455544865e-09, "2044-01-01", -5.36239276854111e-10, "2071-01-01",
        6.72791321806394e-10, "2097-01-01"),
@@ -276,7 +276,7 @@ test_that("Changepoint Posterior Summary Table results match (MAP)", {
        "2018-01-01 00:53:00", 4.11746384728716e-08, "2018-01-01 01:19:00"),
     list(1.40971557048972e-08, "2018-01-01 00:00:26", 7.14102900553978e-10,
        "2018-01-01 00:00:53", 4.11746384728716e-08, "2018-01-01 00:01:19"))
-  
+
   for (i in 1:6) {
     options$time <- dateTimeVarNames[i]
     set.seed(1)
@@ -299,7 +299,7 @@ test_that("Simulated Historical Forecasts Table results match", {
   options$performanceMetricsRmse <- TRUE
   options$performanceMetricsMape <- TRUE
   options$predictionSavePath <- ""
-  
+
   for (i in 2:6) { # except years because it doesn't work for cross validation
     options$time <- dateTimeVarNames[i]
     options$periodicalPredictionUnit <- dateTimeUnits[i]
@@ -499,7 +499,7 @@ test_that("Performance Plots match", {
   options$performancePlotsMse <- TRUE
   options$performancePlotsRmse <- TRUE
   options$performancePlotsMape <- TRUE
-  
+
   for (i in 2:6) { # except years because it doesn't work for cross validation
     options$time <- dateTimeVarNames[i]
     options$periodicalPredictionUnit <- dateTimeUnits[i]
