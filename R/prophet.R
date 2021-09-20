@@ -1321,7 +1321,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 # helpers ----
 .prophetIntervalLevels <- function(options, what = c("credible", "prediction")) {
   what <- match.arg(what)
-  criLevel <- (1-options[["credibleIntervalWidth"]])/2
+
   criLevel <- switch(what,
                      credible   = (1-options[["credibleIntervalWidth"]])/2,
                      prediction = (1-options[["predictionIntervalWidth"]])/2)
