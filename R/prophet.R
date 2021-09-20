@@ -40,7 +40,6 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   .prophetCreateCovariatePlotContainer(  jaspResults, dataset, options, ready)
   .prophetCreatePerformancePlots(        jaspResults, options, ready)
   .prophetCreateParameterPlots(          jaspResults, options, ready)
-  return()
 
   return()
 }
@@ -1209,9 +1208,12 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 }
 
 .prophetParameterPlotDeltaFill <- function(prophetModelResults, options) {
-  deltas  <- switch(options$estimation,
-                    map  = as.numeric(prophetModelResults[["params"]][["delta"]]),
-                    mcmc = as.numeric(apply(prophetModelResults[["params"]][["delta"]], 2, mean)))
+  if(options[["estimation"]] == "map") {
+    deltas <- as.numeric(prophetModelResults[["params"]][["delta"]])
+  } else {
+    deltas <- prophetModelResults[["modelSummary"]]
+    deltas <- as.numeric(deltas[startsWith(rownames(deltas), "delta"), "mean"])
+  }
   cps     <- as.POSIXct(prophetModelResults$changepoints)
 
   xBreaks <- pretty(cps)
@@ -1253,7 +1255,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     prophetParameterPlotMarginal[[parNames[i]]] <- marginalPlotList[[i]]
   }
 
-  prophetParameterPlotMarginal$dependOn(c("parameterPlotsMarginalDistributions", "parameterPlotsCredibleIntervalWidth"))
+  prophetParameterPlotMarginal$dependOn(c("parameterPlotsMarginalDistributions"))
 
   prophetParameterPlots[["prophetParameterPlotMarginal"]] <- prophetParameterPlotMarginal
 
