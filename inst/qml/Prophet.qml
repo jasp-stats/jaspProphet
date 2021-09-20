@@ -7,7 +7,7 @@ import JASP				1.0
 Form
 {
 	VariablesForm
-	{	
+	{
 		preferredHeight: 400 * preferencesModel.uiScale
 		AvailableVariablesList	{ name: "allVariablesList" }
 		AssignedVariablesList	{ name: "dependent"; title: qsTr("Dependent Variable");	suggestedColumns: ["scale"]; singleVariable: true													}
@@ -18,7 +18,7 @@ Form
 		AssignedVariablesList	{ name: "covariates"; title: qsTr("Covariates"); suggestedColumns: ["scale"];																				}
 		AssignedVariablesList	{ name: "historyIndicator"; title: qsTr("Include in Training"); suggestedColumns: ["scale"]; singleVariable: true											}
 	}
-	
+
 	columns: 3
 
 	CheckBox
@@ -26,13 +26,13 @@ Form
 		name: "historyPlot"
 		label: qsTr("History plot")
 		id: histplot
-		
+
 		RadioButtonGroup
 		{
 			name: "historyPlotShow"
 			visible: histplot.checked
 			columns: 3
-			
+
 			RadioButton
 			{
 				value: "points"
@@ -50,12 +50,12 @@ Form
 				label: qsTr("Both")
 			}
 		}
-		
+
 		CheckBox
 		{
 			name: "historyPlotRange"
 			label: qsTr("Plot time interval")
-			
+
 			Group
 			{
 				TextField
@@ -75,7 +75,7 @@ Form
 			}
 		}
 	}
-	
+
 	RadioButtonGroup
 	{
 		name: "growth"
@@ -92,7 +92,7 @@ Form
 			value: "logistic"
 			label: qsTr("Logistic")
 			childrenOnSameRow: false
-			
+
 			Group
 			{
 				DoubleField
@@ -152,7 +152,7 @@ Form
 					decimals: 3
 				}
 			}
-			
+
 			RadioButtonGroup
 			{
 				name: "estimation"
@@ -203,7 +203,7 @@ Form
 				}
 			}
 		}
-		
+
 		VariablesList
 		{
 			name: "assignedCovariates"
@@ -211,7 +211,7 @@ Form
 			listViewType: JASP.AssignedVariables
 			preferredHeight: 100 * preferencesModel.uiScale
 			draggable: false
-			
+
 			title: qsTr("Covariates                                                  Normal prior σ²                 Standardize                 Mode")
 			rowComponent: Row
 			{
@@ -238,11 +238,11 @@ Form
 				}
 			}
 		}
-		
+
 		Group
 		{
 			title: qsTr("Seasonalities")
-			
+
 			ColumnLayout
 			{
 				spacing: 0 * preferencesModel.uiScale
@@ -264,7 +264,7 @@ Form
 						{
 							Layout.preferredWidth: 100 * preferencesModel.uiScale
 							spacing: 4 * preferencesModel.uiScale
-							
+
 							TextField
 							{
 								name: "name"
@@ -276,7 +276,7 @@ Form
 						{
 							Layout.preferredWidth: 45 * preferencesModel.uiScale
 							spacing: 4 * preferencesModel.uiScale
-							
+
 							DoubleField
 							{
 								name: "period"
@@ -287,7 +287,7 @@ Form
 						{
 							Layout.preferredWidth: 80 * preferencesModel.uiScale
 							spacing: 4 * preferencesModel.uiScale
-							
+
 							DropDown
 							{
 								name: "unit"
@@ -307,7 +307,7 @@ Form
 						{
 							Layout.preferredWidth: 100 * preferencesModel.uiScale
 							spacing: 4 * preferencesModel.uiScale
-							
+
 							DoubleField
 							{
 								name: "priorSigma"
@@ -318,7 +318,7 @@ Form
 						{
 							Layout.preferredWidth: 70 * preferencesModel.uiScale
 							spacing: 4 * preferencesModel.uiScale
-							
+
 							IntegerField
 							{
 								name: "fourierOrder"
@@ -329,7 +329,7 @@ Form
 						{
 							Layout.preferredWidth: 122 * preferencesModel.uiScale
 							spacing: 4 * preferencesModel.uiScale
-							
+
 							DropDown
 							{
 								name: "mode"
@@ -346,7 +346,7 @@ Form
 			}
 		}
 	}
-	
+
 	Section
 	{
 		title: qsTr("Prediction")
@@ -429,11 +429,11 @@ Form
 			save:	true
 		}
 	}
-	
+
 	Section
 	{
 		title: qsTr("Evaluation")
-		
+
 		CheckBox
 		{
 			name: "crossValidation"
@@ -476,7 +476,7 @@ Form
 				}
 			}
 		}
-		
+
 		CheckBox
 		{
 			name: "performanceMetrics"
@@ -499,13 +499,13 @@ Form
 				label: qsTr("Mean absolute percentage error (MAPE)")
 			}
 		}
-		
+
 		CheckBox
 		{
 			name: "changePointTable"    ; label: qsTr("Changepoint table")
 		}
 	}
-	
+
 	Section
 	{
 		title: qsTr("Plots")
@@ -546,7 +546,7 @@ Form
 					{
 						name: "forecastPlotsOverallRange"
 						label: qsTr("Plot time interval")
-						
+
 						TextField
 						{
 							name: "forecastPlotsOverallStart"
@@ -577,7 +577,7 @@ Form
 				{
 					name: "forecastPlotsTrendRange"
 					label: qsTr("Plot time interval")
-					
+
 					Group
 					{
 						TextField
@@ -605,7 +605,7 @@ Form
 			AvailableVariablesList { name: "seasonalityNames"; title: qsTr("Seasonalities"); source: "seasonalities.name"	}
 			AssignedVariablesList { name: "seasonalityPlots"; title: qsTr("Seasonality Plots")								}
 		}
-		
+
 		VariablesForm
 		{
 			preferredHeight: 0.5 * jaspTheme.smallDefaultVariablesFormHeight
@@ -670,12 +670,6 @@ Form
 					name: "parameterPlotsMarginalDistributions"
 					label: qsTr("Posterior distributions")
 					enabled: mcmc.checked
-					CIField
-					{
-						name: "parameterPlotsCredibleIntervalWidth"
-						label: qsTr("Credible interval level")
-						defaultValue: 95
-					}
 				}
 			}
 		}

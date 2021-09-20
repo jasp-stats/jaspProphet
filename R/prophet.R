@@ -36,11 +36,11 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   .prophetCreateModelEvaluationTable(    jaspResults, options, ready)
   .prophetCreateHistoryPlot(             jaspResults, dataset, options, ready)
   .prophetCreateForecastPlots(           jaspResults, dataset, options, ready)
-  return()
-  .prophetCreateSeasonalityPlotContainer(jaspResults, dataset, options, ready)
+  #.prophetCreateSeasonalityPlotContainer(jaspResults, dataset, options, ready)
   .prophetCreateCovariatePlotContainer(  jaspResults, dataset, options, ready)
   .prophetCreatePerformancePlots(        jaspResults, options, ready)
   .prophetCreateParameterPlots(          jaspResults, options, ready)
+  return()
 
   return()
 }
@@ -355,8 +355,13 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     modelSummary <- as.data.frame(modelSummary)
     modelSummary <- modelSummary[, c("mean", "sd", ciNames, "n_eff", "Rhat", "Bulk_ESS", "Tail_ESS")]
     colnames(modelSummary) <- c("mean", "sd", "lower", "upper", "n_eff", "Rhat", "Bulk_ESS", "Tail_ESS")
-    prophetModelResults$modelSummary <- modelSummary
+    prophetModelResults[["modelSummary"]] <- modelSummary
 
+    parameterDensities <- list()
+    for (par in c("k", "m", "sigma_obs")) {
+      parameterDensities[[par]] <- density(prophetModelResults[["params"]][[par]])
+    }
+    prophetModelResults[["parameterDensities"]] <- parameterDensities
 
     prophetModelResults$stan.fit <- NULL
     prophetModelResults$params   <- NULL
@@ -1256,13 +1261,12 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 }
 
 .prophetParameterPlotMarginalFill <- function(prophetModelResults, options, parName, parTitle) {
-  samples <- prophetModelResults[["params"]][[parName]]
-  dens    <- density(samples)
+  dens    <- prophetModelResults[["parameterDensities"]][[parName]]
   x       <- dens$x
   y       <- dens$y
 
-  lvl     <- (1-options[["parameterPlotsCredibleIntervalWidth"]])/2
-  cri     <- stats::quantile(samples, prob = c(lvl, 1-lvl))
+  ci     <- prophetModelResults[["modelSummary"]][,c("lower", "upper")]
+  ci     <- ci[rownames(ci) == parName,]
 
   xBreaks    <- pretty(range(x))
   yBreaks    <- pretty(c(0, 1.15*max(y)))
@@ -1275,7 +1279,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
                        mapping = ggplot2::aes(x = x, y = y),
                        size = 1.25) +
 
-    ggplot2::geom_errorbarh(data = data.frame(xmin = cri[1], xmax = cri[2], y = yBarPos),
+    ggplot2::geom_errorbarh(data = data.frame(xmin = ci[,1], xmax = ci[,2], y = yBarPos),
                             mapping = ggplot2::aes(xmin = xmin, xmax = xmax, y = y),
                             height = yBarHeight) +
 
