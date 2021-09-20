@@ -482,7 +482,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 
   if (options$estimation == "map") {
     prophetTable <- createJaspTable(title = "Parameter Estimates Table")
-    prophetTable$dependOn(c("summaryCredibleIntervalWidth"))
+    prophetTable$dependOn(c("credibleIntervalWidth"))
     prophetTable$position <- 1
 
     prophetTable$addColumnInfo(name = "k", title = gettext("Growth rate (k)"), type = "number")
@@ -497,9 +497,9 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     prophetTable <- createJaspTable(title = gettext("Posterior Summary Table"))
     prophetTable$position <- 2
 
-    criLevel <- (1-options[["summaryCredibleIntervalWidth"]])/2
+    criLevel <- (1-options[["credibleIntervalWidth"]])/2
 
-    overtitle <- gettextf("%s%% CI", options[["summaryCredibleIntervalWidth"]]*100)
+    overtitle <- gettextf("%s%% CI", options[["credibleIntervalWidth"]]*100)
     prophetTable$addColumnInfo(name = "par", title = gettext("Parameter"), type = "string")
     prophetTable$addColumnInfo(name = "mean", title = gettext("Mean"), type = "number")
     prophetTable$addColumnInfo(name = "sd", title = gettext("SD"), type = "number")
@@ -566,10 +566,10 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
                   map  = gettext("Changepoint Estimates Table"),
                   mcmc = gettext("Changepoint Posterior Summary Table"))
   prophetTable <- createJaspTable(title = title)
-  prophetTable$dependOn(c("changePointTable", "summaryCredibleIntervalWidth"))
+  prophetTable$dependOn(c("changePointTable", "credibleIntervalWidth"))
   prophetTable$position <- 3
 
-  criLevel <- (1-options[["summaryCredibleIntervalWidth"]])/2
+  criLevel <- (1-options[["credibleIntervalWidth"]])/2
 
   prophetTable$addColumnInfo(name = "ds", title = gettext("Changepoint"), type = "string")
 
@@ -577,7 +577,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     prophetTable$addColumnInfo(name = "delta", title = gettext("Change in growth rate (\u03B4)"), type = "number")
   } else {
     parTitle <- gettext("Change in growth rate (\u03B4)")
-    ciTitle  <- gettextf("%s%% CI", options[["summaryCredibleIntervalWidth"]]*100)
+    ciTitle  <- gettextf("%s%% CI", options[["credibleIntervalWidth"]]*100)
     prophetTable$addColumnInfo(name = "mean", title = gettext("Mean"), type = "number", overtitle = parTitle)
     prophetTable$addColumnInfo(name = "sd", title = gettext("SD"), type = "number", overtitle = parTitle)
     prophetTable$addColumnInfo(name = "lowerCri", title = gettext("Lower"), type = "number", overtitle = ciTitle)
@@ -1321,9 +1321,9 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 # helpers ----
 .prophetIntervalLevels <- function(options, what = c("credible", "prediction")) {
   what <- match.arg(what)
-  criLevel <- (1-options[["summaryCredibleIntervalWidth"]])/2
+  criLevel <- (1-options[["credibleIntervalWidth"]])/2
   criLevel <- switch(what,
-                     credible   = (1-options[["summaryCredibleIntervalWidth"]])/2,
+                     credible   = (1-options[["credibleIntervalWidth"]])/2,
                      prediction = (1-options[["predictionIntervalWidth"]])/2)
 
   return(c(criLevel, 1-criLevel))

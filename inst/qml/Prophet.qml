@@ -196,7 +196,7 @@ Form
 				}
 				CIField
 				{
-					name: "summaryCredibleIntervalWidth"
+					name: "credibleIntervalWidth"
 					label: qsTr("Credible interval level")
 					visible: mcmc.checked
 					defaultValue: 95
