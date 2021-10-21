@@ -1,16 +1,22 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-10-21 17:02+0000\n"
+"Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
+"jaspprophet-qml/es/>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.9-dev\n"
 "X-Language: es\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Prophet"
-msgstr ""
+msgstr "Profeta"
 
 msgctxt "Description|"
 msgid "This module offers a simple model for time series prediction."
@@ -25,10 +31,9 @@ msgctxt "Prophet|"
 msgid "Time"
 msgstr "Tiempo"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Changepoints"
-msgstr "Puntos de corte"
+msgstr "Puntos de cambio"
 
 msgctxt "Prophet|"
 msgid "Carrying Capacity"
@@ -44,7 +49,7 @@ msgstr "Covariables"
 
 msgctxt "Prophet|"
 msgid "Include in Training"
-msgstr ""
+msgstr "Incluir en el Entrenamiento"
 
 msgctxt "Prophet|"
 msgid "History plot"
@@ -64,64 +69,59 @@ msgstr "Ambos"
 
 msgctxt "Prophet|"
 msgid "Plot time interval"
-msgstr ""
+msgstr "Hacer gráfico del intervalo de tiempo"
 
 msgctxt "Prophet|"
 msgid "Start"
-msgstr ""
+msgstr "Inicio"
 
 msgctxt "Prophet|"
 msgid "End"
-msgstr ""
+msgstr "Fin"
 
 msgctxt "Prophet|"
 msgid "Growth"
-msgstr ""
+msgstr "Crecimiento"
 
 msgctxt "Prophet|"
 msgid "Linear"
-msgstr ""
+msgstr "Lineal"
 
 msgctxt "Prophet|"
 msgid "Logistic"
 msgstr "Logística"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Model"
 msgstr "Modelo"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Automatic Changepoints"
-msgstr "Punto de partida"
+msgstr "Puntos de Cambio Automáticos"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Max. changepoints"
-msgstr "Min. puntos centrales:"
+msgstr "Puntos de cambio máximos"
 
 msgctxt "Prophet|"
 msgid "Changepoint range"
-msgstr ""
+msgstr "Rango de los puntos de cambio"
 
 msgctxt "Prophet|"
 msgid "Laplace prior τ"
-msgstr ""
+msgstr "Previo τ de Laplace"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Estimation"
-msgstr "Estimacion"
+msgstr "Estimación"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Maximum a posteriori"
-msgstr "Posteriores marginales"
+msgstr "Máximo a posteriori"
 
 msgctxt "Prophet|"
 msgid "Markov chain Monte Carlo"
-msgstr ""
+msgstr "Monte Carlo de cadenas de Markov"
 
 msgctxt "Prophet|"
 msgid "Samples"
@@ -133,11 +133,11 @@ msgstr "Incertidumbre"
 
 msgctxt "Prophet|"
 msgid "Prediction interval level"
-msgstr "Nivel de intervalo de predicción"
+msgstr "Nivel del intervalo de predicción"
 
 msgctxt "Prophet|"
 msgid "Prediction interval samples"
-msgstr "Muestras de intervalos de predicción"
+msgstr "Muestras del intervalo de predicción"
 
 msgctxt "Prophet|"
 msgid "Credible interval level"
@@ -148,21 +148,20 @@ msgid ""
 "Covariates                                                  Normal prior "
 "σ²                 Standardize                 Mode"
 msgstr ""
+"Covariables                                                  σ² previo de "
+"Normal                 Tipificar                 Moda"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Additive"
-msgstr "Adición"
+msgstr "Aditivo"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Multiplicative"
-msgstr "Multiplicación"
+msgstr "Multiplicativo"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Seasonalities"
-msgstr "Densidades"
+msgstr "Estacionalidades"
 
 msgctxt "Prophet|"
 msgid "Name"
@@ -178,146 +177,131 @@ msgstr "Unidad"
 
 msgctxt "Prophet|"
 msgid "Normal prior σ²"
-msgstr ""
+msgstr "Previo σ² de la Normal"
 
 msgctxt "Prophet|"
 msgid "Fourier order"
-msgstr ""
+msgstr "Orden de Fourier"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Mode"
-msgstr "Modo"
+msgstr "Moda"
 
 msgctxt "Prophet|"
 msgid "Seconds"
-msgstr ""
+msgstr "Segundos"
 
 msgctxt "Prophet|"
 msgid "Minutes"
-msgstr ""
+msgstr "Minutos"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Hours"
-msgstr "horas"
+msgstr "Horas"
 
 msgctxt "Prophet|"
 msgid "Days"
-msgstr ""
+msgstr "Días"
 
 msgctxt "Prophet|"
 msgid "Weeks"
-msgstr ""
+msgstr "Semanas"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Years"
-msgstr "Pearson"
+msgstr "Años"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Prediction"
-msgstr "Predictores"
+msgstr "Predicción"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Periodical"
-msgstr "Mediana posterior"
+msgstr "Periódico"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Number of periods"
-msgstr "Número de intentos"
+msgstr "Número de períodos"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Nonperiodical"
-msgstr "No paramétrico"
+msgstr "No periódico"
 
 msgctxt "Prophet|"
 msgid "Save predictions"
-msgstr ""
+msgstr "Guardar las predicciones"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Evaluation"
 msgstr "Evaluación"
 
 msgctxt "Prophet|"
 msgid "Simulated historical forecasts"
-msgstr ""
+msgstr "Predicciones históricas simuladas"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Horizon"
-msgstr "Eje horizontal"
+msgstr "Horizonte"
 
 msgctxt "Prophet|"
 msgid "Period between cutoffs"
-msgstr ""
+msgstr "Período entre puntos de corte"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Initial training time"
-msgstr "Iniciando la creación de un nuevo archivo "
+msgstr "Tiempo inicial de entrenamiento"
 
 msgctxt "Prophet|"
 msgid "Performance metrics"
-msgstr ""
+msgstr "Métricas de comportamiento"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Mean squared error (MSE)"
-msgstr "Error medio cuadrado"
+msgstr "Error Cuadrado Medio (ECM, MSE)"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Root mean squared error (RMSE)"
-msgstr "Error medio cuadrado"
+msgstr "Raíz del error cuadrado medio (RECM, RMSE)"
 
 msgctxt "Prophet|"
 msgid "Mean absolute percentage error (MAPE)"
-msgstr ""
+msgstr "Media del error absoluto porcentual (MEAP, MAPE)"
 
 msgctxt "Prophet|"
 msgid "Changepoint table"
 msgstr "Tabla de puntos de cambio"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Plots"
 msgstr "Gráficos"
 
 msgctxt "Prophet|"
 msgid "Forecast Plots"
-msgstr "Gráficos forestales"
+msgstr "Gráficos de Predicciones"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Overall"
-msgstr "Superpuesto"
+msgstr "General"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Show data points"
 msgstr "Mostrar puntos de datos"
 
 msgctxt "Prophet|"
 msgid "Show carrying capacity"
-msgstr ""
+msgstr "Mostrar la capacidad de porte"
 
 msgctxt "Prophet|"
 msgid "Show changepoints"
-msgstr ""
+msgstr "Mostrar los puntos de cambio"
 
 msgctxt "Prophet|"
 msgid "Show saturating minimum"
-msgstr ""
+msgstr "Mostrar el mínimo de saturación"
 
 msgctxt "Prophet|"
 msgid "Trend"
-msgstr ""
+msgstr "Tendencia"
 
 msgctxt "Prophet|"
 msgid "Seasonality Plots"
@@ -325,35 +309,32 @@ msgstr "Gráficos de Estacionalidad"
 
 msgctxt "Prophet|"
 msgid "Covariate Plots"
-msgstr ""
+msgstr "Gráficos de Covariables"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Performance Plots"
-msgstr "Gráficos de rendimiento"
+msgstr "Gráficos de Comportamiento"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Parameter Plots"
-msgstr "Parámetros"
+msgstr "Gráficos de Parámetros"
 
 msgctxt "Prophet|"
 msgid "Changepoint plot"
-msgstr ""
+msgstr "Gráfico de puntos de cambio"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Posterior distributions"
-msgstr "Distribución posterior"
+msgstr "Distribuciones posteriores"
 
 msgctxt "Prophet|"
 msgid "Carrying capacity"
-msgstr ""
+msgstr "Capacidad de porte"
 
 msgctxt "Prophet|"
 msgid "Saturating minimum"
-msgstr ""
+msgstr "Mínimo de saturación"
 
 msgctxt "Description|"
 msgid "Prophet (Beta)"
-msgstr ""
+msgstr "Profeta (Beta)"
