@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
 "POT-Creation-Date: 2021-08-28 03:53\n"
-"PO-Revision-Date: 2021-10-30 20:58+0000\n"
+"PO-Revision-Date: 2021-11-14 11:51+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-r/es/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.9.1-dev\n"
 
 msgid "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
@@ -22,56 +22,70 @@ msgid ""
 "'Start' for nonperiodical prediction must be in a date-like format (e.g., "
 "yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"'Inicio' para la predicción no periódica debe estar en un formato de tipo "
+"fecha (p.e. yyyy-mm-dd hh:mm:ss)"
 
 msgid ""
 "'End' for nonperiodical prediction must be in a date-like format (e.g., yyyy-"
 "mm-dd hh:mm:ss)"
 msgstr ""
+"'Fin' para la predicción no periódica debe estar en un formato de tipo fecha "
+"(p.e. yyyy-mm-dd hh:mm:ss)"
 
 msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
-msgstr ""
+msgstr "'Puntos de cambio' debe ser una variable de tipo lógico (p.e. 0/1)"
 
 msgid "'History Indicator' must be a logical variable (e.g., 0/1)"
 msgstr ""
+"'Indicador de Historial' debe ser una variable de tipo lógico (p.e. 0/1)"
 
 msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
-msgstr ""
+msgstr "'Capacidad de Carga' debe ser siempre mayor que 'Mínimo de Saturación'"
 
 msgid ""
 "'Carrying Capacity' must always be larger than 'Constant saturating minimum'"
 msgstr ""
+"'Capacidad de Carga' debe ser siempre mayor que 'Mínimo de saturación "
+"constante'"
 
 msgid ""
 "'Constant carrying capacity' must always be larger than 'Saturating Minimum'"
 msgstr ""
+"'Capacidad de carga constante' debe ser siempre mayor que 'Mínimo de "
+"Saturación'"
 
 msgid ""
 "'Constant carrying capacity' must always be larger than 'Constant saturating "
 "minimum'"
 msgstr ""
+"'Capacidad de carga constante' debe ser siempre mayor que 'Mínimo de "
+"saturación constante''"
 
 msgid ""
 "Seasonality names must only contain letters, number, dots, or underscores "
 "and must start with letters or dots that are not followed by a number"
 msgstr ""
+"Los nombres de la estacionalidad deben contener solo letras, números, puntos "
+"o guiones bajos, y deben comenzar con letras o puntos que no estén seguidos "
+"de un número"
 
 msgid "'Carrying Capacity' must be supplied for predictions"
-msgstr ""
+msgstr "Debe indicarse la 'Capacidad de Carga' para las predicciones"
 
 msgid "'Covariates' must be supplied for predictions"
-msgstr ""
+msgstr "Debe indicarse las 'Covariables' para las predicciones"
 
 msgid "Growth rate (k)"
-msgstr ""
+msgstr "Tasa de crecimiento (k)"
 
 msgid "Offset (m)"
-msgstr ""
+msgstr "Compensación (m)"
 
 msgid "Residual variance (σ²)"
-msgstr ""
+msgstr "Varianza de los errores (σ²)"
 
 msgid "Posterior Summary Table"
-msgstr ""
+msgstr "Tabla de Resumen Posterior"
 
 msgid "%s%% CI"
 msgstr "IC del %s%%"
@@ -105,51 +119,56 @@ msgid ""
 "with fewer MCMC samples to see if it works and if you specified the model "
 "correctly (e.g., set 'Samples = 10' in the 'Model' section)."
 msgstr ""
+"Profeta puede necesitar mucho tiempo para calcular los resultados. Se pude "
+"intentar primero con menos muestras MCMC, para observar si funciona y si se "
+"ha indicado correctamente el modelo (p.e. establecer 'Muestras = 10' en la "
+"sección 'Modelo')."
 
 msgid "Residual variance (sigma)"
-msgstr ""
+msgstr "Varianzas dos errores (sigma)"
 
 msgid "Changepoint Estimates Table"
 msgstr "Tabla de Estimaciones de Puntos de Cambio"
 
 msgid "Changepoint Posterior Summary Table"
-msgstr ""
+msgstr "Tabla de Resumen Posterior de los Puntos de Cambio"
 
 msgid "Changepoint"
-msgstr ""
+msgstr "Punto de cambio"
 
 msgid "Change in growth rate (δ)"
-msgstr ""
+msgstr "Cambio en la tasa de crecimiento (δ)"
 
 msgid "Simulated Historical Forecasts Table"
-msgstr ""
+msgstr "Tabla de Predicciones Simuladas Históricas"
 
 msgid "Horizon"
-msgstr ""
+msgstr "Horizonte"
 
 msgid "MSE"
-msgstr ""
+msgstr "ECM (MSE)"
 
 msgid "RMSE"
 msgstr "RMSE"
 
 msgid "MAPE"
-msgstr ""
+msgstr "MAPE"
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"'Inicio' debe estar en un formato de tipo fecha (p.e. yyyy-mm-dd hh:mm:ss)"
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "'Fin' debe estar en un formato de tipo fecha (p.e. yyyy-mm-dd hh:mm:ss)"
 
 msgid "Forecast Plots"
 msgstr "Gráficos Forestales"
 
 msgid "Overall"
-msgstr ""
+msgstr "General"
 
 msgid "Trend"
-msgstr ""
+msgstr "Tendencia"
 
 msgid "Seasonality Plots"
 msgstr "Gráficos de Estacionalidad"
@@ -182,33 +201,35 @@ msgid ""
 "Please enter valid 'Start' and 'End' arguments for nonperiodical prediction "
 "(e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"Por favor, introducir argumentos 'Inicio' y 'Fin' válidos para la predicción "
+"no periódica (p.e. yyyy-mm-dd hh:mm:ss)"
 
 msgid "Covariate Plots"
-msgstr ""
+msgstr "Gráficos de Covariables"
 
 msgid "Performance Plots"
-msgstr ""
+msgstr "Gráficos de Comportamiento"
 
 msgid "Parameter Plots"
-msgstr ""
+msgstr "Gráficos de Parámetros"
 
 msgid "Changepoint Plot"
-msgstr ""
+msgstr "Gráfico de Puntos de Cambio"
 
 msgid "Change in growth rate"
-msgstr ""
+msgstr "Cambio en la tasa de crecimiento"
 
 msgid "Posterior Distributions"
-msgstr ""
+msgstr "Distribucións Posteriores"
 
 msgid "Growth rate"
-msgstr ""
+msgstr "Tasa de crecimiento"
 
 msgid "Offset"
-msgstr ""
+msgstr "Compensación"
 
 msgid "Residual variance"
-msgstr ""
+msgstr "Varianza de los errores"
 
 msgid "Density"
 msgstr "Densidad"
