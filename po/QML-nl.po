@@ -327,7 +327,3 @@ msgstr "Draagcapaciteit"
 msgctxt "Prophet|"
 msgid "Saturating minimum"
 msgstr "Verzadigd minimum"
-
-msgctxt "Description|"
-msgid "Prophet (Beta)"
-msgstr "Prophet (Beta)"

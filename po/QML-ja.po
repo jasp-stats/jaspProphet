@@ -326,7 +326,3 @@ msgstr "環境収容力(Carrying Capacity)"
 msgctxt "Prophet|"
 msgid "Saturating minimum"
 msgstr "飽和最小値(Saturating Minimum)"
-
-msgctxt "Description|"
-msgid "Prophet (Beta)"
-msgstr "Prophet (ベータ)"

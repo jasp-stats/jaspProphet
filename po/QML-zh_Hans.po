@@ -327,7 +327,3 @@ msgstr "承载能力"
 msgctxt "Prophet|"
 msgid "Saturating minimum"
 msgstr "饱和最小值"
-
-msgctxt "Description|"
-msgid "Prophet (Beta)"
-msgstr "Prophet (Beta)"

@@ -6,10 +6,6 @@ msgstr ""
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
-msgid "Prophet (Beta)"
-msgstr ""
-
-msgctxt "Description|"
 msgid "This module offers a simple model for time series prediction."
 msgstr ""
 

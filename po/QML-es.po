@@ -328,7 +328,3 @@ msgstr "Capacidad de porte"
 msgctxt "Prophet|"
 msgid "Saturating minimum"
 msgstr "Mínimo de saturación"
-
-msgctxt "Description|"
-msgid "Prophet (Beta)"
-msgstr "Profeta (Beta)"

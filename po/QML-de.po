@@ -328,7 +328,3 @@ msgstr "Tragfähigkeit"
 msgctxt "Prophet|"
 msgid "Saturating minimum"
 msgstr "Sättigungsminimum"
-
-msgctxt "Description|"
-msgid "Prophet (Beta)"
-msgstr "Prophet (Beta)"
