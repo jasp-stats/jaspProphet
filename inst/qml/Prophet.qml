@@ -132,7 +132,7 @@ Form
 				{
 					name: "maxChangepoints"
 					label: qsTr("Max. changepoints")
-					defaultValue: 25
+					defaultValue: Math.min(25, dataSetModel.rowCount())
 					max: dataSetModel.rowCount()
 				}
 				DoubleField
@@ -466,7 +466,7 @@ Form
 				{
 					name: "crossValidationPeriod"
 					label: qsTr("Period between cutoffs")
-					defaultValue: 0.5*horizon.value
+					defaultValue: Math.floor(0.5*horizon.value)
 				}
 				IntegerField
 				{
