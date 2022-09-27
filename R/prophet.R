@@ -239,8 +239,12 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     prophetModelFullResults  <- .prophetModelResultsHelper(dataset, options)
     prophetResults[["prophetModelResults"]] <- .prophetModelResultsReduce(prophetModelFullResults, options)
 
+    if ((options[["predictionType"]] == "periodicalPrediction" && options[["periodicalPredictionNumber"]] > 0) ||
+    (options[["predictionType"]] == "nonperiodicalPrediction") && options[["forecastPlotsTrendStart"]] != "" &&
+    options[["forecastPlotsTrendEnd"]] != "") {
     prophetPredictionResults <- .prophetPredictionResultsHelper(dataset, options, prophetModelFullResults)
     prophetResults[["prophetPredictionResults"]] <- prophetPredictionResults
+    }
 
     if (options[["crossValidation"]]) {
       prophetEvaluationResults <- .prophetEvaluationResultsHelper(dataset, options, prophetModelFullResults)
@@ -748,7 +752,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 }
 
 .prophetCreateForecastPlots <- function(jaspResults, dataset, options, ready) {
-  if (!ready) return()
+  if (!ready || is.null(jaspResults[["prophetResults"]][["object"]][["prophetPredictionResults"]])) return()
 
   prophetModelResults      <- jaspResults[["prophetResults"]][["object"]][["prophetModelResults"]]
   prophetPredictionResults <- jaspResults[["prophetResults"]][["object"]][["prophetPredictionResults"]]
