@@ -752,7 +752,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 }
 
 .prophetCreateForecastPlots <- function(jaspResults, dataset, options, ready) {
-  if (!ready || is.null(jaspResults[["prophetResults"]][["object"]][["prophetPredictionResults"]])) return()
+  if (!ready) return()
 
   prophetModelResults      <- jaspResults[["prophetResults"]][["object"]][["prophetModelResults"]]
   prophetPredictionResults <- jaspResults[["prophetResults"]][["object"]][["prophetPredictionResults"]]
@@ -760,6 +760,15 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   prophetForecastPlots <- createJaspContainer(title = gettext("Forecast Plots"))
   prophetForecastPlots$dependOn(.prophetPredictionDependencies())
   prophetForecastPlots$position <- 5
+
+  if((options[["forecastPlotsOverall"]] || options [["forecastPlotsTrend"]]) && is.null(prophetPredictionResults)) {
+
+    errorTable <- createJaspTable()
+    errorTable$setError(gettext("Cannot draw forecast plots; no forecasts computed."))
+    prophetForecastPlots[["errorTable"]] <- errorTable
+    jaspResults[["prophetMainContainer"]][["prophetForecastPlots"]] <- prophetForecastPlots
+    return()
+  }
 
   if (options$forecastPlotsOverall) .prophetCreateOverallForecastPlot(prophetForecastPlots, dataset, options, prophetPredictionResults)
   if (options$forecastPlotsTrend)   .prophetCreateTrendForecastPlot(prophetForecastPlots, dataset, options, prophetPredictionResults)
