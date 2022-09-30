@@ -239,8 +239,12 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
     prophetModelFullResults  <- .prophetModelResultsHelper(dataset, options)
     prophetResults[["prophetModelResults"]] <- .prophetModelResultsReduce(prophetModelFullResults, options)
 
+    if ((options[["predictionType"]] == "periodicalPrediction" && options[["periodicalPredictionNumber"]] > 0) ||
+    (options[["predictionType"]] == "nonperiodicalPrediction") && options[["forecastPlotsTrendStart"]] != "" &&
+    options[["forecastPlotsTrendEnd"]] != "") {
     prophetPredictionResults <- .prophetPredictionResultsHelper(dataset, options, prophetModelFullResults)
     prophetResults[["prophetPredictionResults"]] <- prophetPredictionResults
+    }
 
     if (options[["crossValidation"]]) {
       prophetEvaluationResults <- .prophetEvaluationResultsHelper(dataset, options, prophetModelFullResults)
@@ -756,6 +760,15 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   prophetForecastPlots <- createJaspContainer(title = gettext("Forecast Plots"))
   prophetForecastPlots$dependOn(.prophetPredictionDependencies())
   prophetForecastPlots$position <- 5
+
+  if((options[["forecastPlotsOverall"]] || options [["forecastPlotsTrend"]]) && is.null(prophetPredictionResults)) {
+
+    errorTable <- createJaspTable()
+    errorTable$setError(gettext("Cannot draw forecast plots; no forecasts computed."))
+    prophetForecastPlots[["errorTable"]] <- errorTable
+    jaspResults[["prophetMainContainer"]][["prophetForecastPlots"]] <- prophetForecastPlots
+    return()
+  }
 
   if (options$forecastPlotsOverall) .prophetCreateOverallForecastPlot(prophetForecastPlots, dataset, options, prophetPredictionResults)
   if (options$forecastPlotsTrend)   .prophetCreateTrendForecastPlot(prophetForecastPlots, dataset, options, prophetPredictionResults)

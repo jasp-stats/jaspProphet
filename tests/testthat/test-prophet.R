@@ -12,6 +12,7 @@ test_that("Posterior Summary Table results match (linear)", {
   options$time <- "dateYear"
   options$mcmcSamples <- 10
   options$predictionSavePath <- ""
+  options$maxChangepoints <- 25
 
   for (i in 1:6) {
     options$time <- dateTimeVarNames[i]
@@ -36,6 +37,7 @@ test_that("Posterior Summary Table results match (logistic)", {
   options$mcmcSamples <- 10
   options$growth <- "logistic"
   options$predictionSavePath <- ""
+  options$maxChangepoints <- 25
 
   for (i in 1:6) {
     options$time <- dateTimeVarNames[i]
@@ -59,6 +61,7 @@ test_that("Posterior Summary Table results match (covariates-linear)", {
   options$covariates <- list("contcor1", "contcor2")
   options$historyIndicator <- "histIdx"
   options$mcmcSamples <- 10
+  options$maxChangepoints <- 25
   options$assignedCovariates <- list(list(
     variable = "contcor1",
     priorSigma = 10,
@@ -90,6 +93,7 @@ test_that("Posterior Summary Table results match (covariates-logistic)", {
   options$historyIndicator <- "histIdx"
   options$mcmcSamples <- 10
   options$growth <- "logistic"
+  options$maxChangepoints <- 25
   options$assignedCovariates <- list(list(
     variable = "contcor1",
     priorSigma = 10,
@@ -123,6 +127,7 @@ test_that("Posterior Summary Table results match (minimum-logistic)", {
      options$mcmcSamples <- 10
      options$growth <- "logistic"
      options$predictionSavePath <- ""
+     options$maxChangepoints <- 25
      set.seed(1)
      results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
      table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetTable"]][["data"]]
@@ -143,6 +148,7 @@ test_that("Posterior Summary Table results match (constant-logistic)", {
   options$mcmcSamples <- 10
   options$growth <- "logistic"
   options$predictionSavePath <- ""
+  options$maxChangepoints <- 25
   set.seed(1)
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetTable"]][["data"]]
@@ -161,6 +167,7 @@ test_that("Parameter Estimates Table results match (MAP)", {
   options$predictionIntervalSamples <- 10
   options$estimation <- "map"
   options$predictionSavePath <- ""
+  options$maxChangepoints <- 25
   set.seed(1)
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetTable"]][["data"]]
@@ -299,6 +306,7 @@ test_that("Simulated Historical Forecasts Table results match", {
   options$performanceMetricsRmse <- TRUE
   options$performanceMetricsMape <- TRUE
   options$predictionSavePath <- ""
+  options$maxChangepoints <- 25
 
   for (i in 2:6) { # except years because it doesn't work for cross validation
     options$time <- dateTimeVarNames[i]
@@ -332,6 +340,7 @@ test_that("Simulated Historical Forecasts Table results match (MAP)", {
   options$performanceMetricsMape <- TRUE
   options$estimation <- "map"
   options$predictionSavePath <- ""
+  options$maxChangepoints <- 25
 
   for (i in 2:6) { # except years because it doesn't work for cross validation
     options$time <- dateTimeVarNames[i]
@@ -376,6 +385,7 @@ test_that("Overall Forecast Plot matches", {
   options$forecastPlotsOverall <- TRUE
   options$forecastPlotsOverallAddData <- TRUE
   options$predictionSavePath <- ""
+  options$maxChangepoints <- 25
 
   for (i in 1:6) {
     options$time <- dateTimeVarNames[i]
@@ -408,6 +418,7 @@ test_that("Trend Forecast Plot matches", {
   options$forecastPlotsTrend <- TRUE
   options$predictionSavePath <- ""
   set.seed(1)
+  options$maxChangepoints <- 25
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetForecastPlots"]][["collection"]][["prophetMainContainer_prophetForecastPlots_prophetTrendForecastPlot"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
@@ -420,6 +431,7 @@ test_that("Seasonality Plot matches", {
   options$mcmcSamples <- 10
   options$seasonalityPlots <- "custom"
   options$predictionSavePath <- ""
+  options$maxChangepoints <- 25
 
   for (i in 1:6) {
     options$time <- dateTimeVarNames[i]
@@ -499,6 +511,7 @@ test_that("Performance Plots match", {
   options$performancePlotsMse <- TRUE
   options$performancePlotsRmse <- TRUE
   options$performancePlotsMape <- TRUE
+  options$maxChangepoints <- 25
 
   for (i in 2:6) { # except years because it doesn't work for cross validation
     options$time <- dateTimeVarNames[i]
@@ -527,6 +540,7 @@ test_that("Changepoint Plot matches", {
   options$mcmcSamples <- 10
   options$parameterPlotsDelta <- TRUE
   options$predictionSavePath <- ""
+  options$maxChangepoints <- 25
 
   for (i in 1:6) {
     options$time <- dateTimeVarNames[i]
@@ -548,6 +562,7 @@ test_that("Parameter Plots match", {
   options$parameterPlotsMarginalDistributions <- TRUE
   options$predictionSavePath <- ""
   set.seed(1)
+  options$maxChangepoints <- 25
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
 
   plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetParameterPlots"]][["collection"]][["prophetMainContainer_prophetParameterPlots_prophetParameterPlotMarginal"]][["collection"]][["prophetMainContainer_prophetParameterPlots_prophetParameterPlotMarginal_k"]][["data"]]
