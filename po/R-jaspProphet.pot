@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspProphet 0.16.4\n"
-"POT-Creation-Date: 2022-09-17 04:19\n"
+"POT-Creation-Date: 2022-10-01 04:37\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -125,6 +125,9 @@ msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
 
 msgid "Forecast Plots"
+msgstr ""
+
+msgid "Cannot draw forecast plots; no forecasts computed."
 msgstr ""
 
 msgid "Overall"

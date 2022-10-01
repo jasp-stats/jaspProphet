@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2021-08-28 03:53\n"
+"POT-Creation-Date: 2022-10-01 04:37\n"
 "PO-Revision-Date: 2022-06-03 15:13+0000\n"
 "Last-Translator: Johnny van Doorn <johnnydoorn@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/jaspprophet-r/"
@@ -159,6 +159,9 @@ msgstr "'Einde' moet in een datumformaat (e.g., yyyy-mm-dd hh:mm:ss)"
 
 msgid "Forecast Plots"
 msgstr "Voorspellingsplots"
+
+msgid "Cannot draw forecast plots; no forecasts computed."
+msgstr ""
 
 msgid "Overall"
 msgstr "Totaal"

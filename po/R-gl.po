@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-08-28 03:53\n"
+"POT-Creation-Date: 2022-10-01 04:37\n"
 "PO-Revision-Date: 2021-11-14 11:51+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
@@ -169,6 +169,9 @@ msgstr "'Final' debe estar nun formato de tipo data (p.e. yyyy-mm-dd hh:mm:ss)"
 
 msgid "Forecast Plots"
 msgstr "Gráficas de Predicións"
+
+msgid "Cannot draw forecast plots; no forecasts computed."
+msgstr ""
 
 msgid "Overall"
 msgstr "Xeral"
