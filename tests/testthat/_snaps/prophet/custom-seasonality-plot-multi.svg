@@ -28,9 +28,9 @@
 <g clip-path='url(#cpOTcuODR8NzA1LjA2fDIwLjcxfDUwNy4wOQ==)'>
 <rect x='97.84' y='20.71' width='607.22' height='486.39' style='stroke-width: 10.67; stroke: none;' />
 <polyline points='125.44,271.63 263.44,182.35 401.45,212.70 539.45,167.85 677.46,271.63 ' style='stroke-width: 2.67; stroke-linecap: butt;' />
-<polygon points='125.44,170.19 263.44,111.50 401.45,155.14 539.45,83.39 677.46,170.19 677.46,432.44 539.45,259.15 401.45,264.99 263.44,243.86 125.44,432.44 ' style='stroke-width: 0.00; stroke: none; fill: #0000FF; fill-opacity: 0.40;' />
-<polyline points='125.44,170.19 263.44,111.50 401.45,155.14 539.45,83.39 677.46,170.19 ' style='stroke-width: 1.07; stroke: none;' />
-<polyline points='677.46,432.44 539.45,259.15 401.45,264.99 263.44,243.86 125.44,432.44 ' style='stroke-width: 1.07; stroke: none;' />
+<polygon points='125.44,170.19 263.44,111.50 401.45,155.14 539.45,83.39 677.46,170.19 677.46,432.44 539.45,259.15 401.45,264.99 263.44,243.86 125.44,432.44 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; fill: #0000FF; fill-opacity: 0.40;' />
+<polyline points='125.44,170.19 263.44,111.50 401.45,155.14 539.45,83.39 677.46,170.19 ' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt;' />
+<polyline points='677.46,432.44 539.45,259.15 401.45,264.99 263.44,243.86 125.44,432.44 ' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt;' />
 <line x1='125.12' y1='507.09' x2='677.77' y2='507.09' style='stroke-width: 0.64; stroke-linecap: butt;' />
 <line x1='97.84' y1='485.30' x2='97.84' y2='42.50' style='stroke-width: 0.64; stroke-linecap: butt;' />
 <rect x='97.84' y='20.71' width='607.22' height='486.39' style='stroke-width: 0.00; stroke: none;' />

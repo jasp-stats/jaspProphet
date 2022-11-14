@@ -174,10 +174,6 @@ test_that("Parameter Estimates Table results match (MAP)", {
   jaspTools::expect_equal_tables(table,
     list(-0.165701104700655, 0.0288912230542516, 0.315932056357582))
 
-  # Does currently not work on Mac
-
-  testthat::skip_on_os(c("mac", "linux"))
-
   options$capacity <- "contGamma"
   options$minimum <- "contNarrow"
   options$historyIndicator <- "histIdx"
@@ -185,8 +181,19 @@ test_that("Parameter Estimates Table results match (MAP)", {
   set.seed(1)
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   table <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetTable"]][["data"]]
-  jaspTools::expect_equal_tables(table,
-    list(-2.50859195109382, -2.31656506358638, 0.32805219661169))
+
+  # slight differences between windows and other platforms
+  {
+    # test windows result
+    testthat::skip_on_os(c("mac", "linux"))
+    jaspTools::expect_equal_tables(table, list(-2.50859195109382, -2.31656506358638, 0.32805219661169))
+  }
+
+  {
+    # test mac/linux result
+    testthat::skip_on_os("windows")
+    jaspTools::expect_equal_tables(table, list(-2.50815063212506, -2.31699820072133, 0.328051695428274))
+  }
 })
 
 test_that("Changepoint Posterior Summary Table results match (automatic)", {
