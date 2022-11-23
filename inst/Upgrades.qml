@@ -5,6 +5,10 @@ Upgrades
 {
 	Upgrade
 	{
+		functionName: 	"Prophet"
+		fromVersion: 	"0.16.4"
+		toVersion:		"0.17.0"
+
 		ChangeRename { from: "capacity";    to: "carryingCapacity"}
 
 		ChangeRename { from: "historyPlotShow"; to: "historyPlotType"}
@@ -30,7 +34,22 @@ Upgrades
 		ChangeRename { from: "forecastPlotsTrendStart";               to: "forecastPlotTrendStart"  }
 		ChangeRename { from: "forecastPlotsTrendEnd";                 to: "forecastPlotTrendEnd"  }
 
-		ChangeRename { from: "covariatePlotsShow";          to: "covariatePlotsType"}
+		ChangeJS
+		{
+			name: "covariatePlots"
+			jsFunction: function(options) 
+			{
+				let newModels = options["covariatePlots"].map(model => {
+					let newModel = {};
+					newModel.covariatePlotsType	= model.covariatePlotsShow;
+					newModel.variable			= model.variable;
+
+					return newModel ;
+				});
+
+				return newModels;
+			}
+		}
 
 		ChangeRename { from: "performancePlotsMse";                  to: "msePlot"}
 		ChangeRename { from: "performancePlotsRmse";                to: "rmsePlot"}
