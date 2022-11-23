@@ -6,7 +6,6 @@ Upgrades
 	Upgrade
 	{
 		ChangeRename { from: "capacity";    to: "carryingCapacity"}
-		ChangeRename { from: "minimum";     to: "carryingCapacity"}
 
 		ChangeRename { from: "historyPlotShow"; to: "historyPlotType"}
 
