@@ -183,7 +183,7 @@ Form
 				title: qsTr("Uncertainty")
 				CIField
 				{
-					name: "predictionIntervalWidth"
+					name: "predictionIntervalLevel"
 					label: qsTr("Prediction interval level")
 					defaultValue: 80
 				}
@@ -196,7 +196,7 @@ Form
 				}
 				CIField
 				{
-					name: "credibleIntervalWidth"
+					name: "ciLevel"
 					label: qsTr("Credible interval level")
 					visible: mcmc.checked
 					defaultValue: 95
