@@ -134,10 +134,10 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
         if (options$minimum != "") {
           floor <- dataset[[encodeColNames(options$minimum)]]
           if (options$logisticGrowthCarryingCapacity <= floor)
-            return(gettext("'Constant carrying carryingCapacity' must always be larger than 'Saturating Minimum'"))
+            return(gettext("'Constant carrying capacity' must always be larger than 'Saturating Minimum'"))
         } else {
           if (options$logisticGrowthCarryingCapacity <= options$logisticGrowthSaturatingMin)
-            return(gettext("'Constant carrying carryingCapacity' must always be larger than 'Constant saturating minimum'"))
+            return(gettext("'Constant carrying capacity' must always be larger than 'Constant saturating minimum'"))
         }
       }
     },
