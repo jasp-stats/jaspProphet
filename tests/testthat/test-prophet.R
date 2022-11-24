@@ -32,7 +32,7 @@ test_that("Posterior Summary Table results match (linear)", {
 test_that("Posterior Summary Table results match (logistic)", {
   options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
-  options$capacity <- "contGamma"
+  options$carryingCapacity <- "contGamma"
   options$historyIndicator <- "histIdx"
   options$mcmcSamples <- 10
   options$growth <- "logistic"
@@ -88,7 +88,7 @@ test_that("Posterior Summary Table results match (covariates-logistic)", {
   options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$time <- "dateDay"
-  options$capacity <- "contGamma"
+  options$carryingCapacity <- "contGamma"
   options$covariates <- list("contcor1", "contcor2")
   options$historyIndicator <- "histIdx"
   options$mcmcSamples <- 10
@@ -121,7 +121,7 @@ test_that("Posterior Summary Table results match (minimum-logistic)", {
      options <- jaspTools::analysisOptions("Prophet")
      options$dependent <- "contNormal"
      options$time <- "dateDay"
-     options$capacity <- "contGamma"
+     options$carryingCapacity <- "contGamma"
      options$minimum <- "contNarrow"
      options$historyIndicator <- "histIdx"
      options$mcmcSamples <- 10
@@ -143,8 +143,8 @@ test_that("Posterior Summary Table results match (constant-logistic)", {
   options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$time <- "dateDay"
-  options$constantCapacity <- 10
-  options$constantMinimum <- 0.1
+  options$logisticGrowthCarryingCapacity <- 10
+  options$logisticGrowthSaturatingMin <- 0.1
   options$mcmcSamples <- 10
   options$growth <- "logistic"
   options$predictionSavePath <- ""
@@ -174,7 +174,7 @@ test_that("Parameter Estimates Table results match (MAP)", {
   jaspTools::expect_equal_tables(table,
     list(-0.165701104700655, 0.0288912230542516, 0.315932056357582))
 
-  options$capacity <- "contGamma"
+  options$carryingCapacity <- "contGamma"
   options$minimum <- "contNarrow"
   options$historyIndicator <- "histIdx"
   options$growth <- "logistic"
@@ -370,7 +370,7 @@ test_that("History Plot matches", {
   options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$historyPlot <- TRUE
-  options$historyPlotShow <- "both"
+  options$historyPlotType <- "both"
   options$mcmcSamples <- 10
   options$predictionSavePath <- ""
 
@@ -389,8 +389,8 @@ test_that("Overall Forecast Plot matches", {
   options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$mcmcSamples <- 10
-  options$forecastPlotsOverall <- TRUE
-  options$forecastPlotsOverallAddData <- TRUE
+  options$forecastPlotOverall <- TRUE
+  options$forecastPlotOverallDataPoints <- TRUE
   options$predictionSavePath <- ""
   options$maxChangepoints <- 25
 
@@ -405,11 +405,11 @@ test_that("Overall Forecast Plot matches", {
   }
 
   options$growth <- "logistic"
-  options$capacity <- "contGamma"
+  options$carryingCapacity <- "contGamma"
   options$minimum <- "contNarrow"
   options$historyIndicator <- "histIdx"
-  options$forecastPlotsOverallAddCapacity <- TRUE
-  options$forecastPlotsOverallAddMinimum <- TRUE
+  options$forecastPlotOverallCarryingCapacity <- TRUE
+  options$forecastPlotOverallSaturatingMinimum <- TRUE
   set.seed(1)
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   plotName <- results[["results"]][["prophetMainContainer"]][["collection"]][["prophetMainContainer_prophetForecastPlots"]][["collection"]][["prophetMainContainer_prophetForecastPlots_prophetOverallForecastPlot"]][["data"]]
@@ -422,7 +422,7 @@ test_that("Trend Forecast Plot matches", {
   options$dependent <- "contNormal"
   options$time <- "dateDay"
   options$mcmcSamples <- 10
-  options$forecastPlotsTrend <- TRUE
+  options$forecastPlotTrend <- TRUE
   options$predictionSavePath <- ""
   set.seed(1)
   options$maxChangepoints <- 25
@@ -478,7 +478,7 @@ test_that("Covariate Plot matches", {
   options$historyIndicator <- "histIdx"
   options$mcmcSamples <- 10
   options$predictionSavePath <- ""
-  options$covariatePlots <- list(list(variable = "contcor1", covariatePlotsShow = "both"))
+  options$covariatePlots <- list(list(variable = "contcor1", covariatePlotsType = "both"))
   options$assignedCovariates <- list(list(
     variable = "contcor1",
     priorSigma = 10,
@@ -515,9 +515,9 @@ test_that("Performance Plots match", {
   options$crossValidationPeriod <- 3
   options$crossValidationInitial <- 21
   options$predictionSavePath <- ""
-  options$performancePlotsMse <- TRUE
-  options$performancePlotsRmse <- TRUE
-  options$performancePlotsMape <- TRUE
+  options$msePlot <- TRUE
+  options$rmsePlot <- TRUE
+  options$mapePlot <- TRUE
   options$maxChangepoints <- 25
 
   for (i in 2:6) { # except years because it doesn't work for cross validation
@@ -545,7 +545,7 @@ test_that("Changepoint Plot matches", {
   options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$mcmcSamples <- 10
-  options$parameterPlotsDelta <- TRUE
+  options$changepointPlot <- TRUE
   options$predictionSavePath <- ""
   options$maxChangepoints <- 25
 
@@ -566,7 +566,7 @@ test_that("Parameter Plots match", {
   options$dependent <- "contNormal"
   options$time <- "dateDay"
   options$mcmcSamples <- 10
-  options$parameterPlotsMarginalDistributions <- TRUE
+  options$posteriorPlot <- TRUE
   options$predictionSavePath <- ""
   set.seed(1)
   options$maxChangepoints <- 25
@@ -626,7 +626,7 @@ test_that("Analysis handels errors", {
   expect_identical(results[["status"]], "validationError", label = "'History Indicator' must be a logical variable (e.g., 0/1)")
 
   options$historyIndicator <- ""
-  options$capacity <- "contcor1"
+  options$carryingCapacity <- "contcor1"
   options$minimum <- "contNarrow"
   options$historyIndicator <- "histIdx"
   options$growth <- "logistic"
@@ -635,13 +635,13 @@ test_that("Analysis handels errors", {
   expect_identical(results[["status"]], "validationError", label = "'Carrying Capacity' must always be larger than 'Saturating Minimum'")
 
   options$minimum <- ""
-  options$constantMinimum <- 0
+  options$logisticGrowthSaturatingMin <- 0
   set.seed(1)
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   expect_identical(results[["status"]], "validationError", label = "'Carrying Capacity' must always be larger than 'Constant saturating minimum'")
 
-  options$capacity <- ""
-  options$constantCapacity <- -1
+  options$carryingCapacity <- ""
+  options$logisticGrowthCarryingCapacity <- -1
   options$minimum <- "contNarrow"
   set.seed(1)
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
@@ -649,7 +649,7 @@ test_that("Analysis handels errors", {
 
   options$minimum <- ""
   options$historyIndicator <- ""
-  options$constantMinimum <- 0
+  options$logisticGrowthSaturatingMin <- 0
   set.seed(1)
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   expect_identical(results[["status"]], "validationError", label = "'Constant carrying capacity' must always be larger than 'Constant saturating minimum'")
@@ -672,7 +672,7 @@ test_that("Analysis handels errors", {
   options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$time <- "dateDay"
-  options$capacity <- "contGamma"
+  options$carryingCapacity <- "contGamma"
   options$growth <- "logistic"
   options$mcmcSamples <- 10
   options$predictionSavePath <- ""

@@ -13,7 +13,7 @@ Form
 		AssignedVariablesList	{ name: "dependent"; title: qsTr("Dependent Variable");	suggestedColumns: ["scale"]; singleVariable: true													}
 		AssignedVariablesList	{ name: "time"; title: qsTr("Time"); suggestedColumns: ["nominal"]; singleVariable: true																	}
 		AssignedVariablesList	{ name: "changepoints"; title: qsTr("Changepoints"); suggestedColumns: ["scale"]; singleVariable: true														}
-		AssignedVariablesList	{ name: "capacity"; title: qsTr("Carrying Capacity"); suggestedColumns: ["scale"]; singleVariable: true; id: cap; enabled: growth.value === "logistic"		}
+		AssignedVariablesList	{ name: "carryingCapacity"; title: qsTr("Carrying Capacity"); suggestedColumns: ["scale"]; singleVariable: true; id: cap; enabled: growth.value === "logistic"		}
 		AssignedVariablesList	{ name: "minimum"; title: qsTr("Saturating Minimum"); suggestedColumns: ["scale"]; singleVariable: true; id: floor; enabled: growth.value === "logistic"	}
 		AssignedVariablesList	{ name: "covariates"; title: qsTr("Covariates"); suggestedColumns: ["scale"];																				}
 		AssignedVariablesList	{ name: "historyIndicator"; title: qsTr("Include in Training"); suggestedColumns: ["scale"]; singleVariable: true											}
@@ -29,7 +29,7 @@ Form
 
 		RadioButtonGroup
 		{
-			name: "historyPlotShow"
+			name: "historyPlotType"
 			visible: histplot.checked
 			columns: 3
 
@@ -97,7 +97,7 @@ Form
 			{
 				DoubleField
 				{
-					name: "constantCapacity"
+					name: "logisticGrowthCarryingCapacity"
 					label: qsTr("Carrying capacity")
 					enabled: cap.count === 0
 					visible: growth.value === "logistic"
@@ -106,7 +106,7 @@ Form
 				}
 				DoubleField
 				{
-					name: "constantMinimum"
+					name: "logisticGrowthSaturatingMin"
 					label: qsTr("Saturating minimum")
 					enabled: floor.count === 0
 					visible: growth.value === "logistic"
@@ -183,7 +183,7 @@ Form
 				title: qsTr("Uncertainty")
 				CIField
 				{
-					name: "predictionIntervalWidth"
+					name: "predictionIntervalLevel"
 					label: qsTr("Prediction interval level")
 					defaultValue: 80
 				}
@@ -196,7 +196,7 @@ Form
 				}
 				CIField
 				{
-					name: "credibleIntervalWidth"
+					name: "ciLevel"
 					label: qsTr("Credible interval level")
 					visible: mcmc.checked
 					defaultValue: 95
@@ -438,7 +438,7 @@ Form
 		{
 			name: "crossValidation"
 			id: crossVal
-			label: qsTr("Simulated historical forecasts")
+			label: qsTr("Cross validation (simulated historical forecasts)")
 			Group
 			{
 				DropDown
@@ -515,48 +515,48 @@ Form
 			title: qsTr("Forecast Plots")
 			CheckBox
 			{
-				name: "forecastPlotsOverall"
+				name: "forecastPlotOverall"
 				label: qsTr("Overall")
 				Group
 				{
 					columns: 2
 					CheckBox
 					{
-						name: "forecastPlotsOverallAddData"
+						name: "forecastPlotOverallDataPoints"
 						label: qsTr("Show data points")
 					}
 					CheckBox
 					{
-						name: "forecastPlotsOverallAddCapacity"
+						name: "forecastPlotOverallCarryingCapacity"
 						label: qsTr("Show carrying capacity")
 						visible: growth.value === "logistic"
 					}
 					CheckBox
 					{
-						name: "forecastPlotsOverallAddChangepoints"
+						name: "forecastPlotOverallChangepoints"
 						label: qsTr("Show changepoints")
 					}
 					CheckBox
 					{
-						name: "forecastPlotsOverallAddMinimum"
+						name: "forecastPlotOverallSaturatingMinimum"
 						label: qsTr("Show saturating minimum")
 						visible: growth.value === "logistic"
 					}
 					CheckBox
 					{
-						name: "forecastPlotsOverallRange"
+						name: "forecastPlotOverallRange"
 						label: qsTr("Plot time interval")
 
 						TextField
 						{
-							name: "forecastPlotsOverallStart"
+							name: "forecastPlotOverallStart"
 							label: qsTr("Start")
 							placeholderText: "YYYY-MM-DD HH:MM:SS"
 							fieldWidth: 150
 						}
 						TextField
 						{
-							name: "forecastPlotsOverallEnd"
+							name: "forecastPlotOverallEnd"
 							label: qsTr("End")
 							placeholderText: "YYYY-MM-DD HH:MM:SS"
 							fieldWidth: 150
@@ -566,30 +566,30 @@ Form
 			}
 			CheckBox
 			{
-				name: "forecastPlotsTrend"
+				name: "forecastPlotTrend"
 				label: qsTr("Trend")
 				CheckBox
 				{
-					name: "forecastPlotsTrendAddChangepoints"
+					name: "forecastPlotTrendChangepoints"
 					label: qsTr("Show changepoints")
 				}
 				CheckBox
 				{
-					name: "forecastPlotsTrendRange"
+					name: "forecastPlotTrendRange"
 					label: qsTr("Plot time interval")
 
 					Group
 					{
 						TextField
 						{
-							name: "forecastPlotsTrendStart"
+							name: "forecastPlotTrendStart"
 							label: qsTr("Start")
 							placeholderText: "YYYY-MM-DD HH:MM:SS"
 							fieldWidth: 150
 						}
 						TextField
 						{
-							name: "forecastPlotsTrendEnd"
+							name: "forecastPlotTrendEnd"
 							label: qsTr("End")
 							placeholderText: "YYYY-MM-DD HH:MM:SS"
 							fieldWidth: 150
@@ -618,7 +618,7 @@ Form
 				{
 					DropDown
 					{
-						name: "covariatePlotsShow"
+						name: "covariatePlotsType"
 						indexDefaultValue: 2
 						values:
 						[
@@ -639,19 +639,19 @@ Form
 				title: qsTr("Performance Plots")
 				CheckBox
 				{
-					name: "performancePlotsMse"
+					name: "msePlot"
 					label: qsTr("Mean squared error (MSE)")
 					enabled: crossVal.checked
 				}
 				CheckBox
 				{
-					name: "performancePlotsRmse"
+					name: "rmsePlot"
 					label: qsTr("Root mean squared error (RMSE)")
 					enabled: crossVal.checked
 				}
 				CheckBox
 				{
-					name: "performancePlotsMape"
+					name: "mapePlot"
 					label: qsTr("Mean absolute percentage error (MAPE)")
 					enabled: crossVal.checked
 				}
@@ -662,12 +662,12 @@ Form
 				title: qsTr("Parameter Plots")
 				CheckBox
 				{
-					name: "parameterPlotsDelta"
+					name: "changepointPlot"
 					label: qsTr("Changepoint plot")
 				}
 				CheckBox
 				{
-					name: "parameterPlotsMarginalDistributions"
+					name: "posteriorPlot"
 					label: qsTr("Posterior distributions")
 					enabled: mcmc.checked
 				}
