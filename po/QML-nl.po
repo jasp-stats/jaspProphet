@@ -229,10 +229,6 @@ msgid "Evaluation"
 msgstr "Evaluatie"
 
 msgctxt "Prophet|"
-msgid "Simulated historical forecasts"
-msgstr "Gesimuleerde historische prognoses"
-
-msgctxt "Prophet|"
 msgid "Horizon"
 msgstr "Horizon"
 
@@ -327,3 +323,7 @@ msgstr "Draagcapaciteit"
 msgctxt "Prophet|"
 msgid "Saturating minimum"
 msgstr "Verzadigd minimum"
+
+msgctxt "Prophet|"
+msgid "Cross validation (simulated historical forecasts)"
+msgstr ""

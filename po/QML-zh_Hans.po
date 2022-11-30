@@ -229,10 +229,6 @@ msgid "Evaluation"
 msgstr "评估"
 
 msgctxt "Prophet|"
-msgid "Simulated historical forecasts"
-msgstr "模拟历史预测"
-
-msgctxt "Prophet|"
 msgid "Horizon"
 msgstr "预测水平(Horizon)"
 
@@ -327,3 +323,7 @@ msgstr "承载能力"
 msgctxt "Prophet|"
 msgid "Saturating minimum"
 msgstr "饱和最小值"
+
+msgctxt "Prophet|"
+msgid "Cross validation (simulated historical forecasts)"
+msgstr ""

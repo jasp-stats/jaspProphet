@@ -3,49 +3,47 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Language: id\n"
 "X-Qt-Contexts: true\n"
-
-msgctxt "Description|"
-msgid "This module offers a simple model for time series prediction."
-msgstr "Modul ini menawarkan model sederhana untuk prediksi deret waktu."
 
 msgctxt "Description|"
 msgid "Prophet"
 msgstr ""
 
+msgctxt "Description|"
+msgid "This module offers a simple model for time series prediction."
+msgstr ""
+
 msgctxt "Prophet|"
 msgid "Dependent Variable"
-msgstr "Variabel Dependen"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Time"
-msgstr "Waktu"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Changepoints"
-msgstr "Titik perubahan"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Carrying Capacity"
-msgstr "Daya Dukung"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Saturating Minimum"
-msgstr "Saturasi Minimum"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Covariates"
-msgstr "Kovariat"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Include in Training"
-msgstr "Sertakan dalam Pelatihan"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "History plot"
-msgstr "Riwayat plot"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Points"
@@ -53,59 +51,59 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Line"
-msgstr "Garis"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Both"
-msgstr "Keduanya"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Plot time interval"
-msgstr "Interval waktu plot"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Start"
-msgstr "Mulai"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "End"
-msgstr "Akhir"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Growth"
-msgstr "Pertumbuhan"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Linear"
-msgstr "Linier"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Logistic"
-msgstr "Logistik"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Carrying capacity"
-msgstr "Daya dukung"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Saturating minimum"
-msgstr "Saturasi minimum"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Model"
-msgstr "Model"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Automatic Changepoints"
-msgstr "Titik Perubahan Otomatis"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Max. changepoints"
-msgstr "Maks. titik perubahan"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Changepoint range"
-msgstr "Rentang titik perubahan"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Laplace prior τ"
@@ -113,19 +111,19 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Estimation"
-msgstr "Estimasi"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Maximum a posteriori"
-msgstr "a posteriori Maksimum"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Markov chain Monte Carlo"
-msgstr "Markov chain Monte Carlo"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Samples"
-msgstr "Sampel"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Uncertainty"
@@ -151,27 +149,27 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Additive"
-msgstr "Aditif"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Multiplicative"
-msgstr "Multiplikatif"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Seasonalities"
-msgstr "Musiman"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Name"
-msgstr "Nama"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Period"
-msgstr "Periode"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Unit"
-msgstr "Unit"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Normal prior σ²"
@@ -183,55 +181,59 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Mode"
-msgstr "Mode"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Seconds"
-msgstr "Detik"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Minutes"
-msgstr "Menit"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Hours"
-msgstr "Jam"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Days"
-msgstr "Hari"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Weeks"
-msgstr "Minggu"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Years"
-msgstr "Tahun"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Prediction"
-msgstr "Prediksi"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Periodical"
-msgstr "Berkala"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Number of periods"
-msgstr "Jumlah periode"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Nonperiodical"
-msgstr "nonperiodik"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Save predictions"
-msgstr "Simpan prediksi"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Evaluation"
-msgstr "Evaluasi"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Cross validation (simulated historical forecasts)"
+msgstr ""
 
 msgctxt "Prophet|"
 msgid "Horizon"
@@ -319,8 +321,4 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Posterior distributions"
-msgstr ""
-
-msgctxt "Prophet|"
-msgid "Cross validation (simulated historical forecasts)"
 msgstr ""
