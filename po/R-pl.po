@@ -1,0 +1,197 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: jaspProphet 0.17.0\n"
+"POT-Creation-Date: 2022-11-30 10:39\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
+msgstr ""
+
+msgid "'Start' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
+msgstr ""
+
+msgid "'End' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
+msgstr ""
+
+msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
+msgstr ""
+
+msgid "'History Indicator' must be a logical variable (e.g., 0/1)"
+msgstr ""
+
+msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
+msgstr ""
+
+msgid "'Carrying Capacity' must always be larger than 'Constant saturating minimum'"
+msgstr ""
+
+msgid "'Constant carrying capacity' must always be larger than 'Saturating Minimum'"
+msgstr ""
+
+msgid "'Constant carrying capacity' must always be larger than 'Constant saturating minimum'"
+msgstr ""
+
+msgid "Seasonality names must only contain letters, number, dots, or underscores and must start with letters or dots that are not followed by a number"
+msgstr ""
+
+msgid "'Carrying Capacity' must be supplied for predictions"
+msgstr ""
+
+msgid "'Covariates' must be supplied for predictions"
+msgstr ""
+
+msgid "Growth rate (k)"
+msgstr ""
+
+msgid "Offset (m)"
+msgstr ""
+
+msgid "Residual variance (σ²)"
+msgstr ""
+
+msgid "Posterior Summary Table"
+msgstr ""
+
+msgid "%s%% CI"
+msgstr ""
+
+msgid "Parameter"
+msgstr ""
+
+msgid "Mean"
+msgstr ""
+
+msgid "SD"
+msgstr ""
+
+msgid "Lower"
+msgstr ""
+
+msgid "Upper"
+msgstr ""
+
+msgid "R-hat"
+msgstr ""
+
+msgid "ESS (bulk)"
+msgstr ""
+
+msgid "ESS (tail)"
+msgstr ""
+
+msgid "Prophet might need a long time to compute the results. You can try it first with fewer MCMC samples to see if it works and if you specified the model correctly (e.g., set 'Samples = 10' in the 'Model' section)."
+msgstr ""
+
+msgid "Residual variance (sigma)"
+msgstr ""
+
+msgid "Changepoint Estimates Table"
+msgstr ""
+
+msgid "Changepoint Posterior Summary Table"
+msgstr ""
+
+msgid "Changepoint"
+msgstr ""
+
+msgid "Change in growth rate (δ)"
+msgstr ""
+
+msgid "Simulated Historical Forecasts Table"
+msgstr ""
+
+msgid "Horizon"
+msgstr ""
+
+msgid "MSE"
+msgstr ""
+
+msgid "RMSE"
+msgstr ""
+
+msgid "MAPE"
+msgstr ""
+
+msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
+msgstr ""
+
+msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
+msgstr ""
+
+msgid "Forecast Plots"
+msgstr ""
+
+msgid "Cannot draw forecast plots; no forecasts computed."
+msgstr ""
+
+msgid "Overall"
+msgstr ""
+
+msgid "Trend"
+msgstr ""
+
+msgid "Seasonality Plots"
+msgstr ""
+
+msgid "Time (min:sec)"
+msgstr ""
+
+msgid "Time (hour:min)"
+msgstr ""
+
+msgid "Time (hour)"
+msgstr ""
+
+msgid "Weekday"
+msgstr ""
+
+msgid "Time (day)"
+msgstr ""
+
+msgid "Time (month-day)"
+msgstr ""
+
+msgid "Time (month)"
+msgstr ""
+
+msgid "Time (year)"
+msgstr ""
+
+msgid "Please enter valid 'Start' and 'End' arguments for nonperiodical prediction (e.g., yyyy-mm-dd hh:mm:ss)"
+msgstr ""
+
+msgid "Covariate Plots"
+msgstr ""
+
+msgid "Performance Plots"
+msgstr ""
+
+msgid "Parameter Plots"
+msgstr ""
+
+msgid "Changepoint Plot"
+msgstr ""
+
+msgid "Change in growth rate"
+msgstr ""
+
+msgid "Posterior Distributions"
+msgstr ""
+
+msgid "Growth rate"
+msgstr ""
+
+msgid "Offset"
+msgstr ""
+
+msgid "Residual variance"
+msgstr ""
+
+msgid "Density"
+msgstr ""
