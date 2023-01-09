@@ -355,7 +355,12 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 
   fitDat  <- fitDat[idx, ]
 
-  fit     <- prophet::fit.prophet(m = mod, df = fitDat)
+  fit     <- try(prophet::fit.prophet(m = mod, df = fitDat))
+
+  if(isTryError(fit)) {
+    message <- gettextf("Prophet failed to compute any results. It is possible that the analysis even failed to compute the initial log-likelihood. Check whether the model specification is plausible. Internal error message from 'prophet': %s.", .extractErrorMessage(fit))
+    jaspBase::.quitAnalysis(message)
+  }
 
   return(fit)
 }
