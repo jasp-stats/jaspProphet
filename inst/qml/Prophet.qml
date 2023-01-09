@@ -365,7 +365,7 @@ Form
 				{
 					name: "periodicalPredictionNumber"
 					label: qsTr("Number of periods")
-					defaultValue: 1
+					defaultValue: 0
 				}
 				DropDown
 				{

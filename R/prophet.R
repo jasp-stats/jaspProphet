@@ -173,10 +173,10 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
                           tz = "UTC")
 
       if (!all(futds %in% ds) && options$carryingCapacity != "")
-        return(gettext("'Carrying Capacity' must be supplied for predictions"))
+        return(gettext("When 'Carrying Capacity' is used in the model, predictions cannot be carried out unless 'Carrying Capacity' is also supplied for the predicted period."))
 
       if (!all(futds %in% ds) && length(options$covariates) > 0)
-        return(gettext("'Covariates' must be supplied for predictions"))
+        return(gettext("When 'Covariates' are used in the model, predictions cannot be carried out unless the covariates are also observed for the predicted period."))
 
       return()
     }
