@@ -174,6 +174,7 @@ Form
 						label: qsTr("Samples")
 						visible: mcmc.checked
 						defaultValue: 1000
+						inclusive: JASP.MaxOnly
 					}
 				}
 			}
@@ -193,6 +194,7 @@ Form
 					label: qsTr("Prediction interval samples")
 					visible: map.checked
 					defaultValue: 1000
+					inclusive: JASP.MaxOnly
 				}
 				CIField
 				{
