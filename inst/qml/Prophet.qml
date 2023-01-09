@@ -314,6 +314,7 @@ Form
 							{
 								name: "priorSigma"
 								defaultValue: 10.0
+								inclusive: JASP.MaxOnly
 							}
 						}
 						Row
@@ -325,6 +326,7 @@ Form
 							{
 								name: "fourierOrder"
 								defaultValue: 7
+								inclusive: JASP.MaxOnly
 							}
 						}
 						Row
