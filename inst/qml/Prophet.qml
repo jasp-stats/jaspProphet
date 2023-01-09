@@ -150,6 +150,7 @@ Form
 					label: qsTr("Laplace prior τ")
 					defaultValue: 0.05
 					decimals: 3
+                    inclusive: JASP.MaxOnly
 				}
 			}
 
@@ -161,7 +162,8 @@ Form
 				{
 					value: "map"
 					id: map
-					label: qsTr("Maximum a posteriori") }
+                    label: qsTr("Maximum a posteriori")
+                }
 				RadioButton
 				{
 					value: "mcmc"
@@ -222,6 +224,7 @@ Form
 				{
 					name: "priorSigma"
 					defaultValue: 10.0
+                    inclusive: JASP.MaxOnly
 				}
 				CheckBox
 				{
@@ -283,6 +286,7 @@ Form
 							{
 								name: "period"
 								defaultValue: 1
+                                inclusive: JASP.MaxOnly
 							}
 						}
 						Row
