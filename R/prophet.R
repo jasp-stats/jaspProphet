@@ -109,7 +109,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
       isHistory <- dataset[[encodeColNames(options$historyIndicator)]]
 
       if (any(is.na(as.logical(isHistory))) || !all(unique(as.numeric(isHistory)) %in% c(0, 1)))
-        return(gettext("'History Indicator' must be a logical variable (e.g., 0/1)"))
+        return(gettext("'Include in Training' must be a logical variable (e.g., 0/1)"))
 
       return()
     },
