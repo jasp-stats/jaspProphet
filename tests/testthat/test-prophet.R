@@ -313,6 +313,7 @@ test_that("Simulated Historical Forecasts Table results match", {
   options$performanceMetricsRmse <- TRUE
   options$performanceMetricsMape <- TRUE
   options$predictionSavePath <- ""
+  options$periodicalPredictionNumber <- 1
   options$maxChangepoints <- 25
 
   for (i in 2:6) { # except years because it doesn't work for cross validation
@@ -338,6 +339,7 @@ test_that("Simulated Historical Forecasts Table results match (MAP)", {
   options$time <- "dateDay"
   options$mcmcSamples <- 10
   options$predictionIntervalSamples <- 10
+  options$periodicalPredictionNumber <- 1
   options$crossValidation <- TRUE
   options$crossValidationHorizon <- 7
   options$crossValidationPeriod <- 3
@@ -392,6 +394,7 @@ test_that("Overall Forecast Plot matches", {
   options$forecastPlotOverall <- TRUE
   options$forecastPlotOverallDataPoints <- TRUE
   options$predictionSavePath <- ""
+  options$periodicalPredictionNumber <- 1
   options$maxChangepoints <- 25
 
   for (i in 1:6) {
@@ -424,6 +427,7 @@ test_that("Trend Forecast Plot matches", {
   options$mcmcSamples <- 10
   options$forecastPlotTrend <- TRUE
   options$predictionSavePath <- ""
+  options$periodicalPredictionNumber <- 1
   set.seed(1)
   options$maxChangepoints <- 25
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
@@ -510,6 +514,7 @@ test_that("Performance Plots match", {
   options <- jaspTools::analysisOptions("Prophet")
   options$dependent <- "contNormal"
   options$mcmcSamples <- 10
+  options$periodicalPredictionNumber <- 1
   options$crossValidation <- TRUE
   options$crossValidationHorizon <- 7
   options$crossValidationPeriod <- 3
@@ -591,6 +596,7 @@ test_that("Analysis handels errors", {
   options$time <- "debString"
   options$mcmcSamples <- 10
   options$predictionSavePath <- ""
+  options$periodicalPredictionNumber <- 1
   set.seed(1)
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   expect_identical(results[["status"]], "validationError", label = "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)")
@@ -615,6 +621,7 @@ test_that("Analysis handels errors", {
   options$changepoints <- "contBinom"
   options$mcmcSamples <- 10
   options$predictionSavePath <- ""
+  options$periodicalPredictionNumber <- 1
   set.seed(1)
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   expect_identical(results[["status"]], "validationError", label = "'Changepoints' must be a logical variable (e.g., 0/1)")
@@ -659,6 +666,7 @@ test_that("Analysis handels errors", {
   options$time <- "dateDay"
   options$mcmcSamples <- 10
   options$predictionSavePath <- ""
+  options$periodicalPredictionNumber <- 1
   options$seasonalities <- list(list(name = "---",
                                      period = 4,
                                      unit = "days",
@@ -676,6 +684,7 @@ test_that("Analysis handels errors", {
   options$growth <- "logistic"
   options$mcmcSamples <- 10
   options$predictionSavePath <- ""
+  options$periodicalPredictionNumber <- 1
   set.seed(1)
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   expect_identical(results[["status"]], "validationError", label = "'Carrying Capacity' must be supplied for predictions")
@@ -686,6 +695,7 @@ test_that("Analysis handels errors", {
   options$covariates <- list("contcor1")
   options$mcmcSamples <- 10
   options$predictionSavePath <- ""
+  options$periodicalPredictionNumber <- 1
   set.seed(1)
   results <- jaspTools::runAnalysis("Prophet", "prophetTest.csv", options)
   expect_identical(results[["status"]], "validationError", label = "'Covariates' must be supplied for predictions")
