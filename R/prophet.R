@@ -109,7 +109,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
       isHistory <- dataset[[encodeColNames(options$historyIndicator)]]
 
       if (any(is.na(as.logical(isHistory))) || !all(unique(as.numeric(isHistory)) %in% c(0, 1)))
-        return(gettext("'History Indicator' must be a logical variable (e.g., 0/1)"))
+        return(gettext("'Include in Training' must be a logical variable (e.g., 0/1)"))
 
       return()
     },
@@ -173,10 +173,10 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
                           tz = "UTC")
 
       if (!all(futds %in% ds) && options$carryingCapacity != "")
-        return(gettext("'Carrying Capacity' must be supplied for predictions"))
+        return(gettext("When 'Carrying Capacity' is used in the model, predictions cannot be carried out unless 'Carrying Capacity' is also supplied for the predicted period."))
 
       if (!all(futds %in% ds) && length(options$covariates) > 0)
-        return(gettext("'Covariates' must be supplied for predictions"))
+        return(gettext("When 'Covariates' are used in the model, predictions cannot be carried out unless the covariates are also observed for the predicted period."))
 
       return()
     }
@@ -355,7 +355,12 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 
   fitDat  <- fitDat[idx, ]
 
-  fit     <- prophet::fit.prophet(m = mod, df = fitDat)
+  fit     <- try(prophet::fit.prophet(m = mod, df = fitDat))
+
+  if(isTryError(fit)) {
+    message <- gettextf("Prophet failed to compute any results. It is possible that the analysis even failed to compute the initial log-likelihood. Check whether the model specification is plausible. Internal error message from 'prophet': %s.", .extractErrorMessage(fit))
+    jaspBase::.quitAnalysis(message)
+  }
 
   return(fit)
 }

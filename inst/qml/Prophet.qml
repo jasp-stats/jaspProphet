@@ -150,6 +150,7 @@ Form
 					label: qsTr("Laplace prior τ")
 					defaultValue: 0.05
 					decimals: 3
+                    inclusive: JASP.MaxOnly
 				}
 			}
 
@@ -161,7 +162,8 @@ Form
 				{
 					value: "map"
 					id: map
-					label: qsTr("Maximum a posteriori") }
+                    label: qsTr("Maximum a posteriori")
+                }
 				RadioButton
 				{
 					value: "mcmc"
@@ -174,6 +176,7 @@ Form
 						label: qsTr("Samples")
 						visible: mcmc.checked
 						defaultValue: 1000
+						inclusive: JASP.MaxOnly
 					}
 				}
 			}
@@ -193,6 +196,7 @@ Form
 					label: qsTr("Prediction interval samples")
 					visible: map.checked
 					defaultValue: 1000
+					inclusive: JASP.MaxOnly
 				}
 				CIField
 				{
@@ -220,6 +224,7 @@ Form
 				{
 					name: "priorSigma"
 					defaultValue: 10.0
+                    inclusive: JASP.MaxOnly
 				}
 				CheckBox
 				{
@@ -281,6 +286,7 @@ Form
 							{
 								name: "period"
 								defaultValue: 1
+                                inclusive: JASP.MaxOnly
 							}
 						}
 						Row
@@ -312,6 +318,7 @@ Form
 							{
 								name: "priorSigma"
 								defaultValue: 10.0
+								inclusive: JASP.MaxOnly
 							}
 						}
 						Row
@@ -323,6 +330,7 @@ Form
 							{
 								name: "fourierOrder"
 								defaultValue: 7
+								inclusive: JASP.MaxOnly
 							}
 						}
 						Row
@@ -365,7 +373,7 @@ Form
 				{
 					name: "periodicalPredictionNumber"
 					label: qsTr("Number of periods")
-					defaultValue: 1
+					defaultValue: 0
 				}
 				DropDown
 				{
