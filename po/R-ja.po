@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspProphet 0.13.0\n"
-"POT-Creation-Date: 2022-10-01 04:37\n"
+"POT-Creation-Date: 2023-01-21 03:54\n"
 "PO-Revision-Date: 2021-09-11 22:43+0000\n"
 "Last-Translator: Koji Kosugi <kosugitti@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -33,8 +33,9 @@ msgstr ""
 msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
 msgstr "'Changepoints' は、論理値でなければなりません (e.g., 0/1)"
 
-msgid "'History Indicator' must be a logical variable (e.g., 0/1)"
-msgstr "'History Indicator' は論理値でなければなりません (e.g., 0/1)"
+#, fuzzy
+msgid "'Include in Training' must be a logical variable (e.g., 0/1)"
+msgstr "'Changepoints' は、論理値でなければなりません (e.g., 0/1)"
 
 msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
 msgstr ""
@@ -67,11 +68,21 @@ msgstr ""
 "季節性の名前には、文字、数字、ドット、またはアンダースコアのみを含め、数字の"
 "後に続かない文字またはドットで始まる必要があります"
 
-msgid "'Carrying Capacity' must be supplied for predictions"
-msgstr "予測には'Carrying Capacity'が必要です"
+msgid ""
+"When 'Carrying Capacity' is used in the model, predictions cannot be carried "
+"out unless 'Carrying Capacity' is also supplied for the predicted period."
+msgstr ""
 
-msgid "'Covariates' must be supplied for predictions"
-msgstr "予測には'Covariates'が必要です"
+msgid ""
+"When 'Covariates' are used in the model, predictions cannot be carried out "
+"unless the covariates are also observed for the predicted period."
+msgstr ""
+
+msgid ""
+"Prophet failed to compute any results. It is possible that the analysis even "
+"failed to compute the initial log-likelihood. Check whether the model "
+"specification is plausible. Internal error message from 'prophet': %s."
+msgstr ""
 
 msgid "Growth rate (k)"
 msgstr "成長率(k)"
@@ -234,3 +245,12 @@ msgstr "残差分散"
 
 msgid "Density"
 msgstr "密度"
+
+#~ msgid "'History Indicator' must be a logical variable (e.g., 0/1)"
+#~ msgstr "'History Indicator' は論理値でなければなりません (e.g., 0/1)"
+
+#~ msgid "'Carrying Capacity' must be supplied for predictions"
+#~ msgstr "予測には'Carrying Capacity'が必要です"
+
+#~ msgid "'Covariates' must be supplied for predictions"
+#~ msgstr "予測には'Covariates'が必要です"

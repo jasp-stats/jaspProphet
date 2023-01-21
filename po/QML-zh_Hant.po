@@ -1,16 +1,10 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-11-01 15:28+0000\n"
-"Last-Translator: Changya Hu <changyahu@gmail.com>\n"
-"Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
-"jasp/jaspprophet-qml/zh_Hant/>\n"
-"Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Language: zh_Hant\n"
-"X-Generator: Weblate 4.14.2-dev\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
@@ -240,10 +234,6 @@ msgid "Evaluation"
 msgstr ""
 
 msgctxt "Prophet|"
-msgid "Simulated historical forecasts"
-msgstr ""
-
-msgctxt "Prophet|"
 msgid "Horizon"
 msgstr ""
 
@@ -329,4 +319,8 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Posterior distributions"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Cross validation (simulated historical forecasts)"
 msgstr ""

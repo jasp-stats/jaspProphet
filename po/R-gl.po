@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-10-01 04:37\n"
+"POT-Creation-Date: 2023-01-21 03:54\n"
 "PO-Revision-Date: 2022-10-02 20:21+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
@@ -41,9 +41,9 @@ msgstr ""
 msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
 msgstr "'Puntos de cambio' debe ser unha variable de tipo lóxico (p.e. 0/1)"
 
-msgid "'History Indicator' must be a logical variable (e.g., 0/1)"
-msgstr ""
-"'Indicador de Historial' debe ser unha variable de tipo lóxico (p.e. 0/1)"
+#, fuzzy
+msgid "'Include in Training' must be a logical variable (e.g., 0/1)"
+msgstr "'Puntos de cambio' debe ser unha variable de tipo lóxico (p.e. 0/1)"
 
 msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
 msgstr "'Capacidade de Porte' debe ser sempre maior que 'Mínimo de Saturación'"
@@ -75,11 +75,21 @@ msgstr ""
 "barras baixas, e deben comezar con letras ou puntos que non estean seguidos "
 "dun número"
 
-msgid "'Carrying Capacity' must be supplied for predictions"
-msgstr "Debe indicarse a 'Capacidade de Porte' para as predicións"
+msgid ""
+"When 'Carrying Capacity' is used in the model, predictions cannot be carried "
+"out unless 'Carrying Capacity' is also supplied for the predicted period."
+msgstr ""
 
-msgid "'Covariates' must be supplied for predictions"
-msgstr "Debe indicarse as 'Covariantes' para as predicións"
+msgid ""
+"When 'Covariates' are used in the model, predictions cannot be carried out "
+"unless the covariates are also observed for the predicted period."
+msgstr ""
+
+msgid ""
+"Prophet failed to compute any results. It is possible that the analysis even "
+"failed to compute the initial log-likelihood. Check whether the model "
+"specification is plausible. Internal error message from 'prophet': %s."
+msgstr ""
 
 msgid "Growth rate (k)"
 msgstr "Taxa de crecemento (k)"
@@ -244,3 +254,13 @@ msgstr "Varianza dos erros"
 
 msgid "Density"
 msgstr "Densidade"
+
+#~ msgid "'History Indicator' must be a logical variable (e.g., 0/1)"
+#~ msgstr ""
+#~ "'Indicador de Historial' debe ser unha variable de tipo lóxico (p.e. 0/1)"
+
+#~ msgid "'Carrying Capacity' must be supplied for predictions"
+#~ msgstr "Debe indicarse a 'Capacidade de Porte' para as predicións"
+
+#~ msgid "'Covariates' must be supplied for predictions"
+#~ msgstr "Debe indicarse as 'Covariantes' para as predicións"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2022-10-01 04:37\n"
+"POT-Creation-Date: 2023-01-21 03:54\n"
 "PO-Revision-Date: 2023-01-13 12:30+0000\n"
 "Last-Translator: Don van den Bergh <donvdbergh@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/jaspprophet-r/"
@@ -35,8 +35,9 @@ msgstr ""
 msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
 msgstr "'Veranderpunten' moet een logische variabele zijn (bijv. 0/1)"
 
-msgid "'History Indicator' must be a logical variable (e.g., 0/1)"
-msgstr "'Historie indicator' moet een dichotome variabele (e.g., 0/1) zijn"
+#, fuzzy
+msgid "'Include in Training' must be a logical variable (e.g., 0/1)"
+msgstr "'Veranderpunten' moet een logische variabele zijn (bijv. 0/1)"
 
 msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
 msgstr "'Draagcapaciteit' moet altijd groter zijn dan 'Verzadigd Minimum'"
@@ -66,11 +67,21 @@ msgstr ""
 "en moeten beginnen met letters of punten die niet worden gevolgd door een "
 "cijfer"
 
-msgid "'Carrying Capacity' must be supplied for predictions"
-msgstr "'Draagcapaciteit' moet gegeven worden voor voorspellingen"
+msgid ""
+"When 'Carrying Capacity' is used in the model, predictions cannot be carried "
+"out unless 'Carrying Capacity' is also supplied for the predicted period."
+msgstr ""
 
-msgid "'Covariates' must be supplied for predictions"
-msgstr "'Covariabelen' moeten gegeven worden voor voorspellingen"
+msgid ""
+"When 'Covariates' are used in the model, predictions cannot be carried out "
+"unless the covariates are also observed for the predicted period."
+msgstr ""
+
+msgid ""
+"Prophet failed to compute any results. It is possible that the analysis even "
+"failed to compute the initial log-likelihood. Check whether the model "
+"specification is plausible. Internal error message from 'prophet': %s."
+msgstr ""
 
 msgid "Growth rate (k)"
 msgstr "Groeifactor (k)"
@@ -232,6 +243,15 @@ msgstr "Residuele variantie"
 
 msgid "Density"
 msgstr "Dichtheid"
+
+#~ msgid "'History Indicator' must be a logical variable (e.g., 0/1)"
+#~ msgstr "'Historie indicator' moet een dichotome variabele (e.g., 0/1) zijn"
+
+#~ msgid "'Carrying Capacity' must be supplied for predictions"
+#~ msgstr "'Draagcapaciteit' moet gegeven worden voor voorspellingen"
+
+#~ msgid "'Covariates' must be supplied for predictions"
+#~ msgstr "'Covariabelen' moeten gegeven worden voor voorspellingen"
 
 #, fuzzy
 #~ msgid "summaryCredibleIntervalWidth"
