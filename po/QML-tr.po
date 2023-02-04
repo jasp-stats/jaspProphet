@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-02-01 03:03+0000\n"
+"Last-Translator: Ünal Halit ÖZDEN <uozden@ticaret.edu.tr>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
+"jaspprophet-qml/tr/>\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.16-dev\n"
 "X-Language: tr\n"
 "X-Qt-Contexts: true\n"
 
@@ -13,19 +19,19 @@ msgstr ""
 
 msgctxt "Description|"
 msgid "This module offers a simple model for time series prediction."
-msgstr ""
+msgstr "Bu modül, zaman serisi tahmini için basit bir model sunar."
 
 msgctxt "Prophet|"
 msgid "Dependent Variable"
-msgstr ""
+msgstr "Bağımlı değişken"
 
 msgctxt "Prophet|"
 msgid "Time"
-msgstr ""
+msgstr "Zaman"
 
 msgctxt "Prophet|"
 msgid "Changepoints"
-msgstr ""
+msgstr "Değişim noktaları"
 
 msgctxt "Prophet|"
 msgid "Carrying Capacity"
@@ -41,7 +47,7 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Include in Training"
-msgstr ""
+msgstr "Eğitime Dahil Et"
 
 msgctxt "Prophet|"
 msgid "History plot"
@@ -61,11 +67,11 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Plot time interval"
-msgstr ""
+msgstr "Ekstra seçenekler"
 
 msgctxt "Prophet|"
 msgid "Start"
-msgstr ""
+msgstr "Başlangıç"
 
 msgctxt "Prophet|"
 msgid "End"
@@ -77,7 +83,7 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Linear"
-msgstr ""
+msgstr "Doğrusal"
 
 msgctxt "Prophet|"
 msgid "Logistic"
@@ -85,7 +91,7 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 msgctxt "Prophet|"
 msgid "Automatic Changepoints"
@@ -105,7 +111,7 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Estimation"
-msgstr ""
+msgstr "tahmin"
 
 msgctxt "Prophet|"
 msgid "Maximum a posteriori"
