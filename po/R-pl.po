@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspProphet 0.17.0\n"
 "POT-Creation-Date: 2023-01-21 03:54\n"
-"PO-Revision-Date: 2023-05-12 13:54+0000\n"
+"PO-Revision-Date: 2023-06-02 19:52+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-r/pl/>\n"
@@ -16,6 +16,7 @@ msgstr ""
 
 msgid "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"'Time' musi być zmienną zapisaną w formacie daty (np. rrrr-mm-dd gg:mm:ss)"
 
 msgid ""
 "'Start' for nonperiodical prediction must be in a date-like format (e.g., "
@@ -86,10 +87,10 @@ msgid "%s%% CI"
 msgstr "%s%% PU"
 
 msgid "Parameter"
-msgstr ""
+msgstr "Parametr"
 
 msgid "Mean"
-msgstr ""
+msgstr "Średnia"
 
 msgid "SD"
 msgstr "Odch. stand."
@@ -196,7 +197,7 @@ msgid ""
 msgstr ""
 
 msgid "Covariate Plots"
-msgstr ""
+msgstr "Wykresy współzmiennych"
 
 msgid "Performance Plots"
 msgstr ""
@@ -211,7 +212,7 @@ msgid "Change in growth rate"
 msgstr ""
 
 msgid "Posterior Distributions"
-msgstr ""
+msgstr "Rozkłady a posteriori"
 
 msgid "Growth rate"
 msgstr ""
