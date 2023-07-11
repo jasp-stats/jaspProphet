@@ -469,7 +469,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
   }
 
   if (options$predictionSavePath != "") {
-    write.csv(jaspResults[["prophetResults"]][["object"]][["prophetModelResults"]],
+    write.csv(jaspResults[["prophetResults"]][["object"]][["prophetPredictionResults"]],
               file = options$predictionSavePath,
               row.names = FALSE)
     predSavePath[["object"]] <- TRUE
