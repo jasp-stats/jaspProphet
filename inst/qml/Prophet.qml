@@ -132,8 +132,8 @@ Form
 				{
 					name: "maxChangepoints"
 					label: qsTr("Max. changepoints")
-					defaultValue: Math.min(25, dataSetModel.rowCount())
-					max: dataSetModel.rowCount()
+					defaultValue: Math.min(25, dataSetInfo.rowCount)
+					max: dataSetInfo.rowCount
 				}
 				DoubleField
 				{
