@@ -6,7 +6,7 @@ Description
 	name		:	"jaspProphet"
 	title		:	qsTr("Prophet")
 	description	:	qsTr("This module offers a simple model for time series prediction.")
-	version			: "0.18.2"
+	version			: "0.18.3"
 	author		:	"JASP Team"
 	maintainer	:	"JASP Team <info@jasp-stats.org>"
 	website		:	"jasp-stats.org"
