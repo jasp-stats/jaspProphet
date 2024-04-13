@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-06 03:53+0000\n"
+"PO-Revision-Date: 2024-04-10 11:01+0000\n"
 "Last-Translator: robachowyk <kaya.robach@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-qml/fr/>\n"
@@ -65,15 +65,15 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Both"
-msgstr ""
+msgstr "Les deux"
 
 msgctxt "Prophet|"
 msgid "Plot time interval"
-msgstr ""
+msgstr "Tracer l'interval de temps"
 
 msgctxt "Prophet|"
 msgid "Start"
-msgstr ""
+msgstr "Commencer"
 
 msgctxt "Prophet|"
 msgid "End"
@@ -89,7 +89,7 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Logistic"
-msgstr ""
+msgstr "Logistique"
 
 msgctxt "Prophet|"
 msgid "Carrying capacity"
@@ -97,11 +97,11 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Saturating minimum"
-msgstr ""
+msgstr "Minimum saturé"
 
 msgctxt "Prophet|"
 msgid "Model"
-msgstr ""
+msgstr "Modèle"
 
 msgctxt "Prophet|"
 msgid "Automatic Changepoints"
