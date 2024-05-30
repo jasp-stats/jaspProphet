@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.3.3",
+    "Version": "4.4.0",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -21,7 +21,7 @@
     },
     "Hmisc": {
       "Package": "Hmisc",
-      "Version": "5.1-2",
+      "Version": "5.1-3",
       "Source": "Repository"
     },
     "QuickJSR": {
@@ -56,7 +56,7 @@
     },
     "StanHeaders": {
       "Package": "StanHeaders",
-      "Version": "2.32.6",
+      "Version": "2.32.8",
       "Source": "Repository"
     },
     "abind": {
@@ -71,7 +71,7 @@
     },
     "backports": {
       "Package": "backports",
-      "Version": "1.4.1",
+      "Version": "1.5.0",
       "Source": "Repository"
     },
     "base64enc": {
@@ -86,7 +86,7 @@
     },
     "cachem": {
       "Package": "cachem",
-      "Version": "1.0.8",
+      "Version": "1.1.0",
       "Source": "Repository"
     },
     "callr": {
@@ -186,12 +186,12 @@
     },
     "farver": {
       "Package": "farver",
-      "Version": "2.1.1",
+      "Version": "2.1.2",
       "Source": "Repository"
     },
     "fastmap": {
       "Package": "fastmap",
-      "Version": "1.1.1",
+      "Version": "1.2.0",
       "Source": "Repository"
     },
     "fdrtool": {
@@ -221,7 +221,7 @@
     },
     "fs": {
       "Package": "fs",
-      "Version": "1.6.3",
+      "Version": "1.6.4",
       "Source": "Repository"
     },
     "gdtools": {
@@ -241,7 +241,7 @@
     },
     "ggplot2": {
       "Package": "ggplot2",
-      "Version": "3.5.0",
+      "Version": "3.5.1",
       "Source": "Repository"
     },
     "glasso": {
@@ -266,7 +266,7 @@
     },
     "gtable": {
       "Package": "gtable",
-      "Version": "0.3.4",
+      "Version": "0.3.5",
       "Source": "Repository"
     },
     "gtools": {
@@ -276,7 +276,7 @@
     },
     "highr": {
       "Package": "highr",
-      "Version": "0.10",
+      "Version": "0.11",
       "Source": "Repository"
     },
     "htmlTable": {
@@ -321,36 +321,25 @@
     },
     "jaspBase": {
       "Package": "jaspBase",
-      "Version": "0.19.0_Local_JASP",
-      "Source": "Local",
-      "RemoteType": "local",
-      "RemoteUrl": "/home/sp42/jasp-desktop/Engine/jaspBase",
-      "Cacheable": true,
-      "Hash": {
-        "jaspBase": "40aff473736156fe2872cbf0606433f5"
-      }
+      "Version": "0.19.0",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "jasp-stats",
+      "RemoteRepo": "jaspBase",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "b9c1808d9bc72109359074cfe3b8badde3f0bfdd"
     },
     "jaspGraphs": {
       "Package": "jaspGraphs",
-      "Version": "0.18.3_Local_JASP",
-      "Source": "Local",
-      "RemoteType": "local",
-      "RemoteUrl": "/home/sp42/jasp-desktop/Engine/jaspGraphs",
-      "Cacheable": true,
-      "Hash": {
-        "jaspGraphs": "e87d6ee3fe9ddd0e28aac07e5272b8bf"
-      }
-    },
-    "jaspProphet": {
-      "Package": "jaspProphet",
-      "Version": "0.18.3_Local_JASP",
-      "Source": "Local",
-      "RemoteType": "local",
-      "RemoteUrl": "/home/sp42/jasp-desktop/Modules/jaspProphet",
-      "Cacheable": true,
-      "Hash": {
-        "jaspProphet": "20705fcd3aea9ce54a866278409dac8e"
-      }
+      "Version": "0.19.0",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "jasp-stats",
+      "RemoteRepo": "jaspGraphs",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "764f90f6d7781c4087a757254facc8125f5b600b"
     },
     "jpeg": {
       "Package": "jpeg",
@@ -369,7 +358,7 @@
     },
     "knitr": {
       "Package": "knitr",
-      "Version": "1.46",
+      "Version": "1.47",
       "Source": "Repository"
     },
     "labeling": {
@@ -444,12 +433,12 @@
     },
     "officer": {
       "Package": "officer",
-      "Version": "0.6.5",
+      "Version": "0.6.6",
       "Source": "Repository"
     },
     "openssl": {
       "Package": "openssl",
-      "Version": "2.1.1",
+      "Version": "2.2.0",
       "Source": "Repository"
     },
     "pbapply": {
@@ -534,7 +523,7 @@
     },
     "ragg": {
       "Package": "ragg",
-      "Version": "1.3.0",
+      "Version": "1.3.2",
       "Source": "Repository"
     },
     "rappdirs": {
@@ -564,7 +553,7 @@
     },
     "rmarkdown": {
       "Package": "rmarkdown",
-      "Version": "2.26",
+      "Version": "2.27",
       "Source": "Repository"
     },
     "rstan": {
@@ -609,7 +598,7 @@
     },
     "stringi": {
       "Package": "stringi",
-      "Version": "1.8.3",
+      "Version": "1.8.4",
       "Source": "Repository"
     },
     "stringr": {
@@ -629,7 +618,7 @@
     },
     "systemfonts": {
       "Package": "systemfonts",
-      "Version": "1.0.6",
+      "Version": "1.1.0",
       "Source": "Repository"
     },
     "tensorA": {
@@ -639,7 +628,7 @@
     },
     "textshaping": {
       "Package": "textshaping",
-      "Version": "0.3.7",
+      "Version": "0.4.0",
       "Source": "Repository"
     },
     "tibble": {
@@ -664,7 +653,7 @@
     },
     "tinytex": {
       "Package": "tinytex",
-      "Version": "0.50",
+      "Version": "0.51",
       "Source": "Repository"
     },
     "triebeard": {
@@ -709,7 +698,7 @@
     },
     "xfun": {
       "Package": "xfun",
-      "Version": "0.43",
+      "Version": "0.44",
       "Source": "Repository"
     },
     "xml2": {
