@@ -10,13 +10,13 @@ Form
 	{
 		preferredHeight: 400 * preferencesModel.uiScale
 		AvailableVariablesList	{ name: "allVariablesList" }
-		AssignedVariablesList	{ name: "dependent"; title: qsTr("Dependent Variable");	suggestedColumns: ["scale"]; singleVariable: true													}
-		AssignedVariablesList	{ name: "time"; title: qsTr("Time"); suggestedColumns: ["nominal"]; singleVariable: true																	}
-		AssignedVariablesList	{ name: "changepoints"; title: qsTr("Changepoints"); suggestedColumns: ["scale"]; singleVariable: true														}
-		AssignedVariablesList	{ name: "carryingCapacity"; title: qsTr("Carrying Capacity"); suggestedColumns: ["scale"]; singleVariable: true; id: cap; enabled: growth.value === "logistic"		}
-		AssignedVariablesList	{ name: "minimum"; title: qsTr("Saturating Minimum"); suggestedColumns: ["scale"]; singleVariable: true; id: floor; enabled: growth.value === "logistic"	}
-		AssignedVariablesList	{ name: "covariates"; title: qsTr("Covariates"); suggestedColumns: ["scale"];																				}
-		AssignedVariablesList	{ name: "historyIndicator"; title: qsTr("Include in Training"); suggestedColumns: ["scale"]; singleVariable: true											}
+		AssignedVariablesList	{ name: "dependent"; title: qsTr("Dependent Variable");	allowedColumns: ["scale"]; singleVariable: true													}
+		AssignedVariablesList	{ name: "time"; title: qsTr("Time"); allowedColumns: ["nominal"]; singleVariable: true																	}
+		AssignedVariablesList	{ name: "changepoints"; title: qsTr("Changepoints"); allowedColumns: ["scale"]; singleVariable: true														}
+		AssignedVariablesList	{ name: "carryingCapacity"; title: qsTr("Carrying Capacity"); allowedColumns: ["scale"]; singleVariable: true; id: cap; enabled: growth.value === "logistic"		}
+		AssignedVariablesList	{ name: "minimum"; title: qsTr("Saturating Minimum"); allowedColumns: ["scale"]; singleVariable: true; id: floor; enabled: growth.value === "logistic"	}
+		AssignedVariablesList	{ name: "covariates"; title: qsTr("Covariates"); allowedColumns: ["scale"];																				}
+		AssignedVariablesList	{ name: "historyIndicator"; title: qsTr("Include in Training"); allowedColumns: ["scale"]; singleVariable: true											}
 	}
 
 	columns: 3
