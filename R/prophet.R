@@ -366,6 +366,14 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 }
 
 .prophetModelResultsReduce <- function(prophetModelResults, options) {
+  # seasonality estimates
+  predictedSeasonalities <- list()
+  for (seas in options[["seasonalities"]]) {
+    name <- seas[["name"]]
+    predictedSeasonalities[[name]] <- .prophetPredictSeasonality(name, prophetModelResults, options)
+  }
+  prophetModelResults[["predictedSeasonalities"]] <- predictedSeasonalities
+
   if (options$estimation == "mcmc") {
     # posterior summaries
     ci <- .prophetIntervalLevels(options, "credible")
@@ -382,14 +390,6 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
       parameterDensities[[par]] <- density(prophetModelResults[["params"]][[par]])
     }
     prophetModelResults[["parameterDensities"]] <- parameterDensities
-
-    # seasonality estimates
-    predictedSeasonalities <- list()
-    for (seas in options[["seasonalities"]]) {
-      name <- seas[["name"]]
-      predictedSeasonalities[[name]] <- .prophetPredictSeasonality(name, prophetModelResults, options)
-    }
-    prophetModelResults[["predictedSeasonalities"]] <- predictedSeasonalities
 
     # remove stanfit and mcmc samples from the results to reduce size of the results
     prophetModelResults$stan.fit <- NULL

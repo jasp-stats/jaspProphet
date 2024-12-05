@@ -186,7 +186,7 @@ test_that("Parameter Estimates Table results match (MAP)", {
   {
     # test windows result
     testthat::skip_on_os(c("mac", "linux"))
-    jaspTools::expect_equal_tables(table, list(-2.50859195109382, -2.31656506358638, 0.32805219661169))
+    jaspTools::expect_equal_tables(table, list(-2.50358957234044, -2.32147823235013, 0.328046513061461))
   }
 
   {
