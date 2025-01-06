@@ -2,64 +2,89 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspProphet 0.19.2\n"
 "POT-Creation-Date: 2024-10-19 03:53\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-01-06 12:25+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
+"Language-Team: Tamil <https://hosted.weblate.org/projects/jasp/jaspprophet-r/"
+"ta/>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 msgid "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"'நேரம்' தேதி போன்ற வடிவத்தில் இருக்க வேண்டும் (எ.கா., YYYY-MM-DD HH: MM: SS)"
 
 msgid "'Start' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"பயனற்ற முன்கணிப்புக்கான 'தொடக்க' தேதி போன்ற வடிவத்தில் இருக்க வேண்டும் (எ.கா., YYYY-MM-"
+"DD HH: MM: SS)"
 
 msgid "'End' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"பயனற்ற முன்கணிப்புக்கான 'முடிவு' தேதி போன்ற வடிவத்தில் இருக்க வேண்டும் (எ.கா., YYYY-MM-"
+"DD HH: MM: SS)"
 
 msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
 msgstr ""
+"'மாற்ற புள்ளிகள்' ஒரு தர்க்கரீதியான மாறியாக இருக்க வேண்டும் (எ.கா., 0/1)"
 
 msgid "'Include in Training' must be a logical variable (e.g., 0/1)"
 msgstr ""
+"'பயிற்சியில் சேர்க்கவும்' ஒரு தர்க்கரீதியான மாறியாக இருக்க வேண்டும் (எ.கா., 0/1)"
 
 msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
 msgstr ""
+"'சுமந்து செல்லும் திறன்' எப்போதும் 'நிறைவுற்ற குறைந்தபட்சம்' என்பதை விட பெரியதாக இருக்க "
+"வேண்டும்"
 
 msgid "'Carrying Capacity' must always be larger than 'Constant saturating minimum'"
 msgstr ""
+"'சுமந்து செல்லும் திறன்' எப்போதும் 'நிலையான நிறைவுற்ற குறைந்தபட்சம்' என்பதை விட பெரியதா"
+"க இருக்க வேண்டும்"
 
 msgid "'Constant carrying capacity' must always be larger than 'Saturating Minimum'"
 msgstr ""
+"'நிலையான சுமக்கும் திறன்' எப்போதும் 'குறைந்தபட்சம் நிறைவுற்ற' விட பெரியதாக இருக்க "
+"வேண்டும்"
 
 msgid "'Constant carrying capacity' must always be larger than 'Constant saturating minimum'"
 msgstr ""
+"'நிலையான சுமக்கும் திறன்' எப்போதும் 'நிலையான நிறைவுற்ற குறைந்தபட்சம்' என்பதை விட "
+"பெரியதாக இருக்க வேண்டும்"
 
 msgid "Seasonality names must only contain letters, number, dots, or underscores and must start with letters or dots that are not followed by a number"
 msgstr ""
+"பருவகால பெயர்களில் கடிதங்கள், எண், புள்ளிகள் அல்லது அடிக்கோடிட்டுக் காட்டப்பட்டிருக்க வேண்டும்"
+" மற்றும் ஒரு எண்ணைப் பின்பற்றாத கடிதங்கள் அல்லது புள்ளிகளுடன் தொடங்க வேண்டும்"
 
 msgid "When 'Carrying Capacity' is used in the model, predictions cannot be carried out unless 'Carrying Capacity' is also supplied for the predicted period."
 msgstr ""
+"மாதிரியில் 'சுமந்து செல்லும் திறன்' பயன்படுத்தப்படும்போது, கணிக்கப்பட்ட காலத்திற்கு 'சுமந்து"
+" செல்லும் திறன்' வழங்கப்படாவிட்டால் கணிப்புகளை மேற்கொள்ள முடியாது."
 
 msgid "When 'Covariates' are used in the model, predictions cannot be carried out unless the covariates are also observed for the predicted period."
 msgstr ""
 
 msgid "Prophet failed to compute any results. It is possible that the analysis even failed to compute the initial log-likelihood. Check whether the model specification is plausible. Internal error message from 'prophet': %s."
 msgstr ""
+"எந்த முடிவுகளையும் கணக்கிட ஆவதறிவார் தவறிவிட்டார். ஆரம்ப பதிவு-சாத்தியக்கூறுகளை கணக்கி"
+"ட பகுப்பாய்வு கூட தவறிவிட்டது. மாதிரி விவரக்குறிப்பு நம்பத்தகுந்ததா என்பதை சரிபார்க்கவும்"
+". 'ஆவதறிவார்' இலிருந்து உள் பிழை செய்தி: %s."
 
 msgid "Growth rate (k)"
-msgstr ""
+msgstr "வளர்ச்சி விகிதம் (கே)"
 
 msgid "Offset (m)"
-msgstr ""
+msgstr "ஆஃப்செட் (மீ)"
 
 msgid "Residual variance (σ²)"
-msgstr ""
+msgstr "மீதமுள்ள மாறுபாடு (σ²)"
 
 msgid "Posterior Summary Table"
-msgstr ""
+msgstr "பின்புற சுருக்கம் அட்டவணை"
 
 msgid "%s%% CI"
 msgstr ""
@@ -80,121 +105,129 @@ msgid "Upper"
 msgstr ""
 
 msgid "R-hat"
-msgstr ""
+msgstr "ஆர்-தொப்பி"
 
 msgid "ESS (bulk)"
-msgstr ""
+msgstr "ESS (மொத்த)"
 
 msgid "ESS (tail)"
-msgstr ""
+msgstr "கட்டு"
 
 msgid "Prophet might need a long time to compute the results. You can try it first with fewer MCMC samples to see if it works and if you specified the model correctly (e.g., set 'Samples = 10' in the 'Model' section)."
 msgstr ""
+"முடிவுகளை கணக்கிட தீர்க்கதரிசிக்கு நீண்ட நேரம் தேவைப்படலாம். இது செயல்படுகிறதா என்பதைப் "
+"பார்க்க குறைவான MCMC மாதிரிகளுடன் முதலில் முயற்சி செய்யலாம், நீங்கள் மாதிரியை சரியாகக் "
+"குறிப்பிட்டுள்ளீர்களா (எ.கா., 'மாதிரி' பிரிவில் 'மாதிரிகள் = 10' அமைக்கவும்)."
 
 msgid "Residual variance (sigma)"
-msgstr ""
+msgstr "மீதமுள்ள மாறுபாடு (சிக்மா)"
 
 msgid "Changepoint Estimates Table"
-msgstr ""
+msgstr "சேஞ்ச்பாயிண்ட் அட்டவணையை மதிப்பிடுகிறது"
 
 msgid "Changepoint Posterior Summary Table"
-msgstr ""
+msgstr "சேஞ்ச்பாயிண்ட் பின்புற சுருக்க அட்டவணை"
 
 msgid "Changepoint"
-msgstr ""
+msgstr "மாற்ற புள்ளிகள்"
 
 msgid "Change in growth rate (δ)"
-msgstr ""
+msgstr "வளர்ச்சி விகிதத்தில் மாற்றம் (Δ)"
 
 msgid "Simulated Historical Forecasts Table"
-msgstr ""
+msgstr "உருவகப்படுத்தப்பட்ட வரலாற்று முன்னறிவிப்பு அட்டவணை"
 
 msgid "Horizon"
-msgstr ""
+msgstr "அடிவானம்"
 
 msgid "MSE"
-msgstr ""
+msgstr "எம்.எச்.இ."
 
 msgid "RMSE"
-msgstr ""
+msgstr "ஆர்.எம்.எச்.இ."
 
 msgid "MAPE"
-msgstr ""
+msgstr "மெப்"
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"'தொடக்க' தேதி போன்ற வடிவத்தில் இருக்க வேண்டும் (எ.கா., YYYY-MM-DD HH: MM: SS)"
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"'முடிவு' தேதி போன்ற வடிவத்தில் இருக்க வேண்டும் (எ.கா., YYYY-MM-DD HH: MM: SS)"
 
 msgid "Forecast Plots"
-msgstr ""
+msgstr "முன்னறிவிப்பு அடுக்கு"
 
 msgid "Cannot draw forecast plots; no forecasts computed."
 msgstr ""
+"முன்னறிவிப்பு அடுக்குகளை வரைய முடியாது; கணிப்புகள் எதுவும் கணக்கிடப்படவில்லை."
 
 msgid "Overall"
-msgstr ""
+msgstr "ஒட்டுமொத்தமாக"
 
 msgid "Trend"
 msgstr ""
 
 msgid "Seasonality Plots"
-msgstr ""
+msgstr "பருவகால அடுக்கு"
 
 msgid "Time (min:sec)"
-msgstr ""
+msgstr "நேரம் (நிமிடம்: நொடி)"
 
 msgid "Time (hour:min)"
-msgstr ""
+msgstr "நேரம் (மணி: நிமிடம்)"
 
 msgid "Time (hour)"
-msgstr ""
+msgstr "நேரம் (மணி)"
 
 msgid "Weekday"
-msgstr ""
+msgstr "வார நாள்"
 
 msgid "Time (day)"
-msgstr ""
+msgstr "நேரம் (நாள்)"
 
 msgid "Time (month-day)"
-msgstr ""
+msgstr "நேரம் (மாத நாள்)"
 
 msgid "Time (month)"
-msgstr ""
+msgstr "நேரம் (மாதம்)"
 
 msgid "Time (year)"
-msgstr ""
+msgstr "நேரம் (ஆண்டு)"
 
 msgid "Please enter valid 'Start' and 'End' arguments for nonperiodical prediction (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"அல்லாத காலமற்ற கணிப்புக்கான செல்லுபடியாகும் 'தொடக்க' மற்றும் 'முடிவு' வாதங்களை உள்ளிடவும்"
+" (எ.கா., YYYY-MM-DD HH: MM: SS)"
 
 msgid "Covariate Plots"
-msgstr ""
+msgstr "கோவாரியேட் அடுக்கு"
 
 msgid "Performance Plots"
-msgstr ""
+msgstr "செயல்திறன் அடுக்கு"
 
 msgid "Parameter Plots"
-msgstr ""
+msgstr "அளவுரு அடுக்குகள்"
 
 msgid "Changepoint Plot"
-msgstr ""
+msgstr "சேஞ்ச்பாயிண்ட் சூழ்ச்சி"
 
 msgid "Change in growth rate"
-msgstr ""
+msgstr "வளர்ச்சி விகிதத்தில் மாற்றம்"
 
 msgid "Posterior Distributions"
-msgstr ""
+msgstr "பின்புற வழங்கல்"
 
 msgid "Growth rate"
-msgstr ""
+msgstr "வளர்ச்சி விகிதம்"
 
 msgid "Offset"
-msgstr ""
+msgstr "ஈடுசெய்யும்"
 
 msgid "Residual variance"
-msgstr ""
+msgstr "மீதமுள்ள மாறுபாடு"
 
 msgid "Density"
 msgstr ""
