@@ -1,0 +1,331 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2025-01-06 12:25+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
+"Language-Team: Tamil <https://hosted.weblate.org/projects/jasp/"
+"jaspprophet-qml/ta/>\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10-dev\n"
+"X-Qt-Contexts: true\n"
+
+msgctxt "Description|"
+msgid "Prophet"
+msgstr "ஆவதறிவார்"
+
+msgctxt "Description|"
+msgid "This module offers a simple model for time series prediction."
+msgstr "இந்த தொகுதி நேரத் தொடர் கணிப்புக்கான எளிய மாதிரியை வழங்குகிறது."
+
+msgctxt "Prophet|"
+msgid "Dependent Variable"
+msgstr "சார்பு மாறி"
+
+msgctxt "Prophet|"
+msgid "Time"
+msgstr "நேரம்"
+
+msgctxt "Prophet|"
+msgid "Changepoints"
+msgstr "மாற்ற புள்ளிகள்"
+
+msgctxt "Prophet|"
+msgid "Carrying Capacity"
+msgstr "சுமக்கும் திறன்"
+
+msgctxt "Prophet|"
+msgid "Saturating Minimum"
+msgstr "நிறைவுற்ற குறைந்தபட்சம்"
+
+msgctxt "Prophet|"
+msgid "Covariates"
+msgstr "கோவாரியட்டுகள்"
+
+msgctxt "Prophet|"
+msgid "Include in Training"
+msgstr "பயிற்சியில் சேர்க்கவும்"
+
+msgctxt "Prophet|"
+msgid "History plot"
+msgstr "வரலாற்று சூழ்ச்சி"
+
+msgctxt "Prophet|"
+msgid "Points"
+msgstr "பிரிவகம்"
+
+msgctxt "Prophet|"
+msgid "Line"
+msgstr "வரி"
+
+msgctxt "Prophet|"
+msgid "Both"
+msgstr "இரண்டும்"
+
+msgctxt "Prophet|"
+msgid "Plot time interval"
+msgstr "சூழ்ச்சி நேர இடைவெளி"
+
+msgctxt "Prophet|"
+msgid "Start"
+msgstr "தொடங்கு"
+
+msgctxt "Prophet|"
+msgid "End"
+msgstr "முடிவு"
+
+msgctxt "Prophet|"
+msgid "Growth"
+msgstr "வளர்ச்சி"
+
+msgctxt "Prophet|"
+msgid "Linear"
+msgstr "நேரியல்"
+
+msgctxt "Prophet|"
+msgid "Logistic"
+msgstr "லாசிச்டிக்"
+
+msgctxt "Prophet|"
+msgid "Model"
+msgstr "மாதிரியுரு"
+
+msgctxt "Prophet|"
+msgid "Automatic Changepoints"
+msgstr "தானியங்கி மாற்ற புள்ளிகள்"
+
+msgctxt "Prophet|"
+msgid "Max. changepoints"
+msgstr "அதிகபட்சம். மாற்ற புள்ளிகள்"
+
+msgctxt "Prophet|"
+msgid "Changepoint range"
+msgstr "சேஞ்ச் பாயிண்ட் வரம்பு"
+
+msgctxt "Prophet|"
+msgid "Laplace prior τ"
+msgstr "லாப்லேச் முன்"
+
+msgctxt "Prophet|"
+msgid "Estimation"
+msgstr "மதிப்பீடு"
+
+msgctxt "Prophet|"
+msgid "Maximum a posteriori"
+msgstr "ஒரு போச்டீரியரின் அதிகபட்சம்"
+
+msgctxt "Prophet|"
+msgid "Markov chain Monte Carlo"
+msgstr "மார்கோவ் சங்கிலி மான்டே கார்லோ"
+
+msgctxt "Prophet|"
+msgid "Samples"
+msgstr "மாதிரிகள்"
+
+msgctxt "Prophet|"
+msgid "Uncertainty"
+msgstr "நிச்சயமற்ற தன்மை"
+
+msgctxt "Prophet|"
+msgid "Prediction interval level"
+msgstr "கணிப்பு இடைவெளி நிலை"
+
+msgctxt "Prophet|"
+msgid "Prediction interval samples"
+msgstr "கணிப்பு இடைவெளி மாதிரிகள்"
+
+msgctxt "Prophet|"
+msgid "Credible interval level"
+msgstr "நம்பகமான இடைவெளி நிலை"
+
+msgctxt "Prophet|"
+msgid ""
+"Covariates                                                  Normal prior "
+"σ²                 Standardize                 Mode"
+msgstr "இயல்பான முன் σ² தரநிலை பயன்முறையை கோவாரியட் செய்கிறது"
+
+msgctxt "Prophet|"
+msgid "Additive"
+msgstr "சேர்க்கை"
+
+msgctxt "Prophet|"
+msgid "Multiplicative"
+msgstr "பெருக்கல்"
+
+msgctxt "Prophet|"
+msgid "Seasonalities"
+msgstr "பருவகாலங்கள்"
+
+msgctxt "Prophet|"
+msgid "Name"
+msgstr "பெயர்"
+
+msgctxt "Prophet|"
+msgid "Period"
+msgstr "காலசுழற்சி"
+
+msgctxt "Prophet|"
+msgid "Unit"
+msgstr "அலகு"
+
+msgctxt "Prophet|"
+msgid "Normal prior σ²"
+msgstr "இயல்பான முன் s²"
+
+msgctxt "Prophet|"
+msgid "Fourier order"
+msgstr "ஃபோரியர் ஆர்டர்"
+
+msgctxt "Prophet|"
+msgid "Mode"
+msgstr "பயன்முறை"
+
+msgctxt "Prophet|"
+msgid "Seconds"
+msgstr "நொடிகள்"
+
+msgctxt "Prophet|"
+msgid "Minutes"
+msgstr "நிமிடங்கள்"
+
+msgctxt "Prophet|"
+msgid "Hours"
+msgstr "மணி"
+
+msgctxt "Prophet|"
+msgid "Days"
+msgstr "நாட்கள்"
+
+msgctxt "Prophet|"
+msgid "Weeks"
+msgstr "வாரங்கள்"
+
+msgctxt "Prophet|"
+msgid "Years"
+msgstr "ஆண்டுகள்"
+
+msgctxt "Prophet|"
+msgid "Prediction"
+msgstr "கணிப்பு"
+
+msgctxt "Prophet|"
+msgid "Periodical"
+msgstr "குறிப்பிட்ட கால"
+
+msgctxt "Prophet|"
+msgid "Number of periods"
+msgstr "காலங்களின் எண்ணிக்கை"
+
+msgctxt "Prophet|"
+msgid "Nonperiodical"
+msgstr "நேரமற்ற"
+
+msgctxt "Prophet|"
+msgid "Save predictions"
+msgstr "கணிப்புகளைச் சேமிக்கவும்"
+
+msgctxt "Prophet|"
+msgid "Evaluation"
+msgstr "மதிப்பீடு"
+
+msgctxt "Prophet|"
+msgid "Horizon"
+msgstr "அடிவானம்"
+
+msgctxt "Prophet|"
+msgid "Period between cutoffs"
+msgstr "வெட்டுக்களுக்கு இடையிலான காலம்"
+
+msgctxt "Prophet|"
+msgid "Initial training time"
+msgstr "ஆரம்ப பயிற்சி நேரம்"
+
+msgctxt "Prophet|"
+msgid "Performance metrics"
+msgstr "செயல்திறன் அளவீடுகள்"
+
+msgctxt "Prophet|"
+msgid "Mean squared error (MSE)"
+msgstr "சராசரி ச்கொயர் பிழை (எம்.எச்.இ)"
+
+msgctxt "Prophet|"
+msgid "Root mean squared error (RMSE)"
+msgstr "ரூட் சராசரி சதுர பிழை (ஆர்.எம்.எச்.இ)"
+
+msgctxt "Prophet|"
+msgid "Mean absolute percentage error (MAPE)"
+msgstr "சராசரி முழுமையான சதவீத பிழை (MAPE)"
+
+msgctxt "Prophet|"
+msgid "Changepoint table"
+msgstr "சேஞ்ச் பாயிண்ட் அட்டவணை"
+
+msgctxt "Prophet|"
+msgid "Plots"
+msgstr "அடுக்கு"
+
+msgctxt "Prophet|"
+msgid "Forecast Plots"
+msgstr "முன்னறிவிப்பு அடுக்கு"
+
+msgctxt "Prophet|"
+msgid "Overall"
+msgstr "ஒட்டுமொத்தமாக"
+
+msgctxt "Prophet|"
+msgid "Show data points"
+msgstr "தரவு புள்ளிகளைக் காட்டு"
+
+msgctxt "Prophet|"
+msgid "Show carrying capacity"
+msgstr "சுமந்து செல்லும் திறனைக் காட்டு"
+
+msgctxt "Prophet|"
+msgid "Show changepoints"
+msgstr "மாற்ற புள்ளிகளைக் காட்டு"
+
+msgctxt "Prophet|"
+msgid "Show saturating minimum"
+msgstr "நிறைவுற்ற குறைந்தபட்சத்தைக் காட்டு"
+
+msgctxt "Prophet|"
+msgid "Trend"
+msgstr "போக்கு"
+
+msgctxt "Prophet|"
+msgid "Seasonality Plots"
+msgstr "பருவகால அடுக்கு"
+
+msgctxt "Prophet|"
+msgid "Covariate Plots"
+msgstr "கோவாரியேட் அடுக்கு"
+
+msgctxt "Prophet|"
+msgid "Performance Plots"
+msgstr "செயல்திறன் அடுக்கு"
+
+msgctxt "Prophet|"
+msgid "Parameter Plots"
+msgstr "அளவுரு அடுக்குகள்"
+
+msgctxt "Prophet|"
+msgid "Changepoint plot"
+msgstr "சேஞ்ச்பாயிண்ட் சூழ்ச்சி"
+
+msgctxt "Prophet|"
+msgid "Posterior distributions"
+msgstr "பின்புற வழங்கல்"
+
+msgctxt "Prophet|"
+msgid "Carrying capacity"
+msgstr "சுமக்கும் திறன்"
+
+msgctxt "Prophet|"
+msgid "Saturating minimum"
+msgstr "நிறைவுற்ற குறைந்தபட்சம்"
+
+msgctxt "Prophet|"
+msgid "Cross validation (simulated historical forecasts)"
+msgstr "குறுக்கு சரிபார்ப்பு (உருவகப்படுத்தப்பட்ட வரலாற்று கணிப்புகள்)"
