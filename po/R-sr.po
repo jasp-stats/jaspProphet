@@ -2,199 +2,227 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspProphet 0.19.2\n"
 "POT-Creation-Date: 2024-10-19 03:53\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-03-28 12:20+0000\n"
+"Last-Translator: Marko Bojović <bojovicmarko@outlook.com>\n"
+"Language-Team: Serbian <https://hosted.weblate.org/projects/jasp/"
+"jaspprophet-r/sr/>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 msgid "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "„Време“ мора бити у формату (нпр., гггг-мм-дд чч:мм:сс)"
 
 msgid "'Start' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"„Почетак“ за непериодично предвиђање мора бити у формату (нпр., гггг-мм-дд "
+"чч:мм:сс)"
 
 msgid "'End' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"„Крај“ за непериодично предвиђање мора бити у формату (нпр., гггг-мм-дд "
+"чч:мм:сс)"
 
 msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
-msgstr ""
+msgstr "“Тачке промене“ морају бити логичка променљива (нпр., 0/1)"
 
 msgid "'Include in Training' must be a logical variable (e.g., 0/1)"
-msgstr ""
+msgstr "„Укључи у обуку“ мора бити логичка променљива (нпр., 0/1)"
 
 msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
-msgstr ""
+msgstr "„Капацитет носивости“ увек мора бити већа од „Засићујућег минимума“"
 
 msgid "'Carrying Capacity' must always be larger than 'Constant saturating minimum'"
 msgstr ""
+"„Капацитет носивост“ увек мора бити већа од „Константног засићујућег "
+"минимума“"
 
 msgid "'Constant carrying capacity' must always be larger than 'Saturating Minimum'"
 msgstr ""
+"„Константни капацитет носивоси“ увек мора бити већа од „Засићујућег минимума“"
 
 msgid "'Constant carrying capacity' must always be larger than 'Constant saturating minimum'"
 msgstr ""
+"„Константни капацитет носивости“ увек мора бити већа од „Константног "
+"засићујућег минимума“"
 
 msgid "Seasonality names must only contain letters, number, dots, or underscores and must start with letters or dots that are not followed by a number"
 msgstr ""
+"Називи сезоналности могу садржати само слова, бројеве, тачке или доње црте и "
+"морају почињати словом или тачком која није праћена бројем"
 
 msgid "When 'Carrying Capacity' is used in the model, predictions cannot be carried out unless 'Carrying Capacity' is also supplied for the predicted period."
 msgstr ""
+"Када се „Капацитет носивости“ користи у моделу, предвиђања се не могу "
+"извршити осим ако се „Капацитет носивости“ такође наведе за период "
+"предвиђања."
 
 msgid "When 'Covariates' are used in the model, predictions cannot be carried out unless the covariates are also observed for the predicted period."
 msgstr ""
+"Када се „Коваријате“ користе у моделу, предвиђања се не могу извршити осим "
+"ако су коваријате такође посматране за период предвиђања."
 
 msgid "Prophet failed to compute any results. It is possible that the analysis even failed to compute the initial log-likelihood. Check whether the model specification is plausible. Internal error message from 'prophet': %s."
 msgstr ""
+"Prophet није успео да израчуна никакве резултате. Могуће је да анализа није "
+"успела ни да израчуна почетну лог-вероватноћу. Проверите да ли је "
+"спецификација модела веродостојна. Интерна порука о грешци из 'prophet': %s."
 
 msgid "Growth rate (k)"
-msgstr ""
+msgstr "Стопа раста (k)"
 
 msgid "Offset (m)"
-msgstr ""
+msgstr "Померање (m)"
 
 msgid "Residual variance (σ²)"
-msgstr ""
+msgstr "Резидуална варијанса (σ²)"
 
 msgid "Posterior Summary Table"
-msgstr ""
+msgstr "абела резимеа постериорног"
 
 msgid "%s%% CI"
-msgstr ""
+msgstr "%s%% CI"
 
 msgid "Parameter"
-msgstr ""
+msgstr "Параметар"
 
 msgid "Mean"
-msgstr ""
+msgstr "Аритметичка средина"
 
 msgid "SD"
-msgstr ""
+msgstr "SD"
 
 msgid "Lower"
-msgstr ""
+msgstr "Ниже"
 
 msgid "Upper"
-msgstr ""
+msgstr "Горњи"
 
 msgid "R-hat"
-msgstr ""
+msgstr "R-кров"
 
 msgid "ESS (bulk)"
-msgstr ""
+msgstr "ESS (на велико)"
 
 msgid "ESS (tail)"
-msgstr ""
+msgstr "ESS (реп)"
 
 msgid "Prophet might need a long time to compute the results. You can try it first with fewer MCMC samples to see if it works and if you specified the model correctly (e.g., set 'Samples = 10' in the 'Model' section)."
 msgstr ""
+"Prophet-у може бити потребно дуже време да израчуна резултате. Можете прво "
+"да пробате са мањим бројем MCMC узорака да видите да ли ради и да ли сте "
+"исправно одредили модел (нпр., подесите 'Узорци = 10' у одељку 'Модел')."
 
 msgid "Residual variance (sigma)"
-msgstr ""
+msgstr "Резидуална варијанса (sigma)"
 
 msgid "Changepoint Estimates Table"
-msgstr ""
+msgstr "Табела процена тачака промене"
 
 msgid "Changepoint Posterior Summary Table"
-msgstr ""
+msgstr "Табела резимеа постериорног за тачке промене"
 
 msgid "Changepoint"
-msgstr ""
+msgstr "Тачка промене"
 
 msgid "Change in growth rate (δ)"
-msgstr ""
+msgstr "Промена стопе раста (δ)"
 
 msgid "Simulated Historical Forecasts Table"
-msgstr ""
+msgstr "Табела симулираних историјских прогноза"
 
 msgid "Horizon"
-msgstr ""
+msgstr "Хоризонт"
 
 msgid "MSE"
-msgstr ""
+msgstr "MSE"
 
 msgid "RMSE"
-msgstr ""
+msgstr "RMSE"
 
 msgid "MAPE"
-msgstr ""
+msgstr "MAPE"
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "„Почетак“ мора бити у формату (нпр., гггг-мм-дд чч:мм:сс)"
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "„Крај“ мора бити у формату (нпр., гггг-мм-дд чч:мм:сс)"
 
 msgid "Forecast Plots"
-msgstr ""
+msgstr "Графикони прогноза"
 
 msgid "Cannot draw forecast plots; no forecasts computed."
-msgstr ""
+msgstr "Није могуће исцртати графиконе прогноза; нису израчунате прогнозе."
 
 msgid "Overall"
-msgstr ""
+msgstr "Свеукупно"
 
 msgid "Trend"
-msgstr ""
+msgstr "Тренд"
 
 msgid "Seasonality Plots"
-msgstr ""
+msgstr "Графикони сезоналности"
 
 msgid "Time (min:sec)"
-msgstr ""
+msgstr "Време (мин:сек)"
 
 msgid "Time (hour:min)"
-msgstr ""
+msgstr "Време (сат:мин)"
 
 msgid "Time (hour)"
-msgstr ""
+msgstr "Време (сат)"
 
 msgid "Weekday"
-msgstr ""
+msgstr "Дан у недељи"
 
 msgid "Time (day)"
-msgstr ""
+msgstr "Време (дан)"
 
 msgid "Time (month-day)"
-msgstr ""
+msgstr "Време (месец-дан)"
 
 msgid "Time (month)"
-msgstr ""
+msgstr "Време (месец)"
 
 msgid "Time (year)"
-msgstr ""
+msgstr "Време (година)"
 
 msgid "Please enter valid 'Start' and 'End' arguments for nonperiodical prediction (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"Унесите важеће аргументе „Почетак“ и „Крај“ за непериодично предвиђање ("
+"нпр., гггг-мм-дд чч:мм:сс)"
 
 msgid "Covariate Plots"
-msgstr ""
+msgstr "Графикони коваријата"
 
 msgid "Performance Plots"
-msgstr ""
+msgstr "Графикони перформанси"
 
 msgid "Parameter Plots"
-msgstr ""
+msgstr "Графикони параметара"
 
 msgid "Changepoint Plot"
-msgstr ""
+msgstr "Графикон тачака промене"
 
 msgid "Change in growth rate"
-msgstr ""
+msgstr "Промена стопе раста"
 
 msgid "Posterior Distributions"
-msgstr ""
+msgstr "Постериорне расподеле"
 
 msgid "Growth rate"
-msgstr ""
+msgstr "Стопа раста"
 
 msgid "Offset"
-msgstr ""
+msgstr "Померање"
 
 msgid "Residual variance"
-msgstr ""
+msgstr "Резидуална варијанса"
 
 msgid "Density"
-msgstr ""
+msgstr "Густина"
