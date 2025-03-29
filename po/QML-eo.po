@@ -1,0 +1,324 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Qt-Contexts: true\n"
+
+msgctxt "Description|"
+msgid "Prophet"
+msgstr ""
+
+msgctxt "Description|"
+msgid "This module offers a simple model for time series prediction."
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Dependent Variable"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Time"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Changepoints"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Carrying Capacity"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Saturating Minimum"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Covariates"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Include in Training"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "History plot"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Points"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Line"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Both"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Plot time interval"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Start"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "End"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Growth"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Linear"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Logistic"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Carrying capacity"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Saturating minimum"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Model"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Automatic Changepoints"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Max. changepoints"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Changepoint range"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Laplace prior τ"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Estimation"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Maximum a posteriori"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Markov chain Monte Carlo"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Samples"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Uncertainty"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Prediction interval level"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Prediction interval samples"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Credible interval level"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid ""
+"Covariates                                                  Normal prior "
+"σ²                 Standardize                 Mode"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Additive"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Multiplicative"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Seasonalities"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Name"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Period"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Unit"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Normal prior σ²"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Fourier order"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Mode"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Seconds"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Minutes"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Hours"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Days"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Weeks"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Years"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Prediction"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Periodical"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Number of periods"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Nonperiodical"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Save predictions"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Evaluation"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Cross validation (simulated historical forecasts)"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Horizon"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Period between cutoffs"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Initial training time"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Performance metrics"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Mean squared error (MSE)"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Root mean squared error (RMSE)"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Mean absolute percentage error (MAPE)"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Changepoint table"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Plots"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Forecast Plots"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Overall"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Show data points"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Show carrying capacity"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Show changepoints"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Show saturating minimum"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Trend"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Seasonality Plots"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Covariate Plots"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Performance Plots"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Parameter Plots"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Changepoint plot"
+msgstr ""
+
+msgctxt "Prophet|"
+msgid "Posterior distributions"
+msgstr ""
