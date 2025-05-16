@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2025-05-16 23:05+0000\n"
+"Last-Translator: Ertuğrul Uyar <ertugruluyar.academic@gmail.com>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
+"jaspprophet-qml/tr/>\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.12-dev\n"
 "X-Language: tr\n"
 "X-Qt-Contexts: true\n"
 
@@ -27,7 +33,6 @@ msgctxt "Prophet|"
 msgid "Changepoints"
 msgstr "Değişim noktaları"
 
-#, fuzzy
 msgctxt "Prophet|"
 msgid "Carrying Capacity"
 msgstr "Taşıma Kapasitesi"
@@ -38,7 +43,7 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Covariates"
-msgstr ""
+msgstr "Ortak Değişkenler"
 
 msgctxt "Prophet|"
 msgid "Include in Training"
@@ -118,7 +123,7 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Samples"
-msgstr ""
+msgstr "Örnekler"
 
 msgctxt "Prophet|"
 msgid "Uncertainty"
@@ -134,7 +139,7 @@ msgstr ""
 
 msgctxt "Prophet|"
 msgid "Credible interval level"
-msgstr ""
+msgstr "Güvenilir aralık seviyesi"
 
 msgctxt "Prophet|"
 msgid ""
