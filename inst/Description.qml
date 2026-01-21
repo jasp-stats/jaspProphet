@@ -7,7 +7,8 @@ Description
 	description	:	qsTr("This module offers a simple model for time series prediction.")
 	icon		:	"analysis-prophet.svg"
 	hasWrappers: 	false
-	
+	preloadData:  	false
+
 	Analysis
 	{
 		title	:	qsTr("Prophet")
@@ -15,3 +16,4 @@ Description
 		qml		:	"Prophet.qml"
 	}
 }
+
