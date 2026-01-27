@@ -1033,7 +1033,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
 
   xBreaks <- pretty(xLimits)
   xLabels <- attr(xBreaks, "labels")
-  yBreaks <- pretty(unlist(list(df[, -which(names(df) == "x")]), histDat[, -which(names(df) == "x")]))
+  yBreaks <- pretty(unlist(list(df[, -which(names(df) == "x")], histDat[, -which(names(df) == "x")])))
 
   if ((options$forecastPlotOverallChangepoints && type == "yhat")
     || (options$forecastPlotTrendChangepoints && type == "trend")) {
