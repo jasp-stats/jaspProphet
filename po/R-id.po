@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspProphet 0.95.5\n"
 "POT-Creation-Date: 2025-12-17 06:42\n"
-"PO-Revision-Date: 2026-03-20 12:46+0000\n"
+"PO-Revision-Date: 2026-03-21 04:20+0000\n"
 "Last-Translator: Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-r/id/>\n"
@@ -48,6 +48,8 @@ msgstr ""
 
 msgid "When 'Covariates' are used in the model, predictions cannot be carried out unless the covariates are also observed for the predicted period."
 msgstr ""
+"Ketika 'Kovariat' digunakan dalam model, prediksi tidak dapat dilakukan "
+"kecuali kovariat juga diobservasi untuk periode terprediksi."
 
 msgid "Prophet failed to compute any results. It is possible that the analysis even failed to compute the initial log-likelihood. Check whether the model specification is plausible. Internal error message from 'prophet': %s."
 msgstr ""
@@ -65,7 +67,7 @@ msgid "Posterior Summary Table"
 msgstr ""
 
 msgid "%s%% CI"
-msgstr ""
+msgstr "%s%% CI"
 
 msgid "Parameter"
 msgstr ""
@@ -77,10 +79,10 @@ msgid "SD"
 msgstr "SD"
 
 msgid "Lower"
-msgstr ""
+msgstr "Bawah"
 
 msgid "Upper"
-msgstr ""
+msgstr "Atas"
 
 msgid "R-hat"
 msgstr ""
@@ -140,7 +142,7 @@ msgid "Overall"
 msgstr ""
 
 msgid "Trend"
-msgstr ""
+msgstr "Tren"
 
 msgid "Seasonality Plots"
 msgstr ""
