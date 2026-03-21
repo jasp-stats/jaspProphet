@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2026-03-16 21:51+0000\n"
+"Last-Translator: Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/jasp/"
+"jaspprophet-qml/id/>\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.17-dev\n"
 "X-Language: id\n"
 "X-Qt-Contexts: true\n"
 
@@ -13,7 +19,7 @@ msgstr "Modul ini menawarkan model sederhana untuk prediksi deret waktu."
 
 msgctxt "Description|"
 msgid "Prophet"
-msgstr ""
+msgstr "Profet"
 
 msgctxt "Prophet|"
 msgid "Dependent Variable"
@@ -49,7 +55,7 @@ msgstr "Riwayat plot"
 
 msgctxt "Prophet|"
 msgid "Points"
-msgstr ""
+msgstr "Poin"
 
 msgctxt "Prophet|"
 msgid "Line"
@@ -109,7 +115,7 @@ msgstr "Rentang titik perubahan"
 
 msgctxt "Prophet|"
 msgid "Laplace prior τ"
-msgstr ""
+msgstr "Priori laplace τ"
 
 msgctxt "Prophet|"
 msgid "Estimation"
@@ -121,7 +127,7 @@ msgstr "a posteriori Maksimum"
 
 msgctxt "Prophet|"
 msgid "Markov chain Monte Carlo"
-msgstr "Markov chain Monte Carlo"
+msgstr "Rantai Markov Monte Carlo"
 
 msgctxt "Prophet|"
 msgid "Samples"
@@ -129,25 +135,27 @@ msgstr "Sampel"
 
 msgctxt "Prophet|"
 msgid "Uncertainty"
-msgstr ""
+msgstr "Ketidakpastian"
 
 msgctxt "Prophet|"
 msgid "Prediction interval level"
-msgstr ""
+msgstr "Tingkat interval prediksi"
 
 msgctxt "Prophet|"
 msgid "Prediction interval samples"
-msgstr ""
+msgstr "Sampel interval prediksi"
 
 msgctxt "Prophet|"
 msgid "Credible interval level"
-msgstr ""
+msgstr "Tingkat interval kredibel"
 
 msgctxt "Prophet|"
 msgid ""
 "Covariates                                                  Normal prior "
 "σ²                 Standardize                 Mode"
 msgstr ""
+"Kovariat                                                  Priori normal σ²"
+"                 Standardisasikan                 Mode"
 
 msgctxt "Prophet|"
 msgid "Additive"
@@ -175,11 +183,11 @@ msgstr "Unit"
 
 msgctxt "Prophet|"
 msgid "Normal prior σ²"
-msgstr ""
+msgstr "Priori normal σ²"
 
 msgctxt "Prophet|"
 msgid "Fourier order"
-msgstr ""
+msgstr "Urutan Fourier"
 
 msgctxt "Prophet|"
 msgid "Mode"
@@ -235,92 +243,92 @@ msgstr "Evaluasi"
 
 msgctxt "Prophet|"
 msgid "Horizon"
-msgstr ""
+msgstr "Horison"
 
 msgctxt "Prophet|"
 msgid "Period between cutoffs"
-msgstr ""
+msgstr "Periode antara batas waktu"
 
 msgctxt "Prophet|"
 msgid "Initial training time"
-msgstr ""
+msgstr "Waktu pelatihan awal"
 
 msgctxt "Prophet|"
 msgid "Performance metrics"
-msgstr ""
+msgstr "Metrik kinerja"
 
 msgctxt "Prophet|"
 msgid "Mean squared error (MSE)"
-msgstr ""
+msgstr "Galat kuadrat rerata (MSE)"
 
 msgctxt "Prophet|"
 msgid "Root mean squared error (RMSE)"
-msgstr ""
+msgstr "Galat kuadrat rerata akar (RMSE)"
 
 msgctxt "Prophet|"
 msgid "Mean absolute percentage error (MAPE)"
-msgstr ""
+msgstr "Galat persentase absolut rerata (MAPE)"
 
 msgctxt "Prophet|"
 msgid "Changepoint table"
-msgstr ""
+msgstr "Tabel titik perubahan"
 
 msgctxt "Prophet|"
 msgid "Plots"
-msgstr ""
+msgstr "Diagram"
 
 msgctxt "Prophet|"
 msgid "Forecast Plots"
-msgstr ""
+msgstr "Diagram Prakiraan"
 
 msgctxt "Prophet|"
 msgid "Overall"
-msgstr ""
+msgstr "Keseluruhan"
 
 msgctxt "Prophet|"
 msgid "Show data points"
-msgstr ""
+msgstr "Tampilkan poin data"
 
 msgctxt "Prophet|"
 msgid "Show carrying capacity"
-msgstr ""
+msgstr "Tampilkan kapasitas tampungan"
 
 msgctxt "Prophet|"
 msgid "Show changepoints"
-msgstr ""
+msgstr "Tampilkan titik perubahan"
 
 msgctxt "Prophet|"
 msgid "Show saturating minimum"
-msgstr ""
+msgstr "Tampilkan minimum jenuh"
 
 msgctxt "Prophet|"
 msgid "Trend"
-msgstr ""
+msgstr "Tren"
 
 msgctxt "Prophet|"
 msgid "Seasonality Plots"
-msgstr ""
+msgstr "Diagram Musiman"
 
 msgctxt "Prophet|"
 msgid "Covariate Plots"
-msgstr ""
+msgstr "Diagram Kovariat"
 
 msgctxt "Prophet|"
 msgid "Performance Plots"
-msgstr ""
+msgstr "Diagram Kinerja"
 
 msgctxt "Prophet|"
 msgid "Parameter Plots"
-msgstr ""
+msgstr "Diagram Parameter"
 
 msgctxt "Prophet|"
 msgid "Changepoint plot"
-msgstr ""
+msgstr "Diagram titik perubahan"
 
 msgctxt "Prophet|"
 msgid "Posterior distributions"
-msgstr ""
+msgstr "Distribusi posterior"
 
 msgctxt "Prophet|"
 msgid "Cross validation (simulated historical forecasts)"
-msgstr ""
+msgstr "Validasi silang (prakiraan histori tersimulasi)"
