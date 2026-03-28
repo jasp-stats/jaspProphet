@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspProphet 0.95.5\n"
 "POT-Creation-Date: 2025-12-17 06:42\n"
-"PO-Revision-Date: 2026-03-21 04:20+0000\n"
+"PO-Revision-Date: 2026-03-22 23:25+0000\n"
 "Last-Translator: Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/jasp/"
 "jaspprophet-r/id/>\n"
@@ -14,37 +14,53 @@ msgstr ""
 "X-Generator: Weblate 5.17-dev\n"
 
 msgid "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "'Waktu' harus dalam format seperti tanggal (mis., yyyy-mm-dd hh:mm:ss)"
 
 msgid "'Start' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"'Mulai' untuk prediksi nonperiodik harus dalam format seperti tanggal (mis., "
+"yyyy-mm-dd hh:mm:ss)"
 
 msgid "'End' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"'Selesai' untuk prediksi nonperiodik harus dalam format seperti tanggal "
+"(mis., yyyy-mm-dd hh:mm:ss)"
 
 msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
-msgstr ""
+msgstr "'Titik Perubahan' harus variabel logis (mis., 0/1)"
 
 msgid "'Include in Training' must be a logical variable (e.g., 0/1)"
-msgstr ""
+msgstr "'Sertakan dalam Pelatihan' harus variabel logis (mis., 0/1)"
 
 msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
 msgstr ""
+"'Kapasitas Penampungan' harus selalu lebih besar dari 'Minimum Pensaturan'"
 
 msgid "'Carrying Capacity' must always be larger than 'Constant saturating minimum'"
 msgstr ""
+"'Kapasitas Penampungan' harus selalu lebih besar dari 'Minimum pensaturan "
+"konstan'"
 
 msgid "'Constant carrying capacity' must always be larger than 'Saturating Minimum'"
 msgstr ""
+"'Kapasitas penampungan konstan' harus selalu lebih besar dari 'Minimum "
+"Pensaturan'"
 
 msgid "'Constant carrying capacity' must always be larger than 'Constant saturating minimum'"
 msgstr ""
+"'Kapasitas penampungan konstan' harus selalu lebih besar dari 'Minimum "
+"pensaturan konstan'"
 
 msgid "Seasonality names must only contain letters, number, dots, or underscores and must start with letters or dots that are not followed by a number"
 msgstr ""
+"Nama musimanalitas harus hanya berisi huruf, angka, titik, atau garis bawah "
+"dan harus mulai dari huruf atau titik yang tidak diikutkan dengan angka"
 
 msgid "When 'Carrying Capacity' is used in the model, predictions cannot be carried out unless 'Carrying Capacity' is also supplied for the predicted period."
 msgstr ""
+"Ketika 'Kapasitas Penampungan' digunakan dalam model, prediksi tidak dapat "
+"dilakukan kecuali 'Kapasitas Penampungan' diterapkan untuk periode "
+"terprediksi."
 
 msgid "When 'Covariates' are used in the model, predictions cannot be carried out unless the covariates are also observed for the predicted period."
 msgstr ""
@@ -53,24 +69,27 @@ msgstr ""
 
 msgid "Prophet failed to compute any results. It is possible that the analysis even failed to compute the initial log-likelihood. Check whether the model specification is plausible. Internal error message from 'prophet': %s."
 msgstr ""
+"Profet gagal menghitung hasil apa pun. Itu memungkinkan bahwa analisis "
+"bahkan gagal menghitung seperti log awal. Periksa apakah spesifikasi model "
+"dapat masuk akal. Pesan galat internal dari 'profet': %s."
 
 msgid "Growth rate (k)"
-msgstr ""
+msgstr "Tingkat pertumbuhan (k)"
 
 msgid "Offset (m)"
-msgstr ""
+msgstr "Selisih (m)"
 
 msgid "Residual variance (σ²)"
-msgstr ""
+msgstr "Varians residu (σ²)"
 
 msgid "Posterior Summary Table"
-msgstr ""
+msgstr "Tabel Ringkasan Posterior"
 
 msgid "%s%% CI"
 msgstr "%s%% CI"
 
 msgid "Parameter"
-msgstr ""
+msgstr "Parameter"
 
 msgid "Mean"
 msgstr "Rerata"
@@ -85,121 +104,128 @@ msgid "Upper"
 msgstr "Atas"
 
 msgid "R-hat"
-msgstr ""
+msgstr "R-hat"
 
 msgid "ESS (bulk)"
-msgstr ""
+msgstr "ESS (massal)"
 
 msgid "ESS (tail)"
-msgstr ""
+msgstr "ESS (ekor)"
 
 msgid "Prophet might need a long time to compute the results. You can try it first with fewer MCMC samples to see if it works and if you specified the model correctly (e.g., set 'Samples = 10' in the 'Model' section)."
 msgstr ""
+"Profet mungkin memerlukan waktu lama untuk menghitung hasil. Anda dapat "
+"mencobanya dahulu dengan beberapa sampel MCMC untuk melihat jika bekerja dan "
+"jika Anda menentukan model dengan benar (mis., atur 'Sampel = 10' di bagian "
+"'Model')."
 
 msgid "Residual variance (sigma)"
-msgstr ""
+msgstr "Varians residu (sigma)"
 
 msgid "Changepoint Estimates Table"
-msgstr ""
+msgstr "Tabel Estimasi Titik Perubahan"
 
 msgid "Changepoint Posterior Summary Table"
-msgstr ""
+msgstr "Tabel Ringkasan Posterior Titik Perubahan"
 
 msgid "Changepoint"
-msgstr ""
+msgstr "Titik Perubahan"
 
 msgid "Change in growth rate (δ)"
-msgstr ""
+msgstr "Perubahan tingkat pertumbuhan (δ)"
 
 msgid "Simulated Historical Forecasts Table"
-msgstr ""
+msgstr "Tabel Perkiraan Historik Tersimulasi"
 
 msgid "Horizon"
-msgstr ""
+msgstr "Horizon"
 
 msgid "MSE"
-msgstr ""
+msgstr "MSE"
 
 msgid "RMSE"
 msgstr "RMSE"
 
 msgid "MAPE"
-msgstr ""
+msgstr "MAPE"
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "'Mulai' harus dalam format seperti tanggal (mis., yyyy-mm-dd hh:mm:ss)"
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"'Selesai' harus dalam format seperti tanggal (mis., yyyy-mm-dd hh:mm:ss)"
 
 msgid "Forecast Plots"
-msgstr ""
+msgstr "Diagram Perkiraan"
 
 msgid "Cannot draw forecast plots; no forecasts computed."
-msgstr ""
+msgstr "Tidak dapat menggambar diagram perkiraan; tidak ada perkiraan dihitung."
 
 msgid "Overall"
-msgstr ""
+msgstr "Keseluruhan"
 
 msgid "Trend"
 msgstr "Tren"
 
 msgid "Seasonality Plots"
-msgstr ""
+msgstr "Diagram Musimanalitas"
 
 msgid "Time (min:sec)"
-msgstr ""
+msgstr "Waktu (mnt:dtk)"
 
 msgid "Time (hour:min)"
-msgstr ""
+msgstr "Waktu (jam:mnt)"
 
 msgid "Time (hour)"
-msgstr ""
+msgstr "Waktu (jam)"
 
 msgid "Weekday"
-msgstr ""
+msgstr "Hari Kerja"
 
 msgid "Time (day)"
-msgstr ""
+msgstr "Waktu (hari)"
 
 msgid "Time (month-day)"
-msgstr ""
+msgstr "Waktu (bulan-hari)"
 
 msgid "Time (month)"
-msgstr ""
+msgstr "Waktu (bulan)"
 
 msgid "Time (year)"
-msgstr ""
+msgstr "Waktu (tahun)"
 
 msgid "Please enter valid 'Start' and 'End' arguments for nonperiodical prediction (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"Silakan masukkan argumen 'Mulai' dan 'Selesai' valid untuk prediksi "
+"nonperiodik (mis., yyyy-mm-dd hh:mm:ss)"
 
 msgid "Covariate Plots"
-msgstr ""
+msgstr "Diagram Kovariat"
 
 msgid "Performance Plots"
-msgstr ""
+msgstr "Diagram Kinerja"
 
 msgid "Parameter Plots"
-msgstr ""
+msgstr "Diagram Parameter"
 
 msgid "Changepoint Plot"
-msgstr ""
+msgstr "Diagram titik perubahan"
 
 msgid "Change in growth rate"
-msgstr ""
+msgstr "Perubahan tingkat pertumbuhan"
 
 msgid "Posterior Distributions"
-msgstr ""
+msgstr "Distribusi posterior"
 
 msgid "Growth rate"
-msgstr ""
+msgstr "Tingkat pertumbuhan"
 
 msgid "Offset"
-msgstr ""
+msgstr "Selisih"
 
 msgid "Residual variance"
-msgstr ""
+msgstr "Varians residu"
 
 msgid "Density"
 msgstr "Kepadatan"
