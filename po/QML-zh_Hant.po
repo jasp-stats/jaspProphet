@@ -1,15 +1,21 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2026-06-20 05:15+0000\n"
+"Last-Translator: 陳正昌 <chencc99@gmail.com>\n"
+"Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
+"projects/jasp/jaspprophet-qml/zh_Hant/>\n"
+"Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 "X-Language: zh_Hant\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Prophet"
-msgstr ""
+msgstr "Prophet 預測模型"
 
 msgctxt "Description|"
 msgid "This module offers a simple model for time series prediction."
@@ -21,19 +27,19 @@ msgstr "依變數"
 
 msgctxt "Prophet|"
 msgid "Time"
-msgstr ""
+msgstr "時間"
 
 msgctxt "Prophet|"
 msgid "Changepoints"
-msgstr ""
+msgstr "變動點"
 
 msgctxt "Prophet|"
 msgid "Carrying Capacity"
-msgstr ""
+msgstr "承載量"
 
 msgctxt "Prophet|"
 msgid "Saturating Minimum"
-msgstr ""
+msgstr "飽和下限"
 
 msgctxt "Prophet|"
 msgid "Covariates"
@@ -41,11 +47,11 @@ msgstr "共變量"
 
 msgctxt "Prophet|"
 msgid "Include in Training"
-msgstr ""
+msgstr "納入訓練"
 
 msgctxt "Prophet|"
 msgid "History plot"
-msgstr ""
+msgstr "歷史資料圖"
 
 msgctxt "Prophet|"
 msgid "Points"
@@ -61,19 +67,19 @@ msgstr "兩者"
 
 msgctxt "Prophet|"
 msgid "Plot time interval"
-msgstr ""
+msgstr "繪圖時間間隔"
 
 msgctxt "Prophet|"
 msgid "Start"
-msgstr ""
+msgstr "開始"
 
 msgctxt "Prophet|"
 msgid "End"
-msgstr ""
+msgstr "結束"
 
 msgctxt "Prophet|"
 msgid "Growth"
-msgstr ""
+msgstr "成長"
 
 msgctxt "Prophet|"
 msgid "Linear"
@@ -81,15 +87,15 @@ msgstr "線性"
 
 msgctxt "Prophet|"
 msgid "Logistic"
-msgstr ""
+msgstr "邏輯斯"
 
 msgctxt "Prophet|"
 msgid "Carrying capacity"
-msgstr ""
+msgstr "承載量"
 
 msgctxt "Prophet|"
 msgid "Saturating minimum"
-msgstr ""
+msgstr "飽和下限"
 
 msgctxt "Prophet|"
 msgid "Model"
@@ -97,19 +103,19 @@ msgstr "模型"
 
 msgctxt "Prophet|"
 msgid "Automatic Changepoints"
-msgstr ""
+msgstr "自動變動點"
 
 msgctxt "Prophet|"
 msgid "Max. changepoints"
-msgstr ""
+msgstr "最大變動點"
 
 msgctxt "Prophet|"
 msgid "Changepoint range"
-msgstr ""
+msgstr "變動點範圍"
 
 msgctxt "Prophet|"
 msgid "Laplace prior τ"
-msgstr ""
+msgstr "拉普拉斯先驗（τ）"
 
 msgctxt "Prophet|"
 msgid "Estimation"
@@ -117,7 +123,7 @@ msgstr "推估"
 
 msgctxt "Prophet|"
 msgid "Maximum a posteriori"
-msgstr ""
+msgstr "最大後驗估計（MAP）"
 
 msgctxt "Prophet|"
 msgid "Markov chain Monte Carlo"
@@ -141,21 +147,23 @@ msgstr "預測區間樣本"
 
 msgctxt "Prophet|"
 msgid "Credible interval level"
-msgstr ""
+msgstr "可信區間水準"
 
 msgctxt "Prophet|"
 msgid ""
 "Covariates                                                  Normal prior "
 "σ²                 Standardize                 Mode"
 msgstr ""
+"共變量                                                  常態先驗 σ²"
+"                 標準化                 模式"
 
 msgctxt "Prophet|"
 msgid "Additive"
-msgstr ""
+msgstr "加法的"
 
 msgctxt "Prophet|"
 msgid "Multiplicative"
-msgstr ""
+msgstr "乘法的"
 
 msgctxt "Prophet|"
 msgid "Seasonalities"
@@ -163,7 +171,7 @@ msgstr "季節性"
 
 msgctxt "Prophet|"
 msgid "Name"
-msgstr ""
+msgstr "名稱"
 
 msgctxt "Prophet|"
 msgid "Period"
@@ -171,7 +179,7 @@ msgstr "期間"
 
 msgctxt "Prophet|"
 msgid "Unit"
-msgstr ""
+msgstr "單位"
 
 msgctxt "Prophet|"
 msgid "Normal prior σ²"
@@ -179,11 +187,11 @@ msgstr "常態先驗分佈 σ²"
 
 msgctxt "Prophet|"
 msgid "Fourier order"
-msgstr ""
+msgstr "傅立葉階數"
 
 msgctxt "Prophet|"
 msgid "Mode"
-msgstr ""
+msgstr "模式"
 
 msgctxt "Prophet|"
 msgid "Seconds"
@@ -235,19 +243,19 @@ msgstr "評估"
 
 msgctxt "Prophet|"
 msgid "Horizon"
-msgstr ""
+msgstr "水平"
 
 msgctxt "Prophet|"
 msgid "Period between cutoffs"
-msgstr ""
+msgstr "切點間隔期間"
 
 msgctxt "Prophet|"
 msgid "Initial training time"
-msgstr ""
+msgstr "初始訓練時間"
 
 msgctxt "Prophet|"
 msgid "Performance metrics"
-msgstr ""
+msgstr "效能指標"
 
 msgctxt "Prophet|"
 msgid "Mean squared error (MSE)"
@@ -255,7 +263,7 @@ msgstr "均方差"
 
 msgctxt "Prophet|"
 msgid "Root mean squared error (RMSE)"
-msgstr ""
+msgstr "均方根誤差（RMSE）"
 
 msgctxt "Prophet|"
 msgid "Mean absolute percentage error (MAPE)"
@@ -283,7 +291,7 @@ msgstr "顯示資料點"
 
 msgctxt "Prophet|"
 msgid "Show carrying capacity"
-msgstr ""
+msgstr "顯示承載量"
 
 msgctxt "Prophet|"
 msgid "Show changepoints"
@@ -291,36 +299,36 @@ msgstr "顯示變動點"
 
 msgctxt "Prophet|"
 msgid "Show saturating minimum"
-msgstr ""
+msgstr "顯示飽和下限"
 
 msgctxt "Prophet|"
 msgid "Trend"
-msgstr ""
+msgstr "趨勢"
 
 msgctxt "Prophet|"
 msgid "Seasonality Plots"
-msgstr ""
+msgstr "季節性圖"
 
 msgctxt "Prophet|"
 msgid "Covariate Plots"
-msgstr ""
+msgstr "共變量圖"
 
 msgctxt "Prophet|"
 msgid "Performance Plots"
-msgstr ""
+msgstr "效能圖"
 
 msgctxt "Prophet|"
 msgid "Parameter Plots"
-msgstr ""
+msgstr "參數圖"
 
 msgctxt "Prophet|"
 msgid "Changepoint plot"
-msgstr ""
+msgstr "變動點圖"
 
 msgctxt "Prophet|"
 msgid "Posterior distributions"
-msgstr ""
+msgstr "後驗機率分配"
 
 msgctxt "Prophet|"
 msgid "Cross validation (simulated historical forecasts)"
-msgstr ""
+msgstr "交叉驗證（模擬歷史預測）"
