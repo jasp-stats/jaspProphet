@@ -1,0 +1,211 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: jaspProphet 0.96.3\n"
+"POT-Creation-Date: 2026-04-25 04:44\n"
+"PO-Revision-Date: 2026-06-20 05:16+0000\n"
+"Last-Translator: 陳正昌 <chencc99@gmail.com>\n"
+"Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
+"projects/jasp/jaspprophet-r/zh_Hant/>\n"
+"Language: zh_Hant\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.7.dev0\n"
+
+msgid "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
+msgstr "「時間」必須為日期格式（例如：yyyy-mm-dd hh:mm:ss）」"
+
+msgid "'Start' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
+msgstr "非週期性預測的「開始」必須為日期格式（例如：yyyy-mm-dd hh:mm:ss）"
+
+msgid "'End' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
+msgstr "非週期性預測的「結束」必須為日期格式（例如：yyyy-mm-dd hh:mm:ss）"
+
+msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
+msgstr "「變動點」 必須是邏輯變數（例如 0/1）"
+
+msgid "'Include in Training' must be a logical variable (e.g., 0/1)"
+msgstr "「納入訓練」必須為邏輯變數（例如 0/1）"
+
+msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
+msgstr "「承載量」必須始終大於「飽和下限」"
+
+msgid "'Carrying Capacity' must always be larger than 'Constant saturating minimum'"
+msgstr "「承載量」必須始終大於「飽和下限」"
+
+msgid "'Constant carrying capacity' must always be larger than 'Saturating Minimum'"
+msgstr "「常數型承載量」必須始終大於「飽和下限」"
+
+msgid "'Constant carrying capacity' must always be larger than 'Constant saturating minimum'"
+msgstr "「常數型承載量」必須始終大於「常數型飽和下限」"
+
+msgid "Seasonality names must only contain letters, number, dots, or underscores and must start with letters or dots that are not followed by a number"
+msgstr ""
+"季節性名稱只能包含英文字母、數字、點（.）或底線（_），且必須以英文字母或點開"
+"頭，且點後不能接數字"
+
+msgid "When 'Carrying Capacity' is used in the model, predictions cannot be carried out unless 'Carrying Capacity' is also supplied for the predicted period."
+msgstr "當模型使用「承載量」時，除非在預測期間也提供「承載量」，否則無法進行預測。"
+
+msgid "When 'Covariates' are used in the model, predictions cannot be carried out unless the covariates are also observed for the predicted period."
+msgstr ""
+"當模型使用「共變量」時，除非在預測期間也能觀測到這些共變量，否則無法進行預測"
+"。"
+
+msgid "Prophet failed to compute any results. It is possible that the analysis even failed to compute the initial log-likelihood. Check whether the model specification is plausible. Internal error message from 'prophet': %s."
+msgstr ""
+"Prophet 無法計算任何結果。甚至有可能連初始的對數似然都無法計算。請檢查模型設"
+"定是否合理。來自「prophet」的內部錯誤訊息：%s。"
+
+msgid "Growth rate (k)"
+msgstr "成長率（k）"
+
+msgid "Offset (m)"
+msgstr "偏移量（m）"
+
+msgid "Residual variance (σ²)"
+msgstr "殘差變異數（σ²）"
+
+msgid "Posterior Summary Table"
+msgstr "後驗摘要表"
+
+msgid "%s%% CI"
+msgstr "%s%% 可信區間（CI）"
+
+msgid "Parameter"
+msgstr "參數"
+
+msgid "Mean"
+msgstr "平均數"
+
+msgid "SD"
+msgstr "標準差"
+
+msgid "Lower"
+msgstr "下界"
+
+msgid "Upper"
+msgstr "上界"
+
+msgid "R-hat"
+msgstr ""
+
+msgid "ESS (bulk)"
+msgstr ""
+
+msgid "ESS (tail)"
+msgstr ""
+
+msgid "Prophet might need a long time to compute the results. You can try it first with fewer MCMC samples to see if it works and if you specified the model correctly (e.g., set 'Samples = 10' in the 'Model' section)."
+msgstr ""
+"Prophet 可能需要較長時間來計算結果。你可以先減少 MCMC 抽樣次數來測試是否可行"
+"，以及是否正確指定模型（例如在模型區塊中設「Samples = 10」）。"
+
+msgid "Residual variance (sigma)"
+msgstr "殘差變異數（σ）"
+
+msgid "Changepoint Estimates Table"
+msgstr "變動點估計表"
+
+msgid "Changepoint Posterior Summary Table"
+msgstr "變動點後驗摘要表"
+
+msgid "Changepoint"
+msgstr "變動點"
+
+msgid "Change in growth rate (δ)"
+msgstr "成長率變化（δ）"
+
+msgid "Simulated Historical Forecasts Table"
+msgstr "模擬歷史預測表"
+
+msgid "Horizon"
+msgstr "水平"
+
+msgid "MSE"
+msgstr ""
+
+msgid "RMSE"
+msgstr ""
+
+msgid "MAPE"
+msgstr ""
+
+msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
+msgstr "「開始」必須為日期格式（例如：yyyy-mm-dd hh:mm:ss）"
+
+msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
+msgstr "「結束」 必須為日期格式（例如：yyyy-mm-dd hh:mm:ss）"
+
+msgid "Forecast Plots"
+msgstr "預測圖"
+
+msgid "Cannot draw forecast plots; no forecasts computed."
+msgstr "無法繪製預測圖；尚未計算任何預測結果。"
+
+msgid "Overall"
+msgstr "整體"
+
+msgid "Trend"
+msgstr "趨勢"
+
+msgid "Seasonality Plots"
+msgstr "季節性圖"
+
+msgid "Time (min:sec)"
+msgstr "時間（分:秒）"
+
+msgid "Time (hour:min)"
+msgstr "時間（時:分）"
+
+msgid "Time (hour)"
+msgstr "時間（時）"
+
+msgid "Weekday"
+msgstr "星期幾"
+
+msgid "Time (day)"
+msgstr "時間（日）"
+
+msgid "Time (month-day)"
+msgstr "時間（月-日）"
+
+msgid "Time (month)"
+msgstr "時間（月）"
+
+msgid "Time (year)"
+msgstr "時間（年）"
+
+msgid "Please enter valid 'Start' and 'End' arguments for nonperiodical prediction (e.g., yyyy-mm-dd hh:mm:ss)"
+msgstr "請為非週期性預測輸入有效的「開始」與「結束」引數（例如：yyyy-mm-dd hh:mm:ss）"
+
+msgid "Covariate Plots"
+msgstr "共變量圖"
+
+msgid "Performance Plots"
+msgstr "效能圖"
+
+msgid "Parameter Plots"
+msgstr "參數圖"
+
+msgid "Changepoint Plot"
+msgstr "變動點圖"
+
+msgid "Change in growth rate"
+msgstr "成長率的變化量"
+
+msgid "Posterior Distributions"
+msgstr "後驗機率分配"
+
+msgid "Growth rate"
+msgstr "成長率"
+
+msgid "Offset"
+msgstr "偏移量"
+
+msgid "Residual variance"
+msgstr "殘差變異數"
+
+msgid "Density"
+msgstr "密度"
