@@ -89,13 +89,13 @@ msgid "Upper"
 msgstr "上界"
 
 msgid "R-hat"
-msgstr ""
+msgstr "R-hat"
 
 msgid "ESS (bulk)"
-msgstr ""
+msgstr "ESS（主體）"
 
 msgid "ESS (tail)"
-msgstr ""
+msgstr "ESS（尾部）"
 
 msgid "Prophet might need a long time to compute the results. You can try it first with fewer MCMC samples to see if it works and if you specified the model correctly (e.g., set 'Samples = 10' in the 'Model' section)."
 msgstr ""
@@ -124,13 +124,13 @@ msgid "Horizon"
 msgstr "水平"
 
 msgid "MSE"
-msgstr ""
+msgstr "MSE"
 
 msgid "RMSE"
-msgstr ""
+msgstr "RMSE"
 
 msgid "MAPE"
-msgstr ""
+msgstr "MAPE"
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr "「開始」必須為日期格式（例如：yyyy-mm-dd hh:mm:ss）"
