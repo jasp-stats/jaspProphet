@@ -21,52 +21,52 @@ msgid "'Start' for nonperiodical prediction must be in a date-like format (e.g.,
 msgstr "非周期性预测的 “起始值” 必须采用类日期格式 (yyyy-mm-dd hh:mm:ss)"
 
 msgid "'End' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "非周期性预测的 “结束值” 必须采用类日期格式 (yyyy-mm-dd hh:mm:ss)"
 
 msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
-msgstr ""
+msgstr "“变点”必须是逻辑变量（例如，0/1）"
 
 msgid "'Include in Training' must be a logical variable (e.g., 0/1)"
-msgstr ""
+msgstr "“在训练中包含”必须是逻辑变量（例如，0/1）"
 
 msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
-msgstr ""
+msgstr "“承载能力”必须始终大于“饱和最小值”"
 
 msgid "'Carrying Capacity' must always be larger than 'Constant saturating minimum'"
-msgstr ""
+msgstr "“承载能力”必须始终大于“恒定饱和最小值”"
 
 msgid "'Constant carrying capacity' must always be larger than 'Saturating Minimum'"
-msgstr ""
+msgstr "“恒定承载能力”必须始终大于“饱和最小值”"
 
 msgid "'Constant carrying capacity' must always be larger than 'Constant saturating minimum'"
-msgstr ""
+msgstr "“恒定承载能力”必须始终大于“恒定饱和最小值”"
 
 msgid "Seasonality names must only contain letters, number, dots, or underscores and must start with letters or dots that are not followed by a number"
-msgstr ""
+msgstr "季节项名称只能包含字母、数字、点或下划线，且必须以字母或后不跟数字的点开头"
 
 msgid "When 'Carrying Capacity' is used in the model, predictions cannot be carried out unless 'Carrying Capacity' is also supplied for the predicted period."
-msgstr ""
+msgstr "当模型中使用“承载能力”时，除非还为预测期提供“承载能力”，否则无法进行预测。"
 
 msgid "When 'Covariates' are used in the model, predictions cannot be carried out unless the covariates are also observed for the predicted period."
-msgstr ""
+msgstr "当模型中使用“协变量”时，除非预测期也观测到这些协变量，否则无法进行预测。"
 
 msgid "Prophet failed to compute any results. It is possible that the analysis even failed to compute the initial log-likelihood. Check whether the model specification is plausible. Internal error message from 'prophet': %s."
-msgstr ""
+msgstr "Prophet 未能计算任何结果。分析甚至可能未能计算初始对数似然。请检查模型设定是否合理。来自“prophet”的内部错误消息：%s。"
 
 msgid "Growth rate (k)"
-msgstr ""
+msgstr "增长率 (k)"
 
 msgid "Offset (m)"
-msgstr ""
+msgstr "偏移量 (m)"
 
 msgid "Residual variance (σ²)"
-msgstr ""
+msgstr "残差方差 (σ²)"
 
 msgid "Posterior Summary Table"
-msgstr ""
+msgstr "后验汇总表"
 
 msgid "%s%% CI"
-msgstr ""
+msgstr "%s%% 置信区间"
 
 msgid "Parameter"
 msgstr "参数"
@@ -84,7 +84,7 @@ msgid "Upper"
 msgstr "上界"
 
 msgid "R-hat"
-msgstr ""
+msgstr "R-hat"
 
 msgid "ESS (bulk)"
 msgstr "ESS 有效样本量（ bulk ）"
@@ -93,112 +93,112 @@ msgid "ESS (tail)"
 msgstr "ESS 有效样本量（尾部）"
 
 msgid "Prophet might need a long time to compute the results. You can try it first with fewer MCMC samples to see if it works and if you specified the model correctly (e.g., set 'Samples = 10' in the 'Model' section)."
-msgstr ""
+msgstr "Prophet 可能需要很长时间来计算结果。您可以先用较少的 MCMC 样本尝试，看看模型是否正确指定并能正常运行（例如，在“模型”部分设置“样本数 = 10”）。"
 
 msgid "Residual variance (sigma)"
-msgstr ""
+msgstr "残差方差 (sigma)"
 
 msgid "Changepoint Estimates Table"
-msgstr ""
+msgstr "变点估计表"
 
 msgid "Changepoint Posterior Summary Table"
-msgstr ""
+msgstr "变点后验汇总表"
 
 msgid "Changepoint"
-msgstr ""
+msgstr "变点"
 
 msgid "Change in growth rate (δ)"
-msgstr ""
+msgstr "增长率变化 (δ)"
 
 msgid "Simulated Historical Forecasts Table"
-msgstr ""
+msgstr "模拟历史预测表"
 
 msgid "Horizon"
-msgstr ""
+msgstr "预测期"
 
 msgid "MSE"
-msgstr ""
+msgstr "MSE"
 
 msgid "RMSE"
-msgstr ""
+msgstr "RMSE"
 
 msgid "MAPE"
-msgstr ""
+msgstr "MAPE"
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "“起始值”必须采用类日期格式 (yyyy-mm-dd hh:mm:ss)"
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "“结束值”必须采用类日期格式 (yyyy-mm-dd hh:mm:ss)"
 
 msgid "Forecast Plots"
-msgstr ""
+msgstr "预测图"
 
 msgid "Cannot draw forecast plots; no forecasts computed."
-msgstr ""
+msgstr "无法绘制预测图；未计算任何预测。"
 
 msgid "Overall"
-msgstr ""
+msgstr "总体"
 
 msgid "Trend"
-msgstr ""
+msgstr "趋势"
 
 msgid "Seasonality Plots"
-msgstr ""
+msgstr "季节项图"
 
 msgid "Time (min:sec)"
-msgstr ""
+msgstr "时间 (分:秒)"
 
 msgid "Time (hour:min)"
-msgstr ""
+msgstr "时间 (时:分)"
 
 msgid "Time (hour)"
-msgstr ""
+msgstr "时间 (小时)"
 
 msgid "Weekday"
-msgstr ""
+msgstr "星期"
 
 msgid "Time (day)"
-msgstr ""
+msgstr "时间 (日)"
 
 msgid "Time (month-day)"
-msgstr ""
+msgstr "时间 (月-日)"
 
 msgid "Time (month)"
-msgstr ""
+msgstr "时间 (月)"
 
 msgid "Time (year)"
-msgstr ""
+msgstr "时间 (年)"
 
 msgid "Please enter valid 'Start' and 'End' arguments for nonperiodical prediction (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "请为非周期性预测输入有效的“起始值”和“结束值”参数（例如，yyyy-mm-dd hh:mm:ss）"
 
 msgid "Covariate Plots"
-msgstr ""
+msgstr "协变量图"
 
 msgid "Performance Plots"
-msgstr ""
+msgstr "性能图"
 
 msgid "Parameter Plots"
-msgstr ""
+msgstr "参数图"
 
 msgid "Changepoint Plot"
-msgstr ""
+msgstr "变点图"
 
 msgid "Change in growth rate"
-msgstr ""
+msgstr "增长率变化"
 
 msgid "Posterior Distributions"
-msgstr ""
+msgstr "后验分布"
 
 msgid "Growth rate"
-msgstr ""
+msgstr "增长率"
 
 msgid "Offset"
-msgstr ""
+msgstr "偏移量"
 
 msgid "Residual variance"
-msgstr ""
+msgstr "残差方差"
 
 msgid "Density"
-msgstr ""
+msgstr "密度"
