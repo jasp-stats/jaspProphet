@@ -169,7 +169,7 @@ Prophet <- function(jaspResults, dataset = NULL, options) {
                                                            by = options$periodicalPredictionUnit),
                                  nonperiodicalPrediction = seq(as.POSIXct(options$nonperiodicalPredictionStart),
                                                                as.POSIXct(options$nonperiodicalPredictionEnd),
-                                                               by = options$nonPeriodicalPredictionUnit)),
+                                                               by = options$nonperiodicalPredictionUnit)),
                           tz = "UTC")
 
       if (!all(futds %in% ds) && options$carryingCapacity != "")
