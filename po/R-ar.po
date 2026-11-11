@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspProphet 0.96.3\n"
 "POT-Creation-Date: 2026-04-25 04:44\n"
-"PO-Revision-Date: 2026-11-11 19:09+0000\n"
+"PO-Revision-Date: 2026-11-12 10:29+0000\n"
 "Last-Translator: Fahad Mahfouz Al-Subhi "
 "<fahadalsubhi@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/jasp/jaspprophet-"
@@ -16,58 +16,75 @@ msgstr ""
 "X-Generator: Weblate 2026.11.2.dev0\n"
 
 msgid "'Time' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "يجب أن يكون «الزمن» بتنسيق تاريخ/وقت (مثل yyyy-mm-dd hh:mm:ss)"
 
 msgid "'Start' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"يجب أن تكون 'البداية' للتنبؤ غير الدوري بتنسيق تاريخ ووقت (مثل yyyy-mm-dd "
+"hh:mm:ss)"
 
 msgid "'End' for nonperiodical prediction must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"يجب أن تكون 'النهاية' للتنبؤ غير الدوري بتنسيق تاريخ ووقت (مثل yyyy-mm-dd "
+"hh:mm:ss)"
 
 msgid "'Changepoints' must be a logical variable (e.g., 0/1)"
-msgstr ""
+msgstr "يجب أن يكون «نقاط التغير» متغيرًا منطقيًا (مثل 0/1)"
 
 msgid "'Include in Training' must be a logical variable (e.g., 0/1)"
-msgstr ""
+msgstr "يجب أن يكون «إدراج في التدريب» متغيرًا منطقيًا (مثل 0/1)"
 
 msgid "'Carrying Capacity' must always be larger than 'Saturating Minimum'"
-msgstr ""
+msgstr "يجب أن تكون «السعة الاستيعابية» أكبر دائمًا من «الحد الأدنى للتشبع»"
 
 msgid "'Carrying Capacity' must always be larger than 'Constant saturating minimum'"
 msgstr ""
+"يجب أن تكون «السعة الاستيعابية» أكبر دائمًا من «الحد الأدنى الثابت للتشبع»"
 
 msgid "'Constant carrying capacity' must always be larger than 'Saturating Minimum'"
 msgstr ""
+"يجب أن تكون «السعة الاستيعابية الثابتة» أكبر دائمًا من «الحد الأدنى للتشبع»"
 
 msgid "'Constant carrying capacity' must always be larger than 'Constant saturating minimum'"
 msgstr ""
+"يجب أن تكون «السعة الاستيعابية الثابتة» أكبر دائمًا من «الحد الأدنى الثابت "
+"للتشبع»"
 
 msgid "Seasonality names must only contain letters, number, dots, or underscores and must start with letters or dots that are not followed by a number"
 msgstr ""
+"يجب أن تقتصر أسماء الموسمية على الحروف والأرقام والنقاط والشرطات السفلية، وأن "
+"تبدأ بحرف أو بنقطة لا يتبعها رقم"
 
 msgid "When 'Carrying Capacity' is used in the model, predictions cannot be carried out unless 'Carrying Capacity' is also supplied for the predicted period."
 msgstr ""
+"عند استخدام 'السعة الاستيعابية' في النموذج، لا يمكن حساب التنبؤات دون تحديد "
+"'السعة الاستيعابية' للفترة المراد التنبؤ بها أيضًا."
 
 msgid "When 'Covariates' are used in the model, predictions cannot be carried out unless the covariates are also observed for the predicted period."
 msgstr ""
+"عند استخدام «المتغيرات المصاحبة» في النموذج، لا يمكن إجراء التنبؤات ما لم "
+"تتوفر أيضًا قيمها للفترة المراد التنبؤ بها."
 
 msgid "Prophet failed to compute any results. It is possible that the analysis even failed to compute the initial log-likelihood. Check whether the model specification is plausible. Internal error message from 'prophet': %s."
 msgstr ""
+"تعذّر على Prophet حساب أي نتائج. وربما تعذّر على التحليل حتى حساب لوغاريتم "
+"الإمكان الابتدائي. تحقق من معقولية تحديد النموذج. رسالة الخطأ الداخلية من "
+"'prophet': %s."
 
 msgid "Growth rate (k)"
-msgstr ""
+msgstr "معدل النمو (k)"
 
 msgid "Offset (m)"
-msgstr ""
+msgstr "الإزاحة (m)"
 
 msgid "Residual variance (σ²)"
-msgstr ""
+msgstr "الانحراف المعياري للبواقي (σ)"
 
 msgid "Posterior Summary Table"
-msgstr ""
+msgstr "جدول ملخص التوزيع البعدي"
 
 msgid "%s%% CI"
-msgstr "%s%% CI"
+msgstr "فترة الثقة %s%%"
 
 msgid "Parameter"
 msgstr "المعلمة"
@@ -88,118 +105,123 @@ msgid "R-hat"
 msgstr "R-hat"
 
 msgid "ESS (bulk)"
-msgstr ""
+msgstr "حجم العينة الفعّال (جسم التوزيع)"
 
 msgid "ESS (tail)"
-msgstr ""
+msgstr "حجم العينة الفعّال (الذيل)"
 
 msgid "Prophet might need a long time to compute the results. You can try it first with fewer MCMC samples to see if it works and if you specified the model correctly (e.g., set 'Samples = 10' in the 'Model' section)."
 msgstr ""
+"قد يستغرق Prophet وقتًا طويلًا لحساب النتائج. جرّبه أولًا بعدد أقل من عينات MCMC "
+"للتحقق من عمله وصحة تحديد النموذج (مثل تعيين 'العينات = 10' في قسم 'النموذج')"
+"."
 
 msgid "Residual variance (sigma)"
-msgstr ""
+msgstr "الانحراف المعياري للبواقي (سيغما)"
 
 msgid "Changepoint Estimates Table"
-msgstr ""
+msgstr "جدول تقديرات نقاط التغير"
 
 msgid "Changepoint Posterior Summary Table"
-msgstr ""
+msgstr "جدول ملخص التوزيع البعدي لنقاط التغير"
 
 msgid "Changepoint"
-msgstr ""
+msgstr "نقطة تغير"
 
 msgid "Change in growth rate (δ)"
-msgstr ""
+msgstr "التغير في معدل النمو (δ)"
 
 msgid "Simulated Historical Forecasts Table"
-msgstr ""
+msgstr "جدول التنبؤات التاريخية المُحاكاة"
 
 msgid "Horizon"
-msgstr ""
+msgstr "أفق التنبؤ"
 
 msgid "MSE"
-msgstr ""
+msgstr "MSE"
 
 msgid "RMSE"
-msgstr ""
+msgstr "RMSE"
 
 msgid "MAPE"
-msgstr ""
+msgstr "MAPE"
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "يجب أن تكون «البداية» بتنسيق تاريخ/وقت (مثل yyyy-mm-dd hh:mm:ss)"
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)"
-msgstr ""
+msgstr "يجب أن تكون «النهاية» بتنسيق تاريخ/وقت (مثل yyyy-mm-dd hh:mm:ss)"
 
 msgid "Forecast Plots"
-msgstr ""
+msgstr "مخططات التنبؤ المستقبلي"
 
 msgid "Cannot draw forecast plots; no forecasts computed."
-msgstr ""
+msgstr "يتعذّر رسم التنبؤات؛ لم تُحسب أي تنبؤات."
 
 msgid "Overall"
-msgstr ""
+msgstr "إجمالي"
 
 msgid "Trend"
-msgstr ""
+msgstr "الاتجاه العام"
 
 msgid "Seasonality Plots"
-msgstr ""
+msgstr "مخططات الموسمية"
 
 msgid "Time (min:sec)"
-msgstr ""
+msgstr "الوقت (دقيقة:ثانية)"
 
 msgid "Time (hour:min)"
-msgstr ""
+msgstr "الوقت (ساعة:دقيقة)"
 
 msgid "Time (hour)"
-msgstr ""
+msgstr "الزمن (ساعة)"
 
 msgid "Weekday"
-msgstr ""
+msgstr "يوم الأسبوع"
 
 msgid "Time (day)"
-msgstr ""
+msgstr "الزمن (يوم)"
 
 msgid "Time (month-day)"
-msgstr ""
+msgstr "الوقت (شهر-يوم)"
 
 msgid "Time (month)"
-msgstr ""
+msgstr "الزمن (شهر)"
 
 msgid "Time (year)"
-msgstr ""
+msgstr "الزمن (سنة)"
 
 msgid "Please enter valid 'Start' and 'End' arguments for nonperiodical prediction (e.g., yyyy-mm-dd hh:mm:ss)"
 msgstr ""
+"يرجى إدخال وسيطتي 'البداية' و'النهاية' الصالحتين للتنبؤ غير الدوري (مثل yyyy-"
+"mm-dd hh:mm:ss)"
 
 msgid "Covariate Plots"
-msgstr ""
+msgstr "مخططات المتغيرات المصاحبة"
 
 msgid "Performance Plots"
-msgstr ""
+msgstr "مخططات الأداء"
 
 msgid "Parameter Plots"
-msgstr ""
+msgstr "مخططات المعلمات"
 
 msgid "Changepoint Plot"
-msgstr ""
+msgstr "مخطط نقاط التغير"
 
 msgid "Change in growth rate"
-msgstr ""
+msgstr "التغير في معدل النمو"
 
 msgid "Posterior Distributions"
-msgstr ""
+msgstr "التوزيعات البعدية"
 
 msgid "Growth rate"
-msgstr ""
+msgstr "معدل النمو"
 
 msgid "Offset"
-msgstr ""
+msgstr "حد الإزاحة"
 
 msgid "Residual variance"
-msgstr ""
+msgstr "الانحراف المعياري للبواقي"
 
 msgid "Density"
 msgstr "الكثافة"
