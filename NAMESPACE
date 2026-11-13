@@ -1,2 +1,3 @@
 export(Prophet)
+export(ProphetInternal)
   import('prophet');
