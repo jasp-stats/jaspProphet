@@ -22,7 +22,7 @@ gettextf <- function(fmt, ..., domain = NULL)  {
 }
 
 # Main function ----
-Prophet <- function(jaspResults, dataset = NULL, options) {
+ProphetInternal <- function(jaspResults, dataset = NULL, options) {
 
   options <- .prophetInitOptions(jaspResults, options)
 
